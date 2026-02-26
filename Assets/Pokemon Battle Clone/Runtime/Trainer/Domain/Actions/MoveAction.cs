@@ -19,8 +19,8 @@ namespace Pokemon_Battle_Clone.Runtime.Trainer.Domain.Actions
         
         public override TrainerActionResult Execute(Battle battle)
         {
-            var user = battle.GetTeam(Side).FirstPokemon;
-            var target = battle.GetOpponentTeam(Side).FirstPokemon;
+            var user = battle.GetFirstPokemon(Side);
+            var target = battle.GetOpponentFirstPokemon(Side);
 
             var targetInitialHealth = target.Health.Current;
             var hit = battle.Random.Roll(_move.Accuracy);

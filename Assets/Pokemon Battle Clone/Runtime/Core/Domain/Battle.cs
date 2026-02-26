@@ -23,6 +23,8 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Domain
             _rivalTeam = rivalTeam;
             Random = random;
         }
+        public Pokemon GetFirstPokemon(Side side) => GetTeam(side).FirstPokemon;
+        public Pokemon GetOpponentFirstPokemon(Side side) => GetOpponentTeam(side).FirstPokemon;
 
         public Team GetTeam(Side side)
         {
