@@ -15,7 +15,8 @@ namespace Pokemon_Battle_Clone.Runtime.Builders
         private uint _accuracy = 100;
         private uint _power;
         private int _priority;
-        private readonly List<IMoveEffect> _effects = new List<IMoveEffect>();
+        private IMoveEffect _mainEffect = new EmptyMoveEffect();
+        private readonly List<ConditionalEffect> _effects = new List<ConditionalEffect>();
 
         public MoveBuilder WithName(string name)
         {
@@ -50,8 +51,6 @@ namespace Pokemon_Battle_Clone.Runtime.Builders
         public MoveBuilder WithPower(uint power)
         {
             _power = power;
-            if (_power > 0)
-                _effects.Add(new DamageEffect());
             return this;
         }
 
@@ -61,15 +60,21 @@ namespace Pokemon_Battle_Clone.Runtime.Builders
             return this;
         }
 
-        public MoveBuilder WithStatsModifier(bool applyToTarget, StatSet statsModifier)
+        public MoveBuilder WithMainEffect(IMoveEffect effect)
         {
-            _effects.Add(new StatsModifierEffect(applyToTarget, statsModifier));
+            _mainEffect = effect;
+            return this;
+        }
+
+        public MoveBuilder WithAdditionalEffect(IMoveEffect effect, int chancePercent)
+        {
+            _effects.Add(new ConditionalEffect(effect, chancePercent));
             return this;
         }
         
         public Move Build()
         {
-            var move = new Move(_name, _type, _category, _pp, _accuracy, _power, _priority);
+            var move = new Move(_name, _type, _category, _pp, _accuracy, _power, _priority, _mainEffect);
             move.AddEffects(_effects);
             return move;
         }
