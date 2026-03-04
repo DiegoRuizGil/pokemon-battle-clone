@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.Stats.Domain;
 using Pokemon_Battle_Clone.Runtime.Stats.Infrastructure;
-using TMPro;
 using UnityEngine;
 
 namespace Pokemon_Battle_Clone.Runtime.Core.Infrastructure
@@ -13,8 +13,16 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Infrastructure
         [SerializeField] private PokemonView pokemonView;
         [SerializeField] private StatsModifiersView statsModifiersView;
 
-        public async Task SendPokemon(Pokemon pokemon, Sprite sprite)
+        private Dictionary<uint, Sprite> _sprites = new Dictionary<uint, Sprite>();
+
+        public void Init(Dictionary<uint, Sprite> sprites)
         {
+            _sprites = new Dictionary<uint, Sprite>(sprites);
+        }
+        
+        public async Task SendPokemon(Pokemon pokemon)
+        {
+            var sprite = _sprites[pokemon.ID];
             SetStaticData(sprite, pokemon.Name, pokemon.Stats.Level);
             UpdateHealth(pokemon.Health.Max, pokemon.Health.Current, animated: false);
             SetStatModifier(pokemon.Stats.Modifiers);

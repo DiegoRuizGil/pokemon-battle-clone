@@ -62,10 +62,9 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Control
 
         private async Task HandleSendPokemonEvent(SendPokemonEvent sendEvent)
         {
-            LogManager.Log($"Sending {sendEvent.PokemonName} from side {sendEvent.ActionSide}", FeatureType.Action);
+            LogManager.Log($"Sending {sendEvent.Pokemon} from side {sendEvent.ActionSide}", FeatureType.Action);
             var team = _battleContext.GetTeam(sendEvent.ActionSide);
-            // await team.View.SendPokemon(sendEvent.Pokemon, sprite: ...);
-            await team.SendFirstPokemon();
+            await team.View.SendPokemon(sendEvent.Pokemon);
         }
 
         private async Task HandleWithdrawPokemonEvent(WithdrawPokemon withdraw)

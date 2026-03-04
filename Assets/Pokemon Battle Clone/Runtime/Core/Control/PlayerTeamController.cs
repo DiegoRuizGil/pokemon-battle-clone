@@ -7,7 +7,6 @@ using Pokemon_Battle_Clone.Runtime.CustomLogs;
 using Pokemon_Battle_Clone.Runtime.Moves.Infrastructure;
 using Pokemon_Battle_Clone.Runtime.Trainer.Domain.Actions;
 using Pokemon_Battle_Clone.Runtime.Trainer.Infrastructure.Actions;
-using UnityEngine;
 
 namespace Pokemon_Battle_Clone.Runtime.Core.Control
 {
@@ -18,8 +17,8 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Control
 
         private readonly Dictionary<Type, Action<bool>> _selectorMap;
         
-        public PlayerTeamController(Team team, Dictionary<uint, Sprite> sprites, ITeamView view, IActionHUD actionsHUD)
-            : base(team, view, sprites)
+        public PlayerTeamController(Team team, ITeamView view, IActionHUD actionsHUD)
+            : base(team, view)
         {
             _actionsHUD = actionsHUD;
             _selectorMap = new Dictionary<Type, Action<bool>>

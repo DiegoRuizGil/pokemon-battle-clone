@@ -23,7 +23,7 @@ namespace Pokemon_Battle_Clone.Runtime.Trainer.Domain.Actions
             
             events.Add(new WithdrawPokemon(Side, team.FirstPokemon.Name));
             team.SwapActivePokemon(_pokemonIndex);
-            events.Add(new SendPokemonEvent(Side, team.FirstPokemon.Name));
+            events.Add(new SendPokemonEvent(Side, team.FirstPokemon));
 
             return events;
         }

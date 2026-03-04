@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.Core.Infrastructure;
 using Pokemon_Battle_Clone.Runtime.Trainer.Domain.Actions;
-using UnityEngine;
 
 namespace Pokemon_Battle_Clone.Runtime.Core.Control
 {
@@ -11,18 +9,14 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Control
     {
         protected readonly Team Team;
         public ITeamView View { get; }
-        private readonly Dictionary<uint, Sprite> _sprites;
 
         public bool Defeated => Team.Defeated;
         public bool IsFirstPokemonDefeated => Team.FirstPokemon.Defeated;
 
-        private Sprite FirstPokemonSprite => _sprites[Team.FirstPokemon.ID];
-
-        protected TeamController(Team team, ITeamView view, Dictionary<uint, Sprite> sprites)
+        protected TeamController(Team team, ITeamView view)
         {
             Team = team;
             View = view;
-            _sprites = new Dictionary<uint, Sprite>(sprites);
         }
 
         public async Task Init() => await SendFirstPokemon();
@@ -33,7 +27,7 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Control
 
         public virtual async Task SendFirstPokemon()
         {
-            await View.SendPokemon(Team.FirstPokemon, FirstPokemonSprite);
+            await View.SendPokemon(Team.FirstPokemon);
         }
     }
 }

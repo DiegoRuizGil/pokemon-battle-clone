@@ -43,11 +43,13 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Control
             _battle = new Battle(playerTeam, rivalTeam, new DefaultRandom(seed: DateTime.Now.GetHashCode()));
             
             var playerSprites = spriteLoader.LoadAllBack(playerTeam.PokemonList.Select(pokemon => pokemon.ID).ToList());
-            _playerTeamController = new PlayerTeamController(playerTeam, playerSprites, playerTeamView, actionsHUD);
+            _playerTeamController = new PlayerTeamController(playerTeam, playerTeamView, actionsHUD);
+            playerTeamView.Init(playerSprites);
             
             var rivalSprites = spriteLoader.LoadAllFront(rivalTeam.PokemonList.Select(pokemon => pokemon.ID).ToList());
             var strategy = new BasicTrainerStrategy();
-            _rivalTeamController = new RivalTeamController(rivalTeam, strategy, rivalSprites, rivalTeamView);
+            _rivalTeamController = new RivalTeamController(rivalTeam, strategy, rivalTeamView);
+            rivalTeamView.Init(rivalSprites);
 
             _ = RunBattleAsync();
         }
