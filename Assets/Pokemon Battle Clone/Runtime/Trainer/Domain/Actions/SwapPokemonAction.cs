@@ -1,4 +1,6 @@
-﻿using Pokemon_Battle_Clone.Runtime.Core.Domain;
+﻿using System.Collections.Generic;
+using Pokemon_Battle_Clone.Runtime.Core.Domain;
+using Pokemon_Battle_Clone.Runtime.Trainer.Domain.BattleEvents;
 
 namespace Pokemon_Battle_Clone.Runtime.Trainer.Domain.Actions
 {
@@ -14,15 +16,12 @@ namespace Pokemon_Battle_Clone.Runtime.Trainer.Domain.Actions
             _pokemonIndex = pokemonIndex;
         }
 
-        public override TrainerActionResult Execute(Battle battle)
+        public override IEnumerable<IBattleEvent> Execute(Battle battle)
         {
             var team = battle.GetTeam(Side);
             team.SwapActivePokemon(_pokemonIndex);
 
-            return new SwapActionResult
-            {
-                Side = Side,
-            };
+            return new List<IBattleEvent> { new SwapPokemonEvent(Side, team.FirstPokemon.Name) };
         }
     }
 }

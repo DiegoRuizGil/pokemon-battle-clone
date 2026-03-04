@@ -24,7 +24,7 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Domain
             Type2 = type2;
 
             MoveSet = new MoveSet();
-            Health = new Health(stats.Stats.HP);
+            Health = new Health(stats.HP);
         }
         
         public float STAB(ElementalType moveType)

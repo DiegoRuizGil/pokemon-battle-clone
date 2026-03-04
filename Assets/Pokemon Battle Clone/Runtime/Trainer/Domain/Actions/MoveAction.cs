@@ -1,6 +1,7 @@
-﻿using Pokemon_Battle_Clone.Runtime.Core.Domain;
+﻿using System.Collections.Generic;
+using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.Moves.Domain;
-using Pokemon_Battle_Clone.Runtime.RNG;
+using Pokemon_Battle_Clone.Runtime.Trainer.Domain.BattleEvents;
 
 namespace Pokemon_Battle_Clone.Runtime.Trainer.Domain.Actions
 {
@@ -17,25 +18,20 @@ namespace Pokemon_Battle_Clone.Runtime.Trainer.Domain.Actions
             Priority = move.Priority;
         }
         
-        public override TrainerActionResult Execute(Battle battle)
+        public override IEnumerable<IBattleEvent> Execute(Battle battle)
         {
-            var user = battle.GetFirstPokemon(Side);
-            var target = battle.GetOpponentFirstPokemon(Side);
+            var events = new List<IBattleEvent>();
 
-            var targetInitialHealth = target.Health.Current;
             var hit = battle.Random.Roll(_move.Accuracy);
-            
-            if (hit) _move.Execute(battle, Side);
-
-            return new MoveActionResult
+            if (!hit)
             {
-                Side = Side,
-                MoveName = _move.Name,
-                UserName = user.Name,
-                Failed = !hit,
-                TargetFainted = target.Defeated,
-                TargetDamaged = targetInitialHealth > target.Health.Current,
-            };
+                events.Add(new FailedMoveEvent());
+                return events;
+            }
+            
+            var moveEvents =  _move.Execute(battle, Side);
+            events.AddRange(moveEvents);
+            return events;
         }
     }
 }

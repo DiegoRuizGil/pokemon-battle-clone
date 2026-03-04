@@ -8,6 +8,7 @@ using Pokemon_Battle_Clone.Runtime.CustomLogs;
 using Pokemon_Battle_Clone.Runtime.Moves.Domain;
 using Pokemon_Battle_Clone.Runtime.RNG;
 using Pokemon_Battle_Clone.Runtime.Trainer.Domain.Actions;
+using Pokemon_Battle_Clone.Runtime.Trainer.Domain.BattleEvents;
 using Pokemon_Battle_Clone.Runtime.Trainer.Domain.Strategies;
 using Pokemon_Battle_Clone.Runtime.Trainer.Infrastructure.Actions;
 using UnityEngine;
@@ -88,8 +89,8 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Control
                 await Task.WhenAll(tasks);
                 foreach (var task in tasks)
                 {
-                    var result = task.Result.Execute(_battle);
-                    await _actionsResolver.Resolve(result, this);
+                    var eventSequence = task.Result.Execute(_battle);
+                    await _actionsResolver.Resolve(new Queue<IBattleEvent>(eventSequence), this);
                 }
             }
         }
@@ -113,8 +114,8 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Control
             {
                 if (_battle.PokemonFainted(action.Side))
                     continue;
-                var result = action.Execute(_battle);
-                await _actionsResolver.Resolve(result, this);
+                var eventSequence = action.Execute(_battle);
+                await _actionsResolver.Resolve(new Queue<IBattleEvent>(eventSequence), this);
             }
         }
 

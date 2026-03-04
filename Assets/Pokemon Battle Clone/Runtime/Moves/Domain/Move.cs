@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.Moves.Domain.Effects;
+using Pokemon_Battle_Clone.Runtime.Trainer.Domain.BattleEvents;
 using UnityEngine.Assertions;
 
 namespace Pokemon_Battle_Clone.Runtime.Moves.Domain
@@ -43,14 +44,20 @@ namespace Pokemon_Battle_Clone.Runtime.Moves.Domain
         
         public void AddEffect(ConditionalEffect effect) => _additionalEffects.Add(effect);
         
-        public void Execute(Battle  battle, Side side)
+        public IEnumerable<IBattleEvent> Execute(Battle  battle, Side side)
         {
             Assert.IsTrue(PP > 0);
             PP.Value--;
             
-            _mainEffect.Apply(move: this, battle, side);
+            var events = new List<IBattleEvent>();
+            
+            var effectEvent = _mainEffect.Apply(move: this, battle, side);
+            events.Add(effectEvent);
+            
             foreach (var effect in _additionalEffects)
-                effect.TryApply(move: this, battle, side);
+                effect.TryApply(move: this, battle, side); // needs to handle events from additional effects
+
+            return events;
         }
     }
 }

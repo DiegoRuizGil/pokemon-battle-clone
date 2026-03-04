@@ -1,16 +1,24 @@
 ﻿using Pokemon_Battle_Clone.Runtime.Core.Domain;
-using Pokemon_Battle_Clone.Runtime.RNG;
+using Pokemon_Battle_Clone.Runtime.Trainer.Domain.BattleEvents;
 
 namespace Pokemon_Battle_Clone.Runtime.Moves.Domain.Effects
 {
     public class DamageEffect : IMoveEffect
     {
-        public void Apply(Move move, Battle battle, Side side)
+        public IBattleEvent Apply(Move move, Battle battle, Side side)
         {
             var damage = GetDamage(move, battle, side);
             
             var target = battle.GetOpponentFirstPokemon(side);
             target.Health.Damage(damage);
+
+            return new DamageEvent(
+                side: side,
+                targetHealth: target.Health,
+                userName: battle.GetFirstPokemon(side).Name,
+                targetName: target.Name,
+                effectiveness: move.Type.EffectivenessAgainst(target.Type1, target.Type2)
+            );
         }
 
         private int GetDamage(Move move, Battle battle, Side side)

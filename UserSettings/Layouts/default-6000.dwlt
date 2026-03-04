@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 112}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 27
+  controlID: 17
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 112}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 28
+  controlID: 18
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 29
+  controlID: 19
   draggingID: 0
 --- !u!114 &8
 MonoBehaviour:
@@ -252,7 +252,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 53
+  controlID: 83
   draggingID: 0
 --- !u!114 &11
 MonoBehaviour:
@@ -1718,12 +1718,6 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 50188
-    - m_Data: 50190
-    - m_Data: 50192
-    - m_Data: 50194
-    - m_Data: 50196
-    - m_Data: 50198
     - m_Data: 50200
     - m_Data: 50202
     - m_Data: 50204
@@ -1754,6 +1748,18 @@ MonoBehaviour:
     - m_Data: 50254
     - m_Data: 50256
     - m_Data: 50258
+    - m_Data: 50260
+    - m_Data: 50262
+    - m_Data: 50264
+    - m_Data: 50266
+    - m_Data: 50268
+    - m_Data: 50270
+    - m_Data: 50272
+    - m_Data: 50274
+    - m_Data: 50276
+    - m_Data: 50278
+    - m_Data: 50280
+    - m_Data: 50282
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1781,17 +1787,12 @@ MonoBehaviour:
       m_ResourceFile: 
   m_AssetTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: []
+    m_SelectedIDs:
+    - m_Data: 45658
     m_LastClickedID:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 50188
-    - m_Data: 50190
-    - m_Data: 50192
-    - m_Data: 50194
-    - m_Data: 50196
-    - m_Data: 50198
     - m_Data: 50200
     - m_Data: 50202
     - m_Data: 50204
@@ -1822,6 +1823,18 @@ MonoBehaviour:
     - m_Data: 50254
     - m_Data: 50256
     - m_Data: 50258
+    - m_Data: 50260
+    - m_Data: 50262
+    - m_Data: 50264
+    - m_Data: 50266
+    - m_Data: 50268
+    - m_Data: 50270
+    - m_Data: 50272
+    - m_Data: 50274
+    - m_Data: 50276
+    - m_Data: 50278
+    - m_Data: 50280
+    - m_Data: 50282
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1848,8 +1861,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: []
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs:
+    - m_Data: 45658
+    m_LastClickedInstanceID: 45658
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: []
     m_RenameOverlay:
@@ -1928,8 +1942,6 @@ MonoBehaviour:
         m_Data: 0
       m_ExpandedIDs:
       - m_Data: -1316
-      - m_Data: 49198
-      - m_Data: 49336
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

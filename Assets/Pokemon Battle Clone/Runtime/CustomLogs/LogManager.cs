@@ -7,7 +7,7 @@ namespace Pokemon_Battle_Clone.Runtime.CustomLogs
         private const string LOGS_PATH = "Assets/Pokemon Battle Clone/Log Data.asset";
         private static FeatureLogData _logData;
 
-        private static void LogDebugConfig()
+        private static void LoadDebugConfig()
         {
 #if UNITY_EDITOR
             _logData = UnityEditor.AssetDatabase.LoadAssetAtPath<FeatureLogData>(LOGS_PATH);
@@ -62,7 +62,7 @@ namespace Pokemon_Battle_Clone.Runtime.CustomLogs
         {
 #if UNITY_EDITOR
             if (_logData == null)
-                LogDebugConfig();
+                LoadDebugConfig();
             
             LogConsole(text, feature);
 #endif
@@ -72,7 +72,7 @@ namespace Pokemon_Battle_Clone.Runtime.CustomLogs
         {
 #if UNITY_EDITOR
             if (_logData == null)
-                LogDebugConfig();
+                LoadDebugConfig();
             
             LogWarningConsole(text, feature);
 #endif
@@ -82,7 +82,7 @@ namespace Pokemon_Battle_Clone.Runtime.CustomLogs
         {
 #if UNITY_EDITOR
             if (_logData == null)
-                LogDebugConfig();
+                LoadDebugConfig();
             
             LogErrorConsole(text, feature);
 #endif

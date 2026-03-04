@@ -1,6 +1,7 @@
 ﻿using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.RNG;
 using Pokemon_Battle_Clone.Runtime.Stats.Domain;
+using Pokemon_Battle_Clone.Runtime.Trainer.Domain.BattleEvents;
 
 namespace Pokemon_Battle_Clone.Runtime.Moves.Domain.Effects
 {
@@ -15,18 +16,17 @@ namespace Pokemon_Battle_Clone.Runtime.Moves.Domain.Effects
             _statsModifier = statsModifier;
         }
         
-        public void Apply(Move move, Battle battle, Side side)
+        public IBattleEvent Apply(Move move, Battle battle, Side side)
         {
+            var user = battle.GetFirstPokemon(side);
+            var target = battle.GetOpponentFirstPokemon(side);
+            
             if (_applyToTarget)
-            {
-                var target = battle.GetOpponentFirstPokemon(side);
                 target.Stats.Modifiers.Apply(_statsModifier);
-            }
             else
-            {
-                var user = battle.GetFirstPokemon(side);
                 user.Stats.Modifiers.Apply(_statsModifier);
-            }
+
+            return new StatsModifierEvent(side, _applyToTarget ? target.Stats.Modifiers : user.Stats.Modifiers, user.Name, target.Name);
         }
     }
 }
