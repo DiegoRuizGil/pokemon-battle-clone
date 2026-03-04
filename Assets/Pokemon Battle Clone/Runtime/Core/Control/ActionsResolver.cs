@@ -26,7 +26,8 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Control
                     ExecuteMoveEvent moveEvent => HandleExecuteMoveEvent(moveEvent),
                     DamageEvent damageEvent => HandleDamage(damageEvent),
                     StatsModifierEvent statsEvent => HandleStatsModifierEvent(statsEvent),
-                    SwapPokemonEvent swapEvent => HandleSwapPokemonEvent(swapEvent),
+                    SendPokemonEvent sendEvent => HandleSendPokemonEvent(sendEvent),
+                    WithdrawPokemon withdrawEvent => HandleWithdrawPokemonEvent(withdrawEvent),
                     _ => Task.CompletedTask
                 });
             }
@@ -59,11 +60,19 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Control
             rivalTeam.SetStatsModifier();
         }
 
-        private async Task HandleSwapPokemonEvent(SwapPokemonEvent swapEvent)
+        private async Task HandleSendPokemonEvent(SendPokemonEvent sendEvent)
         {
-            LogManager.Log($"Sending {swapEvent.PokemonName} from side {swapEvent.ActionSide}", FeatureType.Action);
-            var userTeam = _battleContext.GetTeam(swapEvent.ActionSide);
-            await userTeam.SendFirstPokemon();
+            LogManager.Log($"Sending {sendEvent.PokemonName} from side {sendEvent.ActionSide}", FeatureType.Action);
+            var team = _battleContext.GetTeam(sendEvent.ActionSide);
+            // await team.View.SendPokemon(sendEvent.Pokemon, sprite: ...);
+            await team.SendFirstPokemon();
+        }
+
+        private async Task HandleWithdrawPokemonEvent(WithdrawPokemon withdraw)
+        {
+            LogManager.Log($"Withdrawing {withdraw.PokemonName} from side {withdraw.ActionSide}", FeatureType.Action);
+            var team = _battleContext.GetTeam(withdraw.ActionSide);
+            await team.View.PlayWithdrawAnimation();
         }
     }
 }

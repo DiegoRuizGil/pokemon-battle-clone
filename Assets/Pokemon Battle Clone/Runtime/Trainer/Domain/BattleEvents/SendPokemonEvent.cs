@@ -2,12 +2,12 @@
 
 namespace Pokemon_Battle_Clone.Runtime.Trainer.Domain.BattleEvents
 {
-    public class SwapPokemonEvent : IBattleEvent
+    public class SendPokemonEvent : IBattleEvent
     {
         public Side ActionSide { get; }
         public string PokemonName { get; }
         
-        public SwapPokemonEvent(Side side, string pokemonName)
+        public SendPokemonEvent(Side side, string pokemonName)
         {
             ActionSide = side;
             PokemonName = pokemonName;

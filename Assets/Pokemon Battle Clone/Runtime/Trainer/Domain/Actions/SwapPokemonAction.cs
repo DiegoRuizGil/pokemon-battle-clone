@@ -19,9 +19,13 @@ namespace Pokemon_Battle_Clone.Runtime.Trainer.Domain.Actions
         public override IEnumerable<IBattleEvent> Execute(Battle battle)
         {
             var team = battle.GetTeam(Side);
+            var events = new List<IBattleEvent>();
+            
+            events.Add(new WithdrawPokemon(Side, team.FirstPokemon.Name));
             team.SwapActivePokemon(_pokemonIndex);
+            events.Add(new SendPokemonEvent(Side, team.FirstPokemon.Name));
 
-            return new List<IBattleEvent> { new SwapPokemonEvent(Side, team.FirstPokemon.Name) };
+            return events;
         }
     }
 }

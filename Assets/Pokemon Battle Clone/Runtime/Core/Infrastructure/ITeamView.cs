@@ -14,5 +14,7 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Infrastructure
         Task PlayAttackAnimation();
         Task PlayHitAnimation();
         Task PlayFaintAnimation();
+        Task PlaySendAnimation();
+        Task PlayWithdrawAnimation();
     }
 }
