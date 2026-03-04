@@ -23,6 +23,7 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Control
 
                 await (battleEvent switch
                 {
+                    ExecuteMoveEvent moveEvent => HandleExecuteMoveEvent(moveEvent),
                     DamageEvent damageEvent => HandleDamage(damageEvent),
                     StatsModifierEvent statsEvent => HandleStatsModifierEvent(statsEvent),
                     SwapPokemonEvent swapEvent => HandleSwapPokemonEvent(swapEvent),
@@ -31,15 +32,19 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Control
             }
         }
 
-        private async Task HandleDamage(DamageEvent damageEvent)
+        private async Task HandleExecuteMoveEvent(ExecuteMoveEvent moveEvent)
         {
-            var userTeam = _battleContext.GetTeam(damageEvent.ActionSide);
-            var rivalTeam = _battleContext.GetOpponentTeam(damageEvent.ActionSide);
-
-            LogManager.Log($"{damageEvent.UserName} attacked {damageEvent.TargetName}", FeatureType.Action);
+            var userTeam = _battleContext.GetTeam(moveEvent.ActionSide);
+            
+            LogManager.Log($"{moveEvent.PokemonName} used the move {moveEvent.MoveName}", FeatureType.Action);
             await userTeam.View.PlayAttackAnimation();
             
             // add move animation here
+        }
+
+        private async Task HandleDamage(DamageEvent damageEvent)
+        {
+            var rivalTeam = _battleContext.GetOpponentTeam(damageEvent.ActionSide);
             
             rivalTeam.View.UpdateHealth(max: damageEvent.TargetHealth.Max, current: damageEvent.TargetHealth.Current, animated: true);
             if (damageEvent.TargetHealth.Current == 0)
@@ -50,12 +55,7 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Control
 
         private async Task HandleStatsModifierEvent(StatsModifierEvent statsEvent)
         {
-            var userTeam = _battleContext.GetTeam(statsEvent.ActionSide);
             var rivalTeam = _battleContext.GetOpponentTeam(statsEvent.ActionSide);
-
-            LogManager.Log($"{statsEvent.UserName} attacked {statsEvent.TargetName}", FeatureType.Action);
-            await userTeam.View.PlayAttackAnimation();
-            
             rivalTeam.SetStatsModifier();
         }
 

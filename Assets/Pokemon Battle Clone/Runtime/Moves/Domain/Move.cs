@@ -50,6 +50,7 @@ namespace Pokemon_Battle_Clone.Runtime.Moves.Domain
             PP.Value--;
             
             var events = new List<IBattleEvent>();
+            events.Add(new ExecuteMoveEvent(side, battle.GetFirstPokemon(side).Name, this.Name));
             
             var effectEvent = _mainEffect.Apply(move: this, battle, side);
             events.Add(effectEvent);
