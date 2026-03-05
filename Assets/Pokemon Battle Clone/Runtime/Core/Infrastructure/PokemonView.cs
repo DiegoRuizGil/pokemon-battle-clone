@@ -32,8 +32,8 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Infrastructure
         public Task PlayAttackAnimation() => PlayAnimation("Attack");
         public Task PlayHitAnimation() => PlayAnimation("Hit");
         public Task PlayFaintAnimation() => PlayAnimation("Faint");
-        public Task PlaySendAnimation() => PlayAnimation("Hit"); // needs to create send animation
-        public Task PlayWithdrawAnimation() => PlayAnimation("Faint"); // needs to create withdraw animation
+        public Task PlaySendAnimation() => PlayAnimation("Send");
+        public Task PlayWithdrawAnimation() => PlayAnimation("Withdraw");
 
         private Task PlayAnimation(string stateName)
         {
