@@ -10,7 +10,6 @@ using Pokemon_Battle_Clone.Runtime.CustomLogs;
 using Pokemon_Battle_Clone.Runtime.Moves.Domain;
 using Pokemon_Battle_Clone.Runtime.RNG;
 using Pokemon_Battle_Clone.Runtime.Trainers.Control;
-using Pokemon_Battle_Clone.Runtime.Trainers.Domain.Actions;
 using Pokemon_Battle_Clone.Runtime.Trainers.Domain.Strategies;
 using Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions;
 using UnityEngine;
@@ -25,6 +24,7 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
         public ActionsHUD actionsHUD;
         
         private Battle _battle;
+        private Turn _turn;
         private ActionsResolver _actionsResolver;
         
         private Trainer _playerTrainer;
@@ -43,6 +43,7 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
             var rivalTeam = BuildRivalTeam();
             
             _battle = new Battle(playerTeam, rivalTeam, new DefaultRandom(seed: DateTime.Now.GetHashCode()));
+            _turn = new Turn(this);
             
             var playerSprites = spriteLoader.LoadAllBack(playerTeam.PokemonList.Select(pokemon => pokemon.ID).ToList());
             _playerTrainer = new PlayerTrainer(playerTeam, actionsHUD);
@@ -67,70 +68,11 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
             
             while (!_battleFinished)
             {
-                _turnCount++;
-                LogManager.Log($"--- TURN {_turnCount} ---", FeatureType.Battle);
-
-                await StartTurnAsync();
-                var actions = await SelectActionsAsync();
-                await ExecuteActionsAsync(actions);
-                await EndTurnAsync();
-
+                await _turn.Next(_battle, _playerTrainer, _rivalTrainer);
                 _battleFinished = CheckBattleEnd();
             }
             
             LogManager.Log("Battle finished!", FeatureType.Battle);
-        }
-
-        private async Task StartTurnAsync()
-        {
-            LogManager.Log("Start turn...", FeatureType.Battle);
-            await Task.Delay(500);
-            
-            var tasks = new List<Task<SwapPokemonAction>>();
-            if (_playerTrainer.IsFirstPokemonDefeated)
-                tasks.Add(_playerTrainer.SelectActionOfType<SwapPokemonAction>(forceSelection: true));
-            if (_rivalTrainer.IsFirstPokemonDefeated)
-                tasks.Add(_rivalTrainer.SelectActionOfType<SwapPokemonAction>(forceSelection: true));
-            
-            if (tasks.Count > 0)
-            {
-                await Task.WhenAll(tasks);
-                foreach (var task in tasks)
-                {
-                    var eventSequence = task.Result.Execute(_battle);
-                    await _actionsResolver.Resolve(new Queue<IBattleEvent>(eventSequence));
-                }
-            }
-        }
-
-        private async Task<List<TrainerAction>> SelectActionsAsync()
-        {
-            LogManager.Log("Selecting actions...", FeatureType.Battle);
-            var playerActionTask = _playerTrainer.SelectActionTask();
-            var rivalActionTask = _rivalTrainer.SelectActionTask();
-
-            await Task.WhenAll(playerActionTask, rivalActionTask);
-            
-            return new List<TrainerAction> { playerActionTask.Result, rivalActionTask.Result };
-        }
-
-        private async Task ExecuteActionsAsync(List<TrainerAction> actions)
-        {
-            var orderedActions = _battle.OrderActions(actions);
-
-            foreach (var action in orderedActions)
-            {
-                if (_battle.PokemonFainted(action.Side))
-                    continue;
-                var eventSequence = action.Execute(_battle);
-                await _actionsResolver.Resolve(new Queue<IBattleEvent>(eventSequence));
-            }
-        }
-
-        private async Task EndTurnAsync()
-        {
-            LogManager.Log("End turn...", FeatureType.Battle);
-            await Task.Delay(500);
         }
 
         private bool CheckBattleEnd()
