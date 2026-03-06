@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Pokemon_Battle_Clone.Runtime.Core.Domain
+namespace Pokemon_Battle_Clone.Runtime.Core.Infrastructure
 {
     public interface IPokemonAnimator
     {
