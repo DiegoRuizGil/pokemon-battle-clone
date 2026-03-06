@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Pokemon_Battle_Clone.Runtime.Trainer.Infrastructure.Actions
+namespace Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions
 {
     public class ActionSelector : MonoBehaviour
     {

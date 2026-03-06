@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.CustomLogs;
-using Pokemon_Battle_Clone.Runtime.Trainer.Domain.Actions;
-using Pokemon_Battle_Clone.Runtime.Trainer.Domain.Strategies;
+using Pokemon_Battle_Clone.Runtime.Trainers.Domain.Actions;
+using Pokemon_Battle_Clone.Runtime.Trainers.Domain.Strategies;
 
-namespace Pokemon_Battle_Clone.Runtime.Trainer.Domain
+namespace Pokemon_Battle_Clone.Runtime.Trainers.Domain
 {
     public class RivalTrainer : Trainer
     {

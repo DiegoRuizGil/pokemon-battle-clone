@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.Moves.Domain.Effects;
-using Pokemon_Battle_Clone.Runtime.Trainer.Domain.BattleEvents;
+using Pokemon_Battle_Clone.Runtime.Trainers.Domain.BattleEvents;
 using UnityEngine.Assertions;
 
 namespace Pokemon_Battle_Clone.Runtime.Moves.Domain

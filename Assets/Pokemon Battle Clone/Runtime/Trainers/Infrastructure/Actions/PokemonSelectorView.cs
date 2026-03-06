@@ -5,7 +5,7 @@ using Pokemon_Battle_Clone.Runtime.Core.Infrastructure;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Pokemon_Battle_Clone.Runtime.Trainer.Infrastructure.Actions
+namespace Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions
 {
     public class PokemonSelectorView : MonoBehaviour, ISelectorView<Team>
     {

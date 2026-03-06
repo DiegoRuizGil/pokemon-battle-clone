@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Pokemon_Battle_Clone.Runtime.RNG;
-using Pokemon_Battle_Clone.Runtime.Trainer.Domain.Actions;
+using Pokemon_Battle_Clone.Runtime.Trainers.Domain.Actions;
 
 namespace Pokemon_Battle_Clone.Runtime.Core.Domain
 {

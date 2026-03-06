@@ -4,7 +4,7 @@ using Pokemon_Battle_Clone.Runtime.Moves.Domain;
 using Pokemon_Battle_Clone.Runtime.Moves.Infrastructure;
 using UnityEngine;
 
-namespace Pokemon_Battle_Clone.Runtime.Trainer.Infrastructure.Actions
+namespace Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions
 {
     public class ActionsHUD : MonoBehaviour, IActionHUD
     {

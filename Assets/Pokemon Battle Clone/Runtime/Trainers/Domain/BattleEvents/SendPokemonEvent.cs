@@ -1,6 +1,6 @@
 ﻿using Pokemon_Battle_Clone.Runtime.Core.Domain;
 
-namespace Pokemon_Battle_Clone.Runtime.Trainer.Domain.BattleEvents
+namespace Pokemon_Battle_Clone.Runtime.Trainers.Domain.BattleEvents
 {
     public class SendPokemonEvent : IBattleEvent
     {

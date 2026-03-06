@@ -3,7 +3,7 @@ using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.Moves.Domain;
 using Pokemon_Battle_Clone.Runtime.Moves.Infrastructure;
 
-namespace Pokemon_Battle_Clone.Runtime.Trainer.Infrastructure.Actions
+namespace Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions
 {
     public interface IActionHUD
     {

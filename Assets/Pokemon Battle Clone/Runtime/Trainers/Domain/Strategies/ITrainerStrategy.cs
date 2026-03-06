@@ -1,7 +1,7 @@
 ﻿using Pokemon_Battle_Clone.Runtime.Core.Domain;
-using Pokemon_Battle_Clone.Runtime.Trainer.Domain.Actions;
+using Pokemon_Battle_Clone.Runtime.Trainers.Domain.Actions;
 
-namespace Pokemon_Battle_Clone.Runtime.Trainer.Domain.Strategies
+namespace Pokemon_Battle_Clone.Runtime.Trainers.Domain.Strategies
 {
     public interface ITrainerStrategy
     {
