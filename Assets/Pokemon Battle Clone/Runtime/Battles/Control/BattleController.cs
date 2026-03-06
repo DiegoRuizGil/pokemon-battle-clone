@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Pokemon_Battle_Clone.Runtime.Battles.Domain;
-using Pokemon_Battle_Clone.Runtime.Battles.Domain.Events;
 using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.Core.Infrastructure;
 using Pokemon_Battle_Clone.Runtime.CustomLogs;
@@ -25,8 +24,7 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
         
         private Battle _battle;
         private Turn _turn;
-        private ActionsResolver _actionsResolver;
-        
+
         private Trainer _playerTrainer;
         private Trainer _rivalTrainer;
         
@@ -35,8 +33,6 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
         
         private void Start()
         {
-            _actionsResolver = new ActionsResolver(this);
-            
             var spriteLoader = new SpritesLoader("Assets/Pokemon Battle Clone/Sprites/Pokemon");
             
             var playerTeam = BuildPlayerTeam();
@@ -59,8 +55,7 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
 
         private async Task RunBattleAsync()
         {
-            await _actionsResolver.Resolve(_battle, _playerTrainer.Init());
-            await _actionsResolver.Resolve(_battle, _rivalTrainer.Init());
+            await _turn.Init(_battle, _playerTrainer, _rivalTrainer);
             
             LogManager.Log("Battle started!", FeatureType.Battle);
             
