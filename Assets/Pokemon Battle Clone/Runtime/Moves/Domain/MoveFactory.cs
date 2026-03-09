@@ -54,7 +54,7 @@ namespace Pokemon_Battle_Clone.Runtime.Moves.Domain
 
         public static Move Leer()
         {
-            var statsModiferEffect = new StatsModifierEffect(applyToTarget: true, new StatSet(0, 0, -1, 0, 0, 0));
+            var statsModiferEffect = new StatsModifierEffect(applyToTarget: true, new StatSet(0, 1, -1, 2, -2, 3));
             return A.Move.WithName("Leer")
                 .WithAccuracy(100)
                 .WithPP(30)
