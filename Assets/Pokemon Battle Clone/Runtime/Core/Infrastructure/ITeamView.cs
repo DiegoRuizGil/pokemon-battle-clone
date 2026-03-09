@@ -10,6 +10,7 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Infrastructure
         Task SendPokemon(Pokemon pokemon);
         void UpdateHealth(int max, int current, bool animated);
         void SetStatModifier(StatsModifier modifier);
+        void SetPokemonAsDefeated(uint pokemonID);
 
         Task PlayAttackAnimation();
         Task PlayHitAnimation();

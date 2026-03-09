@@ -12,12 +12,14 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Infrastructure
         [SerializeField] private PokemonStatusView pokemonStatusView;
         [SerializeField] private PokemonView pokemonView;
         [SerializeField] private StatsModifiersView statsModifiersView;
+        [SerializeField] private TeamStatusView teamStatusView;
 
         private Dictionary<uint, Sprite> _sprites = new Dictionary<uint, Sprite>();
 
         public void Init(Dictionary<uint, Sprite> sprites)
         {
             _sprites = new Dictionary<uint, Sprite>(sprites);
+            teamStatusView.Init(pokemonIDs: new List<uint>(sprites.Keys));
         }
         
         public async Task SendPokemon(Pokemon pokemon)
@@ -32,6 +34,7 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Infrastructure
 
         public void UpdateHealth(int max, int current, bool animated) => pokemonStatusView.UpdateHealth(max, current, animated);
         public void SetStatModifier(StatsModifier modifier) => statsModifiersView.Set(modifier);
+        public void SetPokemonAsDefeated(uint pokemonID) => teamStatusView.SetAsDefeated(pokemonID);
 
         public Task PlayAttackAnimation() => pokemonView.PlayAttackAnimation();
         public Task PlayHitAnimation() => pokemonView.PlayHitAnimation();

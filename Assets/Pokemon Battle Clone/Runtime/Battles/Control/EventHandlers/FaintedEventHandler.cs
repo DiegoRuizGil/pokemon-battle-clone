@@ -20,6 +20,7 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control.EventHandlers
             var view = _battleContext.GetTeamView(battleEvent.Side);
 
             await view.PlayFaintAnimation();
+            view.SetPokemonAsDefeated(battleEvent.PokemonID);
             await _dialogDisplayer.DisplayAsync($"{battleEvent.PokemonName} fainted!");
         }
     }

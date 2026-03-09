@@ -90,7 +90,7 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
             if (battle.PokemonFainted(side))
             {
                 var faintedPokemon = battle.GetFirstPokemon(side);
-                await _actionsResolver.HandleEvent(new FaintedEvent(side, faintedPokemon.Name));
+                await _actionsResolver.HandleEvent(new FaintedEvent(side, faintedPokemon.Name, faintedPokemon.ID));
             }
         }
     }
