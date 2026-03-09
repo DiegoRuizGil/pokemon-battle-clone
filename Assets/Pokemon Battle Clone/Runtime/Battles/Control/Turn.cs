@@ -73,12 +73,25 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
                 if (battle.PokemonFainted(action.Side))
                     continue;
                 await _actionsResolver.Resolve(battle, action);
+
+                // I need to think of another approach 
+                await CheckForFaintedPokemon(battle, Side.Player);
+                await CheckForFaintedPokemon(battle, Side.Rival);
             }
         }
 
         private async Task EndTurnAsync()
         {
             LogManager.Log("End turn...", FeatureType.Battle);
+        }
+
+        private async Task CheckForFaintedPokemon(Battle battle, Side side)
+        {
+            if (battle.PokemonFainted(side))
+            {
+                var faintedPokemon = battle.GetFirstPokemon(side);
+                await _actionsResolver.HandleEvent(new FaintedEvent(side, faintedPokemon.Name));
+            }
         }
     }
 }

@@ -24,19 +24,23 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
         {
             var events = action.Execute(battle);
             foreach (var battleEvent in events)
+                await HandleEvent(battleEvent);
+        }
+
+        public async Task HandleEvent(IBattleEvent battleEvent)
+        {
+            await (battleEvent switch
             {
-                await (battleEvent switch
-                {
-                    EmptyEvent _ => Task.CompletedTask,
-                    ExecuteMoveEvent moveEvent => HandleExecuteMoveEvent(moveEvent),
-                    FailedMoveEvent failedMoveEvent => HandleFailedMoveEvent(failedMoveEvent),
-                    DamageEvent damageEvent => HandleDamageEvent(damageEvent),
-                    StatsModifierEvent statsEvent => HandleStatsModifierEvent(statsEvent),
-                    SendPokemonEvent sendEvent => HandleSendPokemonEvent(sendEvent),
-                    WithdrawPokemonEvent withdrawEvent => HandleWithdrawPokemonEvent(withdrawEvent),
-                    _ => HandleUnsupportedEvent(battleEvent)
-                });
-            }
+                EmptyEvent _ => Task.CompletedTask,
+                ExecuteMoveEvent moveEvent => HandleExecuteMoveEvent(moveEvent),
+                FailedMoveEvent failedMoveEvent => HandleFailedMoveEvent(failedMoveEvent),
+                DamageEvent damageEvent => HandleDamageEvent(damageEvent),
+                StatsModifierEvent statsEvent => HandleStatsModifierEvent(statsEvent),
+                SendPokemonEvent sendEvent => HandleSendPokemonEvent(sendEvent),
+                WithdrawPokemonEvent withdrawEvent => HandleWithdrawPokemonEvent(withdrawEvent),
+                FaintedEvent faintedEvent => HandleFaintedEvent(faintedEvent),
+                _ => HandleUnsupportedEvent(battleEvent)
+            });
         }
 
         private async Task HandleExecuteMoveEvent(ExecuteMoveEvent moveEvent)
@@ -62,10 +66,7 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
             var view = _battleContext.GetOpponentTeamView(damageEvent.ActionSide);
             
             view.UpdateHealth(max: damageEvent.TargetHealth.Max, current: damageEvent.TargetHealth.Current, animated: true);
-            if (damageEvent.TargetHealth.Current == 0)
-                await view.PlayFaintAnimation();
-            else
-                await view.PlayHitAnimation();
+            await view.PlayHitAnimation();
             
             if (damageEvent.Effectiveness > 1f)
                 await _dialogDisplayer.DisplayAsync("It was super effective!");
@@ -95,6 +96,14 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
             await _dialogDisplayer.DisplayAsync($"Withdrawing {withdraw.PokemonName} from side {withdraw.ActionSide}");
             var view = _battleContext.GetTeamView(withdraw.ActionSide);
             await view.PlayWithdrawAnimation();
+        }
+
+        private async Task HandleFaintedEvent(FaintedEvent faintedEvent)
+        {
+            var view = _battleContext.GetTeamView(faintedEvent.Side);
+
+            await view.PlayFaintAnimation();
+            await _dialogDisplayer.DisplayAsync($"{faintedEvent.PokemonName} fainted!");
         }
 
         private async Task HandleUnsupportedEvent(IBattleEvent battleEvent)
