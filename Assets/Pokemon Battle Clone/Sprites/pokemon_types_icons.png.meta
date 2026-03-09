@@ -1,0 +1,598 @@
+fileFormatVersion: 2
+guid: d1d827ac7ff968f4487713ae4171b86b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7553152667370063021
+    second: pokemon_types_icons_0
+  - first:
+      213: 3727967641450041101
+    second: pokemon_types_icons_1
+  - first:
+      213: -8121034885074591971
+    second: pokemon_types_icons_2
+  - first:
+      213: -2962369848912581388
+    second: pokemon_types_icons_3
+  - first:
+      213: -1754740754436141887
+    second: pokemon_types_icons_4
+  - first:
+      213: 4937917809343448249
+    second: pokemon_types_icons_5
+  - first:
+      213: -7621832527216698336
+    second: pokemon_types_icons_6
+  - first:
+      213: 8896873216608829148
+    second: pokemon_types_icons_7
+  - first:
+      213: -5124677029917515034
+    second: pokemon_types_icons_8
+  - first:
+      213: 1815000465379067657
+    second: pokemon_types_icons_9
+  - first:
+      213: 7766393205824744021
+    second: pokemon_types_icons_10
+  - first:
+      213: 5560914925530742630
+    second: pokemon_types_icons_11
+  - first:
+      213: -8350008448491155210
+    second: pokemon_types_icons_12
+  - first:
+      213: 6300647744353896581
+    second: pokemon_types_icons_13
+  - first:
+      213: 72877985908683233
+    second: pokemon_types_icons_14
+  - first:
+      213: 8443183540847464811
+    second: pokemon_types_icons_15
+  - first:
+      213: -3883546604828758651
+    second: pokemon_types_icons_16
+  - first:
+      213: 5044085972278491650
+    second: pokemon_types_icons_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: flying_type
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 604
+        width: 137
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da403e8255032d860800000000000000
+      internalID: 7553152667370063021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: water_type
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 604
+        width: 137
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0fc7ca71d66cb330800000000000000
+      internalID: 3727967641450041101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rock_type
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 604
+        width: 137
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1fd2929cc94c4f80800000000000000
+      internalID: -8121034885074591971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bug_type
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 604
+        width: 137
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fcec36515c83e6d0800000000000000
+      internalID: -2962369848912581388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_type
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 456
+        width: 137
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cccee2b498e5a7e0800000000000000
+      internalID: -1754740754436141887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost_type
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 456
+        width: 137
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b4cdfbd512078440800000000000000
+      internalID: 4937917809343448249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poison_type
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 456
+        width: 137
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02c1bbdd2bfc93690800000000000000
+      internalID: -7621832527216698336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fighting_type
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 456
+        width: 137
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdef7a78d0b087b70800000000000000
+      internalID: 8896873216608829148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: electric_type
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 308
+        width: 137
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e2a92b946d71e8b0800000000000000
+      internalID: -5124677029917515034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_type
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 308
+        width: 137
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90786169e4d203910800000000000000
+      internalID: 1815000465379067657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fairy_type
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 308
+        width: 137
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55ae03bf875c7cb60800000000000000
+      internalID: 7766393205824744021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire_type
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 307
+        width: 137
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66f7d6a69a65c2d40800000000000000
+      internalID: 5560914925530742630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: psychic_type
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 159
+        width: 137
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f09c2c6e8fce1c80800000000000000
+      internalID: -8350008448491155210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: normal_type
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 159
+        width: 137
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5888411cdb5607750800000000000000
+      internalID: 6300647744353896581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: steel_type
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 159
+        width: 137
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e1780e542ae20100800000000000000
+      internalID: 72877985908683233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass_type
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 159
+        width: 136
+        height: 136
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6153ad42b63c2570800000000000000
+      internalID: 8443183540847464811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dark_type
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 12
+        width: 135
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58de18650feda1ac0800000000000000
+      internalID: -3883546604828758651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dragon_type
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 10
+        width: 137
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20ab0329771300640800000000000000
+      internalID: 5044085972278491650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: c737e5211997b5a43bf5810297894bcc
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      bug_type: -2962369848912581388
+      dark_type: -3883546604828758651
+      dragon_type: 5044085972278491650
+      electric_type: -5124677029917515034
+      fairy_type: 7766393205824744021
+      fighting_type: 8896873216608829148
+      fire_type: 5560914925530742630
+      flying_type: 7553152667370063021
+      ghost_type: 4937917809343448249
+      grass_type: 8443183540847464811
+      ground_type: -1754740754436141887
+      ice_type: 1815000465379067657
+      normal_type: 6300647744353896581
+      poison_type: -7621832527216698336
+      psychic_type: -8350008448491155210
+      rock_type: -8121034885074591971
+      steel_type: 72877985908683233
+      water_type: 3727967641450041101
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
