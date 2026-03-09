@@ -20,8 +20,8 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
 
         public async Task Init(Battle battle, Trainer player, Trainer rival) // not entirely convinced by this approach
         {
-            await _actionsResolver.Resolve(battle, player.Init());
             await _actionsResolver.Resolve(battle, rival.Init());
+            await _actionsResolver.Resolve(battle, player.Init());
         }
         
         public async Task Next(Battle battle, Trainer player, Trainer rival)
