@@ -25,6 +25,7 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
             RegisterHandler(new SendPokemonEventHandler(battleContext, dialogDisplayer));
             RegisterHandler(new WithdrawPokemonEventHandler(battleContext, dialogDisplayer));
             RegisterHandler(new FaintedEventHandler(battleContext, dialogDisplayer));
+            RegisterHandler(new ImmuneMoveEventHandler(dialogDisplayer));
         }
 
         private void RegisterHandler<T>(IBattleEventHandler<T> handler) where T : IBattleEvent

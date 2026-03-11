@@ -113,7 +113,7 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
             totodile.MoveSet.AddMoves(new List<Move>
             {
                 MoveFactory.IceFang(),
-                MoveFactory.WaterGun(),
+                MoveFactory.ShadowBall(),
                 MoveFactory.QuickAttack(),
                 MoveFactory.Leer()
             });

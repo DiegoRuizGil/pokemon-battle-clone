@@ -73,5 +73,18 @@ namespace Pokemon_Battle_Clone.Runtime.Moves.Domain
                 .WithType(ElementalType.Normal)
                 .WithMainEffect(statsModifierEffect);
         }
+
+        public static Move ShadowBall()
+        {
+            var statsModifierEffect = new StatsModifierEffect(applyToTarget: true, new StatSet(0, 0, 0, 0, -1, 0));
+            return A.Move.WithName("Shadow Ball")
+                .WithAccuracy(100)
+                .WithPower(80)
+                .WithPP(15)
+                .WithCategory(MoveCategory.Special)
+                .WithType(ElementalType.Ghost)
+                .WithMainEffect(new DamageEffect())
+                .WithAdditionalEffect(statsModifierEffect, chancePercent: 20);
+        }
     }
 }

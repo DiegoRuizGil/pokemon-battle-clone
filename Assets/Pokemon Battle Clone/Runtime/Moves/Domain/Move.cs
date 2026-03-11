@@ -52,6 +52,13 @@ namespace Pokemon_Battle_Clone.Runtime.Moves.Domain
             
             var events = new List<IBattleEvent>();
             events.Add(new ExecuteMoveEvent(side, battle.GetFirstPokemon(side).Name, this.Name));
+
+            var target = battle.GetOpponentFirstPokemon(side);
+            if (target.Type1.IsImmuneTo(this.Type) || target.Type2.IsImmuneTo(this.Type))
+            {
+                events.Add(new ImmuneMoveEvent(target.Name));
+                return events;
+            }
             
             var effectEvent = _mainEffect.Apply(move: this, battle, side);
             events.Add(effectEvent);
