@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions
 {
-    public class PokemonSelectorView : MonoBehaviour, ISelectorView<Team>
+    public class PokemonSelectorView : MonoBehaviour
     {
         [SerializeField] private List<PokemonSelectorButton> pokemonButtons;
         [SerializeField] private HUDButton backButton;
@@ -28,22 +28,23 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions
             backButton.SetInteraction(true);
         }
 
-        public void Show(bool forceSelection, Team team)
+        public void Show(bool forceSelection, Team team, Dictionary<uint, Sprite> pokemonIcons)
         {
             gameObject.SetActive(true);
             backButton.SetInteraction(!forceSelection);
-            SetData(team);
+            SetData(team, pokemonIcons);
         }
 
-        private void SetData(Team team)
+        private void SetData(Team team, Dictionary<uint, Sprite> pokemonIcons)
         {
             for (int i = 0; i < pokemonButtons.Count; i++)
             {
                 var pokemonIndex = pokemonButtons[i].index;
                 if (team.PokemonList.Count > pokemonIndex)
                 {
+                    var pokemon = team.PokemonList[pokemonIndex];
+                    pokemonButtons[i].SetData(team.PokemonList[pokemonIndex], pokemonIcons[pokemon.ID]);
                     pokemonButtons[i].gameObject.SetActive(true);
-                    pokemonButtons[i].SetData(team.PokemonList[pokemonIndex]);
                 }
                 else
                 {

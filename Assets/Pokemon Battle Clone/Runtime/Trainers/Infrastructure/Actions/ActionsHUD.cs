@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.Moves.Domain;
 using Pokemon_Battle_Clone.Runtime.Moves.Infrastructure;
@@ -12,8 +13,12 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions
         public PokemonSelectorView pokemonSelector;
         public MoveSetView moveSetView;
         
-        private void Start()
+        private Dictionary<uint, Sprite> _pokemonIcons = new();
+        
+        public void Init(Dictionary<uint, Sprite> pokemonIcons)
         {
+            _pokemonIcons = new Dictionary<uint, Sprite>(pokemonIcons);
+            
             HideSelectors();
             
             moveSetView.Init();
@@ -49,7 +54,7 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions
         {
             selector.Hide();
             moveSetView.Hide();
-            pokemonSelector.Show(forceSelection, team);
+            pokemonSelector.Show(forceSelection, team, _pokemonIcons);
         }
 
         public void RegisterMoveSelectedListener(Action<int> listener) => moveSetView.OnMoveSelected += listener;

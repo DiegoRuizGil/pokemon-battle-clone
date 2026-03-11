@@ -1595,7 +1595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7db159e4910f446db328d5b420b08128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pokemonName: celesteela
+  pokemonName: pidgey
 --- !u!4 &1923778654
 Transform:
   m_ObjectHideFlags: 0

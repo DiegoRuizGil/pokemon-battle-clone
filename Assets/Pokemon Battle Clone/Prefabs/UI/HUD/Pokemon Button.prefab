@@ -871,13 +871,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31487eb638e14a8bb253f23a46cfbe78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 7867995631936562245}
+  iconImage: {fileID: 7867995631936562245}
   nameText: {fileID: 5566346053837390669}
   levelText: {fileID: 628535229301490027}
   healthView: {fileID: 9181326978097686856}
-  buttonImage: {fileID: 2027040322721533865}
-  enableColor: {r: 1, g: 1, b: 1, a: 1}
-  disableColor: {r: 1, g: 0.5254902, b: 0.5254902, a: 1}
   index: 0
 --- !u!114 &4191626722817264263
 MonoBehaviour:

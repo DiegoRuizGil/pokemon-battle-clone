@@ -52,6 +52,9 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
             _rivalTrainer = new RivalTrainer(rivalTeam, strategy);
             rivalTeamView.Init(rivalSprites);
 
+            var playerIcons = spriteLoader.LoadAllIcon(playerTeam.PokemonList.Select(pokemon => pokemon.ID).ToList());
+            actionsHUD.Init(playerIcons);
+            
             _ = RunBattleAsync();
         }
 

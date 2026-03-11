@@ -11,7 +11,7 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions
     [RequireComponent(typeof(Button))]
     public class PokemonSelectorButton : MonoBehaviour
     {
-        [SerializeField] private Image icon;
+        [SerializeField] private Image iconImage;
         [SerializeField] private TextMeshProUGUI nameText;
         [SerializeField] private TextMeshProUGUI levelText;
         [SerializeField] private HealthView healthView;
@@ -29,8 +29,9 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions
             _hudButton = GetComponent<HUDButton>();
         }
 
-        public void SetData(Pokemon pokemon)
+        public void SetData(Pokemon pokemon, Sprite icon)
         {
+            iconImage.sprite = icon;
             nameText.text = pokemon.Name;
             levelText.text = $"Lv. {pokemon.Stats.Level}";
             healthView.SetHealth(pokemon.Health.Max, pokemon.Health.Current, animated: false);
