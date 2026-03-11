@@ -54,7 +54,6 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Control
         
         protected override TrainerAction SendFirstPokemon()
         {
-            _actionsHUD.SetData(Team, Team.FirstPokemon.MoveSet);
             _actionsHUD.HideSelectors();
             
             return base.SendFirstPokemon();

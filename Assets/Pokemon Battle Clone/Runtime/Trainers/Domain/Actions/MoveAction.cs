@@ -27,7 +27,6 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Domain.Actions
             var hit = battle.Random.Roll(_move.Accuracy);
             if (!hit)
             {
-                Debug.Log("ha fallado el movimiento");
                 var pokemon = battle.GetFirstPokemon(Side);
                 events.Add(new FailedMoveEvent(pokemon.Name, _move.Name));
                 return events;

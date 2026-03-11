@@ -41,12 +41,6 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions
             pokemonSelector.Show(forceSelection, team);
         }
 
-        public void SetData(Team team, MoveSet moveSet)
-        {
-            // pokemonSelector.SetData(team);
-            // moveSetView.SetData(moveSet);
-        }
-
         public void RegisterMoveSelectedListener(Action<int> listener) => moveSetView.OnMoveSelected += listener;
         public void RegisterMoveButtonPressedListener(Action listener) => selector.OnMoveButtonPressed += listener;
 

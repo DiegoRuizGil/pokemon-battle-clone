@@ -10,7 +10,6 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions
         void HideSelectors();
         void ShowMoveSelector(bool forceSelection, MoveSetDTO moveSet);
         void ShowPokemonSelector(bool forceSelection, Team team);
-        void SetData(Team team, MoveSet moveSet);
 
         void RegisterMoveSelectedListener(Action<int> listener);
         void RegisterMoveButtonPressedListener(Action listener);
