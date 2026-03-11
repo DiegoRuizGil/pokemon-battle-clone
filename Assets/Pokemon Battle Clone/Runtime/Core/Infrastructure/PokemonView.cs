@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using UnityEngine;
 using UnityEngine.UI;
 
