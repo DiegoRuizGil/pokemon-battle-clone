@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Pokemon_Battle_Clone.Runtime.Core.Infrastructure
+namespace Pokemon_Battle_Clone.Runtime.Core.Infrastructure.Status
 {
     public class TeamStatusView : MonoBehaviour
     {

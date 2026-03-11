@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Pokemon_Battle_Clone.Runtime.Core.Infrastructure
+namespace Pokemon_Battle_Clone.Runtime.Core.Infrastructure.Status
 {
     public class PokeballTeamIcon : MonoBehaviour
     {

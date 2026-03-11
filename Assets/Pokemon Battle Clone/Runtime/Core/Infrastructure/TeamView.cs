@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Pokemon_Battle_Clone.Runtime.Core.Domain;
+using Pokemon_Battle_Clone.Runtime.Core.Infrastructure.Status;
 using Pokemon_Battle_Clone.Runtime.Stats.Domain;
 using Pokemon_Battle_Clone.Runtime.Stats.Infrastructure;
 using UnityEngine;
@@ -9,17 +10,15 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Infrastructure
 {
     public class TeamView : MonoBehaviour, ITeamView
     {
-        [SerializeField] private PokemonStatusView pokemonStatusView;
+        [SerializeField] private StatusView statusView;
         [SerializeField] private PokemonView pokemonView;
-        [SerializeField] private StatsModifiersView statsModifiersView;
-        [SerializeField] private TeamStatusView teamStatusView;
 
-        private Dictionary<uint, Sprite> _sprites = new Dictionary<uint, Sprite>();
+        private Dictionary<uint, Sprite> _sprites = new();
 
         public void Init(Dictionary<uint, Sprite> sprites)
         {
             _sprites = new Dictionary<uint, Sprite>(sprites);
-            teamStatusView.Init(pokemonIDs: new List<uint>(sprites.Keys));
+            statusView.Team.Init(pokemonIDs: new List<uint>(sprites.Keys));
         }
         
         public async Task SendPokemon(Pokemon pokemon)
@@ -29,12 +28,12 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Infrastructure
             UpdateHealth(pokemon.Health.Max, pokemon.Health.Current, animated: false);
             SetStatModifier(pokemon.Stats.Modifiers);
 
-            await PlaySendAnimation(); // change to send to field animation
+            await PlaySendAnimation();
         }
 
-        public void UpdateHealth(int max, int current, bool animated) => pokemonStatusView.UpdateHealth(max, current, animated);
-        public void SetStatModifier(StatsModifier modifier) => statsModifiersView.Set(modifier);
-        public void SetPokemonAsDefeated(uint pokemonID) => teamStatusView.SetAsDefeated(pokemonID);
+        public void UpdateHealth(int max, int current, bool animated) => statusView.Pokemon.UpdateHealth(max, current, animated);
+        public void SetStatModifier(StatsModifier modifier) => statusView.Pokemon.SetStatsModifier(modifier);
+        public void SetPokemonAsDefeated(uint pokemonID) => statusView.Team.SetAsDefeated(pokemonID);
 
         public Task PlayAttackAnimation() => pokemonView.PlayAttackAnimation();
         public Task PlayHitAnimation() => pokemonView.PlayHitAnimation();
@@ -45,7 +44,7 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Infrastructure
         private void SetStaticData(Sprite sprite, string name, int level)
         {
             pokemonView.SetSprite(sprite);
-            pokemonStatusView.SetInfo(name, level);
+            statusView.Pokemon.SetInfo(name, level);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.Core.Infrastructure;
+using Pokemon_Battle_Clone.Runtime.Core.Infrastructure.Status;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

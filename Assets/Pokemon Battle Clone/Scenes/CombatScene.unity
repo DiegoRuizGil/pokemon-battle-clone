@@ -366,10 +366,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1dcfacae8544bca3310b90c552dec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pokemonStatusView: {fileID: 1960609086}
+  statusView: {fileID: 660807225}
   pokemonView: {fileID: 1784473796}
-  statsModifiersView: {fileID: 1960609085}
-  teamStatusView: {fileID: 424412839}
 --- !u!1 &170904480 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 927514228032082733, guid: 1d6932266e364a24d82e0a54497db4a5, type: 3}
@@ -932,6 +930,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 537067177}
+  - component: {fileID: 537067178}
   m_Layer: 5
   m_Name: Status
   m_TagString: Untagged
@@ -960,6 +959,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -10}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 1, y: 1}
+--- !u!114 &537067178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537067176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c0ab79108fd4206a043a99ef120427b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.Status.StatusView
+  <Pokemon>k__BackingField: {fileID: 1262309497}
+  <Team>k__BackingField: {fileID: 1209106659}
 --- !u!1 &660807223
 GameObject:
   m_ObjectHideFlags: 0
@@ -969,6 +982,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 660807224}
+  - component: {fileID: 660807225}
   m_Layer: 5
   m_Name: Status
   m_TagString: Untagged
@@ -997,6 +1011,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 539}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &660807225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660807223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c0ab79108fd4206a043a99ef120427b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.Status.StatusView
+  <Pokemon>k__BackingField: {fileID: 1960609086}
+  <Team>k__BackingField: {fileID: 424412839}
 --- !u!1 &913603187
 GameObject:
   m_ObjectHideFlags: 0
@@ -1109,6 +1137,10 @@ PrefabInstance:
       propertyPath: healthText
       value: 
       objectReference: {fileID: 1922216118}
+    - target: {fileID: 8661534472185505934, guid: b2d18301cd6211d45ae6d7a4c5c6f546, type: 3}
+      propertyPath: statsModifiersView
+      value: 
+      objectReference: {fileID: 1202101173}
     - target: {fileID: 8795458343905825000, guid: b2d18301cd6211d45ae6d7a4c5c6f546, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -1303,10 +1335,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1dcfacae8544bca3310b90c552dec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pokemonStatusView: {fileID: 1262309497}
+  statusView: {fileID: 537067178}
   pokemonView: {fileID: 1657632908}
-  statsModifiersView: {fileID: 1202101173}
-  teamStatusView: {fileID: 1209106659}
 --- !u!1001 &1657632906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1626,6 +1656,10 @@ PrefabInstance:
       propertyPath: healthText
       value: 
       objectReference: {fileID: 1949829517}
+    - target: {fileID: 8661534472185505934, guid: b2d18301cd6211d45ae6d7a4c5c6f546, type: 3}
+      propertyPath: statsModifiersView
+      value: 
+      objectReference: {fileID: 1960609085}
     - target: {fileID: 8795458343905825000, guid: b2d18301cd6211d45ae6d7a4c5c6f546, type: 3}
       propertyPath: m_Pivot.x
       value: 0
