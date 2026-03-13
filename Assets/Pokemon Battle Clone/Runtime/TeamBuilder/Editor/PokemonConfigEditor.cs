@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.Editor
 {
     [CustomEditor(typeof(PokemonConfig))]
+    [CanEditMultipleObjects]
     public class PokemonConfigEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()

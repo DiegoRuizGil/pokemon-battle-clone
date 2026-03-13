@@ -1,13 +1,15 @@
 ﻿using Pokemon_Battle_Clone.Runtime.Battles.Domain;
 using Pokemon_Battle_Clone.Runtime.Battles.Domain.Events;
 using Pokemon_Battle_Clone.Runtime.Stats.Domain;
+using UnityEngine;
 
 namespace Pokemon_Battle_Clone.Runtime.Moves.Domain.Effects
 {
+    [System.Serializable]
     public class StatsModifierEffect : IMoveEffect
     {
-        private readonly bool _applyToTarget;
-        private readonly StatSet _statsModifier;
+        [SerializeField] private bool _applyToTarget;
+        [SerializeField] private StatSet _statsModifier;
 
         public StatsModifierEffect(bool applyToTarget, StatSet statsModifier)
         {

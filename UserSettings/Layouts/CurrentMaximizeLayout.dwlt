@@ -15,7 +15,7 @@ MonoBehaviour:
   m_Children:
   - {fileID: 3}
   - {fileID: 16}
-  - {fileID: 18}
+  - {fileID: 19}
   m_Position:
     serializedVersion: 2
     x: 0
@@ -25,7 +25,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 112}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 46782
+  controlID: 27
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -48,10 +48,10 @@ MonoBehaviour:
     m_TextWithWhitespace: "Game\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 359
+    x: 414
     y: 79
-    width: 651
-    height: 536
+    width: 747
+    height: 489
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -109,23 +109,23 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 651
-      height: 515
-    m_Scale: {x: 0.16953126, y: 0.16953126}
-    m_Translation: {x: 325.49997, y: 257.5}
+      width: 747
+      height: 468
+    m_Scale: {x: 0.19453125, y: 0.19453125}
+    m_Translation: {x: 373.5, y: 234}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -1919.9998
-      y: -1518.8939
-      width: 3839.9998
-      height: 3037.7878
+      x: -1920
+      y: -1202.8916
+      width: 3840
+      height: 2405.7832
     m_MinimalGUI: 1
-  m_defaultScale: 0.16953126
-  m_LastWindowPixelSize: {x: 651, y: 536}
+  m_defaultScale: 0.19453125
+  m_LastWindowPixelSize: {x: 747, y: 489}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -151,12 +151,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1012
+    width: 1163
     height: 933
   m_MinSize: {x: 200, y: 112}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 46783
+  controlID: 28
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -177,12 +177,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1012
-    height: 562
+    width: 1163
+    height: 515
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 46784
+  controlID: 29
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -201,8 +201,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 359
-    height: 562
+    width: 414
+    height: 515
   m_MinSize: {x: 201, y: 226}
   m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 6}
@@ -234,8 +234,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 79
-    width: 358
-    height: 536
+    width: 413
+    height: 489
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1025,10 +1025,10 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 359
+    x: 414
     y: 0
-    width: 653
-    height: 562
+    width: 749
+    height: 515
   m_MinSize: {x: 202, y: 226}
   m_MaxSize: {x: 4002, y: 4026}
   m_ActualView: {fileID: 2}
@@ -1093,13 +1093,13 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 562
-    width: 1012
-    height: 371
+    y: 515
+    width: 1163
+    height: 418
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 46718
+  controlID: 83
   draggingID: 0
 --- !u!114 &11
 MonoBehaviour:
@@ -1118,8 +1118,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 533
-    height: 371
+    width: 820
+    height: 418
   m_MinSize: {x: 101, y: 126}
   m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 12}
@@ -1150,9 +1150,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 641
-    width: 532
-    height: 345
+    y: 594
+    width: 819
+    height: 392
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1206,7 +1206,7 @@ MonoBehaviour:
     m_DynamicPanelBehavior: 0
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -14148
+  m_LastSelectedObjectID: 48412
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1222,10 +1222,10 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 533
+    x: 820
     y: 0
-    width: 479
-    height: 371
+    width: 343
+    height: 418
   m_MinSize: {x: 232, y: 276}
   m_MaxSize: {x: 10002, y: 10026}
   m_ActualView: {fileID: 15}
@@ -1254,10 +1254,10 @@ MonoBehaviour:
     m_TextWithWhitespace: "Project\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 533
-    y: 641
-    width: 477
-    height: 345
+    x: 820
+    y: 594
+    width: 341
+    height: 392
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1279,10 +1279,10 @@ MonoBehaviour:
     m_ReferencingInstanceIDs: 
     m_SceneHandles: []
     m_ShowAllHits: 0
-    m_SkipHidden: 0
+    m_SkipHidden: 1
     m_SearchArea: 1
     m_Folders:
-    - Assets/Pokemon Battle Clone/Pokemon
+    - Assets/Pokemon Battle Clone/Sprites/Pokemon/Back
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1305,20 +1305,24 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 51212
-    - m_Data: 51806
-    - m_Data: 51808
-    - m_Data: 51810
-    - m_Data: 51812
-    - m_Data: 51818
-    - m_Data: 51822
-    - m_Data: 51824
-    - m_Data: 51826
-    - m_Data: 51828
-    - m_Data: 51830
-    - m_Data: 51836
-    - m_Data: 51842
-    - m_Data: 138118
+    - m_Data: 51906
+    - m_Data: 51908
+    - m_Data: 51910
+    - m_Data: 51912
+    - m_Data: 51914
+    - m_Data: 51916
+    - m_Data: 51918
+    - m_Data: 51920
+    - m_Data: 51922
+    - m_Data: 51924
+    - m_Data: 51926
+    - m_Data: 51928
+    - m_Data: 51930
+    - m_Data: 51932
+    - m_Data: 51934
+    - m_Data: 51936
+    - m_Data: 51938
+    - m_Data: 51940
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1345,27 +1349,31 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 68}
+    scrollPos: {x: 0, y: 0}
     m_SelectedIDs:
-    - m_Data: -182550
+    - m_Data: 51926
     m_LastClickedID:
-      m_Data: -182550
+      m_Data: 51926
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 51212
-    - m_Data: 51806
-    - m_Data: 51808
-    - m_Data: 51810
-    - m_Data: 51812
-    - m_Data: 51818
-    - m_Data: 51822
-    - m_Data: 51824
-    - m_Data: 51826
-    - m_Data: 51828
-    - m_Data: 51830
-    - m_Data: 51836
-    - m_Data: 51842
-    - m_Data: 138118
+    - m_Data: 51906
+    - m_Data: 51908
+    - m_Data: 51910
+    - m_Data: 51912
+    - m_Data: 51914
+    - m_Data: 51916
+    - m_Data: 51918
+    - m_Data: 51920
+    - m_Data: 51922
+    - m_Data: 51924
+    - m_Data: 51926
+    - m_Data: 51928
+    - m_Data: 51930
+    - m_Data: 51932
+    - m_Data: 51934
+    - m_Data: 51936
+    - m_Data: 51938
+    - m_Data: 51940
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1393,8 +1401,8 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: -182550
-    m_LastClickedInstanceID: -182550
+    - m_Data: 51926
+    m_LastClickedInstanceID: 51926
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: []
     m_RenameOverlay:
@@ -1424,7 +1432,7 @@ MonoBehaviour:
     m_NewAssetIndexInList: -1
     m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 96
-  m_SkipHiddenPackages: 0
+  m_SkipHiddenPackages: 1
   m_DirectoriesAreaWidth: 149
 --- !u!114 &16
 MonoBehaviour:
@@ -1441,17 +1449,18 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1012
+    x: 1163
     y: 0
-    width: 390
+    width: 239
     height: 933
   m_MinSize: {x: 202, y: 226}
   m_MaxSize: {x: 4002, y: 4026}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
+  - {fileID: 18}
   m_Selected: 0
-  m_LastSelected: 0
+  m_LastSelected: 1
 --- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1473,9 +1482,9 @@ MonoBehaviour:
     m_TextWithWhitespace: "Hierarchy\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1012
+    x: 1163
     y: 79
-    width: 388
+    width: 237
     height: 907
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1494,14 +1503,11 @@ MonoBehaviour:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs:
-      - m_Data: -182550
+      - m_Data: 51926
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -1600
       - m_Data: -1316
-      - m_Data: 49268
-      - m_Data: 49280
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1536,84 +1542,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: InspectorWindow
-  m_EditorClassIdentifier: 
-  m_Children: []
-  m_Position:
-    serializedVersion: 2
-    x: 1402
-    y: 0
-    width: 518
-    height: 933
-  m_MinSize: {x: 276, y: 76}
-  m_MaxSize: {x: 4001, y: 4026}
-  m_ActualView: {fileID: 19}
-  m_Panes:
-  - {fileID: 19}
-  - {fileID: 20}
-  m_Selected: 0
-  m_LastSelected: 1
---- !u!114 &19
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12019, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_TitleContent:
-    m_Text: Inspector
-    m_Image: {fileID: -2667387946076563598, guid: 0000000000000000d000000000000000, type: 0}
-    m_Tooltip: 
-    m_TextWithWhitespace: "Inspector\u200B"
-  m_Pos:
-    serializedVersion: 2
-    x: 1402
-    y: 79
-    width: 517
-    height: 907
-  m_SerializedDataModeController:
-    m_DataMode: 0
-    m_PreferredDataMode: 0
-    m_SupportedDataModes: 
-    isAutomatic: 1
-  m_ViewDataDictionary: {fileID: 0}
-  m_OverlayCanvas:
-    m_LastAppliedPresetName: Default
-    m_SaveData: []
-    m_ContainerData: []
-    m_DynamicPanelContainerData: []
-    m_OverlaysVisible: 1
-    m_DynamicPanelBehavior: 0
-  m_ObjectsLockedBeforeSerialization: []
-  m_InstanceIDsLockedBeforeSerialization: 
-  m_PreviewResizer:
-    m_CachedPref: 204
-    m_ControlHash: -371814159
-    m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
-  m_GlobalObjectId: 
-  m_InspectorMode: 0
-  m_LockTracker:
-    m_IsLocked: 0
-  m_PreviewWindow: {fileID: 0}
---- !u!114 &20
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 13401, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1627,9 +1555,9 @@ MonoBehaviour:
     m_TextWithWhitespace: "Test Runner\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1497
+    x: 1012
     y: 79
-    width: 422
+    width: 388
     height: 907
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1645,7 +1573,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
     m_DynamicPanelBehavior: 0
   m_Spl:
-    ID: 671
+    ID: 20644
     splitterInitialOffset: 0
     currentActiveSplitter: -1
     realSizes:
@@ -1670,7 +1598,7 @@ MonoBehaviour:
     oldSplitSize: 0
   m_TestTypeToolbarIndex: 0
   m_TestListGUIs:
-  - m_Window: {fileID: 20}
+  - m_Window: {fileID: 18}
     runProgress:
       RunGuid: 65c40313-0101-412c-8fc6-c0d859219f3d
       ExecutionSettings:
@@ -1709,7 +1637,7 @@ MonoBehaviour:
       uniqueId: '[pokemon-battle-clone][suite]'
       name: pokemon-battle-clone
       fullName: pokemon-battle-clone
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.043121897
       messages: 
       output: 
@@ -1721,11 +1649,11 @@ MonoBehaviour:
       categories: []
       parentId: 
       parentUniqueId: 
-    - id: 1012
+    - id: 1015
       uniqueId: '[Tests.dll][suite]'
       name: Tests.dll
       fullName: C:/Unity/Projects/pokemon-battle-clone/Library/ScriptAssemblies/Tests.dll
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.043121897
       messages: 
       output: 
@@ -1737,11 +1665,11 @@ MonoBehaviour:
       categories: []
       parentId: 1000
       parentUniqueId: '[pokemon-battle-clone][suite]'
-    - id: 1013
+    - id: 1016
       uniqueId: 'Tests.dll/[Pokemon_Battle_Clone][suite]'
       name: Pokemon_Battle_Clone
       fullName: Pokemon_Battle_Clone
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.043121897
       messages: 
       output: 
@@ -1751,13 +1679,13 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1012
+      parentId: 1015
       parentUniqueId: '[Tests.dll][suite]'
-    - id: 1014
+    - id: 1017
       uniqueId: 'Tests.dll/Pokemon_Battle_Clone/[Tests][suite]'
       name: Tests
       fullName: Pokemon_Battle_Clone.Tests
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.043121897
       messages: 
       output: 
@@ -1767,9 +1695,42 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1013
+      parentId: 1016
       parentUniqueId: 'Tests.dll/[Pokemon_Battle_Clone][suite]'
     - id: 1001
+      uniqueId: 'Tests.dll/Pokemon_Battle_Clone/Tests/[Tests][Pokemon_Battle_Clone.Tests.DamageTests][suite]'
+      name: DamageTests
+      fullName: Pokemon_Battle_Clone.Tests.DamageTests
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1017
+      parentUniqueId: 'Tests.dll/Pokemon_Battle_Clone/[Tests][suite]'
+    - id: 1002
+      uniqueId: 'Tests.dll/Pokemon_Battle_Clone/Tests/DamageTests/[Tests][Pokemon_Battle_Clone.Tests.DamageTests.AttackDamage]'
+      name: AttackDamage
+      fullName: Pokemon_Battle_Clone.Tests.DamageTests.AttackDamage
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: 'Tests.dll/Pokemon_Battle_Clone/Tests/[Tests][Pokemon_Battle_Clone.Tests.DamageTests][suite]'
+    - id: 1003
       uniqueId: 'Tests.dll/Pokemon_Battle_Clone/Tests/[Tests][Pokemon_Battle_Clone.Tests.ElementalTypeTests][suite]'
       name: ElementalTypeTests
       fullName: Pokemon_Battle_Clone.Tests.ElementalTypeTests
@@ -1783,7 +1744,7 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1014
+      parentId: 1017
       parentUniqueId: 'Tests.dll/Pokemon_Battle_Clone/[Tests][suite]'
     - id: 1007
       uniqueId: 'Tests.dll/Pokemon_Battle_Clone/Tests/ElementalTypeTests/[Tests][Pokemon_Battle_Clone.Tests.ElementalTypeTests.ImmuniseMoveEffectiveness]'
@@ -1887,11 +1848,11 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1001
       parentUniqueId: 'Tests.dll/Pokemon_Battle_Clone/Tests/[Tests][Pokemon_Battle_Clone.Tests.ElementalTypeTests][suite]'
-    - id: 1008
+    - id: 1010
       uniqueId: 'Tests.dll/Pokemon_Battle_Clone/Tests/[Tests][Pokemon_Battle_Clone.Tests.StatsTests][suite]'
       name: StatsTests
       fullName: Pokemon_Battle_Clone.Tests.StatsTests
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.031322
       messages: 
       output: 
@@ -1901,7 +1862,7 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1014
+      parentId: 1017
       parentUniqueId: 'Tests.dll/Pokemon_Battle_Clone/[Tests][suite]'
     - id: 1011
       uniqueId: 'Tests.dll/Pokemon_Battle_Clone/Tests/StatsTests/[Tests][Pokemon_Battle_Clone.Tests.StatsTests.CalculateLevel100Stats]'
@@ -1954,6 +1915,23 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1008
       parentUniqueId: 'Tests.dll/Pokemon_Battle_Clone/Tests/[Tests][Pokemon_Battle_Clone.Tests.StatsTests][suite]'
+    - id: 1014
+      uniqueId: 'Tests.dll/Pokemon_Battle_Clone/Tests/StatsTests/[Tests][Pokemon_Battle_Clone.Tests.StatsTests.StatsModifier_EmptyCase]'
+      name: StatsModifier_EmptyCase
+      fullName: Pokemon_Battle_Clone.Tests.StatsTests.StatsModifier_EmptyCase
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1010
+      parentUniqueId: 'Tests.dll/Pokemon_Battle_Clone/Tests/[Tests][Pokemon_Battle_Clone.Tests.StatsTests][suite]'
     m_ResultText: "sfsdfd (0,028s)\n---\n  Expected: <Pokemon_Battle_Clone.Runtime.Core.StatSet>\r\n 
       But was:  <Pokemon_Battle_Clone.Runtime.Core.StatSet>\r\n\n---\nat Pokemon_Battle_Clone.Tests.StatsTests.sfsdfd
       () [0x00035] in <color=#40a0ff><a href=\"C:\\Unity\\Projects\\pokemon-battle-clone\\Assets\\Pokemon
@@ -1994,7 +1972,7 @@ MonoBehaviour:
       availableCategories:
       - Uncategorized
     m_SelectedOption: 0
-  - m_Window: {fileID: 20}
+  - m_Window: {fileID: 18}
     runProgress:
       RunGuid: 65c40313-0101-412c-8fc6-c0d859219f3d
       ExecutionSettings:
@@ -2079,7 +2057,7 @@ MonoBehaviour:
       availableCategories:
       - Uncategorized
     m_SelectedOption: 0
-  - m_Window: {fileID: 20}
+  - m_Window: {fileID: 18}
     runProgress:
       RunGuid: 65c40313-0101-412c-8fc6-c0d859219f3d
       ExecutionSettings:
@@ -2164,3 +2142,80 @@ MonoBehaviour:
       availableCategories:
       - Uncategorized
     m_SelectedOption: 0
+--- !u!114 &19
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: InspectorWindow
+  m_EditorClassIdentifier: 
+  m_Children: []
+  m_Position:
+    serializedVersion: 2
+    x: 1402
+    y: 0
+    width: 518
+    height: 933
+  m_MinSize: {x: 276, y: 76}
+  m_MaxSize: {x: 4001, y: 4026}
+  m_ActualView: {fileID: 20}
+  m_Panes:
+  - {fileID: 20}
+  m_Selected: 0
+  m_LastSelected: 0
+--- !u!114 &20
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12019, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Inspector
+    m_Image: {fileID: -2667387946076563598, guid: 0000000000000000d000000000000000, type: 0}
+    m_Tooltip: 
+    m_TextWithWhitespace: "Inspector\u200B"
+  m_Pos:
+    serializedVersion: 2
+    x: 1402
+    y: 79
+    width: 517
+    height: 907
+  m_SerializedDataModeController:
+    m_DataMode: 0
+    m_PreferredDataMode: 0
+    m_SupportedDataModes: 
+    isAutomatic: 1
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+    m_ContainerData: []
+    m_DynamicPanelContainerData: []
+    m_OverlaysVisible: 1
+    m_DynamicPanelBehavior: 0
+  m_ObjectsLockedBeforeSerialization: []
+  m_InstanceIDsLockedBeforeSerialization: 
+  m_PreviewResizer:
+    m_CachedPref: 294
+    m_ControlHash: -371814159
+    m_PrefName: Preview_InspectorPreview
+  m_LastInspectedObjectInstanceID: -1
+  m_LastVerticalScrollValue: 0
+  m_GlobalObjectId: 
+  m_InspectorMode: 0
+  m_LockTracker:
+    m_IsLocked: 0
+  m_PreviewWindow: {fileID: 0}

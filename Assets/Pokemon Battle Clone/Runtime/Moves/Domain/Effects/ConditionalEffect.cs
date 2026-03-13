@@ -1,13 +1,14 @@
 ﻿using Pokemon_Battle_Clone.Runtime.Battles.Domain;
 using Pokemon_Battle_Clone.Runtime.Battles.Domain.Events;
-using Pokemon_Battle_Clone.Runtime.Core.Domain;
+using UnityEngine;
 
 namespace Pokemon_Battle_Clone.Runtime.Moves.Domain.Effects
 {
+    [System.Serializable]
     public class ConditionalEffect
     {
-        private readonly IMoveEffect _effect;
-        private readonly int _chancePercent;
+        [SerializeReference, SubclassSelector, SerializeField] private IMoveEffect _effect;
+        [SerializeField] private int _chancePercent;
 
         public ConditionalEffect(IMoveEffect effect, int chancePercent)
         {

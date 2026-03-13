@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2965e16bdcdc4a20b856c67c00413299, type: 3}
+  m_Name: Roserade
+  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.PokemonConfig
+  ID: 407
+  name: Roserade
+  level: 100
+  baseStats:
+    <HP>k__BackingField: 60
+    <Attack>k__BackingField: 70
+    <Defense>k__BackingField: 65
+    <SpcAttack>k__BackingField: 125
+    <SpcDefense>k__BackingField: 105
+    <Speed>k__BackingField: 90
+  type1: 10
+  type2: 14
+  nature: 10
+  ivs:
+    <HP>k__BackingField: 31
+    <Attack>k__BackingField: 31
+    <Defense>k__BackingField: 31
+    <SpcAttack>k__BackingField: 31
+    <SpcDefense>k__BackingField: 31
+    <Speed>k__BackingField: 31
+  evs:
+    <HP>k__BackingField: 0
+    <Attack>k__BackingField: 0
+    <Defense>k__BackingField: 0
+    <SpcAttack>k__BackingField: 252
+    <SpcDefense>k__BackingField: 4
+    <Speed>k__BackingField: 252
+  backSprite: {fileID: 21300000, guid: 354cb3e096d531e419550f771392c3de, type: 3}
+  frontSprite: {fileID: 21300000, guid: c85a3d1ead6d16f468c592addef1bba7, type: 3}
+  iconSprite: {fileID: 21300000, guid: 4593f3398c153d849ac78f4e70200406, type: 3}

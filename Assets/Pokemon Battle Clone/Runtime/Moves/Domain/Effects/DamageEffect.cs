@@ -4,6 +4,7 @@ using Pokemon_Battle_Clone.Runtime.Core.Domain;
 
 namespace Pokemon_Battle_Clone.Runtime.Moves.Domain.Effects
 {
+    [System.Serializable]
     public class DamageEffect : IMoveEffect
     {
         public IBattleEvent Apply(Move move, Battle battle, Side side)

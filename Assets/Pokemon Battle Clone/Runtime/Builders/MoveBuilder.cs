@@ -2,7 +2,6 @@
 using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.Moves.Domain;
 using Pokemon_Battle_Clone.Runtime.Moves.Domain.Effects;
-using Pokemon_Battle_Clone.Runtime.Stats.Domain;
 
 namespace Pokemon_Battle_Clone.Runtime.Builders
 {
@@ -69,6 +68,12 @@ namespace Pokemon_Battle_Clone.Runtime.Builders
         public MoveBuilder WithAdditionalEffect(IMoveEffect effect, int chancePercent)
         {
             _effects.Add(new ConditionalEffect(effect, chancePercent));
+            return this;
+        }
+
+        public MoveBuilder WithAdditionalEffects(IEnumerable<ConditionalEffect> effects)
+        {
+            _effects.AddRange(effects);
             return this;
         }
         

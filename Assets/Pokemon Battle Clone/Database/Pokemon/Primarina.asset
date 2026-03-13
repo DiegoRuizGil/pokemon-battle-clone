@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2965e16bdcdc4a20b856c67c00413299, type: 3}
+  m_Name: Primarina
+  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.TeamBuilder.PokemonConfig
+  ID: 730
+  name: Primarina
+  level: 100
+  baseStats:
+    <HP>k__BackingField: 80
+    <Attack>k__BackingField: 74
+    <Defense>k__BackingField: 74
+    <SpcAttack>k__BackingField: 126
+    <SpcDefense>k__BackingField: 116
+    <Speed>k__BackingField: 60
+  type1: 18
+  type2: 5
+  nature: 17
+  ivs:
+    <HP>k__BackingField: 31
+    <Attack>k__BackingField: 31
+    <Defense>k__BackingField: 31
+    <SpcAttack>k__BackingField: 31
+    <SpcDefense>k__BackingField: 31
+    <Speed>k__BackingField: 31
+  evs:
+    <HP>k__BackingField: 252
+    <Attack>k__BackingField: 4
+    <Defense>k__BackingField: 0
+    <SpcAttack>k__BackingField: 252
+    <SpcDefense>k__BackingField: 0
+    <Speed>k__BackingField: 0
+  backSprite: {fileID: 21300000, guid: 3d18649c8c195eb428f837000b7478f5, type: 3}
+  frontSprite: {fileID: 21300000, guid: 234e2e4b30376d94bbcc05380207a14c, type: 3}
+  iconSprite: {fileID: 21300000, guid: 99fdfa0c70178cf428a62b44b515e0de, type: 3}

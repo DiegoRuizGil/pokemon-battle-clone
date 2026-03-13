@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2965e16bdcdc4a20b856c67c00413299, type: 3}
+  m_Name: Metagross
+  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.PokemonConfig
+  ID: 376
+  name: Metagross
+  level: 100
+  baseStats:
+    <HP>k__BackingField: 80
+    <Attack>k__BackingField: 135
+    <Defense>k__BackingField: 130
+    <SpcAttack>k__BackingField: 95
+    <SpcDefense>k__BackingField: 90
+    <Speed>k__BackingField: 70
+  type1: 17
+  type2: 15
+  nature: 3
+  ivs:
+    <HP>k__BackingField: 31
+    <Attack>k__BackingField: 31
+    <Defense>k__BackingField: 31
+    <SpcAttack>k__BackingField: 31
+    <SpcDefense>k__BackingField: 31
+    <Speed>k__BackingField: 31
+  evs:
+    <HP>k__BackingField: 252
+    <Attack>k__BackingField: 252
+    <Defense>k__BackingField: 0
+    <SpcAttack>k__BackingField: 0
+    <SpcDefense>k__BackingField: 4
+    <Speed>k__BackingField: 0
+  backSprite: {fileID: 21300000, guid: 7db7cf198032cfa4eaa8cc35053af662, type: 3}
+  frontSprite: {fileID: 21300000, guid: 35c7401a9d23c444c96125695ccf9271, type: 3}
+  iconSprite: {fileID: 21300000, guid: fab3d3fb1f85bba42b85bbecc0c49676, type: 3}

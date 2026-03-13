@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2965e16bdcdc4a20b856c67c00413299, type: 3}
+  m_Name: Togekiss
+  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.PokemonConfig
+  ID: 468
+  name: Togekiss
+  level: 100
+  baseStats:
+    <HP>k__BackingField: 85
+    <Attack>k__BackingField: 50
+    <Defense>k__BackingField: 95
+    <SpcAttack>k__BackingField: 120
+    <SpcDefense>k__BackingField: 115
+    <Speed>k__BackingField: 80
+  type1: 5
+  type2: 8
+  nature: 10
+  ivs:
+    <HP>k__BackingField: 31
+    <Attack>k__BackingField: 31
+    <Defense>k__BackingField: 31
+    <SpcAttack>k__BackingField: 31
+    <SpcDefense>k__BackingField: 31
+    <Speed>k__BackingField: 31
+  evs:
+    <HP>k__BackingField: 0
+    <Attack>k__BackingField: 0
+    <Defense>k__BackingField: 0
+    <SpcAttack>k__BackingField: 252
+    <SpcDefense>k__BackingField: 4
+    <Speed>k__BackingField: 252
+  backSprite: {fileID: 21300000, guid: 48740f5458e3126488fb5efd13b1b2df, type: 3}
+  frontSprite: {fileID: 21300000, guid: 43c282b5142e44245a2d588e786ed36a, type: 3}
+  iconSprite: {fileID: 21300000, guid: a8e87c12405ce1f44a5c5c543a157bee, type: 3}

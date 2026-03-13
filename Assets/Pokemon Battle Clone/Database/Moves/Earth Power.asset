@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d92e7c6879140d7aed38b4473324b48, type: 3}
+  m_Name: Earth Power
+  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.TeamBuilder.MoveConfig
+  moveName: Earth Power
+  type: 11
+  category: 1
+  pp: 10
+  accuracy: 100
+  power: 90
+  priority: 0
+  mainEffect:
+    rid: 668649613526564966
+  additionalEffects:
+  - _effect:
+      rid: 668649613526565000
+    _chancePercent: 10
+  references:
+    version: 2
+    RefIds:
+    - rid: 668649613526564966
+      type: {class: DamageEffect, ns: Pokemon_Battle_Clone.Runtime.Moves.Domain.Effects, asm: PokemonBattleClone.Runtime}
+      data: 
+    - rid: 668649613526565000
+      type: {class: StatsModifierEffect, ns: Pokemon_Battle_Clone.Runtime.Moves.Domain.Effects, asm: PokemonBattleClone.Runtime}
+      data:
+        _applyToTarget: 1
+        _statsModifier:
+          <HP>k__BackingField: 0
+          <Attack>k__BackingField: 0
+          <Defense>k__BackingField: 0
+          <SpcAttack>k__BackingField: 0
+          <SpcDefense>k__BackingField: -1
+          <Speed>k__BackingField: 0

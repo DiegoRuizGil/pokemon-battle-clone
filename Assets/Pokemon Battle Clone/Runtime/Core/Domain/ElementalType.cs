@@ -202,5 +202,31 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Domain
                     return true;
             return false;
         }
+
+        public static ElementalType GetType(string type)
+        {
+            return type switch
+            {
+                "bug" => ElementalType.Bug,
+                "dark" => ElementalType.Dark,
+                "dragon" => ElementalType.Dragon,
+                "electric" => ElementalType.Electric,
+                "fairy" => ElementalType.Fairy,
+                "fighting" => ElementalType.Fighting,
+                "fire" => ElementalType.Fire,
+                "flying" => ElementalType.Flying,
+                "ghost" => ElementalType.Ghost,
+                "grass" => ElementalType.Grass,
+                "ground" => ElementalType.Ground,
+                "ice" => ElementalType.Ice,
+                "normal" => ElementalType.Normal,
+                "poison" => ElementalType.Poison,
+                "psychic" => ElementalType.Psychic,
+                "rock" => ElementalType.Rock,
+                "steel" => ElementalType.Steel,
+                "water" => ElementalType.Water,
+                _ => ElementalType.None
+            };
+        }
     }
 }

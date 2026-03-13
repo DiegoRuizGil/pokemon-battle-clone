@@ -6,6 +6,7 @@ using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.Stats.Domain;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Nature = Pokemon_Battle_Clone.Runtime.Stats.Domain.Nature;
 using Pokemon = Pokemon_Battle_Clone.Runtime.Core.Domain.Pokemon;
 
@@ -17,7 +18,7 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder
         Modest, Mild, Quiet, Bashful, Rash, Calm, Gentle, Sassy, Careful, Quirky
     }
     
-    [CreateAssetMenu(menuName = "Pokemon Battle Clone/Pokemon/Config", fileName = "Pokemon Config")]
+    [CreateAssetMenu(menuName = "Pokemon Battle Clone/Data Base/Pokemon", fileName = "Pokemon Config")]
     public class PokemonConfig : ScriptableObject
     {
         public int ID;
@@ -38,7 +39,7 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder
         private static PokeApiClient _pokeClient;
         private static SpritesLoader _spritesLoader;
 
-        public static PokeApiClient PokeClient
+        private static PokeApiClient PokeClient
         {
             get
             {
@@ -48,7 +49,7 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder
             }
         }
 
-        public static SpritesLoader SpritesLoader
+        private static SpritesLoader SpritesLoader
         {
             get
             {
@@ -70,7 +71,6 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder
                 .WithEVs(evs);
         }
 
-        [ContextMenu("Load Data")]
         public async Task LoadFromAPI()
         {
             try
@@ -99,9 +99,9 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder
                 spcDefense: pokemon.Stats[4].BaseStat,
                 speed: pokemon.Stats[5].BaseStat
             );
-            type1 = GetElementalType(pokemon.Types[0].Type.Name);
+            type1 = ElementalTypeUtils.GetType(pokemon.Types[0].Type.Name);
             if (pokemon.Types.Count > 1)
-                type2 = GetElementalType(pokemon.Types[1].Type.Name);
+                type2 = ElementalTypeUtils.GetType(pokemon.Types[1].Type.Name);
         }
 
         private async Task LoadSprites(PokeApiNet.Pokemon pokemon)
@@ -116,6 +116,8 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder
             {
                 Debug.LogError(e.Message);
             }
+
+            SceneManager.LoadScene("sdfdsf");
         }
 
         private Nature GetNature(NatureEnum natureEnum)
@@ -148,32 +150,6 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder
                 NatureEnum.Serious => Nature.Serious(),
                 NatureEnum.Timid => Nature.Timid(),
                 _ => Nature.Bashful()
-            };
-        }
-
-        private ElementalType GetElementalType(string type)
-        {
-            return type switch
-            {
-                "bug" => ElementalType.Bug,
-                "dark" => ElementalType.Dark,
-                "dragon" => ElementalType.Dragon,
-                "electric" => ElementalType.Electric,
-                "fairy" => ElementalType.Fairy,
-                "fighting" => ElementalType.Fighting,
-                "fire" => ElementalType.Fire,
-                "flying" => ElementalType.Flying,
-                "ghost" => ElementalType.Ghost,
-                "grass" => ElementalType.Grass,
-                "ground" => ElementalType.Ground,
-                "ice" => ElementalType.Ice,
-                "normal" => ElementalType.Normal,
-                "poison" => ElementalType.Poison,
-                "psychic" => ElementalType.Psychic,
-                "rock" => ElementalType.Rock,
-                "steel" => ElementalType.Steel,
-                "water" => ElementalType.Water,
-                _ => ElementalType.None
             };
         }
     }
