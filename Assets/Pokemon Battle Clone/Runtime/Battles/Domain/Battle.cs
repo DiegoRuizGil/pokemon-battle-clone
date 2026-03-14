@@ -6,11 +6,6 @@ using Pokemon_Battle_Clone.Runtime.Trainers.Domain.Actions;
 
 namespace Pokemon_Battle_Clone.Runtime.Battles.Domain
 {
-    public enum Side
-    {
-        Player, Rival
-    }
-    
     public class Battle
     {
         private readonly Team _playerTeam;
@@ -25,7 +20,6 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Domain
             Random = random;
         }
         public Pokemon GetFirstPokemon(Side side) => GetTeam(side).FirstPokemon;
-        public Pokemon GetOpponentFirstPokemon(Side side) => GetOpponentTeam(side).FirstPokemon;
 
         public Team GetTeam(Side side)
         {
@@ -33,16 +27,6 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Domain
             {
                 Side.Player => _playerTeam,
                 Side.Rival => _rivalTeam,
-                _ => null
-            };
-        }
-
-        public Team GetOpponentTeam(Side side)
-        {
-            return side switch
-            {
-                Side.Player => _rivalTeam,
-                Side.Rival => _playerTeam,
                 _ => null
             };
         }

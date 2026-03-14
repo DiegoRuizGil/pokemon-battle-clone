@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Pokemon_Battle_Clone.Runtime.Battles.Domain;
 using Pokemon_Battle_Clone.Runtime.Battles.Domain.Events;
 using Pokemon_Battle_Clone.Runtime.Battles.Infrastructure.Dialogs;
 
@@ -17,7 +18,7 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control.EventHandlers
         
         public async Task Handle(DamageEvent battleEvent)
         {
-            var view = _battleContext.GetOpponentTeamView(battleEvent.ActionSide);
+            var view = _battleContext.GetTeamView(battleEvent.ActionSide.Opposite());
             
             view.UpdateHealth(max: battleEvent.TargetHealth.Max, current: battleEvent.TargetHealth.Current, animated: true);
             await view.PlayHitAnimation();

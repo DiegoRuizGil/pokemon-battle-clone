@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Pokemon_Battle_Clone.Runtime.Battles.Domain;
 using Pokemon_Battle_Clone.Runtime.Battles.Domain.Events;
 using Pokemon_Battle_Clone.Runtime.Battles.Infrastructure.Dialogs;
 using Pokemon_Battle_Clone.Runtime.Stats.Domain;
@@ -19,7 +20,7 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control.EventHandlers
         public async Task Handle(StatsModifierEvent battleEvent)
         {
             var view = battleEvent.ApplyToTarget ? 
-                _battleContext.GetOpponentTeamView(battleEvent.ActionSide)
+                _battleContext.GetTeamView(battleEvent.ActionSide.Opposite())
                 : _battleContext.GetTeamView(battleEvent.ActionSide);
             view.SetStatModifier(battleEvent.Modifier);
             await DisplayMessages(battleEvent.Modifier);

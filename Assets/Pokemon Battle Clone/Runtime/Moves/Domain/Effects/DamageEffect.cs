@@ -11,7 +11,7 @@ namespace Pokemon_Battle_Clone.Runtime.Moves.Domain.Effects
         {
             var damage = GetDamage(move, battle, side);
             
-            var target = battle.GetOpponentFirstPokemon(side);
+            var target = battle.GetFirstPokemon(side.Opposite());
             target.Health.Damage(damage);
 
             return new DamageEvent(
@@ -26,7 +26,7 @@ namespace Pokemon_Battle_Clone.Runtime.Moves.Domain.Effects
         private int GetDamage(Move move, Battle battle, Side side)
         {
             var user = battle.GetFirstPokemon(side);
-            var target = battle.GetOpponentFirstPokemon(side);
+            var target = battle.GetFirstPokemon(side.Opposite());
             
             var level = user.Stats.Level;
             var attack = user.Stats.GetAttackByCategory(move.Category);

@@ -6,7 +6,5 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
     public interface IBattleContext
     {
         ITeamView GetTeamView(Side side);
-        ITeamView GetOpponentTeamView(Side side);
-        
     }
 }

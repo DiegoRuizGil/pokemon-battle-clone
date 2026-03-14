@@ -101,15 +101,5 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
                 _ => null
             };
         }
-        
-        public ITeamView GetOpponentTeamView(Side side)
-        {
-            return side switch
-            {
-                Side.Player => rivalTeamView,
-                Side.Rival => playerTeamView,
-                _ => null
-            };
-        }
     }
 }
