@@ -41,6 +41,7 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder
                 .WithAccuracy((uint)accuracy)
                 .WithPower((uint)power)
                 .WithPP((uint)pp)
+                .WithPriority(priority)
                 .WithCategory(category)
                 .WithType(type)
                 .WithMainEffect(mainEffect)

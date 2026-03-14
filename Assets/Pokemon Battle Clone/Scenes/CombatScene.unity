@@ -1064,8 +1064,8 @@ MonoBehaviour:
   rivalTeamView: {fileID: 1487896682}
   actionsHUD: {fileID: 1204642374}
   dialogDisplayer: {fileID: 398039012}
-  playerTeamConfig: {fileID: 11400000, guid: 6c6eda3e9f4df6c4da79ea8653ba8f79, type: 2}
-  rivalTeamConfig: {fileID: 11400000, guid: 6efa490562949fb4b96be1b220710e69, type: 2}
+  playerTeamConfig: {fileID: 11400000, guid: 78d44b6d8e9f45944a6de9e4da0a2159, type: 2}
+  rivalTeamConfig: {fileID: 11400000, guid: 6c6eda3e9f4df6c4da79ea8653ba8f79, type: 2}
 --- !u!4 &913603189
 Transform:
   m_ObjectHideFlags: 0
