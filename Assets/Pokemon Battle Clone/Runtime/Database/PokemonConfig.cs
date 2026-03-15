@@ -18,7 +18,7 @@ namespace Pokemon_Battle_Clone.Runtime.Database
         Modest, Mild, Quiet, Bashful, Rash, Calm, Gentle, Sassy, Careful, Quirky
     }
     
-    [CreateAssetMenu(menuName = "Pokemon Battle Clone/Data Base/Pokemon", fileName = "Pokemon Config")]
+    [CreateAssetMenu(menuName = "Pokemon Battle Clone/Database/Pokemon", fileName = "Pokemon Config")]
     public class PokemonConfig : ScriptableObject
     {
         public int ID;

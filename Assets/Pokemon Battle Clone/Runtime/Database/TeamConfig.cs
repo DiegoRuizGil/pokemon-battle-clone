@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Pokemon_Battle_Clone.Runtime.Database
 {
-    [CreateAssetMenu(menuName = "Pokemon Battle Clone/Data Base/Team", fileName = "Team Config")]
+    [CreateAssetMenu(menuName = "Pokemon Battle Clone/Database/Team", fileName = "Team Config")]
     public class TeamConfig : ScriptableObject
     {
         [System.Serializable]

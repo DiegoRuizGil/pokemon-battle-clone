@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 950e6fd75c5e42adbf6e78b6ec597213, type: 3}
+  m_Name: Pokemon Asset Database
+  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Database.PokemonAssetDatabase
+  pokemonConfigs:
+  - {fileID: 11400000, guid: 6cf71e858404aee42b6b7626b6542007, type: 2}
+  - {fileID: 11400000, guid: 5321db039acb31645b224bfc063d9361, type: 2}
+  - {fileID: 11400000, guid: 843f9b2a96ab3524096bc12dd3ce4d66, type: 2}
+  - {fileID: 11400000, guid: b3328dc297173094b96b78971a438b24, type: 2}
+  - {fileID: 11400000, guid: 34705a3e81a44f74094bc172cd137817, type: 2}
+  - {fileID: 11400000, guid: 6ed0120805208f94e8c2e1867c6ee44a, type: 2}
+  - {fileID: 11400000, guid: c06d353f805101e4c9fa2d7b1027943e, type: 2}
+  - {fileID: 11400000, guid: ce9d151eb61d38a47bebad6957365100, type: 2}
+  - {fileID: 11400000, guid: 272211e8b48e9b94398b9074c46f04be, type: 2}
+  - {fileID: 11400000, guid: 0b77aa498acca1a48aa7604aed061558, type: 2}
+  - {fileID: 11400000, guid: e3920c618e4909a45996efd1aa4d1170, type: 2}
+  - {fileID: 11400000, guid: 48054477629bfe3468f69302659fa237, type: 2}
+  - {fileID: 11400000, guid: 39dc3989faabaaa48bd3d253e03d763b, type: 2}
+  - {fileID: 11400000, guid: ea8b2cc2398362d49bf40bea2dd2c262, type: 2}
+  - {fileID: 11400000, guid: 6b225f7a426b92e43831d31c4c29aeb1, type: 2}
+  - {fileID: 11400000, guid: b42a593657684a74198a62198ddddc47, type: 2}
+  - {fileID: 11400000, guid: 90689f31fa1b46f45a9a9fceab1d11bd, type: 2}
+  - {fileID: 11400000, guid: a292cfcbbf0bc40499c99cd50627189e, type: 2}
+  - {fileID: 11400000, guid: b6060f727d292b340adb09fb6ffa5320, type: 2}
+  - {fileID: 11400000, guid: bb41f01411231a4458ace557736f3b26, type: 2}
+  - {fileID: 11400000, guid: 3c3c01b34b888f34aab1cbc2833e32fd, type: 2}
+  - {fileID: 11400000, guid: 169366bb315d6d449a27d59bc9e30a20, type: 2}
+  - {fileID: 11400000, guid: 7d7cd5312d8cb2b48b71fcc3082a3772, type: 2}
+  - {fileID: 11400000, guid: 0ac3625b5eac52940a1dee97227b5d26, type: 2}
+  - {fileID: 11400000, guid: b6d91015254822b4e8510fa299b1cc90, type: 2}
+  - {fileID: 11400000, guid: 99730e9eb34224d44a341b312d3647e7, type: 2}
+  - {fileID: 11400000, guid: ca6a607953e701f42b738a9a6f298bd0, type: 2}
+  - {fileID: 11400000, guid: 90e8a0ebd51929e4e9b83f55775ee3ae, type: 2}
+  - {fileID: 11400000, guid: 95a2452b1fd990a4b8be0a50e092dcc0, type: 2}

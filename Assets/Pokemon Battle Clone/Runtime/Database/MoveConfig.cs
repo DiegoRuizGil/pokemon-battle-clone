@@ -11,7 +11,7 @@ using MoveCategory = Pokemon_Battle_Clone.Runtime.Moves.Domain.MoveCategory;
 
 namespace Pokemon_Battle_Clone.Runtime.Database
 {
-    [CreateAssetMenu(menuName = "Pokemon Battle Clone/Data Base/Move", fileName = "Move Config")]
+    [CreateAssetMenu(menuName = "Pokemon Battle Clone/Database/Move", fileName = "Move Config")]
     public class MoveConfig : ScriptableObject
     {
         public string moveName;
