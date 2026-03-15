@@ -1,9 +1,8 @@
 ﻿using System;
-using Pokemon_Battle_Clone.Runtime.Database;
 using UnityEditor;
 using UnityEngine;
 
-namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.Editor
+namespace Pokemon_Battle_Clone.Runtime.Database.Editor
 {
     [CustomEditor(typeof(MoveConfig))]
     [CanEditMultipleObjects]
