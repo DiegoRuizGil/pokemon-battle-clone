@@ -25,7 +25,7 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control.EventHandlers
             
             if (battleEvent.Effectiveness > 1f)
                 await _dialogDisplayer.DisplayAsync("It was super effective!");
-            else if (battleEvent.Effectiveness < 0f)
+            else if (battleEvent.Effectiveness < 1f)
                 await _dialogDisplayer.DisplayAsync("It was not very effective...");
         }
     }
