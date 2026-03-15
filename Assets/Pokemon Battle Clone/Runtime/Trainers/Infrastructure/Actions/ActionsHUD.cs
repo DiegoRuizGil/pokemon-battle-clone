@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using Pokemon_Battle_Clone.Runtime.Core.Domain;
+using Pokemon_Battle_Clone.Runtime.Database;
 using Pokemon_Battle_Clone.Runtime.Moves.Domain;
 using Pokemon_Battle_Clone.Runtime.Moves.Infrastructure;
 using UnityEngine;
@@ -9,16 +10,18 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions
 {
     public class ActionsHUD : MonoBehaviour, IActionHUD
     {
-        public ActionSelector selector;
-        public PokemonSelectorView pokemonSelector;
-        public MoveSetView moveSetView;
-        
-        private Dictionary<uint, Sprite> _pokemonIcons = new();
-        
-        public void Init(Dictionary<uint, Sprite> pokemonIcons)
+        [SerializeField] private PokemonAssetDatabase assetDatabase;
+        [SerializeField] private ActionSelector selector;
+        [SerializeField] private PokemonSelectorView pokemonSelector;
+        [SerializeField] private MoveSetView moveSetView;
+
+        private void Start()
         {
-            _pokemonIcons = new Dictionary<uint, Sprite>(pokemonIcons);
-            
+            Init();
+        }
+
+        public void Init()
+        {
             HideSelectors();
             
             moveSetView.Init();
@@ -52,9 +55,11 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions
 
         public void ShowPokemonSelector(bool forceSelection, Team team)
         {
+            var icons = assetDatabase.GetIconsOf(team.PokemonList.Select(p => p.ID).ToList());
+            
             selector.Hide();
             moveSetView.Hide();
-            pokemonSelector.Show(forceSelection, team, _pokemonIcons);
+            pokemonSelector.Show(forceSelection, team, icons);
         }
 
         public void RegisterMoveSelectedListener(Action<int> listener) => moveSetView.OnMoveSelected += listener;

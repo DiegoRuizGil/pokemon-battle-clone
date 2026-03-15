@@ -12,8 +12,8 @@ namespace Pokemon_Battle_Clone.Runtime.Database
     {
         [SerializeField] private List<PokemonConfig> pokemonConfigs;
 
-        private Dictionary<int, PokemonConfig> _db;
-        private Dictionary<int, PokemonConfig> DB
+        private Dictionary<uint, PokemonConfig> _db;
+        private Dictionary<uint, PokemonConfig> DB
         {
             get
             {
@@ -25,18 +25,42 @@ namespace Pokemon_Battle_Clone.Runtime.Database
 
         private void Initialize()
         {
-            _db = new Dictionary<int, PokemonConfig>();
+            _db = new Dictionary<uint, PokemonConfig>();
             if (pokemonConfigs != null)
             {
                 foreach (var config in pokemonConfigs)
-                    _db[config.ID] = config;
+                    _db[(uint)config.ID] = config;
             }
         }
 
-        public PokemonConfig GetPokemonConfig(int id) => DB[id];
-        public Sprite GetBackSprite(int id) => DB[id].backSprite;
-        public Sprite GetFrontSprite(int id) => DB[id].frontSprite;
-        public Sprite GetIconSprite(int id) => DB[id].iconSprite;
+        public PokemonConfig GetPokemonConfig(uint id) => DB[id];
+        public Sprite GetBackSprite(uint id) => DB[id].backSprite;
+        public Sprite GetFrontSprite(uint id) => DB[id].frontSprite;
+        public Sprite GetIcon(uint id) => DB[id].iconSprite;
+
+        public Dictionary<uint, Sprite> GetBackSpritesOf(List<uint> pokemonIDs)
+        {
+            var sprites = new Dictionary<uint, Sprite>();
+            foreach (var id in pokemonIDs)
+                sprites[id] = GetBackSprite(id);
+            return sprites;
+        }
+        
+        public Dictionary<uint, Sprite> GetFrontSpritesOf(List<uint> pokemonIDs)
+        {
+            var sprites = new Dictionary<uint, Sprite>();
+            foreach (var id in pokemonIDs)
+                sprites[id] = GetFrontSprite(id);
+            return sprites;
+        }
+        
+        public Dictionary<uint, Sprite> GetIconsOf(List<uint> pokemonIDs)
+        {
+            var sprites = new Dictionary<uint, Sprite>();
+            foreach (var id in pokemonIDs)
+                sprites[id] = GetIcon(id);
+            return sprites;
+        }
         
 #if UNITY_EDITOR
         [ContextMenu("Load Pokemon Configs")]

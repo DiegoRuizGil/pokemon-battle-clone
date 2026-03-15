@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Pokemon_Battle_Clone.Runtime.Battles.Domain;
 using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.Core.Infrastructure.Status;
+using Pokemon_Battle_Clone.Runtime.Database;
 using Pokemon_Battle_Clone.Runtime.Stats.Domain;
 using Pokemon_Battle_Clone.Runtime.Stats.Infrastructure;
 using UnityEngine;
@@ -10,20 +12,19 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Infrastructure
 {
     public class TeamView : MonoBehaviour, ITeamView
     {
+        [SerializeField] private Side side;
+        [SerializeField] private PokemonAssetDatabase assetDatabase;
         [SerializeField] private StatusView statusView;
         [SerializeField] private PokemonView pokemonView;
-
-        private Dictionary<uint, Sprite> _sprites = new();
-
-        public void Init(Dictionary<uint, Sprite> sprites)
+        
+        public void Init(List<uint> pokemonIDs)
         {
-            _sprites = new Dictionary<uint, Sprite>(sprites);
-            statusView.Team.Init(pokemonIDs: new List<uint>(sprites.Keys));
+            statusView.Team.Init(pokemonIDs);
         }
         
         public async Task SendPokemon(Pokemon pokemon)
         {
-            var sprite = _sprites[pokemon.ID];
+            var sprite = GetSprite(pokemon.ID);
             SetStaticData(sprite, pokemon.Name, pokemon.Stats.Level);
             UpdateHealth(pokemon.Health.Max, pokemon.Health.Current, animated: false);
             SetStatModifier(pokemon.Stats.Modifiers);
@@ -55,6 +56,11 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Infrastructure
         {
             pokemonView.SetSprite(sprite);
             statusView.Pokemon.SetInfo(name, level);
+        }
+
+        private Sprite GetSprite(uint id)
+        {
+            return side == Side.Player ? assetDatabase.GetBackSprite(id) : assetDatabase.GetFrontSprite(id);
         }
     }
 }

@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Pokemon_Battle_Clone.Runtime.Battles.Domain;
 using Pokemon_Battle_Clone.Runtime.Battles.Infrastructure.Dialogs;
-using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.Core.Infrastructure;
 using Pokemon_Battle_Clone.Runtime.CustomLogs;
 using Pokemon_Battle_Clone.Runtime.Database;
-using Pokemon_Battle_Clone.Runtime.Moves.Domain;
 using Pokemon_Battle_Clone.Runtime.RNG;
-using Pokemon_Battle_Clone.Runtime.TeamBuilder;
 using Pokemon_Battle_Clone.Runtime.Trainers.Control;
 using Pokemon_Battle_Clone.Runtime.Trainers.Domain.Strategies;
 using Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions;
@@ -40,24 +36,17 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
         
         private void Start()
         {
-            var spriteLoader = new SpritesLoader("Assets/Pokemon Battle Clone/Sprites/Pokemon");
-            
             var playerTeam = playerTeamConfig.Build();
             var rivalTeam = rivalTeamConfig.Build();
             
             _battle = new Battle(playerTeam, rivalTeam, new DefaultRandom(seed: DateTime.Now.GetHashCode()));
             _turn = new Turn(new ActionsResolver(this, dialogDisplayer), actionsHUD);
             
-            var playerSprites = spriteLoader.LoadAllBack(playerTeam.PokemonList.Select(pokemon => pokemon.ID).ToList());
             _playerTrainer = new PlayerTrainer(playerTeam, actionsHUD);
-            playerTeamView.Init(playerSprites);
+            playerTeamView.Init(playerTeam.PokemonList.Select(p => p.ID).ToList());
             
-            var rivalSprites = spriteLoader.LoadAllFront(rivalTeam.PokemonList.Select(pokemon => pokemon.ID).ToList());
             _rivalTrainer = new RivalTrainer(rivalTeam, new RandomTrainerStrategy());
-            rivalTeamView.Init(rivalSprites);
-
-            var playerIcons = spriteLoader.LoadAllIcon(playerTeam.PokemonList.Select(pokemon => pokemon.ID).ToList());
-            actionsHUD.Init(playerIcons);
+            rivalTeamView.Init(rivalTeam.PokemonList.Select(p => p.ID).ToList());
             
             _ = RunBattleAsync();
         }
