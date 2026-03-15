@@ -7,6 +7,7 @@ using Pokemon_Battle_Clone.Runtime.Core.Infrastructure;
 using Pokemon_Battle_Clone.Runtime.CustomLogs;
 using Pokemon_Battle_Clone.Runtime.Database;
 using Pokemon_Battle_Clone.Runtime.RNG;
+using Pokemon_Battle_Clone.Runtime.TeamBuilder.UI;
 using Pokemon_Battle_Clone.Runtime.Trainers.Control;
 using Pokemon_Battle_Clone.Runtime.Trainers.Domain.Strategies;
 using Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions;
@@ -20,6 +21,7 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
         public TeamView playerTeamView;
         public TeamView rivalTeamView;
         public ActionsHUD actionsHUD;
+        public TeamInfoDisplayer teamInfoDisplayer;
         public DialogDisplayer dialogDisplayer;
 
         public TeamConfig playerTeamConfig;
@@ -42,7 +44,7 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
             _battle = new Battle(playerTeam, rivalTeam, new DefaultRandom(seed: DateTime.Now.GetHashCode()));
             _turn = new Turn(new ActionsResolver(this, dialogDisplayer), actionsHUD);
             
-            _playerTrainer = new PlayerTrainer(playerTeam, actionsHUD);
+            _playerTrainer = new PlayerTrainer(playerTeam, actionsHUD, teamInfoDisplayer);
             playerTeamView.Init(playerTeam.PokemonList.Select(p => p.ID).ToList());
             
             _rivalTrainer = new RivalTrainer(rivalTeam, new RandomTrainerStrategy());

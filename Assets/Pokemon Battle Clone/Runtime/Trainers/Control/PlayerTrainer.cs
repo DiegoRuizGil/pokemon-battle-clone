@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Pokemon_Battle_Clone.Runtime.Battles.Domain;
-using Pokemon_Battle_Clone.Runtime.Battles.Domain.Events;
 using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.CustomLogs;
 using Pokemon_Battle_Clone.Runtime.Moves.Infrastructure;
+using Pokemon_Battle_Clone.Runtime.TeamBuilder.UI;
 using Pokemon_Battle_Clone.Runtime.Trainers.Domain.Actions;
 using Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions;
 
@@ -14,15 +15,17 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Control
     public class PlayerTrainer : Trainer
     {
         private readonly IActionHUD _actionsHUD;
+        private readonly ITeamInfoDisplayer _teamInfoDisplayer;
         private TaskCompletionSource<TrainerAction> _actionTcs;
 
         private readonly Dictionary<Type, Action<bool>> _selectorMap;
 
         public override Side Side => Side.Player;
 
-        public PlayerTrainer(Team team, IActionHUD actionsHUD) : base(team)
+        public PlayerTrainer(Team team, IActionHUD actionsHUD, ITeamInfoDisplayer teamInfoDisplayer) : base(team)
         {
             _actionsHUD = actionsHUD;
+            _teamInfoDisplayer = teamInfoDisplayer;
             _selectorMap = new Dictionary<Type, Action<bool>>
             {
                 { typeof(MoveAction), ShowMoveSelector },
@@ -34,6 +37,8 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Control
             
             _actionsHUD.RegisterPokemonSelectedListener(OnPokemonSelected);
             _actionsHUD.RegisterPokemonButtonPressedListener(() => ShowPokemonSelector(false));
+            
+            _actionsHUD.RegisterDisplayTeamInfoListener(OnDisplayTeamInfo);
         }
 
         public override Task<TrainerAction> SelectActionTask(Battle battle)
@@ -95,6 +100,11 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Control
         private void ShowPokemonSelector(bool forceSelection)
         {
             _actionsHUD.ShowPokemonSelector(forceSelection, Team);
+        }
+
+        private void OnDisplayTeamInfo(int pokemonIndex)
+        {
+            _teamInfoDisplayer.Display(Team.PokemonList.ToList(), pokemonIndex);
         }
     }
 }

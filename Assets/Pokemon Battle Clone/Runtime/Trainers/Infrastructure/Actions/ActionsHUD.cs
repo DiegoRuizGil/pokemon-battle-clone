@@ -67,5 +67,7 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions
 
         public void RegisterPokemonSelectedListener(Action<int> listener) => pokemonSelector.OnPokemonSelected += listener;
         public void RegisterPokemonButtonPressedListener(Action listener) => selector.OnPokemonButtonPressed += listener;
+        
+        public void RegisterDisplayTeamInfoListener(Action<int> listener) => pokemonSelector.OnDisplayInfo += listener;
     }
 }

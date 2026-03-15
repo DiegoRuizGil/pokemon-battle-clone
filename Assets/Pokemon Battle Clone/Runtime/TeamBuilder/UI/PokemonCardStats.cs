@@ -16,7 +16,7 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.UI
             public void Display(int value)
             {
                 var hexColor = ColorUtility.ToHtmlStringRGB(color);
-                text.text = $"<color={hexColor}>{name}</color>: {value}";
+                text.text = $"<color=#{hexColor}>{name}</color>: {value}";
             }
         }
         

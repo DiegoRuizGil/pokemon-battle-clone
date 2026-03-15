@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Pokemon_Battle_Clone.Runtime.Core.Domain;
-using Pokemon_Battle_Clone.Runtime.Core.Infrastructure;
 using UnityEngine;
 
 namespace Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions
@@ -12,6 +11,7 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions
         [SerializeField] private HUDButton backButton;
 
         public event Action<int> OnPokemonSelected = delegate { };
+        public event Action<int> OnDisplayInfo = delegate { };
 
         public void Init()
         {
@@ -19,6 +19,7 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions
             {
                 pokemonButtons[i].index = i + 1;
                 pokemonButtons[i].OnClick += index => OnPokemonSelected(index);
+                pokemonButtons[i].OnInfoSelected += index => OnDisplayInfo(index);
             }
         }
 
