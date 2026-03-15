@@ -13,6 +13,11 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.UI
         private List<Pokemon> _currentList;
         private int _currentIndex;
 
+        public void Close()
+        {
+            gameObject.SetActive(false);
+        }
+        
         public void GoLeft()
         {
             _currentIndex = (_currentIndex - 1 + _currentList.Count) % _currentList.Count;
