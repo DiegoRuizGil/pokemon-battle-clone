@@ -3,7 +3,7 @@ using System.Linq;
 using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using UnityEngine;
 
-namespace Pokemon_Battle_Clone.Runtime.TeamBuilder
+namespace Pokemon_Battle_Clone.Runtime.Database
 {
     [CreateAssetMenu(menuName = "Pokemon Battle Clone/Data Base/Team", fileName = "Team Config")]
     public class TeamConfig : ScriptableObject

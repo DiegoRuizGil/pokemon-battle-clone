@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using Pokemon_Battle_Clone.Runtime.Database;
+using UnityEditor;
 using UnityEngine;
 
 namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.Editor

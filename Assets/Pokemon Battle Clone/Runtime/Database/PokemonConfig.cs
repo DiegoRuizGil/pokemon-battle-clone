@@ -4,13 +4,13 @@ using PokeApiNet;
 using Pokemon_Battle_Clone.Runtime.Builders;
 using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.Stats.Domain;
+using Pokemon_Battle_Clone.Runtime.TeamBuilder;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Nature = Pokemon_Battle_Clone.Runtime.Stats.Domain.Nature;
 using Pokemon = Pokemon_Battle_Clone.Runtime.Core.Domain.Pokemon;
 
-namespace Pokemon_Battle_Clone.Runtime.TeamBuilder
+namespace Pokemon_Battle_Clone.Runtime.Database
 {
     public enum NatureEnum
     {
@@ -116,8 +116,6 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder
             {
                 Debug.LogError(e.Message);
             }
-
-            SceneManager.LoadScene("sdfdsf");
         }
 
         private Nature GetNature(NatureEnum natureEnum)

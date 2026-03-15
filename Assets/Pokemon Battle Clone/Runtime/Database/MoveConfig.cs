@@ -9,7 +9,7 @@ using UnityEngine;
 using Move = Pokemon_Battle_Clone.Runtime.Moves.Domain.Move;
 using MoveCategory = Pokemon_Battle_Clone.Runtime.Moves.Domain.MoveCategory;
 
-namespace Pokemon_Battle_Clone.Runtime.TeamBuilder
+namespace Pokemon_Battle_Clone.Runtime.Database
 {
     [CreateAssetMenu(menuName = "Pokemon Battle Clone/Data Base/Move", fileName = "Move Config")]
     public class MoveConfig : ScriptableObject
