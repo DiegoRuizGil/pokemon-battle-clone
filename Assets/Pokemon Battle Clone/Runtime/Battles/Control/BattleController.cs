@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Pokemon_Battle_Clone.Runtime.Battles.Domain;
+using Pokemon_Battle_Clone.Runtime.Battles.Infrastructure;
 using Pokemon_Battle_Clone.Runtime.Battles.Infrastructure.Dialogs;
 using Pokemon_Battle_Clone.Runtime.Core.Infrastructure;
 using Pokemon_Battle_Clone.Runtime.CustomLogs;
@@ -18,14 +19,15 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
 {
     public class BattleController : MonoBehaviour, IBattleContext
     {
+        [Header("Data")]
+        public BattleSettings battleSettings;
+        
+        [Header("UI")]
         public TeamView playerTeamView;
         public TeamView rivalTeamView;
         public ActionsHUD actionsHUD;
         public TeamInfoDisplayer teamInfoDisplayer;
         public DialogDisplayer dialogDisplayer;
-
-        public TeamConfig playerTeamConfig;
-        public TeamConfig rivalTeamConfig;
         
         private Battle _battle;
         private Turn _turn;
@@ -33,13 +35,12 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
         private Trainer _playerTrainer;
         private Trainer _rivalTrainer;
         
-        private int _turnCount;
         private bool _battleFinished;
         
         private void Start()
         {
-            var playerTeam = playerTeamConfig.Build();
-            var rivalTeam = rivalTeamConfig.Build();
+            var playerTeam = battleSettings.PlayerTeamConfig.Build();
+            var rivalTeam = battleSettings.RivalTeamConfig.Build();
             
             _battle = new Battle(playerTeam, rivalTeam, new DefaultRandom(seed: DateTime.Now.GetHashCode()));
             _turn = new Turn(new ActionsResolver(this, dialogDisplayer), actionsHUD);

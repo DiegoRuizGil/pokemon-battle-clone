@@ -2181,6 +2181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdc7f58f457249609c383fc1729bcae1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.TeamBuilder.Selector.TeamsAllocator
+  battleSettings: {fileID: 11400000, guid: f0d9cbbf571a04546b60d80a545412fc, type: 2}
   playerSelection: {fileID: 509565720}
   rivalSelection: {fileID: 182887068}
   startButton: {fileID: 1546393187}

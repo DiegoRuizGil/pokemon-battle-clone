@@ -1652,13 +1652,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dd2ccd2f4e54733b65f271275c4f59c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battleSettings: {fileID: 11400000, guid: f0d9cbbf571a04546b60d80a545412fc, type: 2}
   playerTeamView: {fileID: 101632632}
   rivalTeamView: {fileID: 1487896682}
   actionsHUD: {fileID: 1204642374}
   teamInfoDisplayer: {fileID: 636579157}
   dialogDisplayer: {fileID: 398039012}
-  playerTeamConfig: {fileID: 11400000, guid: 01a552a96710f4e419d6c360aa18f599, type: 2}
-  rivalTeamConfig: {fileID: 11400000, guid: 6c6eda3e9f4df6c4da79ea8653ba8f79, type: 2}
 --- !u!4 &913603189
 Transform:
   m_ObjectHideFlags: 0
