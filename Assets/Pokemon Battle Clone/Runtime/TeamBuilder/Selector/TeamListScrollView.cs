@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Pokemon_Battle_Clone.Runtime.Battles.Domain;
 using Pokemon_Battle_Clone.Runtime.Database;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.Selector
 {
     public class TeamListScrollView : MonoBehaviour
     {
+        [SerializeField] private TeamsAllocator teamsAllocator;
         [SerializeField] private List<TeamConfig> teamConfigs;
 
         [Header("UI")]
@@ -18,7 +20,19 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.Selector
             {
                 var selector = Instantiate(teamSelectorPrefab, content.transform);
                 selector.Init(teamConfig);
+                selector.OnPlayerSelected += OnPlayerSelected;
+                selector.OnRivalSelected += OnRivalSelected;
+                selector.OnInfoSelected += OnInfoSelected;
             }
+        }
+
+        private void OnPlayerSelected(TeamConfig teamConfig) => OnTeamSelected(teamConfig, Side.Player);
+        private void OnRivalSelected(TeamConfig teamConfig) => OnTeamSelected(teamConfig, Side.Rival);
+        private void OnTeamSelected(TeamConfig teamConfig, Side side) => teamsAllocator.SetTeam(teamConfig, side);
+
+        private void OnInfoSelected(TeamConfig teamConfig)
+        {
+            
         }
     }
 }

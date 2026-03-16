@@ -18,9 +18,9 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.Selector
         
         private TeamConfig _teamConfig;
         
-        public event Action OnAddToPlayerButtonClicked = delegate { };
-        public event Action OnAddToRivalButtonClicked = delegate { };
-        public event Action OnInfoClicked = delegate { };
+        public event Action<TeamConfig> OnPlayerSelected = delegate { };
+        public event Action<TeamConfig> OnRivalSelected = delegate { };
+        public event Action<TeamConfig> OnInfoSelected = delegate { };
 
         private void Awake()
         {
@@ -46,9 +46,9 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.Selector
 
         private void BindActions()
         {
-            playerButton.onClick.AddListener(() => OnAddToPlayerButtonClicked.Invoke());
-            rivalButton.onClick.AddListener(() => OnAddToRivalButtonClicked.Invoke());
-            infoButton.onClick.AddListener(() => OnInfoClicked.Invoke());
+            playerButton.onClick.AddListener(() => OnPlayerSelected.Invoke(_teamConfig));
+            rivalButton.onClick.AddListener(() => OnRivalSelected.Invoke(_teamConfig));
+            infoButton.onClick.AddListener(() => OnInfoSelected.Invoke(_teamConfig));
         }
     }
 }
