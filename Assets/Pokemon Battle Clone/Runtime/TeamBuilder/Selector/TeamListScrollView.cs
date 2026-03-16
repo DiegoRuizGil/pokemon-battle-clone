@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Pokemon_Battle_Clone.Runtime.Battles.Domain;
 using Pokemon_Battle_Clone.Runtime.Database;
+using Pokemon_Battle_Clone.Runtime.TeamBuilder.TeamDisplayer;
 using UnityEngine;
 
 namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.Selector
@@ -13,6 +15,7 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.Selector
         [Header("UI")]
         [SerializeField] private TeamSelector teamSelectorPrefab;
         [SerializeField] private GameObject content;
+        [SerializeField] private TeamInfoDisplayer teamInfoDisplayer;
         
         private void Awake()
         {
@@ -32,7 +35,8 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.Selector
 
         private void OnInfoSelected(TeamConfig teamConfig)
         {
-            
+            var pokemonList = teamConfig.Build().PokemonList.ToList();
+            teamInfoDisplayer.Display(pokemonList);
         }
     }
 }
