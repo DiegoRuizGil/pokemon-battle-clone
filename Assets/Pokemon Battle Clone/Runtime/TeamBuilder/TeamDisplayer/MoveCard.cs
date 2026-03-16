@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.UI
+namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.TeamDisplayer
 {
     public class MoveCard : MonoBehaviour
     {

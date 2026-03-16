@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.UI
+namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.TeamDisplayer
 {
     public class PokemonCardStats : MonoBehaviour
     {

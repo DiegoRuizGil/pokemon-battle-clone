@@ -7,7 +7,7 @@ using Pokemon_Battle_Clone.Runtime.Core.Infrastructure;
 using Pokemon_Battle_Clone.Runtime.CustomLogs;
 using Pokemon_Battle_Clone.Runtime.Database;
 using Pokemon_Battle_Clone.Runtime.RNG;
-using Pokemon_Battle_Clone.Runtime.TeamBuilder.UI;
+using Pokemon_Battle_Clone.Runtime.TeamBuilder.TeamDisplayer;
 using Pokemon_Battle_Clone.Runtime.Trainers.Control;
 using Pokemon_Battle_Clone.Runtime.Trainers.Domain.Strategies;
 using Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions;

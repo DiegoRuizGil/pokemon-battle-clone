@@ -3,7 +3,7 @@ using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.Database;
 using UnityEngine;
 
-namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.UI
+namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.TeamDisplayer
 {
     public class TeamInfoDisplayer : MonoBehaviour, ITeamInfoDisplayer
     {

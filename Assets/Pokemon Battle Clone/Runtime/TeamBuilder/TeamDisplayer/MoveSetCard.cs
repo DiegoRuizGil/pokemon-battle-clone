@@ -2,7 +2,7 @@
 using Pokemon_Battle_Clone.Runtime.Moves.Infrastructure;
 using UnityEngine;
 
-namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.UI
+namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.TeamDisplayer
 {
     public class MoveSetCard : MonoBehaviour
     {
