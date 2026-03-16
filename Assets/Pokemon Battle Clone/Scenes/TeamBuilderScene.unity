@@ -2026,6 +2026,7 @@ GameObject:
   - component: {fileID: 1546393186}
   - component: {fileID: 1546393185}
   - component: {fileID: 1546393184}
+  - component: {fileID: 1546393187}
   m_Layer: 5
   m_Name: Start Battle Button
   m_TagString: Untagged
@@ -2135,6 +2136,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1546393182}
   m_CullTransparentMesh: 1
+--- !u!114 &1546393187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546393182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef483792f464cbe89c3cedba168c21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions.HUDButton
+  buttonImage: {fileID: 1546393185}
+  unselectedColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 0, g: 0, b: 0, a: 1}
+  disabledColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &1580878898
 GameObject:
   m_ObjectHideFlags: 0
@@ -2166,6 +2183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.TeamBuilder.Selector.TeamsAllocator
   playerSelection: {fileID: 509565720}
   rivalSelection: {fileID: 182887068}
+  startButton: {fileID: 1546393187}
 --- !u!4 &1580878900
 Transform:
   m_ObjectHideFlags: 0

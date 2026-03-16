@@ -11,6 +11,8 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.Selector
         [SerializeField] private List<PokemonSelectorButton> pokemonButtons;
         
         private TeamConfig _teamConfig;
+        
+        public bool HasTeamSelected => _teamConfig != null;
 
         private void Start()
         {

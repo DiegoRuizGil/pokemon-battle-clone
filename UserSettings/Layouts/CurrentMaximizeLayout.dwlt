@@ -25,7 +25,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 112}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 10725
+  controlID: 13327
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 112}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 10726
+  controlID: 13328
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 10727
+  controlID: 13329
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -1099,7 +1099,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 10751
+  controlID: 13353
   draggingID: 0
 --- !u!114 &11
 MonoBehaviour:
@@ -1305,6 +1305,7 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
+    - m_Data: 634
     - m_Data: 50702
     - m_Data: 50704
     - m_Data: 50706
@@ -1343,9 +1344,11 @@ MonoBehaviour:
     - m_Data: 50772
     - m_Data: 50938
     - m_Data: 50950
+    - m_Data: 50980
     - m_Data: 53816
     - m_Data: 53818
     - m_Data: 53820
+    - m_Data: 56028
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1374,7 +1377,7 @@ MonoBehaviour:
   m_AssetTreeState:
     scrollPos: {x: 0, y: 1061}
     m_SelectedIDs:
-    - m_Data: -25334
+    - m_Data: -24878
     m_LastClickedID:
       m_Data: 0
     m_ExpandedIDs:
@@ -1450,8 +1453,8 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: -25334
-    m_LastClickedInstanceID: -25334
+    - m_Data: -24878
+    m_LastClickedInstanceID: -24878
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: []
     m_RenameOverlay:
@@ -1502,8 +1505,8 @@ MonoBehaviour:
     y: 0
     width: 295
     height: 933
-  m_MinSize: {x: 202, y: 226}
-  m_MaxSize: {x: 4002, y: 4026}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -1552,20 +1555,15 @@ MonoBehaviour:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs:
-      - m_Data: -25334
+      - m_Data: -24878
       m_LastClickedID:
-        m_Data: -25334
+        m_Data: -24878
       m_ExpandedIDs:
       - m_Data: -28196
-      - m_Data: -25334
       - m_Data: -1316
-      - m_Data: 49722
-      - m_Data: 49726
-      - m_Data: 49736
       - m_Data: 49804
-      - m_Data: 49832
+      - m_Data: 49822
       - m_Data: 49838
-      - m_Data: 49848
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -2271,7 +2269,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 500
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
