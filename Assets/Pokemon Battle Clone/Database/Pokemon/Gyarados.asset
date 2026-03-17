@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gyarados
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.PokemonConfig
   ID: 130
-  name: Gyarados
+  pokemonName: Gyarados
   level: 100
   baseStats:
     <HP>k__BackingField: 95

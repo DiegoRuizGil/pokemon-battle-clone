@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Escavalier
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.PokemonConfig
   ID: 589
-  name: Escavalier
+  pokemonName: Escavalier
   level: 100
   baseStats:
     <HP>k__BackingField: 70

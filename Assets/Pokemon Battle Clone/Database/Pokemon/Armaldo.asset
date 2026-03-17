@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Armaldo
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.PokemonConfig
   ID: 348
-  name: Armaldo
+  pokemonName: Armaldo
   level: 100
   baseStats:
     <HP>k__BackingField: 75

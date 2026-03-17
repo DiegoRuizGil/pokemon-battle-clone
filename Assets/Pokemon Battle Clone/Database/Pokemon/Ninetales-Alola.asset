@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ninetales-Alola
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.TeamBuilder.PokemonConfig
   ID: 10104
-  name: Ninetales
+  pokemonName: Ninetales
   level: 100
   baseStats:
     <HP>k__BackingField: 73

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cradily
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.PokemonConfig
   ID: 346
-  name: Cradily
+  pokemonName: Cradily
   level: 100
   baseStats:
     <HP>k__BackingField: 86

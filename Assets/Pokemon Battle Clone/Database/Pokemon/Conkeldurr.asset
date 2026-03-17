@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Conkeldurr
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.PokemonConfig
   ID: 534
-  name: Conkeldurr
+  pokemonName: Conkeldurr
   level: 100
   baseStats:
     <HP>k__BackingField: 105

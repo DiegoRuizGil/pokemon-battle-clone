@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Roserade
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.PokemonConfig
   ID: 407
-  name: Roserade
+  pokemonName: Roserade
   level: 100
   baseStats:
     <HP>k__BackingField: 60

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Volcarona
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.PokemonConfig
   ID: 637
-  name: Volcarona
+  pokemonName: Volcarona
   level: 100
   baseStats:
     <HP>k__BackingField: 85

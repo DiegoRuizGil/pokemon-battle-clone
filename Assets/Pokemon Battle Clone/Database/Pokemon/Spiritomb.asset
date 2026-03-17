@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Spiritomb
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.PokemonConfig
   ID: 442
-  name: Spiritomb
+  pokemonName: Spiritomb
   level: 100
   baseStats:
     <HP>k__BackingField: 50

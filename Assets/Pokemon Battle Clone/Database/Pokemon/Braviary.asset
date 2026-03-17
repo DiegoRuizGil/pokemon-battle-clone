@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Braviary
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.PokemonConfig
   ID: 628
-  name: Braviary
+  pokemonName: Braviary
   level: 100
   baseStats:
     <HP>k__BackingField: 100

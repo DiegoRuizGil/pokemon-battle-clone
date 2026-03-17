@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Magnezone
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.TeamBuilder.PokemonConfig
   ID: 462
-  name: Magnezone
+  pokemonName: Magnezone
   level: 100
   baseStats:
     <HP>k__BackingField: 70

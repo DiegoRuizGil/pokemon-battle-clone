@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Chikorita
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.TeamBuilder.PokemonConfig
   ID: 152
-  name: Chikorita
+  pokemonName: Chikorita
   level: 5
   baseStats:
     <HP>k__BackingField: 45

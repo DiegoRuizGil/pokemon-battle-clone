@@ -76,7 +76,7 @@ namespace Pokemon_Battle_Clone.Editor.Database
         {
             try
             {
-                var pokemon = await _pokeClient.GetResourceAsync<PokeApiNet.Pokemon>(_target.name);
+                var pokemon = await _pokeClient.GetResourceAsync<PokeApiNet.Pokemon>(_target.pokemonName);
                 
                 ApplyPokemonData(pokemon);
                 await LoadSprites(pokemon);
@@ -85,7 +85,7 @@ namespace Pokemon_Battle_Clone.Editor.Database
             }
             catch (Exception e)
             {
-                Debug.LogError($"Error loading pokemon \"{_target.name}\": {e.Message}");
+                Debug.LogError($"Error loading pokemon \"{_target.pokemonName}\": {e.Message}");
             }
         }
 

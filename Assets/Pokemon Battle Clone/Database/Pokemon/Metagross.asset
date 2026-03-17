@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Metagross
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.PokemonConfig
   ID: 376
-  name: Metagross
+  pokemonName: Metagross
   level: 100
   baseStats:
     <HP>k__BackingField: 80

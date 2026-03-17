@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Charizard
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.PokemonConfig
   ID: 6
-  name: Charizard
+  pokemonName: Charizard
   level: 100
   baseStats:
     <HP>k__BackingField: 78

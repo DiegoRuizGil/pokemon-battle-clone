@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Accelgor
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.PokemonConfig
   ID: 617
-  name: Accelgor
+  pokemonName: Accelgor
   level: 100
   baseStats:
     <HP>k__BackingField: 80

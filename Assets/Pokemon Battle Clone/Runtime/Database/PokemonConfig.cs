@@ -1,10 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
-using PokeApiNet;
-using Pokemon_Battle_Clone.Runtime.Builders;
+﻿using Pokemon_Battle_Clone.Runtime.Builders;
 using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.Stats.Domain;
-using UnityEditor;
 using UnityEngine;
 using Nature = Pokemon_Battle_Clone.Runtime.Stats.Domain.Nature;
 using Pokemon = Pokemon_Battle_Clone.Runtime.Core.Domain.Pokemon;
@@ -21,7 +17,7 @@ namespace Pokemon_Battle_Clone.Runtime.Database
     public class PokemonConfig : ScriptableObject
     {
         public int ID;
-        public string name;
+        public string pokemonName;
         public int level = 100;
         public StatSet baseStats;
         public ElementalType type1;
@@ -38,7 +34,7 @@ namespace Pokemon_Battle_Clone.Runtime.Database
         public Pokemon Build()
         {
             return A.Pokemon.WithID((uint)ID)
-                .WithName(name)
+                .WithName(pokemonName)
                 .WithLevel(level)
                 .WithBaseStats(baseStats)
                 .WithTypes(type1, type2)

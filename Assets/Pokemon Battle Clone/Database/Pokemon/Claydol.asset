@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Claydol
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.PokemonConfig
   ID: 344
-  name: Claydol
+  pokemonName: Claydol
   level: 100
   baseStats:
     <HP>k__BackingField: 60

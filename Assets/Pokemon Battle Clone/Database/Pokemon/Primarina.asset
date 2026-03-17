@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Primarina
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.TeamBuilder.PokemonConfig
   ID: 730
-  name: Primarina
+  pokemonName: Primarina
   level: 100
   baseStats:
     <HP>k__BackingField: 80

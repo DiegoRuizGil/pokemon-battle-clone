@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Snorlax
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.TeamBuilder.PokemonConfig
   ID: 143
-  name: Snorlax
+  pokemonName: Snorlax
   level: 100
   baseStats:
     <HP>k__BackingField: 160

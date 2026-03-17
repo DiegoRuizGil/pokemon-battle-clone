@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Aggron
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.PokemonConfig
   ID: 306
-  name: Aggron
+  pokemonName: Aggron
   level: 100
   baseStats:
     <HP>k__BackingField: 70

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lucario
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.PokemonConfig
   ID: 448
-  name: Lucario
+  pokemonName: Lucario
   level: 100
   baseStats:
     <HP>k__BackingField: 70

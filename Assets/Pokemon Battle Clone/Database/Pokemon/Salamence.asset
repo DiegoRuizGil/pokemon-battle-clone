@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Salamence
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.PokemonConfig
   ID: 373
-  name: Salamence
+  pokemonName: Salamence
   level: 100
   baseStats:
     <HP>k__BackingField: 95

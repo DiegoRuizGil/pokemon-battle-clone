@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Milotic
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.PokemonConfig
   ID: 350
-  name: Milotic
+  pokemonName: Milotic
   level: 100
   baseStats:
     <HP>k__BackingField: 95

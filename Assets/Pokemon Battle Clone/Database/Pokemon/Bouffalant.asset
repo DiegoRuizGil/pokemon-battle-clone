@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bouffalant
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.PokemonConfig
   ID: 626
-  name: Bouffalant
+  pokemonName: Bouffalant
   level: 100
   baseStats:
     <HP>k__BackingField: 95
