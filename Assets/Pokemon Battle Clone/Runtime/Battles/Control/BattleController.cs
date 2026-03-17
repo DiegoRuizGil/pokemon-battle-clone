@@ -28,6 +28,7 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
         public ActionsHUD actionsHUD;
         public TeamInfoDisplayer teamInfoDisplayer;
         public DialogDisplayer dialogDisplayer;
+        public BattleEndPanel battleEndPanel;
         
         private Battle _battle;
         private Turn _turn;
@@ -66,7 +67,7 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
                 _battleFinished = CheckBattleEnd();
             }
             
-            LogManager.Log("Battle finished!", FeatureType.Battle);
+            EndBattle();
         }
 
         private bool CheckBattleEnd()
@@ -83,6 +84,14 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
             }
 
             return false;
+        }
+
+        private void EndBattle()
+        {
+            LogManager.Log("Battle finished!", FeatureType.Battle);
+            
+            var winner = _playerTrainer.Defeated ? Side.Rival : Side.Player;
+            battleEndPanel.Show(winner);
         }
 
         public ITeamView GetTeamView(Side side)

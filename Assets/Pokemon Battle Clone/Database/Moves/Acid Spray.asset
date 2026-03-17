@@ -34,7 +34,7 @@ MonoBehaviour:
     - rid: 668649613526565007
       type: {class: StatsModifierEffect, ns: Pokemon_Battle_Clone.Runtime.Moves.Domain.Effects, asm: PokemonBattleClone.Runtime}
       data:
-        _applyToTarget: 0
+        _applyToTarget: 1
         _statsModifier:
           <HP>k__BackingField: 0
           <Attack>k__BackingField: 0
