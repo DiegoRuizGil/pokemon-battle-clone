@@ -2699,6 +2699,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2252517077429402147, guid: 8167ba89d9d98164d84c9f15dbf40ec2, type: 3}
+      propertyPath: timeToClear
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7463912562979763172, guid: 8167ba89d9d98164d84c9f15dbf40ec2, type: 3}
       propertyPath: m_Name
       value: Dialog Box
