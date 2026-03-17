@@ -18,7 +18,7 @@ namespace Pokemon_Battle_Clone.Runtime.Moves.Domain.Effects
         public IList<IBattleEvent> Apply(Move move, Battle battle, Side side)
         {
             var user = battle.GetFirstPokemon(side);
-            var regainedHealth = user.Health.Current * _percentage / 100;
+            var regainedHealth = user.Health.Max * _percentage / 100;
             
             user.Health.Recover(regainedHealth);
             
