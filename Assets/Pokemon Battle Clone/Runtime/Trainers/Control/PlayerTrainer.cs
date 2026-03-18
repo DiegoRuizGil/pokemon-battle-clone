@@ -40,20 +40,21 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Control
             _actionsHUD.RegisterDisplayTeamInfoListener(OnDisplayTeamInfo);
         }
 
-        public override Task<TrainerAction> SelectActionTask(Battle battle)
+        public override async Task<TrainerAction> SelectActionTask(Battle battle)
         {
             _actionTcs = new TaskCompletionSource<TrainerAction>();
-            return _actionTcs.Task;
+            return await _actionTcs.Task;
         }
 
-        public override Task<T> SelectActionOfType<T>(bool forceSelection, Battle battle)
+        public override async Task<T> SelectActionOfType<T>(bool forceSelection, Battle battle)
         {
             _actionTcs = new TaskCompletionSource<TrainerAction>();
             
             if (_selectorMap.TryGetValue(typeof(T), out var showSelector))
                 showSelector(forceSelection);
             
-            return _actionTcs.Task.ContinueWith(t => (T)t.Result);
+            var result = await _actionTcs.Task;
+            return (T)result;
         }
         
         protected override TrainerAction SendFirstPokemon()
