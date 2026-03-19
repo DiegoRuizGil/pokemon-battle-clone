@@ -24,6 +24,8 @@ The main goal of this project is not visual fidelity, but to demonstrate a solid
 You can play the game directly in your browser on [`itch.io`](https://diegorg64.itch.io/pokemon-battle-clone)
 
 
+![Battle screenshot](Assets/Docs~/battle_screenshot.png)
+
 ## Table of Contents
 - [Architecture Overview](#architecture-overview)
 - [Domain Design](#domain-design)
