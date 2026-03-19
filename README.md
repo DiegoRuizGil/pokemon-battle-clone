@@ -7,7 +7,7 @@ This project recreates the battle system from the Pokémon games, focusing on co
 - Turn-based flow and battle state management
 - Core actions such as switching Pokémon and executing moves
 - Move effects including stats boosts/reductions, recoil, and healing
-- Moves accuracy and probability-based additional effects
+- - Moves can miss based on accuracy and may apply additional effects with a given probability
 
 ### Not included (yet)
 - Status conditions (burn, paralysis, etc)
@@ -19,7 +19,7 @@ This project recreates the battle system from the Pokémon games, focusing on co
 These features are planned for future updates.
 
 ### Goal
-The mamin goal of this project is not visual fidelity, but to demostrate a solid software architecture and a domain-driven design approach.
+The main goal of this project is not visual fidelity, but to demonstrate a solid software architecture and a domain-driven design approach.
 
 You can play the game directly in your browser on [`itch.io`](https://diegorg64.itch.io/pokemon-battle-clone)
 
@@ -44,9 +44,10 @@ The architecture is divided into several layers:
 
 - **Domain**: contains the core battle logic and rules (Battle, Pokemon, Moves, Effects)
 - **Application**: orchestrates the battle flow and coordinates actions.
-- **Infrastructure**: handles external systems such as UI, data loading, and integrations.
+- **Infrastructure**: handles external systems such as data loading and integrations.
+- **Presentation**: manages UI and user interaction (Unity-specific code).
 
-The system is designed to be modular, testeable and easily extensible.
+The system is designed to be modular, testable and easily extensible.
 
 ![Architecture Diagram](Assets/Docs~/Diagrams/architecture_diagram.png)
 
@@ -61,7 +62,7 @@ The domain layer models the key concepts of a Pokémon battle, such as:
 - Pokemon
 - Moves and Effects
 
-These elements encapsulate the game rules and behaviour, and are completely independent from Unity-specific code.
+These elements encapsulate the game rules and behavior, and are completely independent from Unity-specific code.
 
 Below is a high-level representation of the domain model:
 
@@ -116,7 +117,7 @@ Trainers are responsible for selecting actions during each turn.
 - `PlayerTrainer` represents the human player and interacts with the UI to select actions.
 - `RivalTrainer` uses a strategy-based system to determine which action to perform.
 
-The AI behaviour is defined through the `ITrainerStrategy` interface, allowing different decision-making strategies to be implemented and swapped easily.
+The AI behavior is defined through the `ITrainerStrategy` interface, allowing different decision-making strategies to be implemented and swapped easily.
 
 ![Trainer Diagram](Assets/Docs~/Diagrams/trainer_diagram.png)
 
@@ -129,9 +130,9 @@ This design also makes it easy to extend the system with new types of trainers, 
 
 ### Modular Effects
 
-Moves are composed of reusable effects (damage, stats changes, healing, etc). This allows creating new moves without modifying code, simply by configuring their effects.
+Moves are composed of reusable effects (damage, stat changes, healing, etc). This allows creating new moves without modifying code, simply by configuring their effects.
 
-Each moves defines:
+Each move defines:
 - A main effect (e.g. damage)
 - Optional additional effects with an associated probability
 
@@ -151,10 +152,10 @@ The execution of a move is handled through a structured pipeline:
 
 ## Deterministic Battles (RNG)
 
-Each battle uses its own RNG instance through the `IRandom` interface. By injecting the RNG into the `Battle` class, all random behaviour (e.g. accuracy checks, secondary effects, etc) is fully controlled by this dependency.
+Each battle uses its own RNG instance through the `IRandom` interface. By injecting the RNG into the `Battle` class, all random behavior (e.g. accuracy checks, secondary effects, etc) is fully controlled by this dependency.
 
-By providing a fixed seed, battles can be reproduced deterministically, which is especially useful for debugging and testing (e.g. predictable or mocked random generators).
-This ensure that the core battle logic remains deterministic and independent from the underlying random implementation.
+By providing a fixed seed, battles can be reproduced deterministically, which is especially useful for debugging and testing (e.g. deterministic or mocked random generators).
+This ensures that the core battle logic remains deterministic and independent from the underlying random implementation.
 
 
 ## Data Integration (PokeAPI)
@@ -164,9 +165,9 @@ Pokemon and move data are loaded using PokeAPI through a .NET integration. This 
 A custom Unity editor tool is used to fetch and populate pokemon data directly into ScriptableObjects, including:
 - Base stats
 - Types
-- Sprites (automatically downloaded and added to the project)
+- Sprites (automatically downloaded and imported into the project)
 
-This approach turns external data into in-engine assets, bridging the gap between online resources and the game's data model. It also streamlines the workflow when adding new Pokémon, as most of the data can be generated automatically from a single source.
+This approach turns external data into in-engine assets, bridging the gap between online resources and the game's data model. It also streamlines the workflow when adding new pokemon, as most of the data can be generated automatically from a single source.
 
 ![Pokemon Load Data](Assets/Docs~/pokemon_load_data.gif)
 
