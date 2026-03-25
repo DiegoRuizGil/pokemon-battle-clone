@@ -29,8 +29,7 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Control
         
         private int _turnCount;
         private bool _battleFinished;
-
-        // En este método estamos creando las clases colaboradoras, lo que podría ser extraído a una clase "Instaladora" para mejor separación de responsabilidades.
+        
         private void Start()
         {
             var spriteLoader = new SpritesLoader("Assets/Pokemon Battle Clone/Sprites/Pokemon");
