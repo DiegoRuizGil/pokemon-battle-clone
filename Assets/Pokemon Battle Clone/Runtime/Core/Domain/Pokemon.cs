@@ -3,8 +3,6 @@ using Pokemon_Battle_Clone.Runtime.Stats.Domain;
 
 namespace Pokemon_Battle_Clone.Runtime.Core.Domain
 {
-    // ¿Representa esta clase sólo al Pokémon "durante" el combate?
-    // Si es así, esta clase es bastante cohesiva junto a la de "Battle" o "Team" en el paquete Core, aunque tendría que mapear al Pokémon de fuera del combate más adelante. 
     public class Pokemon
     {
         public uint ID { get; }
