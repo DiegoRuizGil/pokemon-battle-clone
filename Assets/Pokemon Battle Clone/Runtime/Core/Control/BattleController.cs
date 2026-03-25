@@ -65,7 +65,6 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Control
                 LogManager.Log($"--- TURN {_turnCount} ---", FeatureType.Battle);
 
                 await StartTurnAsync();
-                // ¿Podríamos mover la obtención de actions a dentro del ExecuteActionsAsync? Así este método opera en un nivel un pelín más alto de abstracción.
                 var actions = await SelectActionsAsync();
                 await ExecuteActionsAsync(actions);
                 await EndTurnAsync();
