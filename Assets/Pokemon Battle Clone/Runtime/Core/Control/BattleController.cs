@@ -79,8 +79,6 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Control
         private async Task StartTurnAsync()
         {
             LogManager.Log("Start turn...", FeatureType.Battle);
-            // Hablar de Connascense: Tener acoplamiento temporal en el controlador con una animación o feeling que queremos dar en la vista.
-            // Para futura sesión, hablar de inversión de control, y delegar esto en la vista.
             await Task.Delay(500);
             
             var tasks = new List<Task<SwapPokemonAction>>();
