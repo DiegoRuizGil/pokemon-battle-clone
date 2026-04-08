@@ -42,18 +42,23 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Control
 
         public override async Task<TrainerAction> SelectAction(Battle battle)
         {
+            _actionsHUD.Show();
             _actionTcs = new TaskCompletionSource<TrainerAction>();
-            return await _actionTcs.Task;
+            var result = await _actionTcs.Task;
+            _actionsHUD.Hide();
+            return result;
         }
 
         public override async Task<T> SelectActionOfType<T>(bool forceSelection, Battle battle)
         {
+            _actionsHUD.Show();
             _actionTcs = new TaskCompletionSource<TrainerAction>();
             
             if (_selectorMap.TryGetValue(typeof(T), out var showSelector))
                 showSelector(forceSelection);
             
             var result = await _actionTcs.Task;
+            _actionsHUD.Hide();
             return (T)result;
         }
         
