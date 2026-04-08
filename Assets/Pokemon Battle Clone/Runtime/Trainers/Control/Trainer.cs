@@ -12,7 +12,8 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Control
         protected readonly Team Team;
 
         public bool Defeated => Team.Defeated;
-        public bool IsFirstPokemonDefeated => Team.FirstPokemon.Defeated;
+        public Pokemon FirstPokemon => Team.FirstPokemon;
+        public bool IsFirstPokemonDefeated => FirstPokemon.Defeated;
         public abstract Side Side { get; }
 
         protected Trainer(Team team)

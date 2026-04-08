@@ -88,17 +88,18 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
                 await _actionsResolver.Resolve(_battle, action);
 
                 // I need to think of another approach 
-                await CheckForFaintedPokemon(Side.Player);
-                await CheckForFaintedPokemon(Side.Rival);
+                await CheckPokemonFainted(_playerTrainer);
+                await CheckPokemonFainted(_rivalTrainer);
             }
         }
 
-        private async Task CheckForFaintedPokemon(Side side)
+        private async Task CheckPokemonFainted(Trainer trainer)
         {
-            if (_battle.PokemonFainted(side))
+            if (trainer.IsFirstPokemonDefeated)
             {
-                var faintedPokemon = _battle.GetFirstPokemon(side);
-                await _actionsResolver.HandleEvent(new FaintedEvent(side, faintedPokemon.Name, faintedPokemon.ID));
+                var faintedPokemon = trainer.FirstPokemon;
+                var faintedEvent = new FaintedEvent(trainer.Side, faintedPokemon.Name, faintedPokemon.ID);
+                await _actionsResolver.HandleEvent(faintedEvent);
             }
         }
     }
