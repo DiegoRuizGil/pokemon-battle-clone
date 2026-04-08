@@ -40,7 +40,7 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Control
             _actionsHUD.RegisterDisplayTeamInfoListener(OnDisplayTeamInfo);
         }
 
-        public override async Task<TrainerAction> SelectAction(Battle battle)
+        public override async Task<TrainerAction> SelectAction()
         {
             _actionsHUD.Show();
             _actionTcs = new TaskCompletionSource<TrainerAction>();
@@ -49,7 +49,7 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Control
             return result;
         }
 
-        public override async Task<TrainerAction> SelectSwapPokemon(Battle battle)
+        public override async Task<TrainerAction> SelectSwapPokemon()
         {
             return await SelectActionOfType<SwapPokemonAction>(forceSelection: true);
         }

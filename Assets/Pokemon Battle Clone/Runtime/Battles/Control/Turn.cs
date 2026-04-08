@@ -39,33 +39,33 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
 
         private async Task StartTurnAsync(Battle battle, Trainer player, Trainer rival)
         {
-            var actions = await SelectPreTurnActions(battle, player, rival);
+            var actions = await SelectPreTurnActions(player, rival);
             await ExecuteActionsAsync(battle, actions);
         }
 
         private async Task FinishTurnAsync(Battle battle, Trainer player, Trainer rival)
         {
-            var actions = await SelectActionsAsync(battle, player, rival);
+            var actions = await SelectActionsAsync(player, rival);
             await ExecuteActionsAsync(battle, actions);
         }
 
-        private async Task<List<TrainerAction>> SelectPreTurnActions(Battle battle, Trainer player, Trainer rival)
+        private async Task<List<TrainerAction>> SelectPreTurnActions(Trainer player, Trainer rival)
         {
             var tasks = new List<Task<TrainerAction>>();
             
             if (player.IsFirstPokemonDefeated)
-                tasks.Add(player.SelectSwapPokemon(battle));
+                tasks.Add(player.SelectSwapPokemon());
             if (rival.IsFirstPokemonDefeated)
-                tasks.Add(rival.SelectSwapPokemon(battle));
+                tasks.Add(rival.SelectSwapPokemon());
 
             await Task.WhenAll(tasks);
             return tasks.Select(x => x.Result).ToList();
         }
 
-        private async Task<List<TrainerAction>> SelectActionsAsync(Battle battle, Trainer player, Trainer rival)
+        private async Task<List<TrainerAction>> SelectActionsAsync(Trainer player, Trainer rival)
         {
-            var playerActionTask = player.SelectAction(battle);
-            var rivalActionTask = rival.SelectAction(battle);
+            var playerActionTask = player.SelectAction();
+            var rivalActionTask = rival.SelectAction();
             await Task.WhenAll(playerActionTask, rivalActionTask);
             
             return new List<TrainerAction> { playerActionTask.Result, rivalActionTask.Result };
