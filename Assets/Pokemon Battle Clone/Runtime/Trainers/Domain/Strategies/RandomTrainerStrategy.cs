@@ -21,7 +21,7 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Domain.Strategies
             return new MoveAction(Side.Rival, pokemon.Stats.Speed, move);
         }
         
-        public SwapPokemonAction SelectPokemon(Battle battle, Side side)
+        public TrainerAction SelectPokemon(Battle battle, Side side)
         {
             var team = battle.GetTeam(side);
             var alivePokemon = team.Bench.Where(pokemon => !pokemon.Defeated).ToList();

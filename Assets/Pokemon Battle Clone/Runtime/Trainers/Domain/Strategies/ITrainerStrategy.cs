@@ -8,6 +8,6 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Domain.Strategies
     {
         TrainerAction Evaluate(Battle battle, Side side);
         MoveAction SelectMove(Battle battle, Side side);
-        SwapPokemonAction SelectPokemon(Battle battle, Side side);
+        TrainerAction SelectPokemon(Battle battle, Side side);
     }
 }

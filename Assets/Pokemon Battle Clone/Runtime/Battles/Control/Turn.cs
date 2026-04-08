@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Pokemon_Battle_Clone.Runtime.Battles.Domain;
 using Pokemon_Battle_Clone.Runtime.Battles.Domain.Events;
@@ -39,7 +40,7 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
         
         private async Task StartTurnAsync(Battle battle, Trainer player, Trainer rival)
         {
-            var tasks = new List<Task<SwapPokemonAction>>();
+            var tasks = new List<Task<TrainerAction>>();
             if (player.IsFirstPokemonDefeated)
                 tasks.Add(player.SelectSwapPokemon(battle));
             if (rival.IsFirstPokemonDefeated)
@@ -48,8 +49,7 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
             if (tasks.Count > 0)
             {
                 await Task.WhenAll(tasks);
-                foreach (var task in tasks)
-                    await _actionsResolver.Resolve(battle, task.Result);
+                await ExecuteActionsAsync(battle, tasks.Select(x => x.Result).ToList());
             }
         }
         
