@@ -7,17 +7,17 @@ using Pokemon_Battle_Clone.Runtime.Trainers.Domain.Strategies;
 
 namespace Pokemon_Battle_Clone.Runtime.Trainers.Control
 {
-    public class RivalTrainer : Trainer
+    public class AITrainer : Trainer
     {
         private readonly ITrainerStrategy _trainerStrategy;
         
         public override Side Side => Side.Rival;
 
-        public RivalTrainer(Team team, ITrainerStrategy strategy) : base(team)
+        public AITrainer(Team team, ITrainerStrategy strategy) : base(team)
         {
             _trainerStrategy = strategy;
         }
-
+        
         public override Task<TrainerAction> SelectAction(Battle battle)
         {
             var action = _trainerStrategy.Evaluate(battle, Side);
