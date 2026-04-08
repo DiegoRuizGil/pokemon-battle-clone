@@ -1979,6 +1979,57 @@ MonoBehaviour:
   assetDatabase: {fileID: 11400000, guid: 4b6d36130e7347441aa6f68599d6c291, type: 2}
   statusView: {fileID: 537067178}
   pokemonView: {fileID: 1657632908}
+--- !u!1 &1622265626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1622265628}
+  - component: {fileID: 1622265627}
+  m_Layer: 0
+  m_Name: Battle Bootstrapper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1622265627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622265626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730dee1e1fdd4c02b317e84f787732c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Battles.Control.BattleBootstrapper
+  battleController: {fileID: 913603188}
+  battleSettings: {fileID: 11400000, guid: f0d9cbbf571a04546b60d80a545412fc, type: 2}
+  playerTeamView: {fileID: 101632632}
+  rivalTeamView: {fileID: 1487896682}
+  actionsHUD: {fileID: 1204642374}
+  teamInfoDisplayer: {fileID: 636579157}
+  dialogDisplayer: {fileID: 398039012}
+--- !u!4 &1622265628
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622265626}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1657632906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3651,6 +3702,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
+  - {fileID: 1622265628}
   - {fileID: 913603189}
   - {fileID: 436995802}
   - {fileID: 1721612193}
