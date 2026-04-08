@@ -9,11 +9,13 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Control
     public class AITrainer : Trainer
     {
         private readonly ITrainerStrategy _trainerStrategy;
+        private readonly Battle _battle;
         
         public override Side Side => Side.Rival;
 
-        public AITrainer(Team team, ITrainerStrategy strategy) : base(team)
+        public AITrainer(Battle battle, Team team, ITrainerStrategy strategy) : base(team)
         {
+            _battle = battle;
             _trainerStrategy = strategy;
         }
         

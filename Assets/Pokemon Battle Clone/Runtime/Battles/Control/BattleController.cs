@@ -46,7 +46,7 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
             _playerTrainer = new PlayerTrainer(playerTeam, actionsHUD, teamInfoDisplayer);
             playerTeamView.Init(playerTeam.PokemonList.Select(p => p.ID).ToList());
             
-            _rivalTrainer = new AITrainer(rivalTeam, new RandomTrainerStrategy());
+            _rivalTrainer = new AITrainer(_battle, rivalTeam, new RandomTrainerStrategy());
             rivalTeamView.Init(rivalTeam.PokemonList.Select(p => p.ID).ToList());
             
             _ = RunBattleAsync();
