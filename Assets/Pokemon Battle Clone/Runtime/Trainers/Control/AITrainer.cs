@@ -25,6 +25,11 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Control
             return Task.FromResult(action);
         }
 
+        public override Task<SwapPokemonAction> SelectSwapPokemon(Battle battle)
+        {
+            return Task.FromResult(_trainerStrategy.SelectPokemon(battle, Side));
+        }
+
         public override Task<T> SelectActionOfType<T>(bool forceSelection, Battle battle)
         {
             TrainerAction action = typeof(T) switch

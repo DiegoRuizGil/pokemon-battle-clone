@@ -49,6 +49,11 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Control
             return result;
         }
 
+        public override Task<SwapPokemonAction> SelectSwapPokemon(Battle battle)
+        {
+            return SelectActionOfType<SwapPokemonAction>(forceSelection: true, battle);
+        }
+
         public override async Task<T> SelectActionOfType<T>(bool forceSelection, Battle battle)
         {
             _actionsHUD.Show();
