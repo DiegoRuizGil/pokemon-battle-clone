@@ -49,13 +49,14 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
             rivalTeamView.Init(rivalTeam.PokemonList.Select(p => p.ID).ToList());
             
             var actionsResolver = new ActionsResolver(this, dialogDisplayer);
-            _turn = new Turn(actionsResolver, actionsHUD, _battle, _playerTrainer, _rivalTrainer);
+            _turn = new Turn(actionsResolver, _battle, _playerTrainer, _rivalTrainer);
             
             _ = RunBattleAsync();
         }
 
         private async Task RunBattleAsync()
         {
+            actionsHUD.Hide();
             await _turn.Init();
             
             while (!_battleFinished)

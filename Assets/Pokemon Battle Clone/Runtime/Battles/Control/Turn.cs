@@ -4,23 +4,20 @@ using System.Threading.Tasks;
 using Pokemon_Battle_Clone.Runtime.Battles.Domain;
 using Pokemon_Battle_Clone.Runtime.Trainers.Control;
 using Pokemon_Battle_Clone.Runtime.Trainers.Domain.Actions;
-using Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions;
 
 namespace Pokemon_Battle_Clone.Runtime.Battles.Control
 {
     public class Turn
     {
         private readonly ActionsResolver _actionsResolver;
-        private readonly IActionHUD _actionsHUD;
         private readonly Battle _battle;
         private readonly Trainer _playerTrainer;
         private readonly Trainer _rivalTrainer;
         private int _count;
 
-        public Turn(ActionsResolver actionsResolver, IActionHUD actionsHUD, Battle battle, Trainer playerTrainer, Trainer rivalTrainer)
+        public Turn(ActionsResolver actionsResolver, Battle battle, Trainer playerTrainer, Trainer rivalTrainer)
         {
             _actionsResolver = actionsResolver;
-            _actionsHUD = actionsHUD;
             _battle = battle;
             _playerTrainer = playerTrainer;
             _rivalTrainer = rivalTrainer;
@@ -28,8 +25,6 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
 
         public async Task Init() // not entirely convinced by this approach
         {
-            _actionsHUD.Hide();
-            
             await _actionsResolver.Resolve(_battle, _rivalTrainer.Init());
             await _actionsResolver.Resolve(_battle, _playerTrainer.Init());
         }
