@@ -34,13 +34,18 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
             _count++;
 
             await StartTurnAsync(battle, player, rival);
-            var actions = await SelectActionsAsync(battle, player, rival);
-            await ExecuteActionsAsync(battle, actions);
+            await FinishTurnAsync(battle, player, rival);
         }
-        
+
         private async Task StartTurnAsync(Battle battle, Trainer player, Trainer rival)
         {
             var actions = await SelectPreTurnActions(battle, player, rival);
+            await ExecuteActionsAsync(battle, actions);
+        }
+
+        private async Task FinishTurnAsync(Battle battle, Trainer player, Trainer rival)
+        {
+            var actions = await SelectActionsAsync(battle, player, rival);
             await ExecuteActionsAsync(battle, actions);
         }
 
