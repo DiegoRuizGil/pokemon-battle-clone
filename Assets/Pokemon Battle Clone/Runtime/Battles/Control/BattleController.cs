@@ -41,7 +41,6 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
             var rivalTeam = battleSettings.RivalTeamConfig.Build();
             
             _battle = new Battle(playerTeam, rivalTeam, new DefaultRandom(seed: DateTime.Now.GetHashCode()));
-            _turn = new Turn(new ActionsResolver(this, dialogDisplayer), actionsHUD);
             
             _playerTrainer = new PlayerTrainer(playerTeam, actionsHUD, teamInfoDisplayer);
             playerTeamView.Init(playerTeam.PokemonList.Select(p => p.ID).ToList());
@@ -49,16 +48,19 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
             _rivalTrainer = new AITrainer(_battle, rivalTeam, new RandomTrainerStrategy());
             rivalTeamView.Init(rivalTeam.PokemonList.Select(p => p.ID).ToList());
             
+            var actionsResolver = new ActionsResolver(this, dialogDisplayer);
+            _turn = new Turn(actionsResolver, actionsHUD, _battle, _playerTrainer, _rivalTrainer);
+            
             _ = RunBattleAsync();
         }
 
         private async Task RunBattleAsync()
         {
-            await _turn.Init(_battle, _playerTrainer, _rivalTrainer);
+            await _turn.Init();
             
             while (!_battleFinished)
             {
-                await _turn.Next(_battle, _playerTrainer, _rivalTrainer);
+                await _turn.Next();
                 _battleFinished = CheckBattleEnd();
             }
             
