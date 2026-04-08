@@ -41,9 +41,9 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
         {
             var tasks = new List<Task<SwapPokemonAction>>();
             if (player.IsFirstPokemonDefeated)
-                tasks.Add(player.SelectActionOfType<SwapPokemonAction>(forceSelection: true, battle));
+                tasks.Add(player.SelectSwapPokemon(battle));
             if (rival.IsFirstPokemonDefeated)
-                tasks.Add(rival.SelectActionOfType<SwapPokemonAction>(forceSelection: true, battle));
+                tasks.Add(rival.SelectSwapPokemon(battle));
             
             if (tasks.Count > 0)
             {
