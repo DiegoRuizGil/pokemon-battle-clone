@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Pokemon_Battle_Clone.Runtime.Battles.Domain;
 using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.Trainers.Domain.Actions;
@@ -28,18 +27,6 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Control
         public override Task<SwapPokemonAction> SelectSwapPokemon(Battle battle)
         {
             return Task.FromResult(_trainerStrategy.SelectPokemon(battle, Side));
-        }
-
-        public override Task<T> SelectActionOfType<T>(bool forceSelection, Battle battle)
-        {
-            TrainerAction action = typeof(T) switch
-            {
-                var t when t == typeof(MoveAction) => _trainerStrategy.SelectMove(battle, Side),
-                var t when t == typeof(SwapPokemonAction) => _trainerStrategy.SelectPokemon(battle, Side),
-                _ => throw new InvalidOperationException($"Unsupported action type {typeof(T)}")
-            };
-
-            return Task.FromResult((T)action);
         }
     }
 }
