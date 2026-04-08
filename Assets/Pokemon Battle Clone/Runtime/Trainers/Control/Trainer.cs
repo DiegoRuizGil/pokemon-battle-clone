@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Pokemon_Battle_Clone.Runtime.Battles.Domain;
 using Pokemon_Battle_Clone.Runtime.Battles.Domain.Events;
 using Pokemon_Battle_Clone.Runtime.Core.Domain;
@@ -28,5 +27,7 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Control
         public abstract Task<TrainerAction> SelectSwapPokemon();
 
         protected virtual TrainerAction SendFirstPokemon() => new SendPokemonAction(Side);
+
+        public FaintedEvent FaintedEvent() => new(Side, Team.FirstPokemon.Name, Team.FirstPokemon.ID);
     }
 }
