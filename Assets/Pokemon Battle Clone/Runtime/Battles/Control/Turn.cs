@@ -40,7 +40,8 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
         private async Task StartTurnAsync()
         {
             var actions = await SelectPreTurnActions();
-            await ExecuteActionsAsync(actions);
+            foreach (var action in actions)
+                await _actionsResolver.Resolve(_battle, action);
         }
 
         private async Task FinishTurnAsync()
