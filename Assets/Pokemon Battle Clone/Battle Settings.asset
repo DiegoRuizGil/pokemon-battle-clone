@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b65caa7dcc5e48929e71c528435a0abf, type: 3}
   m_Name: Battle Settings
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Battles.Infrastructure.BattleSettings
-  PlayerTeamConfig: {fileID: 0}
-  RivalTeamConfig: {fileID: 0}
+  PlayerTeamConfig: {fileID: 11400000, guid: 6c6eda3e9f4df6c4da79ea8653ba8f79, type: 2}
+  RivalTeamConfig: {fileID: 11400000, guid: 78d44b6d8e9f45944a6de9e4da0a2159, type: 2}
