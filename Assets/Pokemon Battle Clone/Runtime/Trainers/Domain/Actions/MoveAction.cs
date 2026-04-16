@@ -10,13 +10,12 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Domain.Actions
     public class MoveAction : TrainerAction
     {
         public override int Priority { get; }
-
-        private readonly Move _move;
+        public Move Move { get; }
 
         public MoveAction(Side side, int pokemonInFieldSpeed, Move move)
             : base(side, pokemonInFieldSpeed)
         {
-            _move = move;
+            Move = move;
             Priority = move.Priority;
         }
         
@@ -24,15 +23,15 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Domain.Actions
         {
             var events = new List<IBattleEvent>();
 
-            var hit = battle.Random.Roll(_move.Accuracy);
+            var hit = battle.Random.Roll(Move.Accuracy);
             if (!hit)
             {
                 var pokemon = battle.GetFirstPokemon(Side);
-                events.Add(new FailedMoveEvent(pokemon.Name, _move.Name));
+                events.Add(new FailedMoveEvent(pokemon.Name, Move.Name));
                 return events;
             }
             
-            var moveEvents =  _move.Execute(battle, Side);
+            var moveEvents =  Move.Execute(battle, Side);
             events.AddRange(moveEvents);
             return events;
         }

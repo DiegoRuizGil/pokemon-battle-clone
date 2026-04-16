@@ -9,14 +9,14 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Domain.Actions
     {
         public override int Priority => int.MaxValue;
 
-        private readonly int _pokemonIndex;
-        private readonly bool _withdrawFirstPokemon;
+        public int PokemonIndex { get; }
+        public bool WithdrawFirstPokemon { get; }
         
         public SwapPokemonAction(Side side, int pokemonIndex, bool withdrawFirstPokemon)
             : base(side, pokemonInFieldSpeed: int.MaxValue)
         {
-            _pokemonIndex = pokemonIndex;
-            _withdrawFirstPokemon = withdrawFirstPokemon;
+            PokemonIndex = pokemonIndex;
+            WithdrawFirstPokemon = withdrawFirstPokemon;
         }
 
         public override IEnumerable<IBattleEvent> Execute(Battle battle)
@@ -24,9 +24,9 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Domain.Actions
             var team = battle.GetTeam(Side);
             var events = new List<IBattleEvent>();
             
-            if (_withdrawFirstPokemon)
+            if (WithdrawFirstPokemon)
                 events.Add(new WithdrawPokemonEvent(Side, team.FirstPokemon.Name));
-            team.SwapActivePokemon(_pokemonIndex);
+            team.SwapActivePokemon(PokemonIndex);
             events.Add(new SendPokemonEvent(Side, team.FirstPokemon));
 
             return events;

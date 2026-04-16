@@ -43,12 +43,13 @@ namespace Pokemon_Battle_Clone.Runtime.Online
                 MoveAction move => new ActionDTO
                 {
                     Type = ActionType.Move,
-                    // Index = team.FirstPokemon.MoveSet.Moves.IndexOf(move.)
+                    Index = team.FirstPokemon.MoveSet.Moves.IndexOf(move.Move)
                 },
                 SwapPokemonAction swap => new ActionDTO
                 {
                     Type = ActionType.Swap,
-                    // Index = 
+                    Index = swap.PokemonIndex,
+                    WithdrawFirst = swap.WithdrawFirstPokemon
                 },
                 _ => default
             };
