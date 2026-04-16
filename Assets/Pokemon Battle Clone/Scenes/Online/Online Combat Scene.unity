@@ -1982,7 +1982,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1622265628}
-  - component: {fileID: 1622265627}
   - component: {fileID: 1622265629}
   m_Layer: 0
   m_Name: Online Battle Bootstrapper
@@ -1991,25 +1990,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1622265627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1622265626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 730dee1e1fdd4c02b317e84f787732c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Battles.Control.BattleBootstrapper
-  battleController: {fileID: 913603188}
-  battleSettings: {fileID: 11400000, guid: f0d9cbbf571a04546b60d80a545412fc, type: 2}
-  playerTeamView: {fileID: 101632632}
-  rivalTeamView: {fileID: 1487896682}
-  actionsHUD: {fileID: 1204642374}
-  teamInfoDisplayer: {fileID: 636579157}
-  dialogDisplayer: {fileID: 398039012}
 --- !u!4 &1622265628
 Transform:
   m_ObjectHideFlags: 0
@@ -2040,6 +2020,7 @@ MonoBehaviour:
   battleController: {fileID: 913603188}
   battleNetworkBridgePrefab: {fileID: 2745475273846502092, guid: 9d91c845e396aef438047f754c896388, type: 3}
   battleSettings: {fileID: 11400000, guid: f0d9cbbf571a04546b60d80a545412fc, type: 2}
+  lobbySettings: {fileID: 11400000, guid: adfd31b3b6a85924e8fa56c87dbfc7e2, type: 2}
   playerTeamView: {fileID: 101632632}
   rivalTeamView: {fileID: 1487896682}
   actionsHUD: {fileID: 1204642374}
