@@ -14,11 +14,10 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         {
             _battle = battle;
             _remotePlayer = remotePlayer;
-            
-            // TODO - player trainer OnActionSelected event
+            localPlayer.OnActionSelected += SendLocalAction;
         }
 
-        public void SendLocalAction(TrainerAction action)
+        private void SendLocalAction(TrainerAction action)
         {
             var dto = Serialize(action);
             RPC_ReceiveAction(dto);

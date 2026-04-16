@@ -21,6 +21,8 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Control
 
         public override Side Side => Side.Player;
 
+        public event Action<TrainerAction> OnActionSelected;
+
         public PlayerTrainer(Team team, IActionHUD actionsHUD, ITeamInfoDisplayer teamInfoDisplayer) : base(team)
         {
             _actionsHUD = actionsHUD;
@@ -83,6 +85,8 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Control
             
             var move = Team.FirstPokemon.MoveSet.Moves[index];
             var action = new MoveAction(Side, Team.FirstPokemon.Stats.Speed, move);
+            
+            OnActionSelected?.Invoke(action);
             _actionTcs.SetResult(action);
         }
 
@@ -100,6 +104,8 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Control
             _actionsHUD.HideSelectors();
             
             var action = new SwapPokemonAction(Side, index, withdrawFirstPokemon: !Team.FirstPokemon.Defeated);
+            
+            OnActionSelected?.Invoke(action);
             _actionTcs.SetResult(action);
         }
 
