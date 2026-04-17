@@ -2,19 +2,22 @@
 using Pokemon_Battle_Clone.Runtime.Battles.Domain;
 using Pokemon_Battle_Clone.Runtime.Trainers.Control;
 using Pokemon_Battle_Clone.Runtime.Trainers.Domain.Actions;
+using UnityEngine;
 
 namespace Pokemon_Battle_Clone.Runtime.Online
 {
     public class BattleNetworkBridge : NetworkBehaviour
     {
+        public BattleSession battleSession;
+        
         private Battle _battle;
         private NetworkTrainer _remotePlayer;
-        
-        public void Init(Battle battle, PlayerTrainer localPlayer, NetworkTrainer remotePlayer)
+
+        public override void Spawned()
         {
-            _battle = battle;
-            _remotePlayer = remotePlayer;
-            localPlayer.OnActionSelected += SendLocalAction;
+            _battle = battleSession.Battle;
+            _remotePlayer = battleSession.RemoteTrainer;
+            battleSession.LocalTrainer.OnActionSelected += SendLocalAction;
         }
 
         private void SendLocalAction(TrainerAction action)

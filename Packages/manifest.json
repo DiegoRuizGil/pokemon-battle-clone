@@ -12,6 +12,7 @@
     "com.unity.timeline": "1.8.10",
     "com.unity.ugui": "2.0.0",
     "com.unity.visualscripting": "1.9.9",
+    "com.veriorpies.parrelsync": "https://github.com/VeriorPies/ParrelSync.git?path=/ParrelSync",
     "org.nuget.microsoft.extensions.caching.memory": "10.0.1",
     "org.nuget.scriban": "2.1.0",
     "org.nuget.system.collections.immutable": "10.0.1",

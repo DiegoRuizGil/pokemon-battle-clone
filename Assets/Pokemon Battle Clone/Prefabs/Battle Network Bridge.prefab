@@ -64,3 +64,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45df751a49134d61b99fc8eaece5cd82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Online.BattleNetworkBridge
+  battleSession: {fileID: 11400000, guid: ce31562968543f7419838f60da8decc4, type: 2}

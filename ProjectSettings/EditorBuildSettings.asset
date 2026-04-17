@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Pokemon Battle Clone/Scenes/Online/Online Team Builder Scene.unity
+    guid: 1445aaf288c1c1546bbb0e25a3f83e32
+  - enabled: 1
+    path: Assets/Pokemon Battle Clone/Scenes/Online/Online Combat Scene.unity
+    guid: 490cbd8abdad02b44b9e6ee9816685e6
+  - enabled: 1
     path: Assets/Pokemon Battle Clone/Scenes/TeamBuilderScene.unity
     guid: 800b5733dc8c98e4ab3bbad0ae130635
   - enabled: 1

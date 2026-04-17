@@ -2021,6 +2021,7 @@ MonoBehaviour:
   battleNetworkBridgePrefab: {fileID: 2745475273846502092, guid: 9d91c845e396aef438047f754c896388, type: 3}
   battleSettings: {fileID: 11400000, guid: f0d9cbbf571a04546b60d80a545412fc, type: 2}
   lobbySettings: {fileID: 11400000, guid: adfd31b3b6a85924e8fa56c87dbfc7e2, type: 2}
+  battleSession: {fileID: 11400000, guid: ce31562968543f7419838f60da8decc4, type: 2}
   playerTeamView: {fileID: 101632632}
   rivalTeamView: {fileID: 1487896682}
   actionsHUD: {fileID: 1204642374}

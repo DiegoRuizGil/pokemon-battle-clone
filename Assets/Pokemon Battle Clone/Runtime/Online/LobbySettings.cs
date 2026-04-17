@@ -7,6 +7,6 @@ namespace Pokemon_Battle_Clone.Runtime.Online
     public class LobbySettings : ScriptableObject
     {
         public NetworkRunner runner;
-        public PlayerRef player;
+        public PlayerRef LocalPlayer => runner.LocalPlayer;
     }
 }

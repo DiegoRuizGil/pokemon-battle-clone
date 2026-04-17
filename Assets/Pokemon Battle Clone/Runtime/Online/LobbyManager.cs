@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Fusion;
 using Fusion.Sockets;
 using UnityEngine;
@@ -12,15 +13,17 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         
         private NetworkRunner _runner;
         
-        private void Start()
+        private async void Start()
         {
             _runner = GetComponent<NetworkRunner>();
             _runner.AddCallbacks(this);
 
             lobbySettings.runner = _runner;
+            
+            await ConnectToGame();
         }
         
-        public async void ConnectToGame()
+        private async Task ConnectToGame()
         {
             var result = await _runner.StartGame(new StartGameArgs
             {
@@ -38,13 +41,11 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
         {
             Debug.Log($"Jugador entró: {player}");
-            lobbySettings.player = player;
         }
 
         public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
         {
             Debug.Log($"Jugador salió: {player}");
-            lobbySettings.player = default;
         }
 
         // El resto de callbacks obligatorios — vacíos por ahora
