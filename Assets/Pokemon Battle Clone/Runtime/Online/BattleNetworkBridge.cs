@@ -2,7 +2,6 @@
 using Pokemon_Battle_Clone.Runtime.Battles.Domain;
 using Pokemon_Battle_Clone.Runtime.Trainers.Control;
 using Pokemon_Battle_Clone.Runtime.Trainers.Domain.Actions;
-using UnityEngine;
 
 namespace Pokemon_Battle_Clone.Runtime.Online
 {
@@ -17,7 +16,9 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         {
             _battle = battleSession.Battle;
             _remotePlayer = battleSession.RemoteTrainer;
-            battleSession.LocalTrainer.OnActionSelected += SendLocalAction;
+            
+            if (HasInputAuthority)
+                battleSession.LocalTrainer.OnActionSelected += SendLocalAction;
         }
 
         private void SendLocalAction(TrainerAction action)
@@ -26,11 +27,9 @@ namespace Pokemon_Battle_Clone.Runtime.Online
             RPC_ReceiveAction(dto);
         }
 
-        [Rpc(RpcSources.InputAuthority, RpcTargets.All)]
+        [Rpc(RpcSources.InputAuthority, RpcTargets.Proxies)]
         private void RPC_ReceiveAction(ActionDTO dto)
         {
-            if (HasInputAuthority) return;
-
             var action = Deserialize(dto);
             _remotePlayer.ReceiveRemoteAction(action);
         }
