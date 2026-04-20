@@ -30,8 +30,8 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
 
         private void Awake()
         {
-            var playerTeam = battleSettings.PlayerTeamConfig.Build();
-            var rivalTeam = battleSettings.RivalTeamConfig.Build();
+            var playerTeam = battleSettings.playerTeamConfig.Build();
+            var rivalTeam = battleSettings.rivalTeamConfig.Build();
             
             var battle = new Battle(playerTeam, rivalTeam, new DefaultRandom(seed: DateTime.Now.GetHashCode()));
             

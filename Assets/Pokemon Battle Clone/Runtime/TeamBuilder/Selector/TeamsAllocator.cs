@@ -25,12 +25,12 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.Selector
             if (side == Side.Player)
             {
                 playerSelection.SetTeam(teamConfig);
-                battleSettings.PlayerTeamConfig = teamConfig;
+                battleSettings.playerTeamConfig = teamConfig;
             }
             else
             {
                 rivalSelection.SetTeam(teamConfig);
-                battleSettings.RivalTeamConfig = teamConfig;
+                battleSettings.rivalTeamConfig = teamConfig;
             }
             
             SetStartButtonInteraction();
