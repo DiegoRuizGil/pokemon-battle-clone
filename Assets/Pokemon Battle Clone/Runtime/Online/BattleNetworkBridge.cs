@@ -7,18 +7,15 @@ namespace Pokemon_Battle_Clone.Runtime.Online
 {
     public class BattleNetworkBridge : NetworkBehaviour
     {
-        public BattleSession battleSession;
-        
         private Battle _battle;
         private NetworkTrainer _remotePlayer;
 
-        public override void Spawned()
+        public void Init(Battle battle, PlayerTrainer player, NetworkTrainer rival)
         {
-            _battle = battleSession.Battle;
-            _remotePlayer = battleSession.RemoteTrainer;
+            _battle = battle;
+            _remotePlayer = rival;
             
-            if (HasInputAuthority)
-                battleSession.LocalTrainer.OnActionSelected += SendLocalAction;
+            player.OnActionSelected += SendLocalAction;
         }
 
         private void SendLocalAction(TrainerAction action)
@@ -27,9 +24,11 @@ namespace Pokemon_Battle_Clone.Runtime.Online
             RPC_ReceiveAction(dto);
         }
 
-        [Rpc(RpcSources.InputAuthority, RpcTargets.Proxies)]
-        private void RPC_ReceiveAction(ActionDTO dto)
+        [Rpc(RpcSources.All, RpcTargets.All)]
+        private void RPC_ReceiveAction(ActionDTO dto, RpcInfo info = default)
         {
+            if (info.Source == Runner.LocalPlayer) return;
+            
             var action = Deserialize(dto);
             _remotePlayer.ReceiveRemoteAction(action);
         }

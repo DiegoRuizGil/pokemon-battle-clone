@@ -17,12 +17,10 @@ namespace Pokemon_Battle_Clone.Runtime.Online
     public class OnlineBattleBootstrapper : MonoBehaviour, IBattleContext
     {
         public BattleController battleController;
-        public BattleNetworkBridge battleNetworkBridgePrefab;
+        public BattleNetworkBridge battleNetworkBridge;
         
         [Header("Data")]
         public BattleSettings battleSettings;
-        public LobbySettings lobbySettings;
-        public BattleSession battleSession;
         
         [Header("UI")]
         public TeamView playerTeamView;
@@ -47,7 +45,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online
             actionsHUD.Hide();
             battleController.Init(turn, player, rival);
             
-            InitNetworkBridge(battle, player, rival);
+            battleNetworkBridge.Init(battle, player, rival);
         }
 
         private PlayerTrainer SetupPlayer(Team team)
@@ -64,24 +62,6 @@ namespace Pokemon_Battle_Clone.Runtime.Online
             rivalTeamView.Init(team.PokemonList.Select(p => p.ID).ToList());
 
             return trainer;
-        }
-
-        private void InitNetworkBridge(Battle battle, PlayerTrainer player, NetworkTrainer rival)
-        {
-            Debug.Log($"[{lobbySettings.LocalPlayer}] Initializing network bridge");
-            
-            battleSession.Battle = battle;
-            battleSession.LocalTrainer = player;
-            battleSession.RemoteTrainer = rival;
-            
-            var networkBridge = lobbySettings.runner.Spawn(
-                battleNetworkBridgePrefab,
-                Vector3.zero,
-                Quaternion.identity,
-                lobbySettings.LocalPlayer
-            );
-            
-            networkBridge.name = $"NetworkBridge {lobbySettings.LocalPlayer}";
         }
 
         public ITeamView GetTeamView(Side side)

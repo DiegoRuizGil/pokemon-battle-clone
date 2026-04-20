@@ -2018,7 +2018,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Online.OnlineBattleBootstrapper
   battleController: {fileID: 913603188}
-  battleNetworkBridgePrefab: {fileID: 2745475273846502092, guid: 9d91c845e396aef438047f754c896388, type: 3}
+  battleNetworkBridge: {fileID: 2069201828}
   battleSettings: {fileID: 11400000, guid: f0d9cbbf571a04546b60d80a545412fc, type: 2}
   lobbySettings: {fileID: 11400000, guid: adfd31b3b6a85924e8fa56c87dbfc7e2, type: 2}
   battleSession: {fileID: 11400000, guid: ce31562968543f7419838f60da8decc4, type: 2}
@@ -2558,6 +2558,78 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1972191903}
   m_CullTransparentMesh: 1
+--- !u!1001 &2069201827
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3123327091526029431, guid: 9d91c845e396aef438047f754c896388, type: 3}
+      propertyPath: SortKey
+      value: 2275544744
+      objectReference: {fileID: 0}
+    - target: {fileID: 7581820388749193818, guid: 9d91c845e396aef438047f754c896388, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1041.9911
+      objectReference: {fileID: 0}
+    - target: {fileID: 7581820388749193818, guid: 9d91c845e396aef438047f754c896388, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 388.42087
+      objectReference: {fileID: 0}
+    - target: {fileID: 7581820388749193818, guid: 9d91c845e396aef438047f754c896388, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7581820388749193818, guid: 9d91c845e396aef438047f754c896388, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7581820388749193818, guid: 9d91c845e396aef438047f754c896388, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7581820388749193818, guid: 9d91c845e396aef438047f754c896388, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7581820388749193818, guid: 9d91c845e396aef438047f754c896388, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7581820388749193818, guid: 9d91c845e396aef438047f754c896388, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7581820388749193818, guid: 9d91c845e396aef438047f754c896388, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7581820388749193818, guid: 9d91c845e396aef438047f754c896388, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8908066167711974238, guid: 9d91c845e396aef438047f754c896388, type: 3}
+      propertyPath: m_Name
+      value: Battle Network Bridge
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d91c845e396aef438047f754c896388, type: 3}
+--- !u!114 &2069201828 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2745475273846502092, guid: 9d91c845e396aef438047f754c896388, type: 3}
+  m_PrefabInstance: {fileID: 2069201827}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45df751a49134d61b99fc8eaece5cd82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Online.BattleNetworkBridge
 --- !u!1001 &734594643775012801
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3700,6 +3772,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 1622265628}
+  - {fileID: 2069201827}
   - {fileID: 913603189}
   - {fileID: 436995802}
   - {fileID: 1721612193}
