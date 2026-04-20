@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Pokemon_Battle_Clone.Runtime.Battles.Domain;
 using Pokemon_Battle_Clone.Runtime.Database;
 using Pokemon_Battle_Clone.Runtime.TeamBuilder.TeamDisplayer;
@@ -10,7 +9,7 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.Selector
     public class TeamListScrollView : MonoBehaviour
     {
         [SerializeField] private TeamsAllocator teamsAllocator;
-        [SerializeField] private List<TeamConfig> teamConfigs;
+        [SerializeField] private TeamCollection teamCollection;
 
         [Header("UI")]
         [SerializeField] private TeamSelector teamSelectorPrefab;
@@ -19,7 +18,7 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.Selector
         
         private void Awake()
         {
-            foreach (var teamConfig in teamConfigs)
+            foreach (var teamConfig in teamCollection.TeamConfigs)
             {
                 var selector = Instantiate(teamSelectorPrefab, content.transform);
                 selector.Init(teamConfig);

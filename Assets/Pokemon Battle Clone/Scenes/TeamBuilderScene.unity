@@ -2845,6 +2845,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1024257907220673578, guid: 53bf4268d833f4148a01ae1ef5f71576, type: 3}
+      propertyPath: teamCollection
+      value: 
+      objectReference: {fileID: 11400000, guid: 94ae0aeb58878ee4bac6a95e805e6ae1, type: 2}
+    - target: {fileID: 1024257907220673578, guid: 53bf4268d833f4148a01ae1ef5f71576, type: 3}
       propertyPath: teamsAllocator
       value: 
       objectReference: {fileID: 1580878899}
