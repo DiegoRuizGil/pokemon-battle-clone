@@ -25,11 +25,16 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         
         private async Task ConnectToGame()
         {
+            var sceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+            var sceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>();
+            
             var result = await _runner.StartGame(new StartGameArgs
             {
                 GameMode    = GameMode.Shared,
                 SessionName = "Default Room",
                 PlayerCount = 2,
+                Scene = SceneRef.FromIndex(sceneIndex),
+                SceneManager = sceneManager,
             });
 
             if (result.Ok)
