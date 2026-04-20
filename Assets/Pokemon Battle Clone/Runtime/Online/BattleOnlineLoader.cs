@@ -1,6 +1,7 @@
 ﻿using System;
 using Fusion;
 using Pokemon_Battle_Clone.Runtime.Battles.Infrastructure;
+using Pokemon_Battle_Clone.Runtime.Database;
 using UnityEngine;
 
 namespace Pokemon_Battle_Clone.Runtime.Online
@@ -15,8 +16,12 @@ namespace Pokemon_Battle_Clone.Runtime.Online
     
     public class BattleOnlineLoader : NetworkBehaviour
     {
-        [SerializeField] private BattleSettings battleSettings;
+        [Header("Scene Management")]
         [SerializeField] private string battleSceneName;
+
+        [Header("Dependencies")]
+        [SerializeField] private BattleSettings battleSettings;
+        [SerializeField] private TeamCollection teamCollection;
 
         [Networked, OnChangedRender(nameof(OnBattleLoadDataChanged))]
         private BattleLoadData LoadData { get; set; }
@@ -24,7 +29,13 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         [Networked]
         private int ReadyCount { get; set; }
 
-        public void SetReady() => RPC_NotifyReady();
+        public void SetReady()
+        {
+            var teamIndex = teamCollection.IndexOf(battleSettings.playerTeamConfig);
+            RPC_SetRivalTeam(teamIndex);
+            
+            RPC_NotifyReady();
+        }
 
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
         private void RPC_NotifyReady()
@@ -40,6 +51,15 @@ namespace Pokemon_Battle_Clone.Runtime.Online
             }
         }
 
+        [Rpc(RpcSources.All, RpcTargets.All)]
+        private void RPC_SetRivalTeam(int teamIndex, RpcInfo info = default)
+        {
+            if (info.Source == Runner.LocalPlayer) return;
+            
+            var teamConfig = teamCollection[teamIndex];
+            battleSettings.rivalTeamConfig = teamConfig;
+        }
+        
         private void OnBattleLoadDataChanged()
         {
             if (LoadData.State != BattleLoadState.Ready) return;
