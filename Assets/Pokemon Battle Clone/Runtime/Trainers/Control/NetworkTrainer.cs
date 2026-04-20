@@ -7,14 +7,9 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Control
 {
     public class NetworkTrainer : Trainer
     {
-        public override Side Side { get; }
-
         private TaskCompletionSource<TrainerAction> _pendingAction;
         
-        public NetworkTrainer(Team team, Side side) : base(team)
-        {
-            Side = side;
-        }
+        public NetworkTrainer(Team team, Side side) : base(team, side) { }
 
         public override Task<TrainerAction> SelectAction()
         {

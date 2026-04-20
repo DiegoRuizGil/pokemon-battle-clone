@@ -11,9 +11,7 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Control
         private readonly ITrainerStrategy _trainerStrategy;
         private readonly Battle _battle;
         
-        public override Side Side => Side.Rival;
-
-        public AITrainer(Battle battle, Team team, ITrainerStrategy strategy) : base(team)
+        public AITrainer(Battle battle, Team team, Side side, ITrainerStrategy strategy) : base(team, side)
         {
             _battle = battle;
             _trainerStrategy = strategy;

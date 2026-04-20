@@ -18,12 +18,11 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Control
         private TaskCompletionSource<TrainerAction> _actionTcs;
 
         private readonly Dictionary<Type, Action<bool>> _selectorMap;
-
-        public override Side Side => Side.Player;
-
+        
         public event Action<TrainerAction> OnActionSelected;
 
-        public PlayerTrainer(Team team, IActionHUD actionsHUD, ITeamInfoDisplayer teamInfoDisplayer) : base(team)
+        public PlayerTrainer(Team team, Side side, IActionHUD actionsHUD, ITeamInfoDisplayer teamInfoDisplayer)
+            : base(team, side)
         {
             _actionsHUD = actionsHUD;
             _teamInfoDisplayer = teamInfoDisplayer;

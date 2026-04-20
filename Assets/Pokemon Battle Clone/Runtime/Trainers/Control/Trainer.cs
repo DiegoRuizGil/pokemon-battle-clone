@@ -13,11 +13,12 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Control
         public bool Defeated => Team.Defeated;
         public Pokemon FirstPokemon => Team.FirstPokemon;
         public bool IsFirstPokemonDefeated => FirstPokemon.Defeated;
-        public abstract Side Side { get; }
+        public Side Side { get; }
 
-        protected Trainer(Team team)
+        protected Trainer(Team team, Side side)
         {
             Team = team;
+            Side = side;
         }
 
         public TrainerAction Init() => SendFirstPokemon();

@@ -47,7 +47,7 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
 
         private Trainer SetupPlayer(Team team)
         {
-            var trainer = new PlayerTrainer(team, actionsHUD, teamInfoDisplayer);
+            var trainer = new PlayerTrainer(team, Side.Player, actionsHUD, teamInfoDisplayer);
             playerTeamView.Init(team.PokemonList.Select(p => p.ID).ToList());
 
             return trainer;
@@ -55,7 +55,7 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
 
         private Trainer SetupRival(Battle battle, Team team)
         {
-            var trainer = new AITrainer(battle, team, new RandomTrainerStrategy());
+            var trainer = new AITrainer(battle, team, Side.Rival, new RandomTrainerStrategy());
             rivalTeamView.Init(team.PokemonList.Select(p => p.ID).ToList());
 
             return trainer;

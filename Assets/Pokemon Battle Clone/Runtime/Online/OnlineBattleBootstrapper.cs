@@ -50,7 +50,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online
 
         private PlayerTrainer SetupPlayer(Team team)
         {
-            var trainer = new PlayerTrainer(team, actionsHUD, teamInfoDisplayer);
+            var trainer = new PlayerTrainer(team, Side.Player, actionsHUD, teamInfoDisplayer);
             playerTeamView.Init(team.PokemonList.Select(p => p.ID).ToList());
 
             return trainer;
