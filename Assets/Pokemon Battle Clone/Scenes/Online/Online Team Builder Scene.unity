@@ -1190,7 +1190,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: START
+  m_text: READY
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1764,9 +1764,8 @@ GameObject:
   - component: {fileID: 1546393185}
   - component: {fileID: 1546393184}
   - component: {fileID: 1546393187}
-  - component: {fileID: 1546393188}
   m_Layer: 5
-  m_Name: Start Battle Button
+  m_Name: Ready Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1836,10 +1835,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1546393188}
-        m_TargetAssemblyTypeName: Pokemon_Battle_Clone.Runtime.Online.StartButtonOnline,
+      - m_Target: {fileID: 1657920627}
+        m_TargetAssemblyTypeName: Pokemon_Battle_Clone.Runtime.Online.BattleOnlineLoader,
           PokemonBattleClone.Runtime
-        m_MethodName: StartBattle
+        m_MethodName: SetReady
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1903,20 +1902,6 @@ MonoBehaviour:
   unselectedColor: {r: 1, g: 1, b: 1, a: 1}
   selectedColor: {r: 0, g: 0, b: 0, a: 1}
   disabledColor: {r: 1, g: 0, b: 0, a: 1}
---- !u!114 &1546393188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1546393182}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a0aff5445744ff4889758c67dbcf233, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Online.StartButtonOnline
-  lobbySettings: {fileID: 11400000, guid: adfd31b3b6a85924e8fa56c87dbfc7e2, type: 2}
-  battleSceneName: Online Combat Scene
 --- !u!1 &1556864062
 GameObject:
   m_ObjectHideFlags: 0
@@ -2173,6 +2158,71 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3780135469887025357, guid: 53bf4268d833f4148a01ae1ef5f71576, type: 3}
   m_PrefabInstance: {fileID: 3450797001037115154}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1657920626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1657920629}
+  - component: {fileID: 1657920628}
+  - component: {fileID: 1657920627}
+  m_Layer: 0
+  m_Name: Battle Loader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1657920627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657920626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a848e71bde74f049e61f5d1c496b923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Online.BattleOnlineLoader
+  battleSceneName: Online Combat Scene
+--- !u!114 &1657920628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657920626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Fusion.Runtime.dll::Fusion.NetworkObject
+  SortKey: 1473203640
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 1657920627}
+  ForceRemoteRenderTimeframe: 0
+--- !u!4 &1657920629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657920626}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1715837361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2478,7 +2528,7 @@ GameObject:
   - component: {fileID: 1928932984}
   - component: {fileID: 1928932985}
   m_Layer: 0
-  m_Name: Show Time
+  m_Name: Pruebas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3170,6 +3220,7 @@ SceneRoots:
   - {fileID: 2024342527}
   - {fileID: 1580878900}
   - {fileID: 1567053996}
+  - {fileID: 1657920629}
   - {fileID: 1820580913}
   - {fileID: 130789121}
   - {fileID: 1928932986}
