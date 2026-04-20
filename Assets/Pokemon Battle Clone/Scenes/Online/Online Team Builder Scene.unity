@@ -2188,6 +2188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a848e71bde74f049e61f5d1c496b923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Online.BattleOnlineLoader
+  battleSettings: {fileID: 11400000, guid: f0d9cbbf571a04546b60d80a545412fc, type: 2}
   battleSceneName: Online Combat Scene
 --- !u!114 &1657920628
 MonoBehaviour:

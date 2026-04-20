@@ -34,7 +34,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online
             var playerTeam = battleSettings.playerTeamConfig.Build();
             var rivalTeam = battleSettings.rivalTeamConfig.Build();
             
-            var battle = new Battle(playerTeam, rivalTeam, new DefaultRandom(seed: DateTime.Now.GetHashCode()));
+            var battle = new Battle(playerTeam, rivalTeam, new DefaultRandom(battleSettings.battleSeed));
             
             var player = SetupPlayer(playerTeam);
             var rival = SetupRival(rivalTeam);

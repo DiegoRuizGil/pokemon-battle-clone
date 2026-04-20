@@ -8,5 +8,6 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Infrastructure
     {
         public TeamConfig playerTeamConfig;
         public TeamConfig rivalTeamConfig;
+        public int battleSeed;
     }
 }
