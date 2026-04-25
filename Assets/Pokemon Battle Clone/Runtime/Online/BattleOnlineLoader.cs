@@ -19,28 +19,39 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         private readonly HashSet<PlayerRef> _readyPlayers = new();
         private int ReadyCount => _readyPlayers.Count;
 
+        public void PlayerLeft(PlayerRef player)
+        {
+            Debug.Log($"{player} left");
+            _readyPlayers.Remove(player);
+        }
+
         public void SetReady()
         {
             var teamIndex = teamCollection.IndexOf(battleSettings.playerTeamConfig);
-            RPC_SetRivalTeam(teamIndex);
-            RPC_NotifyReady();
+            RPC_NotifyReadyAndTeam(teamIndex);
         }
 
         [Rpc(RpcSources.All, RpcTargets.All)]
-        private void RPC_SetRivalTeam(int teamIndex, RpcInfo info = default)
+        private void RPC_NotifyReadyAndTeam(int teamIndex, RpcInfo info = default)
         {
-            if (info.Source == Runner.LocalPlayer) return;
-            
+            if (info.Source != Runner.LocalPlayer)
+                SetRivalTeam(teamIndex);
+
+            if (HasStateAuthority)
+                NotifyReady(info.Source);
+        }
+
+        private void SetRivalTeam(int teamIndex)
+        {
             var teamConfig = teamCollection[teamIndex];
             battleSettings.rivalTeamConfig = teamConfig;
         }
 
-        [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-        private void RPC_NotifyReady(RpcInfo info = default)
+        private void NotifyReady(PlayerRef playerReady)
         {
-            _readyPlayers.Add(info.Source);
-            
-            Debug.Log($"Player {info.Source} is ready. Total ready: {ReadyCount}");
+            _readyPlayers.Add(playerReady);
+
+            Debug.Log($"Player {playerReady} is ready. Total ready: {ReadyCount}");
             
             if (ReadyCount >= 2)
             {
@@ -59,12 +70,6 @@ namespace Pokemon_Battle_Clone.Runtime.Online
                 Runner.LoadScene(battleSceneName);
         }
 
-        private static int GenerateSeed() => Guid.NewGuid().GetHashCode();
-        
-        public void PlayerLeft(PlayerRef player)
-        {
-            Debug.Log($"{player} left");
-            _readyPlayers.Remove(player);
-        }
+        private static int GenerateSeed() => new System.Random().Next();
     }
 }
