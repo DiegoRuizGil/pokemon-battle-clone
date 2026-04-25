@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 112}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 3376
+  controlID: 26
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 112}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 3377
+  controlID: 27
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 3378
+  controlID: 28
   draggingID: 0
 --- !u!114 &8
 MonoBehaviour:
@@ -252,7 +252,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 3418
+  controlID: 52
   draggingID: 0
 --- !u!114 &11
 MonoBehaviour:
@@ -1697,7 +1697,7 @@ MonoBehaviour:
     m_SkipHidden: 1
     m_SearchArea: 1
     m_Folders:
-    - Assets/Pokemon Battle Clone/Prefabs
+    - Assets/Pokemon Battle Clone
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1720,15 +1720,6 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 52430
-    - m_Data: 52432
-    - m_Data: 52434
-    - m_Data: 52436
-    - m_Data: 52438
-    - m_Data: 52440
-    - m_Data: 52442
-    - m_Data: 52444
-    - m_Data: 52446
     - m_Data: 52448
     - m_Data: 52450
     - m_Data: 52452
@@ -1766,6 +1757,12 @@ MonoBehaviour:
     - m_Data: 52516
     - m_Data: 52518
     - m_Data: 52520
+    - m_Data: 52522
+    - m_Data: 52524
+    - m_Data: 52526
+    - m_Data: 52528
+    - m_Data: 52530
+    - m_Data: 52532
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1792,21 +1789,13 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 245}
-    m_SelectedIDs: []
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs:
+    - m_Data: 48412
     m_LastClickedID:
-      m_Data: 0
+      m_Data: 48412
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 52430
-    - m_Data: 52432
-    - m_Data: 52434
-    - m_Data: 52436
-    - m_Data: 52438
-    - m_Data: 52440
-    - m_Data: 52442
-    - m_Data: 52444
-    - m_Data: 52446
     - m_Data: 52448
     - m_Data: 52450
     - m_Data: 52452
@@ -1844,6 +1833,12 @@ MonoBehaviour:
     - m_Data: 52516
     - m_Data: 52518
     - m_Data: 52520
+    - m_Data: 52522
+    - m_Data: 52524
+    - m_Data: 52526
+    - m_Data: 52528
+    - m_Data: 52530
+    - m_Data: 52532
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1870,8 +1865,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: []
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs:
+    - m_Data: 48412
+    m_LastClickedInstanceID: 48412
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: []
     m_RenameOverlay:
@@ -1949,21 +1945,7 @@ MonoBehaviour:
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -89728
-      - m_Data: -86810
-      - m_Data: -59784
-      - m_Data: -53148
-      - m_Data: -51176
-      - m_Data: -46326
-      - m_Data: -39676
-      - m_Data: -37702
-      - m_Data: -31002
-      - m_Data: -28478
-      - m_Data: -17962
-      - m_Data: -13466
-      - m_Data: -9956
-      - m_Data: -1350
-      - m_Data: -12
+      - m_Data: -1316
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
