@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Fusion;
 using Pokemon_Battle_Clone.Runtime.Battles.Infrastructure;
 using Pokemon_Battle_Clone.Runtime.Database;
@@ -6,7 +7,7 @@ using UnityEngine;
 
 namespace Pokemon_Battle_Clone.Runtime.Online
 {
-    public class BattleOnlineLoader : NetworkBehaviour
+    public class BattleOnlineLoader : NetworkBehaviour, IPlayerLeft
     {
         [Header("Scene Management")]
         [SerializeField] private string battleSceneName;
@@ -15,7 +16,8 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         [SerializeField] private BattleSettings battleSettings;
         [SerializeField] private TeamCollection teamCollection;
 
-        [Networked] private int ReadyCount { get; set; }
+        private readonly HashSet<PlayerRef> _readyPlayers = new();
+        private int ReadyCount => _readyPlayers.Count;
 
         public void SetReady()
         {
@@ -34,14 +36,16 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         }
 
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-        private void RPC_NotifyReady()
+        private void RPC_NotifyReady(RpcInfo info = default)
         {
-            Debug.Log($"{Runner.LocalPlayer} increment ready count");
-            ReadyCount++;
+            _readyPlayers.Add(info.Source);
+            
+            Debug.Log($"Player {info.Source} is ready. Total ready: {ReadyCount}");
+            
             if (ReadyCount >= 2)
             {
                 var seed = GenerateSeed();
-                Debug.Log($"{Runner.LocalPlayer} generating battle seed: {seed}");
+                Debug.Log($"Generating battle seed: {seed}");
                 RPC_StartBattle(seed);
             }
         }
@@ -49,12 +53,18 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
         private void RPC_StartBattle(int battleSeed)
         {
-            Debug.Log($"[{DateTime.Now.Millisecond}] - {Runner.LocalPlayer} assigning battle seed: {battleSeed}");
+            Debug.Log($"[{DateTime.Now.Millisecond}] - assigning battle seed: {battleSeed}");
             battleSettings.battleSeed = battleSeed;
             if (HasStateAuthority)
                 Runner.LoadScene(battleSceneName);
         }
 
         private static int GenerateSeed() => Guid.NewGuid().GetHashCode();
+        
+        public void PlayerLeft(PlayerRef player)
+        {
+            Debug.Log($"{player} left");
+            _readyPlayers.Remove(player);
+        }
     }
 }
