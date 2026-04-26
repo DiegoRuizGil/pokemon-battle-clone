@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 234048186}
   - component: {fileID: 234048185}
   m_Layer: 5
-  m_Name: Player 1 Status - Text_1
+  m_Name: Player 2 Status - Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2649,6 +2649,7 @@ GameObject:
   - component: {fileID: 1711909987}
   - component: {fileID: 1711909989}
   - component: {fileID: 1711909988}
+  - component: {fileID: 1711909990}
   m_Layer: 5
   m_Name: Lobby Info
   m_TagString: Untagged
@@ -2716,6 +2717,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1711909986}
   m_CullTransparentMesh: 1
+--- !u!114 &1711909990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711909986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d845754c6c74724b059824a4b877997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Online.LobbyInfoUI
+  lobbySession: {fileID: 11400000, guid: adfd31b3b6a85924e8fa56c87dbfc7e2, type: 2}
+  sessionNameText: {fileID: 1222940457}
+  player1StatusText: {fileID: 1095997151}
+  player2StatusText: {fileID: 234048185}
 --- !u!1001 &1715837361
 PrefabInstance:
   m_ObjectHideFlags: 0

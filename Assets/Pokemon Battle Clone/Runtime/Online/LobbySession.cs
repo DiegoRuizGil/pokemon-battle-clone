@@ -13,10 +13,10 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         
         public event Action<PlayerRef> OnPlayerJoined = delegate { };
         public event Action<PlayerRef> OnPlayerLeft = delegate { };
-        public event Action<Dictionary<PlayerRef, PlayerLobbyInfo>> OnLobbyStateChanged = delegate { };
+        public event Action<LobbyState> OnLobbyStateChanged = delegate { };
         
         public void RaisePlayerJoined(PlayerRef player) => OnPlayerJoined.Invoke(player);
         public void RaisePlayerLeft(PlayerRef player) => OnPlayerLeft.Invoke(player);
-        public void RaiseLobbyStateChanged(Dictionary<PlayerRef, PlayerLobbyInfo> state) => OnLobbyStateChanged.Invoke(state);
+        public void RaiseLobbyStateChanged(LobbyState state) => OnLobbyStateChanged.Invoke(state);
     }
 }

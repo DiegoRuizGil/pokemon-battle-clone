@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Fusion;
 using Pokemon_Battle_Clone.Runtime.Battles.Infrastructure;
 using Pokemon_Battle_Clone.Runtime.Database;
@@ -10,7 +11,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online
     {
         public NetworkBool IsReady;
     }
-    
+
     public class BattleOnlineLoader : NetworkBehaviour
     {
         [Header("Scene Management")]
@@ -25,7 +26,6 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         private NetworkDictionary<PlayerRef, PlayerLobbyInfo> Players => default;
         
         public event Action OnLobbyStateChanged = delegate { };
-        
         
         public override void Spawned()
         {
@@ -103,7 +103,36 @@ namespace Pokemon_Battle_Clone.Runtime.Online
 
         private void OnPlayerChanged()
         {
-            OnLobbyStateChanged.Invoke();
+            var state = new Dictionary<PlayerRef, PlayerLobbyInfo>();
+            foreach (var kvp in Players)
+                state[kvp.Key] = kvp.Value;
+            
+            lobbySession.RaiseLobbyStateChanged(GetState());
+        }
+
+        private LobbyState GetState()
+        {
+            var localPlayerState = new PlayerState { IsPresent = true };
+            if (Players.TryGet(Runner.LocalPlayer, out var localPlayerInfo))
+                localPlayerState.IsReady = localPlayerInfo.IsReady;
+
+            var remotePlayerState = new PlayerState();
+            foreach (var kvp in Players)
+            {
+                if (kvp.Key == Runner.LocalPlayer) continue;
+                remotePlayerState.IsPresent = true;
+                remotePlayerState.IsReady = kvp.Value.IsReady;
+                break;
+            }
+            
+            var state = new LobbyState
+            {
+                SessionCode = lobbySession.currentSessionCode,
+                LocalPlayer = localPlayerState,
+                RemotePlayer = remotePlayerState
+            };
+
+            return state;
         }
 
         private static int GenerateSeed() => new System.Random().Next();
