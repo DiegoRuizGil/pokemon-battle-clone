@@ -113,16 +113,14 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         private LobbyState GetState()
         {
             var localPlayerState = new PlayerState { IsPresent = true };
-            if (Players.TryGet(Runner.LocalPlayer, out var localPlayerInfo))
-                localPlayerState.IsReady = localPlayerInfo.IsReady;
+            if (TryGetLocalPlayerInfo(out var localInfo))
+                localPlayerState.IsReady = localInfo.IsReady;
 
-            var remotePlayerState = new PlayerState();
-            foreach (var kvp in Players)
+            var remotePlayerState = new PlayerState { IsPresent = false };
+            if (TryGetRemotePlayerInfo(out var remoteInfo))
             {
-                if (kvp.Key == Runner.LocalPlayer) continue;
                 remotePlayerState.IsPresent = true;
-                remotePlayerState.IsReady = kvp.Value.IsReady;
-                break;
+                remotePlayerState.IsReady = remoteInfo.IsReady;
             }
             
             var state = new LobbyState
@@ -133,6 +131,21 @@ namespace Pokemon_Battle_Clone.Runtime.Online
             };
 
             return state;
+        }
+
+        private bool TryGetLocalPlayerInfo(out PlayerLobbyInfo info) => Players.TryGet(Runner.LocalPlayer, out info);
+
+        private bool TryGetRemotePlayerInfo(out PlayerLobbyInfo info)
+        {
+            foreach (var kvp in Players)
+            {
+                if (kvp.Key == Runner.LocalPlayer) continue;
+                info = kvp.Value;
+                return true;
+            }
+            
+            info = default;
+            return false;
         }
 
         private static int GenerateSeed() => new System.Random().Next();
