@@ -25,8 +25,6 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         [Networked, OnChangedRender(nameof(OnPlayerChanged)), Capacity(2)]
         private NetworkDictionary<PlayerRef, PlayerLobbyInfo> Players => default;
         
-        public event Action OnLobbyStateChanged = delegate { };
-        
         public override void Spawned()
         {
             lobbySession.OnPlayerJoined += HandlePlayerJoined;
