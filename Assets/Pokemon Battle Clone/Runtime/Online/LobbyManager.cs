@@ -45,12 +45,12 @@ namespace Pokemon_Battle_Clone.Runtime.Online
 
         public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
         {
-            Debug.Log($"Jugador entró: {player}");
+            Debug.Log($"Jugador entró: {player} | Soy master client? {runner.LocalPlayer} -> {runner.IsSharedModeMasterClient}");
         }
 
         public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
         {
-            Debug.Log($"Jugador salió: {player}");
+            Debug.Log($"Jugador salió: {player} | Soy master client? {runner.LocalPlayer} -> {runner.IsSharedModeMasterClient}");
         }
 
         // El resto de callbacks obligatorios — vacíos por ahora
