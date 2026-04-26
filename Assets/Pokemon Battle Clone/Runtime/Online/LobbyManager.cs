@@ -9,7 +9,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online
 {
     public class LobbyManager : MonoBehaviour, INetworkRunnerCallbacks
     {
-        public LobbySettings lobbySettings;
+        public LobbySession lobbySession;
         
         private NetworkRunner _runner;
         
@@ -18,42 +18,48 @@ namespace Pokemon_Battle_Clone.Runtime.Online
             _runner = GetComponent<NetworkRunner>();
             _runner.AddCallbacks(this);
 
-            lobbySettings.runner = _runner;
-            
-            await ConnectToGame();
+            lobbySession.myCode = GenerateSessionCode();
+            // await ConnectToGame();
+            await JoinSession(lobbySession.myCode);
         }
-        
-        private async Task ConnectToGame()
+
+        public async Task<StartGameResult> JoinSession(string sessionName)
         {
+            if (_runner.IsRunning)
+                await _runner.Shutdown();
+            
             var sceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
             var sceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>();
             
             var result = await _runner.StartGame(new StartGameArgs
             {
                 GameMode    = GameMode.Shared,
-                SessionName = "Default Room",
+                SessionName = sessionName,
                 PlayerCount = 2,
                 Scene = SceneRef.FromIndex(sceneIndex),
                 SceneManager = sceneManager,
             });
 
-            if (result.Ok)
-                Debug.Log($"Conectado!");
-            else
-                Debug.LogError($"Error: {result.ShutdownReason}");
+            return result;
         }
+        
+        public Task<StartGameResult> ReturnToMySession() => JoinSession(lobbySession.myCode);
 
         public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
         {
             Debug.Log($"Jugador entró: {player} | Soy master client? {runner.LocalPlayer} -> {runner.IsSharedModeMasterClient}");
+            lobbySession.RaisePlayerJoined(player);
         }
 
         public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
         {
             Debug.Log($"Jugador salió: {player} | Soy master client? {runner.LocalPlayer} -> {runner.IsSharedModeMasterClient}");
+            lobbySession.RaisePlayerLeft(player);
         }
 
         // El resto de callbacks obligatorios — vacíos por ahora
+        #region CALLBACKS
+
         public void OnInput(NetworkRunner runner, NetworkInput input) { }
         public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }
         public void OnConnectedToServer(NetworkRunner runner) { }
@@ -71,5 +77,17 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         public void OnSceneLoadStart(NetworkRunner runner) { }
         public void OnObjectExitAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player) { }
         public void OnObjectEnterAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player) { }
+
+        #endregion
+
+        private static string GenerateSessionCode()
+        {
+            const string chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+            var code = new System.Text.StringBuilder(6);
+            var rng = new System.Random();
+            for (int i = 0; i < 6; i++)
+                code.Append(chars[rng.Next(chars.Length)]);
+            return code.ToString();
+        }
     }
 }
