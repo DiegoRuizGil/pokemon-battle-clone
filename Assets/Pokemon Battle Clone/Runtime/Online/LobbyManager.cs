@@ -20,7 +20,6 @@ namespace Pokemon_Battle_Clone.Runtime.Online
             _runner.AddCallbacks(this);
 
             lobbySession.myCode = useDefaultLobby ? "Default room" : GenerateSessionCode();
-            // await ConnectToGame();
             await JoinSession(lobbySession.myCode);
         }
 
@@ -41,6 +40,9 @@ namespace Pokemon_Battle_Clone.Runtime.Online
                 SceneManager = sceneManager,
             });
 
+            if (result.Ok)
+                lobbySession.currentSessionCode = sessionName;
+            
             return result;
         }
         
