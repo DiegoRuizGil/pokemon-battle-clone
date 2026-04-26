@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Pokemon_Battle_Clone.Runtime.Online
 {
-    [CreateAssetMenu(menuName = "Pokemon Battle Clone/Online/Lobby Settings", fileName = "Lobby Settings")]
-    public class LobbySettings : ScriptableObject
+    [CreateAssetMenu(menuName = "Pokemon Battle Clone/Online/Lobby Session", fileName = "Lobby Session")]
+    public class LobbySession : ScriptableObject
     {
         public string mySessionCode;
         public NetworkRunner runner;
