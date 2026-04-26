@@ -7,22 +7,53 @@ using UnityEngine;
 
 namespace Pokemon_Battle_Clone.Runtime.Online
 {
-    public class BattleOnlineLoader : NetworkBehaviour, IPlayerLeft
+    public struct PlayerLobbyInfo : INetworkStruct
+    {
+        public NetworkBool IsReady;
+    }
+    
+    public class BattleOnlineLoader : NetworkBehaviour
     {
         [Header("Scene Management")]
         [SerializeField] private string battleSceneName;
 
         [Header("Dependencies")]
+        [SerializeField] private LobbySession lobbySession;
         [SerializeField] private BattleSettings battleSettings;
         [SerializeField] private TeamCollection teamCollection;
 
+        [Networked, Capacity(2)]
+        private NetworkDictionary<PlayerRef, PlayerLobbyInfo> Players => default;
+
+        public event Action OnLobbyStateChanged = delegate { };
+        
+        
         private readonly HashSet<PlayerRef> _readyPlayers = new();
         private int ReadyCount => _readyPlayers.Count;
 
-        public void PlayerLeft(PlayerRef player)
+
+        public override void Spawned()
         {
-            Debug.Log($"{player} left");
-            _readyPlayers.Remove(player);
+            lobbySession.OnPlayerJoined += HandlePlayerJoined;
+            lobbySession.OnPlayerLeft += HandlePlayerLeft;
+        }
+
+        public override void Despawned(NetworkRunner runner, bool hasState)
+        {
+            lobbySession.OnPlayerJoined -= HandlePlayerJoined;
+            lobbySession.OnPlayerLeft -= HandlePlayerLeft;
+        }
+
+        private void HandlePlayerJoined(PlayerRef player)
+        {
+            if (HasStateAuthority)
+                Players.Set(player, new PlayerLobbyInfo { IsReady = false });
+        }
+
+        private void HandlePlayerLeft(PlayerRef player)
+        {
+            if (HasStateAuthority)
+                Players.Remove(player);
         }
 
         public void SetReady()
