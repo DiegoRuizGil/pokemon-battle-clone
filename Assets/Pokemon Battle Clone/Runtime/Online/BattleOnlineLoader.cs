@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Fusion;
 using Pokemon_Battle_Clone.Runtime.Battles.Infrastructure;
 using Pokemon_Battle_Clone.Runtime.Database;
@@ -22,16 +21,12 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         [SerializeField] private BattleSettings battleSettings;
         [SerializeField] private TeamCollection teamCollection;
 
-        [Networked, Capacity(2)]
+        [Networked, OnChangedRender(nameof(OnPlayerChanged)), Capacity(2)]
         private NetworkDictionary<PlayerRef, PlayerLobbyInfo> Players => default;
-
+        
         public event Action OnLobbyStateChanged = delegate { };
         
         
-        private readonly HashSet<PlayerRef> _readyPlayers = new();
-        private int ReadyCount => _readyPlayers.Count;
-
-
         public override void Spawned()
         {
             lobbySession.OnPlayerJoined += HandlePlayerJoined;
@@ -58,38 +53,25 @@ namespace Pokemon_Battle_Clone.Runtime.Online
 
         public void SetReady()
         {
+            if (IsPlayerReady(Runner.LocalPlayer)) return;
+            
             var teamIndex = teamCollection.IndexOf(battleSettings.playerTeamConfig);
-            RPC_NotifyReadyAndTeam(teamIndex);
+            RPC_SetReady(Runner.LocalPlayer, teamIndex);
         }
 
         [Rpc(RpcSources.All, RpcTargets.All)]
-        private void RPC_NotifyReadyAndTeam(int teamIndex, RpcInfo info = default)
+        private void RPC_SetReady(PlayerRef player, int teamIndex)
         {
-            if (info.Source != Runner.LocalPlayer)
+            if (player != Runner.LocalPlayer)
                 SetRivalTeam(teamIndex);
 
-            if (HasStateAuthority)
-                NotifyReady(info.Source);
-        }
-
-        private void SetRivalTeam(int teamIndex)
-        {
-            var teamConfig = teamCollection[teamIndex];
-            battleSettings.rivalTeamConfig = teamConfig;
-        }
-
-        private void NotifyReady(PlayerRef playerReady)
-        {
-            _readyPlayers.Add(playerReady);
-
-            Debug.Log($"Player {playerReady} is ready. Total ready: {ReadyCount}");
+            if (!HasStateAuthority)
+                return;
+            if (IsPlayerReady(player))
+                return;
             
-            if (ReadyCount >= 2)
-            {
-                var seed = GenerateSeed();
-                Debug.Log($"Generating battle seed: {seed}");
-                RPC_StartBattle(seed);
-            }
+            Players.Set(player, new PlayerLobbyInfo { IsReady = true });
+            CheckAllReady();
         }
 
         [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
@@ -99,6 +81,29 @@ namespace Pokemon_Battle_Clone.Runtime.Online
             battleSettings.battleSeed = battleSeed;
             if (HasStateAuthority)
                 Runner.LoadScene(battleSceneName);
+        }
+
+        private bool IsPlayerReady(PlayerRef player) => Players.TryGet(player, out var info) && info.IsReady;
+
+        private void CheckAllReady()
+        {
+            if (Players.Count < 2) return;
+
+            foreach (var kvp in Players)
+                if (!kvp.Value.IsReady) return;
+            
+            RPC_StartBattle(GenerateSeed());
+        }
+
+        private void SetRivalTeam(int teamIndex)
+        {
+            var teamConfig = teamCollection[teamIndex];
+            battleSettings.rivalTeamConfig = teamConfig;
+        }
+
+        private void OnPlayerChanged()
+        {
+            OnLobbyStateChanged.Invoke();
         }
 
         private static int GenerateSeed() => new System.Random().Next();

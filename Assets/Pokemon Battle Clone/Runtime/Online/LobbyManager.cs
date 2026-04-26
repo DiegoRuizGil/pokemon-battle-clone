@@ -10,6 +10,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online
     public class LobbyManager : MonoBehaviour, INetworkRunnerCallbacks
     {
         public LobbySession lobbySession;
+        public bool useDefaultLobby = true;
         
         private NetworkRunner _runner;
         
@@ -18,7 +19,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online
             _runner = GetComponent<NetworkRunner>();
             _runner.AddCallbacks(this);
 
-            lobbySession.myCode = GenerateSessionCode();
+            lobbySession.myCode = useDefaultLobby ? "Default room" : GenerateSessionCode();
             // await ConnectToGame();
             await JoinSession(lobbySession.myCode);
         }
