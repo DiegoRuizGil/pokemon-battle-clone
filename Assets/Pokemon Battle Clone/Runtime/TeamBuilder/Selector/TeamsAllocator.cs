@@ -38,7 +38,10 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.Selector
 
         private void SetStartButtonInteraction()
         {
-            startButton.SetInteraction(playerSelection.HasTeamSelected && rivalSelection.HasTeamSelected);
+            var playerHasTeam = playerSelection == null || playerSelection.HasTeamSelected;
+            var rivalHasTeam = rivalSelection == null || rivalSelection.HasTeamSelected;
+            
+            startButton.SetInteraction(playerHasTeam && rivalHasTeam);
         }
     }
 }

@@ -848,9 +848,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 1041.9911, y: 388.42087, z: 0.46582097}
+    m_Target: {x: 848.3457, y: 584.754, z: 2.3660345}
     speed: 2
-    m_Value: {x: 1041.9911, y: 388.42087, z: 0.46582097}
+    m_Value: {x: 956.2857, y: 554.25, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -900,9 +900,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 1057.3573
+    m_Target: 867.3393
     speed: 2
-    m_Value: 1057.3573
+    m_Value: 312.65866
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1282,7 +1282,7 @@ MonoBehaviour:
     m_SkipHidden: 1
     m_SearchArea: 1
     m_Folders:
-    - Assets/Pokemon Battle Clone/Editor
+    - Assets/Pokemon Battle Clone/Prefabs/UI/Team Selection
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1348,6 +1348,13 @@ MonoBehaviour:
     - m_Data: 52528
     - m_Data: 52530
     - m_Data: 52532
+    - m_Data: 52534
+    - m_Data: 52536
+    - m_Data: 52538
+    - m_Data: 52540
+    - m_Data: 52542
+    - m_Data: 52544
+    - m_Data: 52546
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1374,9 +1381,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 0}
+    scrollPos: {x: 0, y: 65}
     m_SelectedIDs:
-    - m_Data: 50210
+    - m_Data: -1428
     m_LastClickedID:
       m_Data: 0
     m_ExpandedIDs:
@@ -1404,7 +1411,6 @@ MonoBehaviour:
     - m_Data: 52488
     - m_Data: 52490
     - m_Data: 52492
-    - m_Data: 52494
     - m_Data: 52496
     - m_Data: 52498
     - m_Data: 52500
@@ -1414,20 +1420,17 @@ MonoBehaviour:
     - m_Data: 52508
     - m_Data: 52510
     - m_Data: 52512
-    - m_Data: 52514
-    - m_Data: 52516
     - m_Data: 52518
     - m_Data: 52520
     - m_Data: 52522
     - m_Data: 52524
     - m_Data: 52526
-    - m_Data: 52528
-    - m_Data: 52530
     - m_Data: 52532
-    - m_Data: 52648
-    - m_Data: 52652
-    - m_Data: 60884
-    - m_Data: 60886
+    - m_Data: 52538
+    - m_Data: 52544
+    - m_Data: 52546
+    - m_Data: 52722
+    - m_Data: 55316
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1455,8 +1458,8 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: 50210
-    m_LastClickedInstanceID: 50210
+    - m_Data: -1428
+    m_LastClickedInstanceID: -1428
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: []
     m_RenameOverlay:
@@ -1557,13 +1560,12 @@ MonoBehaviour:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs:
-      - m_Data: 50210
+      - m_Data: -1428
       m_LastClickedID:
-        m_Data: 50210
+        m_Data: -1428
       m_ExpandedIDs:
-      - m_Data: -23460
       - m_Data: -1350
-      - m_Data: -12
+      - m_Data: 50248
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
