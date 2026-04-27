@@ -1,53 +1,90 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Fusion;
 using Fusion.Sockets;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Pokemon_Battle_Clone.Runtime.Online
 {
     public class LobbyManager : MonoBehaviour, INetworkRunnerCallbacks
     {
         public LobbySession lobbySession;
-        public bool useDefaultLobby = true;
         
         private NetworkRunner _runner;
-        
+        private bool Initialized => _runner != null;
+
         private async void Start()
         {
-            _runner = GetComponent<NetworkRunner>();
-            _runner.AddCallbacks(this);
-
-            lobbySession.myCode = useDefaultLobby ? "Default room" : GenerateSessionCode();
-            await JoinSession(lobbySession.myCode);
+            Init();
+            await JoinLobby();
         }
 
-        public async Task<StartGameResult> JoinSession(string sessionName)
+        private void Init()
         {
-            if (_runner.IsRunning)
+            _runner = CreateRunner();
+        }
+
+        private NetworkRunner CreateRunner()
+        {
+            var go = new GameObject("Network Runner");
+            var runner = go.AddComponent<NetworkRunner>();
+            go.AddComponent<NetworkSceneManagerDefault>();
+            runner.AddCallbacks(this);
+            return runner;
+        }
+
+        private async Task Shutdown()
+        {
+            if (Initialized)
                 await _runner.Shutdown();
-            
-            var sceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
-            var sceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>();
-            
+        }
+
+        private async Task JoinLobby()
+        {
+            if (!Initialized) Init();
+
+            await _runner.JoinSessionLobby(SessionLobby.Shared);
+        }
+
+        private async Task<StartGameResult> CreateAndJoinGame()
+        {
+            var result = await JoinGame(GenerateSessionCode());
+            return result;
+        }
+
+        private async Task<StartGameResult> JoinGame(string sessionName)
+        {
+            if (!Initialized) Init();
+
+            var result = await ConnectToGame(sessionName);
+            return result;
+        }
+
+        private async Task<StartGameResult> ConnectToGame(string sessionName)
+        {
             var result = await _runner.StartGame(new StartGameArgs
             {
                 GameMode    = GameMode.Shared,
                 SessionName = sessionName,
                 PlayerCount = 2,
-                Scene = SceneRef.FromIndex(sceneIndex),
-                SceneManager = sceneManager,
+                Scene = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex),
+                SceneManager = _runner.SceneManager,
             });
 
             if (result.Ok)
                 lobbySession.currentSessionCode = sessionName;
+            else
+            {
+                Debug.Log($"Try to connect to game, but couldn't: {result.ErrorMessage}");
+            }
             
             return result;
         }
-        
-        public Task<StartGameResult> ReturnToMySession() => JoinSession(lobbySession.myCode);
 
+        #region CALLBACKS
         public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
         {
             Debug.Log($"Jugador entró: {player} | Soy master client? {runner.LocalPlayer} -> {runner.IsSharedModeMasterClient}");
@@ -60,9 +97,6 @@ namespace Pokemon_Battle_Clone.Runtime.Online
             lobbySession.RaisePlayerLeft(player);
         }
 
-        // El resto de callbacks obligatorios — vacíos por ahora
-        #region CALLBACKS
-
         public void OnInput(NetworkRunner runner, NetworkInput input) { }
         public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }
         public void OnConnectedToServer(NetworkRunner runner) { }
@@ -70,7 +104,12 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token) { }
         public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason) { }
         public void OnUserSimulationMessage(NetworkRunner runner, SimulationMessagePtr message) { }
-        public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList) { }
+
+        public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
+        {
+            var currentSessions = string.Join(',', sessionList.Select(info => info.Name));
+            Debug.Log($"Current Sessions: {currentSessions}");
+        }
         public void OnCustomAuthenticationResponse(NetworkRunner runner, Dictionary<string, object> data) { }
         public void OnHostMigration(NetworkRunner runner, HostMigrationToken hostMigrationToken) { }
         public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ReliableKey key, ArraySegment<byte> data) { }
