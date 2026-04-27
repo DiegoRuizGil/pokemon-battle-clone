@@ -1,5 +1,4 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Pokemon_Battle_Clone.Runtime.Online.Lobby.UI
 {
@@ -8,9 +7,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby.UI
         public LobbySession lobbySession;
         
         [Header("UI")]
-        public TextMeshProUGUI sessionNameText;
-        public TextMeshProUGUI player1StatusText;
-        public TextMeshProUGUI player2StatusText;
+        public GameInfoDisplayer gameInfoDisplayer;
 
         private void OnEnable()
         {
@@ -22,17 +19,6 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby.UI
             lobbySession.OnGameStateChanged -= HandleGameStateChanged;
         }
 
-        private void HandleGameStateChanged(GameState state)
-        {
-            sessionNameText.text = $"Session: {state.SessionCode}";
-            
-            var p1Status = state.LocalPlayer.IsReady ? "Ready" : "Waiting";
-            player1StatusText.text = $"Local Player: {p1Status}";
-            
-            var p2Status = state.RemotePlayer.IsReady ? "Ready" : "Waiting";
-            player2StatusText.text = state.RemotePlayer.IsPresent ?
-                $"Remote Player: {p2Status}" :
-                "Waiting for rival...";
-        }
+        private void HandleGameStateChanged(GameState state) => gameInfoDisplayer.Display(state);
     }
 }

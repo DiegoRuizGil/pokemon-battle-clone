@@ -2971,6 +2971,7 @@ GameObject:
   - component: {fileID: 1711909989}
   - component: {fileID: 1711909988}
   - component: {fileID: 1711909990}
+  - component: {fileID: 1711909991}
   m_Layer: 5
   m_Name: Lobby Panel
   m_TagString: Untagged
@@ -3053,9 +3054,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Online.LobbyInfoUI
   lobbySession: {fileID: 11400000, guid: adfd31b3b6a85924e8fa56c87dbfc7e2, type: 2}
+  gameInfoDisplayer: {fileID: 1711909991}
+--- !u!114 &1711909991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711909986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cc718c9aa5340cd9766dc897c28cffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Online.Lobby.UI.GameInfoDisplayer
   sessionNameText: {fileID: 1222940457}
-  player1StatusText: {fileID: 1095997151}
-  player2StatusText: {fileID: 234048185}
+  p1StatusText: {fileID: 1095997151}
+  p2StatusText: {fileID: 234048185}
 --- !u!1001 &1715837361
 PrefabInstance:
   m_ObjectHideFlags: 0
