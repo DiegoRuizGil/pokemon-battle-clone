@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using Fusion;
 using UnityEngine;
 
-namespace Pokemon_Battle_Clone.Runtime.Online
+namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
 {
     [CreateAssetMenu(menuName = "Pokemon Battle Clone/Online/Lobby Session", fileName = "Lobby Session")]
     public class LobbySession : ScriptableObject
@@ -17,5 +16,12 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         public void RaisePlayerJoined(PlayerRef player) => OnPlayerJoined.Invoke(player);
         public void RaisePlayerLeft(PlayerRef player) => OnPlayerLeft.Invoke(player);
         public void RaiseGameStateChanged(GameState state) => OnGameStateChanged.Invoke(state);
+        
+        
+        public event Action OnJoinGame = delegate { };
+        public event Action OnLeaveGame = delegate { };
+        
+        public void RaiseJoinGame() => OnJoinGame.Invoke();
+        public void RaiseLeaveGame() => OnLeaveGame.Invoke();
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Fusion;
 using Pokemon_Battle_Clone.Runtime.Battles.Infrastructure;
 using Pokemon_Battle_Clone.Runtime.Database;
+using Pokemon_Battle_Clone.Runtime.Online.Lobby;
 using UnityEngine;
 
 namespace Pokemon_Battle_Clone.Runtime.Online

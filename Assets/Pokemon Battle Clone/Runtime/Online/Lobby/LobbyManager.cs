@@ -7,7 +7,7 @@ using Fusion.Sockets;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Pokemon_Battle_Clone.Runtime.Online
+namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
 {
     public class LobbyManager : MonoBehaviour, INetworkRunnerCallbacks
     {
