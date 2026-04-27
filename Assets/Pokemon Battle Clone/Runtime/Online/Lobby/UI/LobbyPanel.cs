@@ -8,6 +8,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby.UI
         
         [Header("UI")]
         public GameInfoDisplayer gameInfoDisplayer;
+        public JoinGamePanel joinGamePanel;
 
         private void OnEnable()
         {
