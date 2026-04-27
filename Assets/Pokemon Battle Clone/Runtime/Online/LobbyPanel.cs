@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Pokemon_Battle_Clone.Runtime.Online
 {
-    public class LobbyInfoUI : MonoBehaviour
+    public class LobbyPanel : MonoBehaviour
     {
         public LobbySession lobbySession;
         
@@ -25,10 +25,14 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         private void HandleLobbyStateChanged(LobbyState state)
         {
             sessionNameText.text = $"Session: {state.SessionCode}";
-            player1StatusText.text = $"Local Player: {state.LocalPlayer.IsReady}";
+            
+            var p1Status = state.LocalPlayer.IsReady ? "Ready" : "Waiting";
+            player1StatusText.text = $"Local Player: {p1Status}";
+            
+            var p2Status = state.RemotePlayer.IsReady ? "Ready" : "Waiting";
             player2StatusText.text = state.RemotePlayer.IsPresent ?
-                $"Remote Player: {state.RemotePlayer.IsReady}" :
-                $"Waiting for rival...";
+                $"Remote Player: {p2Status}" :
+                "Waiting for rival...";
         }
     }
 }

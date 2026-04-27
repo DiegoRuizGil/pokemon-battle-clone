@@ -2420,7 +2420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Online.LobbyManager
   lobbySession: {fileID: 11400000, guid: adfd31b3b6a85924e8fa56c87dbfc7e2, type: 2}
-  useDefaultLobby: 1
+  useDefaultLobby: 0
 --- !u!114 &1567053995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2651,7 +2651,7 @@ GameObject:
   - component: {fileID: 1711909988}
   - component: {fileID: 1711909990}
   m_Layer: 5
-  m_Name: Lobby Info
+  m_Name: Lobby Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
