@@ -1,6 +1,6 @@
 ﻿namespace Pokemon_Battle_Clone.Runtime.Online
 {
-    public struct LobbyState
+    public struct GameState
     {
         public string SessionCode;
         public PlayerState LocalPlayer;

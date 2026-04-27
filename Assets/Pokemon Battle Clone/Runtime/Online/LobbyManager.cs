@@ -19,7 +19,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         private async void Start()
         {
             Init();
-            await JoinLobby();
+            await JoinLobbyAsync();
         }
 
         private void Init()
@@ -36,34 +36,34 @@ namespace Pokemon_Battle_Clone.Runtime.Online
             return runner;
         }
 
-        private async Task Shutdown()
+        private async Task ShutdownAsync()
         {
             if (Initialized)
                 await _runner.Shutdown();
         }
 
-        private async Task JoinLobby()
+        private async Task JoinLobbyAsync()
         {
             if (!Initialized) Init();
 
             await _runner.JoinSessionLobby(SessionLobby.Shared);
         }
 
-        private async Task<StartGameResult> CreateAndJoinGame()
+        private async Task<StartGameResult> CreateAndJoinGameAsync()
         {
-            var result = await JoinGame(GenerateSessionCode());
+            var result = await JoinGameAsync(GenerateSessionCode());
             return result;
         }
 
-        private async Task<StartGameResult> JoinGame(string sessionName)
+        private async Task<StartGameResult> JoinGameAsync(string sessionName)
         {
             if (!Initialized) Init();
 
-            var result = await ConnectToGame(sessionName);
+            var result = await ConnectToGameAsync(sessionName);
             return result;
         }
 
-        private async Task<StartGameResult> ConnectToGame(string sessionName)
+        private async Task<StartGameResult> ConnectToGameAsync(string sessionName)
         {
             var result = await _runner.StartGame(new StartGameArgs
             {
@@ -82,6 +82,18 @@ namespace Pokemon_Battle_Clone.Runtime.Online
             }
             
             return result;
+        }
+
+
+        public async void CreateGame()
+        {
+            await CreateAndJoinGameAsync();
+        }
+        
+        public async void ReturnToLobby()
+        {
+            await ShutdownAsync();
+            await JoinLobbyAsync();
         }
 
         #region CALLBACKS

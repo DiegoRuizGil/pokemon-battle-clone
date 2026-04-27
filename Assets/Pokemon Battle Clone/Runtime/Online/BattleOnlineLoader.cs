@@ -105,10 +105,10 @@ namespace Pokemon_Battle_Clone.Runtime.Online
             foreach (var kvp in Players)
                 state[kvp.Key] = kvp.Value;
             
-            lobbySession.RaiseLobbyStateChanged(GetState());
+            lobbySession.RaiseGameStateChanged(GetState());
         }
 
-        private LobbyState GetState()
+        private GameState GetState()
         {
             var localPlayerState = new PlayerState { IsPresent = true };
             if (TryGetLocalPlayerInfo(out var localInfo))
@@ -121,7 +121,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online
                 remotePlayerState.IsReady = remoteInfo.IsReady;
             }
             
-            var state = new LobbyState
+            var state = new GameState
             {
                 SessionCode = lobbySession.currentSessionCode,
                 LocalPlayer = localPlayerState,

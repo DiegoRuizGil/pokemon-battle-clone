@@ -14,15 +14,15 @@ namespace Pokemon_Battle_Clone.Runtime.Online
 
         private void OnEnable()
         {
-            lobbySession.OnLobbyStateChanged += HandleLobbyStateChanged;
+            lobbySession.OnGameStateChanged += HandleGameStateChanged;
         }
 
         private void OnDisable()
         {
-            lobbySession.OnLobbyStateChanged -= HandleLobbyStateChanged;
+            lobbySession.OnGameStateChanged -= HandleGameStateChanged;
         }
 
-        private void HandleLobbyStateChanged(LobbyState state)
+        private void HandleGameStateChanged(GameState state)
         {
             sessionNameText.text = $"Session: {state.SessionCode}";
             
