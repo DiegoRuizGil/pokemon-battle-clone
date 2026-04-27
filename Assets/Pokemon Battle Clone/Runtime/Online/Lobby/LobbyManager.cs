@@ -95,7 +95,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
             await JoinGameAsync(sessionName);
         }
         
-        public async void ReturnToLobby()
+        public async void LeaveGame()
         {
             await ShutdownAsync();
             await JoinLobbyAsync();
