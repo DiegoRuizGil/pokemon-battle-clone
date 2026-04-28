@@ -28,11 +28,14 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         private NetworkDictionary<PlayerRef, PlayerLobbyInfo> Players => default;
 
         [Networked] private NetworkString<_8> GameSessionCode { get; set; }
-        private int BattleSeed => GameSessionCode.Value.GetHashCode();
+        [Networked] private int BattleSeed { get; set; }
         
         public void Init(string sessionCode)
         {
+            if (!HasStateAuthority) return;
+            
             GameSessionCode = sessionCode;
+            BattleSeed = GenerateSeed();
             HandlePlayerJoined(Runner, Runner.LocalPlayer); // first player to join
         }
 
@@ -150,5 +153,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online
             info = default;
             return false;
         }
+        
+        private static int GenerateSeed() => System.Guid.NewGuid().GetHashCode();
     }
 }
