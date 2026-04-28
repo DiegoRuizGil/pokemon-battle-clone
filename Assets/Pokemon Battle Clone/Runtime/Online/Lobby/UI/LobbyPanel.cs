@@ -10,30 +10,15 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby.UI
         public SessionPanel sessionPanel;
         public JoinGamePanel joinGamePanel;
 
-        private void Start() => ShowJoinGamePanel();
+        private void Start() => Refresh(gameSession.State);
 
-        private void OnEnable()
-        {
-            gameSession.OnJoinGame += ShowSessionPanel;
-            gameSession.OnLeaveGame += ShowJoinGamePanel;
-        }
+        private void OnEnable() => gameSession.OnSessionStateChanged += Refresh;
+        private void OnDisable() => gameSession.OnSessionStateChanged -= Refresh;
 
-        private void OnDisable()
+        private void Refresh(SessionState state)
         {
-            gameSession.OnJoinGame -= ShowSessionPanel;
-            gameSession.OnLeaveGame -= ShowJoinGamePanel;
-        }
-
-        private void ShowJoinGamePanel()
-        {
-            joinGamePanel.gameObject.SetActive(true);
-            sessionPanel.gameObject.SetActive(false);
-        }
-        
-        private void ShowSessionPanel()
-        {
-            joinGamePanel.gameObject.SetActive(false);
-            sessionPanel.gameObject.SetActive(true);
+            joinGamePanel.gameObject.SetActive(state == SessionState.InLobby);
+            sessionPanel.gameObject.SetActive(state == SessionState.InSession);
         }
     }
 }
