@@ -145,7 +145,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
             if (_runner.IsSharedModeMasterClient && _battleOnlineLoader == null)
             {
                 _battleOnlineLoader = _runner.Spawn(battleOnlineLoaderPrefab);
-                _battleOnlineLoader.Init(_lastSessionCodeGenerated);
+                _battleOnlineLoader.Init();
             }
         }
 

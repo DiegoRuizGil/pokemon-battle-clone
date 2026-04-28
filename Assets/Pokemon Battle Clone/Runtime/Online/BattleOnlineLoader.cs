@@ -27,14 +27,12 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         [Networked, OnChangedRender(nameof(OnPlayerChanged)), Capacity(2)]
         private NetworkDictionary<PlayerRef, PlayerLobbyInfo> Players => default;
 
-        [Networked] private NetworkString<_8> GameSessionCode { get; set; }
         [Networked] private int BattleSeed { get; set; }
         
-        public void Init(string sessionCode)
+        public void Init()
         {
             if (!HasStateAuthority) return;
             
-            GameSessionCode = sessionCode;
             BattleSeed = GenerateSeed();
             HandlePlayerJoined(Runner, Runner.LocalPlayer); // first player to join
         }
@@ -123,7 +121,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online
             
             var state = new GameState
             {
-                SessionCode = GameSessionCode.Value,
+                SessionCode = Runner.SessionInfo.Name,
                 LocalPlayer = localPlayerState,
                 RemotePlayer = remotePlayerState
             };
