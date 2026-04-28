@@ -28,10 +28,15 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
         private void Init()
         {
             eventsChannel.OnSessionListUpdated += OnSessionListUpdated;
+            eventsChannel.OnPlayerJoined += OnPlayerJoined;
             _runner = CreateRunner();
         }
 
-        private void OnDestroy() => eventsChannel.OnSessionListUpdated -= OnSessionListUpdated;
+        private void OnDestroy()
+        {
+            eventsChannel.OnSessionListUpdated -= OnSessionListUpdated;
+            eventsChannel.OnPlayerJoined -= OnPlayerJoined;
+        }
 
         private NetworkRunner CreateRunner()
         {
@@ -59,7 +64,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
             if (!Initialized) Init();
 
             await _runner.JoinSessionLobby(SessionLobby.Shared);
-            Debug.Log("Connected to lobby");
+            Debug.Log("Connected to lobby", this);
         }
 
         private async Task<StartGameResult> CreateAndJoinGameAsync()
@@ -88,16 +93,9 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
             });
 
             if (result.Ok)
-            {
                 lobbySession.currentSessionCode = sessionName;
-                
-                if (_runner.IsSharedModeMasterClient && _battleOnlineLoader == null)
-                    _battleOnlineLoader = _runner.Spawn(battleOnlineLoaderPrefab);
-            }
             else
-            {
                 Debug.Log($"Try to connect to game, but couldn't: {result.ErrorMessage}");
-            }
             
             return result;
         }
@@ -129,6 +127,15 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
         {
             var currentSessions = string.Join(',', sessionList.Select(info => info.Name));
             Debug.Log($"Current Sessions: {currentSessions}");
+        }
+        
+        private void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
+        {
+            if (_runner.IsSharedModeMasterClient && _battleOnlineLoader == null)
+            {
+                _battleOnlineLoader = _runner.Spawn(battleOnlineLoaderPrefab);
+                _battleOnlineLoader.HandlePlayerJoined(runner, player);
+            }
         }
 
         private static string GenerateSessionCode()

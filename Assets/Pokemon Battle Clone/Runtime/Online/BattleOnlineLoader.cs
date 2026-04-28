@@ -31,8 +31,12 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         
         public override void Spawned()
         {
+            Debug.Log("BattleOnlineLoader.Spawned", this);
+            
             networkEventsChannel.OnPlayerJoined += HandlePlayerJoined;
             networkEventsChannel.OnPlayerLeft += HandlePlayerLeft;
+            
+            OnPlayerChanged();
         }
 
         public override void Despawned(NetworkRunner runner, bool hasState)
@@ -41,7 +45,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online
             networkEventsChannel.OnPlayerLeft -= HandlePlayerLeft;
         }
 
-        private void HandlePlayerJoined(NetworkRunner runner, PlayerRef player)
+        public void HandlePlayerJoined(NetworkRunner runner, PlayerRef player)
         {
             Debug.Log($"Jugador entró: {player}");
             if (HasStateAuthority)
@@ -91,10 +95,8 @@ namespace Pokemon_Battle_Clone.Runtime.Online
 
         private bool IsPlayerReady(PlayerRef player)
         {
-            var playersString = new StringBuilder();
-            foreach (var kvp in Players)
-                playersString.AppendLine($"{kvp.Key}: {kvp.Value.IsReady}");
-            Debug.Log(playersString.ToString());
+            
+            Debug.Log(PlayersToString());
             
             return Players.TryGet(player, out var info) && info.IsReady;
         }
@@ -115,13 +117,13 @@ namespace Pokemon_Battle_Clone.Runtime.Online
             battleSettings.rivalTeamConfig = teamConfig;
         }
 
+        [ContextMenu("On Player Changed")]
         private void OnPlayerChanged()
         {
-            var state = new Dictionary<PlayerRef, PlayerLobbyInfo>();
-            foreach (var kvp in Players)
-                state[kvp.Key] = kvp.Value;
+            Debug.Log(PlayersToString());
             
-            lobbySession.RaiseGameStateChanged(GetState());
+            var state = GetState();
+            lobbySession.RaiseGameStateChanged(state);
         }
 
         private GameState GetState()
@@ -163,5 +165,14 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         }
 
         private static int GenerateSeed() => new System.Random().Next();
+
+        private string PlayersToString()
+        {
+            var playersString = new StringBuilder();
+            foreach (var kvp in Players)
+                playersString.AppendLine($"{kvp.Key}: {kvp.Value.IsReady}");
+
+            return playersString.ToString();
+        }
     }
 }
