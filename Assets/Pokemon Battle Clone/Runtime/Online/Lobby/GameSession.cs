@@ -16,10 +16,6 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
         public SessionState State { get; private set; } = SessionState.Disconnected;
         public GameState CurrentGameState { get; private set; }
         
-        public bool IsConnecting => State == SessionState.Connecting;
-        public bool IsInLobby => State == SessionState.InLobby;
-        public bool IsInSession => State == SessionState.InSession;
-        
         public event Action<SessionState> OnSessionStateChanged;
         public event Action<GameState> OnGameStateChanged;
         
