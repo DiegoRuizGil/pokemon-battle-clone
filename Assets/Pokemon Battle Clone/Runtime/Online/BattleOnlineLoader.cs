@@ -102,7 +102,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online
 
         private void OnPlayerChanged()
         {
-            gameSession.RaiseGameStateChanged(GetState());
+            gameSession.SetGameState(GetState());
             
             if (HasStateAuthority && CheckAllReady())
                 StartBattle();
