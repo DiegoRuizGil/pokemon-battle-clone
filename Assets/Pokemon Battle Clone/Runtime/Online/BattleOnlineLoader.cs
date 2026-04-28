@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using Fusion;
 using Pokemon_Battle_Clone.Runtime.Battles.Infrastructure;
 using Pokemon_Battle_Clone.Runtime.Database;
 using Pokemon_Battle_Clone.Runtime.Online.Lobby;
+using Pokemon_Battle_Clone.Runtime.Online.Lobby.Events;
 using UnityEngine;
 
 namespace Pokemon_Battle_Clone.Runtime.Online
@@ -20,6 +22,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online
 
         [Header("Dependencies")]
         [SerializeField] private LobbySession lobbySession;
+        [SerializeField] private NetworkEventsChannel networkEventsChannel;
         [SerializeField] private BattleSettings battleSettings;
         [SerializeField] private TeamCollection teamCollection;
 
@@ -28,24 +31,26 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         
         public override void Spawned()
         {
-            lobbySession.OnPlayerJoined += HandlePlayerJoined;
-            lobbySession.OnPlayerLeft += HandlePlayerLeft;
+            networkEventsChannel.OnPlayerJoined += HandlePlayerJoined;
+            networkEventsChannel.OnPlayerLeft += HandlePlayerLeft;
         }
 
         public override void Despawned(NetworkRunner runner, bool hasState)
         {
-            lobbySession.OnPlayerJoined -= HandlePlayerJoined;
-            lobbySession.OnPlayerLeft -= HandlePlayerLeft;
+            networkEventsChannel.OnPlayerJoined -= HandlePlayerJoined;
+            networkEventsChannel.OnPlayerLeft -= HandlePlayerLeft;
         }
 
-        private void HandlePlayerJoined(PlayerRef player)
+        private void HandlePlayerJoined(NetworkRunner runner, PlayerRef player)
         {
+            Debug.Log($"Jugador entró: {player}");
             if (HasStateAuthority)
                 Players.Set(player, new PlayerLobbyInfo { IsReady = false });
         }
 
-        private void HandlePlayerLeft(PlayerRef player)
+        private void HandlePlayerLeft(NetworkRunner runner, PlayerRef player)
         {
+            Debug.Log($"Jugador salió: {player}");
             if (HasStateAuthority)
                 Players.Remove(player);
         }
@@ -53,6 +58,8 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         public void SetReady()
         {
             if (IsPlayerReady(Runner.LocalPlayer)) return;
+            
+            Debug.Log($"{Runner.LocalPlayer} set ready");
             
             var teamIndex = teamCollection.IndexOf(battleSettings.playerTeamConfig);
             RPC_SetReady(Runner.LocalPlayer, teamIndex);
@@ -82,7 +89,15 @@ namespace Pokemon_Battle_Clone.Runtime.Online
                 Runner.LoadScene(battleSceneName);
         }
 
-        private bool IsPlayerReady(PlayerRef player) => Players.TryGet(player, out var info) && info.IsReady;
+        private bool IsPlayerReady(PlayerRef player)
+        {
+            var playersString = new StringBuilder();
+            foreach (var kvp in Players)
+                playersString.AppendLine($"{kvp.Key}: {kvp.Value.IsReady}");
+            Debug.Log(playersString.ToString());
+            
+            return Players.TryGet(player, out var info) && info.IsReady;
+        }
 
         private void CheckAllReady()
         {

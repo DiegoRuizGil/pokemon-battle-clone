@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Fusion;
-using Fusion.Sockets;
 using Pokemon_Battle_Clone.Runtime.Online.Lobby.Events;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
 {
-    public class LobbyManager : MonoBehaviour, INetworkRunnerCallbacks
+    public class LobbyManager : MonoBehaviour
     {
         public LobbySession lobbySession;
         public NetworkEventsChannel eventsChannel;
@@ -29,25 +27,31 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
 
         private void Init()
         {
+            eventsChannel.OnSessionListUpdated += OnSessionListUpdated;
             _runner = CreateRunner();
         }
+
+        private void OnDestroy() => eventsChannel.OnSessionListUpdated -= OnSessionListUpdated;
 
         private NetworkRunner CreateRunner()
         {
             var go = new GameObject("Network Runner");
             var runner = go.AddComponent<NetworkRunner>();
-            var eventsComponent = go.AddComponent<NetworkSessionEvents>();
             go.AddComponent<NetworkSceneManagerDefault>();
+            var eventsCallbacks = go.AddComponent<NetworkSessionEvents>();
             
-            runner.AddCallbacks(this);
-            eventsComponent.EventsChannel = eventsChannel;
+            eventsCallbacks.EventsChannel = eventsChannel;
+            runner.AddCallbacks(eventsCallbacks);
+            
             return runner;
         }
 
         private async Task ShutdownAsync()
         {
-            if (Initialized)
-                await _runner.Shutdown();
+            if (!Initialized) return;
+            
+            await _runner.Shutdown();
+            _runner = null;
         }
 
         private async Task JoinLobbyAsync()
@@ -55,6 +59,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
             if (!Initialized) Init();
 
             await _runner.JoinSessionLobby(SessionLobby.Shared);
+            Debug.Log("Connected to lobby");
         }
 
         private async Task<StartGameResult> CreateAndJoinGameAsync()
@@ -83,7 +88,12 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
             });
 
             if (result.Ok)
+            {
                 lobbySession.currentSessionCode = sessionName;
+                
+                if (_runner.IsSharedModeMasterClient && _battleOnlineLoader == null)
+                    _battleOnlineLoader = _runner.Spawn(battleOnlineLoaderPrefab);
+            }
             else
             {
                 Debug.Log($"Try to connect to game, but couldn't: {result.ErrorMessage}");
@@ -115,46 +125,11 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
             lobbySession.RaiseLeaveGame();
         }
 
-        #region CALLBACKS
-        public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
-        {
-            Debug.Log($"Jugador entró: {player} | Soy master client? {runner.LocalPlayer} -> {runner.IsSharedModeMasterClient}");
-            lobbySession.RaisePlayerJoined(player);
-
-            if (_runner.IsSharedModeMasterClient && _battleOnlineLoader == null)
-                _battleOnlineLoader = _runner.Spawn(battleOnlineLoaderPrefab);
-        }
-
-        public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
-        {
-            Debug.Log($"Jugador salió: {player} | Soy master client? {runner.LocalPlayer} -> {runner.IsSharedModeMasterClient}");
-            lobbySession.RaisePlayerLeft(player);
-        }
-
-        public void OnInput(NetworkRunner runner, NetworkInput input) { }
-        public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }
-        public void OnConnectedToServer(NetworkRunner runner) { }
-        public void OnDisconnectedFromServer(NetworkRunner runner, NetDisconnectReason reason) { }
-        public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token) { }
-        public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason) { }
-        public void OnUserSimulationMessage(NetworkRunner runner, SimulationMessagePtr message) { }
-
-        public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
+        private void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
         {
             var currentSessions = string.Join(',', sessionList.Select(info => info.Name));
             Debug.Log($"Current Sessions: {currentSessions}");
         }
-        public void OnCustomAuthenticationResponse(NetworkRunner runner, Dictionary<string, object> data) { }
-        public void OnHostMigration(NetworkRunner runner, HostMigrationToken hostMigrationToken) { }
-        public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ReliableKey key, ArraySegment<byte> data) { }
-        public void OnReliableDataProgress(NetworkRunner runner, PlayerRef player, ReliableKey key, float progress) { }
-        public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason) { }
-        public void OnSceneLoadDone(NetworkRunner runner) { }
-        public void OnSceneLoadStart(NetworkRunner runner) { }
-        public void OnObjectExitAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player) { }
-        public void OnObjectEnterAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player) { }
-
-        #endregion
 
         private static string GenerateSessionCode()
         {
