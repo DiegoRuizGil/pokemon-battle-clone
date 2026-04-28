@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Fusion;
 using Fusion.Sockets;
+using Pokemon_Battle_Clone.Runtime.Online.Lobby.Events;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,9 +13,13 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
     public class LobbyManager : MonoBehaviour, INetworkRunnerCallbacks
     {
         public LobbySession lobbySession;
+        public NetworkEventsChannel eventsChannel;
+        public BattleOnlineLoader battleOnlineLoaderPrefab;
         
         private NetworkRunner _runner;
         private bool Initialized => _runner != null;
+        
+        private BattleOnlineLoader _battleOnlineLoader;
 
         private async void Start()
         {
@@ -31,8 +36,11 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
         {
             var go = new GameObject("Network Runner");
             var runner = go.AddComponent<NetworkRunner>();
+            var eventsComponent = go.AddComponent<NetworkSessionEvents>();
             go.AddComponent<NetworkSceneManagerDefault>();
+            
             runner.AddCallbacks(this);
+            eventsComponent.EventsChannel = eventsChannel;
             return runner;
         }
 
@@ -88,17 +96,23 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
         public async void CreateGame()
         {
             await CreateAndJoinGameAsync();
+            
+            lobbySession.RaiseJoinGame();
         }
 
         public async void JoinGame(string sessionName)
         {
             await JoinGameAsync(sessionName);
+            
+            lobbySession.RaiseJoinGame();
         }
         
         public async void LeaveGame()
         {
             await ShutdownAsync();
             await JoinLobbyAsync();
+            
+            lobbySession.RaiseLeaveGame();
         }
 
         #region CALLBACKS
@@ -106,6 +120,9 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
         {
             Debug.Log($"Jugador entró: {player} | Soy master client? {runner.LocalPlayer} -> {runner.IsSharedModeMasterClient}");
             lobbySession.RaisePlayerJoined(player);
+
+            if (_runner.IsSharedModeMasterClient && _battleOnlineLoader == null)
+                _battleOnlineLoader = _runner.Spawn(battleOnlineLoaderPrefab);
         }
 
         public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
