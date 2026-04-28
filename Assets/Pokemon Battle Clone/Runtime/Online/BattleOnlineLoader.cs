@@ -24,7 +24,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         [SerializeField] private BattleSettings battleSettings;
         [SerializeField] private TeamCollection teamCollection;
 
-        [Networked, OnChangedRender(nameof(OnPlayerChanged)), Capacity(2)]
+        [Networked, OnChangedRender(nameof(OnGameStateChanged)), Capacity(2)]
         private NetworkDictionary<PlayerRef, PlayerLobbyInfo> Players => default;
 
         [Networked] private int BattleSeed { get; set; }
@@ -98,7 +98,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online
             return true;
         }
 
-        private void OnPlayerChanged()
+        private void OnGameStateChanged()
         {
             gameSession.SetGameState(GetState());
             
