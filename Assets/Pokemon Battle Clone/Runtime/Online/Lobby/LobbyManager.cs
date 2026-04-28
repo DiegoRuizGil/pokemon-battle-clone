@@ -15,17 +15,12 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
         public BattleOnlineLoader battleOnlineLoaderPrefab;
         
         private NetworkRunner _runner;
-        private bool Initialized => _runner != null;
-        
         private BattleOnlineLoader _battleOnlineLoader;
 
         private string _lastSessionCodeGenerated;
 
         private async void Start()
         {
-            // Init();
-            // await JoinLobbyAsync();
-
             _runner = GetOrCreateRunner();
 
             if (_runner.IsRunning)
@@ -55,26 +50,24 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
 
         public async void CreateGame()
         {
+            gameSession.SetSessionState(SessionState.Connecting);
             await CreateAndJoinGameAsync();
-            
-            gameSession.RaiseJoinGame();
+            gameSession.SetSessionState(SessionState.InSession);
         }
 
         public async void JoinGame(string sessionName)
         {
+            gameSession.SetSessionState(SessionState.Connecting);
             await JoinGameAsync(sessionName);
-            
-            gameSession.RaiseJoinGame();
+            gameSession.SetSessionState(SessionState.InSession);
         }
         
         public async void LeaveGame()
         {
+            gameSession.SetSessionState(SessionState.Connecting);
             await ShutdownAsync();
-            await JoinLobbyAsync();
-            
-            gameSession.RaiseLeaveGame();
+            await ConnectToLobbyAsync();
         }
-
 
         private async Task ConnectToLobbyAsync()
         {
@@ -83,16 +76,12 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
             gameSession.SetSessionState(SessionState.InLobby);
         }
         
-        
         private NetworkRunner GetOrCreateRunner()
         {
             return FindFirstObjectByType<NetworkRunner>() == null ?
                 CreateRunner() :
                 FindFirstObjectByType<NetworkRunner>();
         }
-        
-        
-        
         
         private NetworkRunner CreateRunner()
         {
@@ -109,18 +98,8 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
 
         private async Task ShutdownAsync()
         {
-            if (!Initialized) return;
-            
             await _runner.Shutdown();
             _runner = null;
-        }
-
-        private async Task JoinLobbyAsync()
-        {
-            if (!Initialized) Init();
-
-            await _runner.JoinSessionLobby(SessionLobby.Shared);
-            Debug.Log("Connected to lobby", this);
         }
 
         private async Task<StartGameResult> CreateAndJoinGameAsync()
@@ -132,8 +111,6 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
 
         private async Task<StartGameResult> JoinGameAsync(string sessionName)
         {
-            if (!Initialized) Init();
-
             var result = await ConnectToGameAsync(sessionName);
             return result;
         }
@@ -156,9 +133,6 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
             
             return result;
         }
-
-
-        
 
         private void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
         {
