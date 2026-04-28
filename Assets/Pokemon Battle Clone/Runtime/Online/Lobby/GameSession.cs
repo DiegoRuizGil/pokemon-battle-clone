@@ -21,7 +21,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
         public bool IsInSession => State == SessionState.InSession;
         
         public event Action<SessionState> OnSessionStateChanged;
-        public event Action<GameState> OnGameStateChanged; 
+        public event Action<GameState> OnGameStateChanged;
         
         public void SetSessionState(SessionState state)
         {
@@ -34,11 +34,5 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
             CurrentGameState = state;
             OnGameStateChanged?.Invoke(CurrentGameState);
         }
-        
-        public event Action OnJoinGame = delegate { };
-        public event Action OnLeaveGame = delegate { };
-        
-        public void RaiseJoinGame() => OnJoinGame.Invoke();
-        public void RaiseLeaveGame() => OnLeaveGame.Invoke();
     }
 }
