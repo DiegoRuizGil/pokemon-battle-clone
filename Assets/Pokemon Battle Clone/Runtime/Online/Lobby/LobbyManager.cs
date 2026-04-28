@@ -10,7 +10,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
 {
     public class LobbyManager : MonoBehaviour
     {
-        public LobbySession lobbySession;
+        public GameSession gameSession;
         public NetworkEventsChannel eventsChannel;
         public BattleOnlineLoader battleOnlineLoaderPrefab;
         
@@ -108,14 +108,14 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
         {
             await CreateAndJoinGameAsync();
             
-            lobbySession.RaiseJoinGame();
+            gameSession.RaiseJoinGame();
         }
 
         public async void JoinGame(string sessionName)
         {
             await JoinGameAsync(sessionName);
             
-            lobbySession.RaiseJoinGame();
+            gameSession.RaiseJoinGame();
         }
         
         public async void LeaveGame()
@@ -123,7 +123,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
             await ShutdownAsync();
             await JoinLobbyAsync();
             
-            lobbySession.RaiseLeaveGame();
+            gameSession.RaiseLeaveGame();
         }
 
         private void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)

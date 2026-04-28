@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Online.BattleOnlineLoader
   battleSceneName: Online Combat Scene
-  lobbySession: {fileID: 11400000, guid: adfd31b3b6a85924e8fa56c87dbfc7e2, type: 2}
+  gameSession: {fileID: 11400000, guid: adfd31b3b6a85924e8fa56c87dbfc7e2, type: 2}
   networkEventsChannel: {fileID: 11400000, guid: 4855d7887b8dc1643a559ce8d92c10cb, type: 2}
   battleSettings: {fileID: 11400000, guid: f0d9cbbf571a04546b60d80a545412fc, type: 2}
   teamCollection: {fileID: 11400000, guid: 94ae0aeb58878ee4bac6a95e805e6ae1, type: 2}

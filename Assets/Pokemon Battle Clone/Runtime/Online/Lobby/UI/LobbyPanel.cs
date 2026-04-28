@@ -4,7 +4,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby.UI
 {
     public class LobbyPanel : MonoBehaviour
     {
-        public LobbySession lobbySession;
+        public GameSession gameSession;
         
         [Header("UI")]
         public SessionPanel sessionPanel;
@@ -14,14 +14,14 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby.UI
 
         private void OnEnable()
         {
-            lobbySession.OnJoinGame += ShowSessionPanel;
-            lobbySession.OnLeaveGame += ShowJoinGamePanel;
+            gameSession.OnJoinGame += ShowSessionPanel;
+            gameSession.OnLeaveGame += ShowJoinGamePanel;
         }
 
         private void OnDisable()
         {
-            lobbySession.OnJoinGame -= ShowSessionPanel;
-            lobbySession.OnLeaveGame -= ShowJoinGamePanel;
+            gameSession.OnJoinGame -= ShowSessionPanel;
+            gameSession.OnLeaveGame -= ShowJoinGamePanel;
         }
 
         private void ShowJoinGamePanel()

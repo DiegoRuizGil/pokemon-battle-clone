@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Fusion;
 using Pokemon_Battle_Clone.Runtime.Battles.Infrastructure;
 using Pokemon_Battle_Clone.Runtime.Database;
@@ -21,7 +19,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         [SerializeField] private string battleSceneName;
 
         [Header("Dependencies")]
-        [SerializeField] private LobbySession lobbySession;
+        [SerializeField] private GameSession gameSession;
         [SerializeField] private NetworkEventsChannel networkEventsChannel;
         [SerializeField] private BattleSettings battleSettings;
         [SerializeField] private TeamCollection teamCollection;
@@ -39,7 +37,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online
 
         public override void Spawned()
         {
-            Debug.Log("BattleOnlineLoader.Spawned", this);
+            gameSession.BattleLoader = this;
             
             networkEventsChannel.OnPlayerJoined += HandlePlayerJoined;
             networkEventsChannel.OnPlayerLeft += HandlePlayerLeft;
@@ -117,14 +115,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online
             battleSettings.rivalTeamConfig = teamConfig;
         }
 
-        [ContextMenu("On Player Changed")]
-        private void OnPlayerChanged()
-        {
-            Debug.Log(PlayersToString());
-            
-            var state = GetState();
-            lobbySession.RaiseGameStateChanged(state);
-        }
+        private void OnPlayerChanged() => gameSession.RaiseGameStateChanged(GetState());
 
         private GameState GetState()
         {
@@ -165,14 +156,5 @@ namespace Pokemon_Battle_Clone.Runtime.Online
         }
 
         private static int GenerateSeed() => new System.Random().Next();
-
-        private string PlayersToString()
-        {
-            var playersString = new StringBuilder();
-            foreach (var kvp in Players)
-                playersString.AppendLine($"{kvp.Key}: {kvp.Value.IsReady}");
-
-            return playersString.ToString();
-        }
     }
 }
