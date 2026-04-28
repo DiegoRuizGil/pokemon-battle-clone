@@ -19,6 +19,8 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
         
         private BattleOnlineLoader _battleOnlineLoader;
 
+        private string _lastSessionCodeGenerated;
+
         private async void Start()
         {
             Init();
@@ -69,7 +71,8 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
 
         private async Task<StartGameResult> CreateAndJoinGameAsync()
         {
-            var result = await JoinGameAsync(GenerateSessionCode());
+            _lastSessionCodeGenerated = GenerateSessionCode();
+            var result = await JoinGameAsync(_lastSessionCodeGenerated);
             return result;
         }
 
@@ -93,7 +96,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
             });
 
             if (result.Ok)
-                lobbySession.currentSessionCode = sessionName;
+                _lastSessionCodeGenerated = sessionName;
             else
                 Debug.Log($"Try to connect to game, but couldn't: {result.ErrorMessage}");
             
@@ -134,7 +137,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
             if (_runner.IsSharedModeMasterClient && _battleOnlineLoader == null)
             {
                 _battleOnlineLoader = _runner.Spawn(battleOnlineLoaderPrefab);
-                _battleOnlineLoader.HandlePlayerJoined(runner, player);
+                _battleOnlineLoader.Init(_lastSessionCodeGenerated);
             }
         }
 

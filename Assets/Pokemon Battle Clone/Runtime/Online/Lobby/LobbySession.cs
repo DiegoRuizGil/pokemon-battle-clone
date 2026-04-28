@@ -6,8 +6,6 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
     [CreateAssetMenu(menuName = "Pokemon Battle Clone/Online/Lobby Session", fileName = "Lobby Session")]
     public class LobbySession : ScriptableObject
     {
-        public string currentSessionCode;
-
         public event Action<GameState> OnGameStateChanged = delegate { };
 
         public void RaiseGameStateChanged(GameState state) => OnGameStateChanged.Invoke(state);

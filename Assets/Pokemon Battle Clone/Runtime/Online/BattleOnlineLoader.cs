@@ -28,15 +28,21 @@ namespace Pokemon_Battle_Clone.Runtime.Online
 
         [Networked, OnChangedRender(nameof(OnPlayerChanged)), Capacity(2)]
         private NetworkDictionary<PlayerRef, PlayerLobbyInfo> Players => default;
-        
+
+        [Networked] private NetworkString<_8> GameSessionCode { get; set; }
+
+        public void Init(string sessionCode)
+        {
+            GameSessionCode = sessionCode;
+            HandlePlayerJoined(Runner, Runner.LocalPlayer);
+        }
+
         public override void Spawned()
         {
             Debug.Log("BattleOnlineLoader.Spawned", this);
             
             networkEventsChannel.OnPlayerJoined += HandlePlayerJoined;
             networkEventsChannel.OnPlayerLeft += HandlePlayerLeft;
-            
-            OnPlayerChanged();
         }
 
         public override void Despawned(NetworkRunner runner, bool hasState)
@@ -45,7 +51,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online
             networkEventsChannel.OnPlayerLeft -= HandlePlayerLeft;
         }
 
-        public void HandlePlayerJoined(NetworkRunner runner, PlayerRef player)
+        private void HandlePlayerJoined(NetworkRunner runner, PlayerRef player)
         {
             Debug.Log($"Jugador entró: {player}");
             if (HasStateAuthority)
@@ -93,13 +99,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online
                 Runner.LoadScene(battleSceneName);
         }
 
-        private bool IsPlayerReady(PlayerRef player)
-        {
-            
-            Debug.Log(PlayersToString());
-            
-            return Players.TryGet(player, out var info) && info.IsReady;
-        }
+        private bool IsPlayerReady(PlayerRef player) => Players.TryGet(player, out var info) && info.IsReady;
 
         private void CheckAllReady()
         {
@@ -141,7 +141,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online
             
             var state = new GameState
             {
-                SessionCode = lobbySession.currentSessionCode,
+                SessionCode = GameSessionCode.Value,
                 LocalPlayer = localPlayerState,
                 RemotePlayer = remotePlayerState
             };
