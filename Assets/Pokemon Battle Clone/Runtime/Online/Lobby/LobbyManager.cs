@@ -37,7 +37,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
                 return;
             }
 
-            // await ConnecToLobbyAsync();
+            await ConnectToLobbyAsync();
         }
 
         private void Init()
@@ -76,6 +76,14 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
         }
 
 
+        private async Task ConnectToLobbyAsync()
+        {
+            gameSession.SetSessionState(SessionState.Connecting);
+            await _runner.JoinSessionLobby(SessionLobby.Shared);
+            gameSession.SetSessionState(SessionState.InLobby);
+        }
+        
+        
         private NetworkRunner GetOrCreateRunner()
         {
             return FindFirstObjectByType<NetworkRunner>() == null ?
