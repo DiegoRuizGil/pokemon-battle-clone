@@ -23,8 +23,21 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
 
         private async void Start()
         {
-            Init();
-            await JoinLobbyAsync();
+            // Init();
+            // await JoinLobbyAsync();
+
+            _runner = GetOrCreateRunner();
+
+            if (_runner.IsRunning)
+            {
+                var state = _runner.SessionInfo.IsValid
+                    ? SessionState.InSession
+                    : SessionState.InLobby;
+                gameSession.SetSessionState(state);
+                return;
+            }
+
+            // await ConnecToLobbyAsync();
         }
 
         private void Init()
@@ -40,6 +53,39 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
             eventsChannel.OnPlayerJoined -= OnPlayerJoined;
         }
 
+        public async void CreateGame()
+        {
+            await CreateAndJoinGameAsync();
+            
+            gameSession.RaiseJoinGame();
+        }
+
+        public async void JoinGame(string sessionName)
+        {
+            await JoinGameAsync(sessionName);
+            
+            gameSession.RaiseJoinGame();
+        }
+        
+        public async void LeaveGame()
+        {
+            await ShutdownAsync();
+            await JoinLobbyAsync();
+            
+            gameSession.RaiseLeaveGame();
+        }
+
+
+        private NetworkRunner GetOrCreateRunner()
+        {
+            return FindFirstObjectByType<NetworkRunner>() == null ?
+                CreateRunner() :
+                FindFirstObjectByType<NetworkRunner>();
+        }
+        
+        
+        
+        
         private NetworkRunner CreateRunner()
         {
             var go = new GameObject("Network Runner");
@@ -104,27 +150,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
         }
 
 
-        public async void CreateGame()
-        {
-            await CreateAndJoinGameAsync();
-            
-            gameSession.RaiseJoinGame();
-        }
-
-        public async void JoinGame(string sessionName)
-        {
-            await JoinGameAsync(sessionName);
-            
-            gameSession.RaiseJoinGame();
-        }
         
-        public async void LeaveGame()
-        {
-            await ShutdownAsync();
-            await JoinLobbyAsync();
-            
-            gameSession.RaiseLeaveGame();
-        }
 
         private void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
         {
