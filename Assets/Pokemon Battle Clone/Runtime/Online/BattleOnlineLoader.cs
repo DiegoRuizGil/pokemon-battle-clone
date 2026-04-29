@@ -34,7 +34,6 @@ namespace Pokemon_Battle_Clone.Runtime.Online
             if (!HasStateAuthority) return;
             
             BattleSeed = GenerateSeed();
-            // HandlePlayerJoined(Runner, Runner.LocalPlayer); // first player to join
         }
 
         public override void Spawned()
