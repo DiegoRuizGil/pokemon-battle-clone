@@ -35,14 +35,13 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
             await ConnectToLobbyAsync();
         }
 
-        private void Init()
+        private void OnEnable()
         {
             eventsChannel.OnSessionListUpdated += OnSessionListUpdated;
             eventsChannel.OnPlayerJoined += OnPlayerJoined;
-            _runner = CreateRunner();
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             eventsChannel.OnSessionListUpdated -= OnSessionListUpdated;
             eventsChannel.OnPlayerJoined -= OnPlayerJoined;
