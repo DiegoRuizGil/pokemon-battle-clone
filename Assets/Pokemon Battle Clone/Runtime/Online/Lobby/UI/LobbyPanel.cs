@@ -9,6 +9,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby.UI
         [Header("UI")]
         public SessionPanel sessionPanel;
         public JoinGamePanel joinGamePanel;
+        public GameObject connectingPanel;
 
         private void Start() => Refresh(gameSession.State);
 
@@ -17,8 +18,9 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby.UI
 
         private void Refresh(SessionState state)
         {
-            joinGamePanel.SetActive(state == SessionState.InLobby);
             sessionPanel.SetActive(state == SessionState.InSession);
+            joinGamePanel.SetActive(state == SessionState.InLobby);
+            connectingPanel.SetActive(state == SessionState.Connecting);
         }
     }
 }
