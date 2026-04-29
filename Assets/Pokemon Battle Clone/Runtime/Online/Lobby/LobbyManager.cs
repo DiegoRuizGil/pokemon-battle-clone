@@ -29,14 +29,6 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
                     ? SessionState.InSession
                     : SessionState.InLobby;
                 gameSession.SetSessionState(state);
-
-                if (_runner.SessionInfo.IsValid)
-                {
-                    _battleOnlineLoader = FindFirstObjectByType<BattleOnlineLoader>();
-                    if (_battleOnlineLoader == null && _runner.IsSharedModeMasterClient)
-                        SpawnBattleLoader();
-                }
-                
                 return;
             }
 
@@ -47,12 +39,15 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
         {
             eventsChannel.OnSessionListUpdated += OnSessionListUpdated;
             eventsChannel.OnPlayerJoined += OnPlayerJoined;
+            eventsChannel.OnSceneLoadDone += OnSceneLoadDone;
         }
 
         private void OnDisable()
         {
             eventsChannel.OnSessionListUpdated -= OnSessionListUpdated;
             eventsChannel.OnPlayerJoined -= OnPlayerJoined;
+            eventsChannel.OnSceneLoadDone -= OnSceneLoadDone;
+            
         }
 
         public async void CreateGame()
@@ -99,6 +94,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
             var eventsCallbacks = go.AddComponent<NetworkSessionEvents>();
             
             eventsCallbacks.EventsChannel = eventsChannel;
+            eventsChannel.Runner = runner;
             runner.AddCallbacks(eventsCallbacks);
             
             return runner;
@@ -159,6 +155,12 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
         private void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
         {
             if (_runner.IsSharedModeMasterClient)
+                SpawnBattleLoader();
+        }
+        
+        private void OnSceneLoadDone(NetworkRunner runner)
+        {
+            if (runner.IsSharedModeMasterClient && runner.SessionInfo.IsValid)
                 SpawnBattleLoader();
         }
 

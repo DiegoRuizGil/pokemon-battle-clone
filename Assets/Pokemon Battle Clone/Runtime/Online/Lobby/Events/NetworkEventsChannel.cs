@@ -9,6 +9,8 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby.Events
     [CreateAssetMenu(menuName = "Pokemon Battle Clone/Online/Events Channel", fileName = "Network Events Channel")]
     public class NetworkEventsChannel : ScriptableObject
     {
+        public NetworkRunner Runner { get; set; }
+        
         public event Action<NetworkRunner, NetworkObject, PlayerRef> OnObjectExitAOI;
         public event Action<NetworkRunner, NetworkObject, PlayerRef> OnObjectEnterAOI;
         public event Action<NetworkRunner, PlayerRef>                OnPlayerJoined;

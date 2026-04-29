@@ -1,4 +1,5 @@
-﻿using Fusion;
+﻿using System.Text;
+using Fusion;
 using Pokemon_Battle_Clone.Runtime.Battles.Infrastructure;
 using Pokemon_Battle_Clone.Runtime.Database;
 using Pokemon_Battle_Clone.Runtime.Online.Lobby.Events;
@@ -27,6 +28,18 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
         private NetworkDictionary<PlayerRef, PlayerLobbyInfo> Players => default;
 
         [Networked] private int BattleSeed { get; set; }
+
+
+        [ContextMenu("Debug Players")]
+        private void DebugPlayers()
+        {
+            var players = new StringBuilder();
+            foreach (var kvp in Players)
+                players.AppendLine($"{kvp.Key}-> IsReady: {kvp.Value.IsReady}, TeamIndex: {kvp.Value.TeamIndex}");
+            
+            Debug.Log(players.ToString());
+        }
+        
         
         public void Init()
         {
@@ -107,7 +120,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
         private void OnGameStateChanged()
         {
             gameSession.SetGameState(GetState());
-            
+
             if (HasStateAuthority && CheckAllReady())
                 StartBattle();
         }

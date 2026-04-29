@@ -15,7 +15,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Battle
         [Header("UI")]
         public GameObject panel;
         public Button backButton;
-
+        
         private void OnEnable()
         {
             networkEventsChannel.OnPlayerLeft += OnPlayerLeft;
@@ -37,7 +37,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Battle
         private void LoadLobbyScene()
         {
             Time.timeScale = 1;
-            SceneManager.LoadScene(lobbySceneName);
+            networkEventsChannel.Runner.LoadScene(lobbySceneName);
         }
     }
 }
