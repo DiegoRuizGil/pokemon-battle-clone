@@ -50,18 +50,34 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
             
         }
 
-        public async void CreateGame()
+        public async Task<LobbyResult> CreateGame()
         {
             gameSession.SetSessionState(SessionState.Connecting);
-            await CreateAndJoinGameAsync();
+            var result = await CreateAndJoinGameAsync();
+
+            if (!result.Ok)
+            {
+                gameSession.SetSessionState(SessionState.InLobby);
+                return LobbyResult.Fail(result.ErrorMessage);
+            }
+            
             gameSession.SetSessionState(SessionState.InSession);
+            return LobbyResult.Ok();
         }
 
-        public async void JoinGame(string sessionName)
+        public async Task<LobbyResult> JoinGame(string sessionName)
         {
             gameSession.SetSessionState(SessionState.Connecting);
-            await JoinGameAsync(sessionName);
+            var result = await JoinGameAsync(sessionName);
+
+            if (!result.Ok)
+            {
+                gameSession.SetSessionState(SessionState.InLobby);
+                return LobbyResult.Fail(result.ErrorMessage);
+            }
+            
             gameSession.SetSessionState(SessionState.InSession);
+            return LobbyResult.Ok();
         }
         
         public async void LeaveGame()
