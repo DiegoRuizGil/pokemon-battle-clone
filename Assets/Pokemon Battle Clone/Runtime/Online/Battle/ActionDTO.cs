@@ -1,6 +1,6 @@
 ﻿using Fusion;
 
-namespace Pokemon_Battle_Clone.Runtime.Online
+namespace Pokemon_Battle_Clone.Runtime.Online.Battle
 {
     public enum ActionType : byte
     {

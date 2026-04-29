@@ -11,7 +11,7 @@ using Pokemon_Battle_Clone.Runtime.Trainers.Control;
 using Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions;
 using UnityEngine;
 
-namespace Pokemon_Battle_Clone.Runtime.Online
+namespace Pokemon_Battle_Clone.Runtime.Online.Battle
 {
     public class OnlineBattleBootstrapper : MonoBehaviour, IBattleContext
     {
@@ -33,7 +33,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online
             var playerTeam = battleSettings.playerTeamConfig.Build();
             var rivalTeam = battleSettings.rivalTeamConfig.Build();
             
-            var battle = new Battle(playerTeam, rivalTeam, new DefaultRandom(battleSettings.battleSeed));
+            var battle = new Battles.Domain.Battle(playerTeam, rivalTeam, new DefaultRandom(battleSettings.battleSeed));
             
             var player = SetupPlayer(playerTeam);
             var rival = SetupRival(rivalTeam);

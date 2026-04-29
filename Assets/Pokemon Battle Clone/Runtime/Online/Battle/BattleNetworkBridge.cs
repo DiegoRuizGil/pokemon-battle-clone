@@ -1,16 +1,15 @@
 ﻿using Fusion;
-using Pokemon_Battle_Clone.Runtime.Battles.Domain;
 using Pokemon_Battle_Clone.Runtime.Trainers.Control;
 using Pokemon_Battle_Clone.Runtime.Trainers.Domain.Actions;
 
-namespace Pokemon_Battle_Clone.Runtime.Online
+namespace Pokemon_Battle_Clone.Runtime.Online.Battle
 {
     public class BattleNetworkBridge : NetworkBehaviour
     {
-        private Battle _battle;
+        private Battles.Domain.Battle _battle;
         private NetworkTrainer _remotePlayer;
 
-        public void Init(Battle battle, PlayerTrainer player, NetworkTrainer rival)
+        public void Init(Battles.Domain.Battle battle, PlayerTrainer player, NetworkTrainer rival)
         {
             _battle = battle;
             _remotePlayer = rival;

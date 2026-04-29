@@ -1,4 +1,4 @@
-﻿namespace Pokemon_Battle_Clone.Runtime.Online
+﻿namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
 {
     public struct GameState
     {

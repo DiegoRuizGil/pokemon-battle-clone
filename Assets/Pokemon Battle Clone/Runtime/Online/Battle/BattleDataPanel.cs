@@ -3,7 +3,7 @@ using Pokemon_Battle_Clone.Runtime.Battles.Infrastructure;
 using TMPro;
 using UnityEngine;
 
-namespace Pokemon_Battle_Clone.Runtime.Online
+namespace Pokemon_Battle_Clone.Runtime.Online.Battle
 {
     public class BattleDataPanel : MonoBehaviour
     {

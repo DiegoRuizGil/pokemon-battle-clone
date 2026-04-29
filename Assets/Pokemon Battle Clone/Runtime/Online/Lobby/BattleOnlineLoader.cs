@@ -1,11 +1,10 @@
 ﻿using Fusion;
 using Pokemon_Battle_Clone.Runtime.Battles.Infrastructure;
 using Pokemon_Battle_Clone.Runtime.Database;
-using Pokemon_Battle_Clone.Runtime.Online.Lobby;
 using Pokemon_Battle_Clone.Runtime.Online.Lobby.Events;
 using UnityEngine;
 
-namespace Pokemon_Battle_Clone.Runtime.Online
+namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
 {
     public struct PlayerLobbyInfo : INetworkStruct
     {
