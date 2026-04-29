@@ -17,6 +17,8 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
         private NetworkRunner _runner;
         private BattleOnlineLoader _battleOnlineLoader;
 
+        private List<SessionInfo> _availableSessions = new();
+        
         private string _lastSessionCodeGenerated;
 
         private async void Start()
@@ -67,6 +69,9 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
 
         public async Task<LobbyResult> JoinGame(string sessionName)
         {
+            if (!SessionExists(sessionName))
+                return LobbyResult.Fail("Session not found");
+            
             gameSession.SetSessionState(SessionState.Connecting);
             var result = await JoinGameAsync(sessionName);
 
@@ -163,6 +168,8 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
 
         private void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
         {
+            _availableSessions = sessionList;
+            
             var currentSessions = string.Join(',', sessionList.Select(info => info.Name));
             Debug.Log($"Current Sessions: {currentSessions}");
         }
@@ -178,6 +185,8 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
             if (runner.IsSharedModeMasterClient && runner.SessionInfo.IsValid)
                 SpawnBattleLoader();
         }
+        
+        private bool SessionExists(string sessionName) => _availableSessions.Any(s => s.Name == sessionName);
 
         private static string GenerateSessionCode()
         {
