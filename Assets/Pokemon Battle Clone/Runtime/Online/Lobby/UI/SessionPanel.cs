@@ -13,7 +13,8 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby.UI
         private void OnEnable() => gameSession.OnGameStateChanged += gameInfoDisplayer.Display;
         private void OnDisable() => gameSession.OnGameStateChanged -= gameInfoDisplayer.Display;
 
-        public void OnReadyPressed() => gameSession.BattleLoader.SetReady();
+        public void OnReadyPressed() => gameSession.SetLocalPlayerReady();
+
         public void OnLeavePressed() => lobbyManager.LeaveGame();
         
         public void SetActive(bool active) => content.SetActive(active);

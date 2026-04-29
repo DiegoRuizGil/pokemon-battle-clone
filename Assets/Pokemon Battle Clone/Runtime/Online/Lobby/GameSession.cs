@@ -11,13 +11,12 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
     [CreateAssetMenu(menuName = "Pokemon Battle Clone/Online/Game Session", fileName = "Game Session")]
     public class GameSession : ScriptableObject
     {
-        public BattleOnlineLoader BattleLoader { get; set; }
-        
         public SessionState State { get; private set; } = SessionState.Disconnected;
         public GameState CurrentGameState { get; private set; }
         
         public event Action<SessionState> OnSessionStateChanged;
         public event Action<GameState> OnGameStateChanged;
+        public event Action OnPlayerSetReady;
         
         public void SetSessionState(SessionState state)
         {
@@ -30,5 +29,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
             CurrentGameState = state;
             OnGameStateChanged?.Invoke(CurrentGameState);
         }
+        
+        public void SetLocalPlayerReady() => OnPlayerSetReady?.Invoke();
     }
 }

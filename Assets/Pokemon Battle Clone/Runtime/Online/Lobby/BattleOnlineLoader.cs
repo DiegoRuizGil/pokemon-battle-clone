@@ -50,10 +50,9 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
 
         public override void Spawned()
         {
-            gameSession.BattleLoader = this;
-            
             networkEventsChannel.OnPlayerJoined += HandlePlayerJoined;
             networkEventsChannel.OnPlayerLeft += HandlePlayerLeft;
+            gameSession.OnPlayerSetReady += SetReady;
             
             RPC_RequestRegister(Runner.LocalPlayer);
         }
@@ -64,6 +63,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
             
             networkEventsChannel.OnPlayerJoined -= HandlePlayerJoined;
             networkEventsChannel.OnPlayerLeft -= HandlePlayerLeft;
+            gameSession.OnPlayerSetReady -= SetReady;
         }
 
         private void HandlePlayerJoined(NetworkRunner runner, PlayerRef player)
