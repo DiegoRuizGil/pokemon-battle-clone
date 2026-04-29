@@ -65,6 +65,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
         {
             gameSession.SetSessionState(SessionState.Connecting);
             await ShutdownAsync();
+            _runner = CreateRunner();
             await ConnectToLobbyAsync();
         }
 
