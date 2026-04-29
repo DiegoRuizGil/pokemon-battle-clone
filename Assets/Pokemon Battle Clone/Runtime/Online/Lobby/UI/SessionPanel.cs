@@ -8,10 +8,14 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby.UI
         [SerializeField] private LobbyManager lobbyManager;
         [SerializeField] private GameInfoDisplayer gameInfoDisplayer;
 
-        private void Start() => gameSession.OnGameStateChanged += gameInfoDisplayer.Display;
-        private void OnDestroy() => gameSession.OnGameStateChanged -= gameInfoDisplayer.Display;
+        [SerializeField] private GameObject content;
+
+        private void OnEnable() => gameSession.OnGameStateChanged += gameInfoDisplayer.Display;
+        private void OnDisable() => gameSession.OnGameStateChanged -= gameInfoDisplayer.Display;
 
         public void OnReadyPressed() => gameSession.BattleLoader.SetReady();
         public void OnLeavePressed() => lobbyManager.LeaveGame();
+        
+        public void SetActive(bool active) => content.SetActive(active);
     }
 }

@@ -13,6 +13,8 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby.UI
         [SerializeField] private Button createButton;
         [SerializeField] private Button joinButton;
 
+        [SerializeField] private GameObject content;
+
         private void Start() => UpdateJoinButton();
 
         private void OnEnable() => sessionNameInput.onValueChanged.AddListener(OnInputChanged);
@@ -23,5 +25,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby.UI
         
         public void OnCreatePressed() => lobbyManager.CreateGame();
         public void OnJoinPressed() => lobbyManager.JoinGame(sessionNameInput.text);
+        
+        public void SetActive(bool active) => content.SetActive(active);
     }
 }

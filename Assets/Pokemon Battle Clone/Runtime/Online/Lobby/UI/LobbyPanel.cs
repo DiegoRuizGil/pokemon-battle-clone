@@ -17,8 +17,8 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby.UI
 
         private void Refresh(SessionState state)
         {
-            joinGamePanel.gameObject.SetActive(state == SessionState.InLobby);
-            sessionPanel.gameObject.SetActive(state == SessionState.InSession);
+            joinGamePanel.SetActive(state == SessionState.InLobby);
+            sessionPanel.SetActive(state == SessionState.InSession);
         }
     }
 }
