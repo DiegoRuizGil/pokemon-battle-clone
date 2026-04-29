@@ -34,7 +34,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online
             if (!HasStateAuthority) return;
             
             BattleSeed = GenerateSeed();
-            HandlePlayerJoined(Runner, Runner.LocalPlayer); // first player to join
+            // HandlePlayerJoined(Runner, Runner.LocalPlayer); // first player to join
         }
 
         public override void Spawned()
@@ -43,6 +43,8 @@ namespace Pokemon_Battle_Clone.Runtime.Online
             
             networkEventsChannel.OnPlayerJoined += HandlePlayerJoined;
             networkEventsChannel.OnPlayerLeft += HandlePlayerLeft;
+            
+            RPC_RequestRegister(Runner.LocalPlayer);
         }
 
         public override void Despawned(NetworkRunner runner, bool hasState)
@@ -55,8 +57,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online
 
         private void HandlePlayerJoined(NetworkRunner runner, PlayerRef player)
         {
-            if (HasStateAuthority)
-                Players.Set(player, new PlayerLobbyInfo { IsReady = false, TeamIndex = 0 });
+            RPC_RequestRegister(player);
         }
 
         private void HandlePlayerLeft(NetworkRunner runner, PlayerRef player)
@@ -82,6 +83,13 @@ namespace Pokemon_Battle_Clone.Runtime.Online
                 return;
 
             Players.Set(rpcSender, new PlayerLobbyInfo { IsReady = true, TeamIndex = teamIndex });
+        }
+
+        [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+        private void RPC_RequestRegister(PlayerRef player)
+        {
+            if (!Players.ContainsKey(player))
+                Players.Set(player, new PlayerLobbyInfo { IsReady = false, TeamIndex = 0 });
         }
 
         private void StartBattle() => Runner.LoadScene(battleSceneName);
