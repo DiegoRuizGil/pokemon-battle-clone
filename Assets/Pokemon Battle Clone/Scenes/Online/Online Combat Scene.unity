@@ -1511,6 +1511,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 633e523cd03646f7b569dc41340aa827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Battles.Infrastructure.BattleEndPanel
+  battleController: {fileID: 0}
+  content: {fileID: 0}
   messageText: {fileID: 1972191905}
   backButton: {fileID: 786855088}
   teamBuilderScene: Online Team Builder Scene
@@ -1983,7 +1985,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dd2ccd2f4e54733b65f271275c4f59c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battleEndPanel: {fileID: 546087177}
 --- !u!4 &913603189
 Transform:
   m_ObjectHideFlags: 0

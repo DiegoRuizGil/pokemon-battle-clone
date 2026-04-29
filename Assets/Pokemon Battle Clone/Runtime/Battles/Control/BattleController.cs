@@ -1,20 +1,15 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Pokemon_Battle_Clone.Runtime.Battles.Domain;
-using Pokemon_Battle_Clone.Runtime.Battles.Infrastructure;
-using Pokemon_Battle_Clone.Runtime.Core.Infrastructure;
-using Pokemon_Battle_Clone.Runtime.RNG;
 using Pokemon_Battle_Clone.Runtime.Trainers.Control;
-using Pokemon_Battle_Clone.Runtime.Trainers.Domain.Strategies;
 using UnityEngine;
 
 namespace Pokemon_Battle_Clone.Runtime.Battles.Control
 {
     public class BattleController : MonoBehaviour
     {
-        [Header("UI")]
-        public BattleEndPanel battleEndPanel;
+        // [Header("UI")]
+        // public BattleEndPanel battleEndPanel;
         
         private Turn _turn;
 
@@ -22,6 +17,8 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
         private Trainer _rivalTrainer;
         
         private bool _battleFinished;
+        
+        public event Action<Side> OnBattleFinished;
 
         public void Init(Turn turn, Trainer player, Trainer rival)
         {
@@ -58,7 +55,7 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control
         private void EndBattle()
         {
             var winner = _playerTrainer.Defeated ? Side.Rival : Side.Player;
-            battleEndPanel.Show(winner);
+            OnBattleFinished?.Invoke(winner);
         }
     }
 }
