@@ -143,7 +143,6 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
             if (_battleOnlineLoader != null) return;
             
             _battleOnlineLoader = _runner.Spawn(battleOnlineLoaderPrefab);
-            _battleOnlineLoader.Init();
         }
 
         private void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)

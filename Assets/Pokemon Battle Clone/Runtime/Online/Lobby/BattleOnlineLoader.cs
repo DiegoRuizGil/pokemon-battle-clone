@@ -26,27 +26,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
 
         [Networked, OnChangedRender(nameof(OnGameStateChanged)), Capacity(2)]
         private NetworkDictionary<PlayerRef, PlayerLobbyInfo> Players => default;
-
         [Networked] private int BattleSeed { get; set; }
-
-
-        [ContextMenu("Debug Players")]
-        private void DebugPlayers()
-        {
-            var players = new StringBuilder();
-            foreach (var kvp in Players)
-                players.AppendLine($"{kvp.Key}-> IsReady: {kvp.Value.IsReady}, TeamIndex: {kvp.Value.TeamIndex}");
-            
-            Debug.Log(players.ToString());
-        }
-        
-        
-        public void Init()
-        {
-            if (!HasStateAuthority) return;
-            
-            BattleSeed = GenerateSeed();
-        }
 
         public override void Spawned()
         {
@@ -54,6 +34,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
             networkEventsChannel.OnPlayerLeft += HandlePlayerLeft;
             gameSession.OnPlayerSetReady += SetReady;
             
+            GenerateSeed();
             RPC_RequestRegister(Runner.LocalPlayer);
         }
 
@@ -171,6 +152,10 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
             return false;
         }
         
-        private static int GenerateSeed() => System.Guid.NewGuid().GetHashCode();
+        private void GenerateSeed()
+        {
+            if (!HasStateAuthority) return;
+            BattleSeed = System.Guid.NewGuid().GetHashCode();
+        }
     }
 }
