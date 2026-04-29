@@ -1,10 +1,9 @@
 ﻿using Fusion;
 using Pokemon_Battle_Clone.Runtime.Online.Lobby.Events;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Pokemon_Battle_Clone.Runtime.Online.Battle
+namespace Pokemon_Battle_Clone.Runtime.Online.Battle.UI
 {
     public class RivalDisconnectPanel : MonoBehaviour
     {
