@@ -37,6 +37,7 @@ You can play the game directly in your browser on [`itch.io`](https://diegorg64.
   - [Execution Pipeline](#execution-pipeline)
 - [Deterministic Battles (RNG)](#deterministic-battles-rng)
 - [Data Integration (PokeAPI)](#data-integration-pokeapi)
+- [Online Multiplayer](#online-multiplayer)
 
 
 ## Architecture Overview
@@ -173,6 +174,28 @@ This approach turns external data into in-engine assets, bridging the gap betwee
 
 ![Pokemon Load Data](Assets/Docs~/pokemon_load_data.gif)
 
+
+## Online Multiplayer
+
+The project includes online multiplayer support for two players, built on top of Photon Fusion 2 in Shared Mode.
+
+### Lobby
+
+Before a battle starts, both players go through a lobby phase. The `LobbyManager` connects to a shared session lobby and allows players to either create a new game or join an existing one using a 6-character session code.
+
+Once both players are in the same session, a `BattleOnlineLoader` is spawned (by the master client) as a `NetworkBehaviour`. This object tracks each player's ready state and their selected team using networked state. When both players mark themselves as ready, the master client triggers the scene load to start the battle, with a shared random seed generated beforehand to ensure both clients run identical battles.
+
+### Battle Synchronization
+
+The online battle reuses the same domain logic and battle flow as the local game. The key addition is a `BattleNetworkBridge`, which handles action synchronization between clients.
+
+When the local player selects an action, it is serialized into an `ActionDTO` (a compact network struct) and sent to the other client via an RPC. On the receiving end, the DTO is deserialized back into the corresponding `TrainerAction` and delivered to a `NetworkTrainer`.
+
+`NetworkTrainer` implements the same `Trainer` interface as `PlayerTrainer` and `AITrainer`, but instead of interacting with the UI or a strategy, it suspends action selection using a `TaskCompletionSource` and waits until a remote action arrives. This keeps the network layer completely decoupled from the battle domain.
+
+### Disconnection Handling
+
+If the rival disconnects during a battle, a panel is shown notifying the local player, pausing the game and offering a way to return to the lobby.
 
 ## License
 This project is released under the MIT License by Diego Ruiz Gil (2026)

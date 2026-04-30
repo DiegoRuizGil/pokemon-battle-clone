@@ -1,0 +1,206 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Fusion;
+using Pokemon_Battle_Clone.Runtime.Online.Lobby.Events;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
+{
+    public class LobbyManager : MonoBehaviour
+    {
+        public GameSession gameSession;
+        public NetworkEventsChannel eventsChannel;
+        public BattleOnlineLoader battleOnlineLoaderPrefab;
+        
+        private NetworkRunner _runner;
+        private BattleOnlineLoader _battleOnlineLoader;
+
+        private List<SessionInfo> _availableSessions = new();
+        
+        private string _lastSessionCodeGenerated;
+
+        private async void Start()
+        {
+            _runner = GetOrCreateRunner();
+
+            if (_runner.IsRunning)
+            {
+                var state = _runner.SessionInfo.IsValid
+                    ? SessionState.InSession
+                    : SessionState.InLobby;
+                gameSession.SetSessionState(state);
+                return;
+            }
+
+            await ConnectToLobbyAsync();
+        }
+
+        private void OnEnable()
+        {
+            eventsChannel.OnSessionListUpdated += OnSessionListUpdated;
+            eventsChannel.OnPlayerJoined += OnPlayerJoined;
+            eventsChannel.OnSceneLoadDone += OnSceneLoadDone;
+        }
+
+        private void OnDisable()
+        {
+            eventsChannel.OnSessionListUpdated -= OnSessionListUpdated;
+            eventsChannel.OnPlayerJoined -= OnPlayerJoined;
+            eventsChannel.OnSceneLoadDone -= OnSceneLoadDone;
+            
+        }
+
+        public async Task<LobbyResult> CreateGame()
+        {
+            gameSession.SetSessionState(SessionState.Connecting);
+            var result = await CreateAndJoinGameAsync();
+
+            if (!result.Ok)
+            {
+                gameSession.SetSessionState(SessionState.InLobby);
+                return LobbyResult.Fail(result.ErrorMessage);
+            }
+            
+            gameSession.SetSessionState(SessionState.InSession);
+            return LobbyResult.Ok();
+        }
+
+        public async Task<LobbyResult> JoinGame(string sessionName)
+        {
+            if (!SessionExists(sessionName))
+                return LobbyResult.Fail("Session not found");
+            
+            gameSession.SetSessionState(SessionState.Connecting);
+            var result = await JoinGameAsync(sessionName);
+
+            if (!result.Ok)
+            {
+                gameSession.SetSessionState(SessionState.InLobby);
+                return LobbyResult.Fail(result.ErrorMessage);
+            }
+            
+            gameSession.SetSessionState(SessionState.InSession);
+            return LobbyResult.Ok();
+        }
+        
+        public async void LeaveGame()
+        {
+            gameSession.SetSessionState(SessionState.Connecting);
+            await ShutdownAsync();
+            _runner = CreateRunner();
+            await ConnectToLobbyAsync();
+        }
+
+        public async void Shutdown()
+        {
+            await ShutdownAsync();
+        }
+
+        private async Task ConnectToLobbyAsync()
+        {
+            gameSession.SetSessionState(SessionState.Connecting);
+            await _runner.JoinSessionLobby(SessionLobby.Shared);
+            gameSession.SetSessionState(SessionState.InLobby);
+        }
+        
+        private NetworkRunner GetOrCreateRunner()
+        {
+            return FindFirstObjectByType<NetworkRunner>() == null ?
+                CreateRunner() :
+                FindFirstObjectByType<NetworkRunner>();
+        }
+        
+        private NetworkRunner CreateRunner()
+        {
+            var go = new GameObject("Network Runner");
+            var runner = go.AddComponent<NetworkRunner>();
+            go.AddComponent<NetworkSceneManagerDefault>();
+            var eventsCallbacks = go.AddComponent<NetworkSessionEvents>();
+            
+            eventsCallbacks.EventsChannel = eventsChannel;
+            eventsChannel.Runner = runner;
+            runner.AddCallbacks(eventsCallbacks);
+            
+            return runner;
+        }
+
+        private async Task ShutdownAsync()
+        {
+            await _runner.Shutdown();
+            _runner = null;
+        }
+
+        private async Task<StartGameResult> CreateAndJoinGameAsync()
+        {
+            _lastSessionCodeGenerated = GenerateSessionCode();
+            var result = await JoinGameAsync(_lastSessionCodeGenerated);
+            return result;
+        }
+
+        private async Task<StartGameResult> JoinGameAsync(string sessionName)
+        {
+            var result = await ConnectToGameAsync(sessionName);
+            return result;
+        }
+
+        private async Task<StartGameResult> ConnectToGameAsync(string sessionName)
+        {
+            var result = await _runner.StartGame(new StartGameArgs
+            {
+                GameMode    = GameMode.Shared,
+                SessionName = sessionName,
+                PlayerCount = 2,
+                Scene = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex),
+                SceneManager = _runner.SceneManager,
+            });
+
+            if (result.Ok)
+                _lastSessionCodeGenerated = sessionName;
+            else
+                Debug.Log($"Could not connect: {result.ErrorMessage}");
+            
+            return result;
+        }
+
+        private void SpawnBattleLoader()
+        {
+            if (_battleOnlineLoader != null) return;
+            
+            _battleOnlineLoader = _runner.Spawn(battleOnlineLoaderPrefab);
+        }
+
+        private void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
+        {
+            _availableSessions = sessionList;
+            
+            var currentSessions = string.Join(',', sessionList.Select(info => info.Name));
+            Debug.Log($"Current Sessions: {currentSessions}");
+        }
+        
+        private void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
+        {
+            if (_runner.IsSharedModeMasterClient)
+                SpawnBattleLoader();
+        }
+        
+        private void OnSceneLoadDone(NetworkRunner runner)
+        {
+            if (runner.IsSharedModeMasterClient && runner.SessionInfo.IsValid)
+                SpawnBattleLoader();
+        }
+        
+        private bool SessionExists(string sessionName) => _availableSessions.Any(s => s.Name == sessionName);
+
+        private static string GenerateSessionCode()
+        {
+            const string chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+            var code = new System.Text.StringBuilder(6);
+            var rng = new System.Random();
+            for (int i = 0; i < 6; i++)
+                code.Append(chars[rng.Next(chars.Length)]);
+            return code.ToString();
+        }
+    }
+}

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Pokemon_Battle_Clone.Runtime.Battles.Control;
 using Pokemon_Battle_Clone.Runtime.Battles.Domain;
 using TMPro;
 using UnityEngine;
@@ -9,6 +9,10 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Infrastructure
 {
     public class BattleEndPanel : MonoBehaviour
     {
+        [SerializeField] private BattleController battleController;
+
+        [Header("UI")]
+        [SerializeField] private GameObject content;
         [SerializeField] private TextMeshProUGUI messageText;
         [SerializeField] private Button backButton;
         [SerializeField] private string teamBuilderScene = "TeamBuilderScene";
@@ -16,17 +20,19 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Infrastructure
         private void OnEnable()
         {
             backButton.onClick.AddListener(LoadTeamBuilderScene);
+            battleController.OnBattleFinished += Show;
         }
 
         private void OnDisable()
         {
             backButton.onClick.RemoveListener(LoadTeamBuilderScene);
+            battleController.OnBattleFinished -= Show;
         }
 
         public void Show(Side winner)
         {
             messageText.text = winner == Side.Player ? "YOU WON!!" : "YOU LOST...";
-            gameObject.SetActive(true);
+            content.SetActive(true);
         }
 
         private void LoadTeamBuilderScene()

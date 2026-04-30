@@ -46,9 +46,9 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.Selector
 
         private void BindActions()
         {
-            playerButton.onClick.AddListener(() => OnPlayerSelected.Invoke(_teamConfig));
-            rivalButton.onClick.AddListener(() => OnRivalSelected.Invoke(_teamConfig));
-            infoButton.onClick.AddListener(() => OnInfoSelected.Invoke(_teamConfig));
+            playerButton?.onClick.AddListener(() => OnPlayerSelected.Invoke(_teamConfig));
+            rivalButton?.onClick.AddListener(() => OnRivalSelected.Invoke(_teamConfig));
+            infoButton?.onClick.AddListener(() => OnInfoSelected.Invoke(_teamConfig));
         }
     }
 }

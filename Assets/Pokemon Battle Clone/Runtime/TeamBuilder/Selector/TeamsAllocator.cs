@@ -25,12 +25,12 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.Selector
             if (side == Side.Player)
             {
                 playerSelection.SetTeam(teamConfig);
-                battleSettings.PlayerTeamConfig = teamConfig;
+                battleSettings.playerTeamConfig = teamConfig;
             }
             else
             {
                 rivalSelection.SetTeam(teamConfig);
-                battleSettings.RivalTeamConfig = teamConfig;
+                battleSettings.rivalTeamConfig = teamConfig;
             }
             
             SetStartButtonInteraction();
@@ -38,7 +38,10 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.Selector
 
         private void SetStartButtonInteraction()
         {
-            startButton.SetInteraction(playerSelection.HasTeamSelected && rivalSelection.HasTeamSelected);
+            var playerHasTeam = playerSelection == null || playerSelection.HasTeamSelected;
+            var rivalHasTeam = rivalSelection == null || rivalSelection.HasTeamSelected;
+            
+            startButton.SetInteraction(playerHasTeam && rivalHasTeam);
         }
     }
 }
