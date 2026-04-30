@@ -25,7 +25,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 112}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 26
+  controlID: 28
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -48,9 +48,9 @@ MonoBehaviour:
     m_TextWithWhitespace: "Game\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 525
+    x: 690
     y: 79
-    width: 659
+    width: 433
     height: 488
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -109,10 +109,10 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 659
+      width: 433
       height: 467
-    m_Scale: {x: 0.34322917, y: 0.34322917}
-    m_Translation: {x: 329.5, y: 233.5}
+    m_Scale: {x: 0.22552083, y: 0.22552082}
+    m_Translation: {x: 216.5, y: 233.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
@@ -120,12 +120,12 @@ MonoBehaviour:
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
       x: -960
-      y: -680.30347
+      y: -1035.3811
       width: 1920
-      height: 1360.6069
+      height: 2070.7622
     m_MinimalGUI: 1
-  m_defaultScale: 0.34322917
-  m_LastWindowPixelSize: {x: 659, y: 488}
+  m_defaultScale: 0.22552083
+  m_LastWindowPixelSize: {x: 433, y: 488}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -151,12 +151,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1186
+    width: 1125
     height: 933
   m_MinSize: {x: 200, y: 112}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 27
+  controlID: 29
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -177,12 +177,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1186
+    width: 1125
     height: 514
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 28
+  controlID: 30
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -201,10 +201,10 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 525
+    width: 690
     height: 514
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 226}
+  m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -234,7 +234,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 79
-    width: 524
+    width: 689
     height: 488
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -848,9 +848,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 848.3457, y: 584.754, z: 2.3660345}
+    m_Target: {x: 814.40436, y: 481.0023, z: 3.5938363}
     speed: 2
-    m_Value: {x: 956.2857, y: 554.25, z: 0}
+    m_Value: {x: 814.40436, y: 481.0023, z: 3.5938363}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -900,9 +900,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 867.3393
+    m_Target: 744.557
     speed: 2
-    m_Value: 312.65866
+    m_Value: 744.557
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1025,9 +1025,9 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 525
+    x: 690
     y: 0
-    width: 661
+    width: 435
     height: 514
   m_MinSize: {x: 202, y: 226}
   m_MaxSize: {x: 4002, y: 4026}
@@ -1094,12 +1094,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 514
-    width: 1186
+    width: 1125
     height: 419
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 52
+  controlID: 83
   draggingID: 0
 --- !u!114 &11
 MonoBehaviour:
@@ -1118,7 +1118,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 773
+    width: 726
     height: 419
   m_MinSize: {x: 101, y: 126}
   m_MaxSize: {x: 4001, y: 4026}
@@ -1151,7 +1151,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 593
-    width: 772
+    width: 725
     height: 393
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1222,9 +1222,9 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 773
+    x: 726
     y: 0
-    width: 413
+    width: 399
     height: 419
   m_MinSize: {x: 232, y: 276}
   m_MaxSize: {x: 10002, y: 10026}
@@ -1254,9 +1254,9 @@ MonoBehaviour:
     m_TextWithWhitespace: "Project\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 773
+    x: 726
     y: 593
-    width: 411
+    width: 397
     height: 393
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1282,7 +1282,7 @@ MonoBehaviour:
     m_SkipHidden: 1
     m_SearchArea: 1
     m_Folders:
-    - Assets/Pokemon Battle Clone/Prefabs/UI/Team Selection
+    - Assets/Pokemon Battle Clone/Scenes
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1305,56 +1305,53 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 52448
-    - m_Data: 52450
-    - m_Data: 52452
-    - m_Data: 52454
-    - m_Data: 52456
-    - m_Data: 52458
-    - m_Data: 52460
-    - m_Data: 52462
-    - m_Data: 52464
-    - m_Data: 52466
-    - m_Data: 52468
-    - m_Data: 52470
-    - m_Data: 52472
-    - m_Data: 52474
-    - m_Data: 52476
-    - m_Data: 52478
-    - m_Data: 52480
-    - m_Data: 52482
-    - m_Data: 52484
-    - m_Data: 52486
-    - m_Data: 52488
-    - m_Data: 52490
-    - m_Data: 52492
-    - m_Data: 52494
-    - m_Data: 52496
-    - m_Data: 52498
-    - m_Data: 52500
-    - m_Data: 52502
-    - m_Data: 52504
-    - m_Data: 52506
-    - m_Data: 52508
-    - m_Data: 52510
-    - m_Data: 52512
-    - m_Data: 52514
-    - m_Data: 52516
-    - m_Data: 52518
-    - m_Data: 52520
-    - m_Data: 52522
-    - m_Data: 52524
-    - m_Data: 52526
-    - m_Data: 52528
-    - m_Data: 52530
-    - m_Data: 52532
-    - m_Data: 52534
-    - m_Data: 52536
-    - m_Data: 52538
-    - m_Data: 52540
-    - m_Data: 52542
-    - m_Data: 52544
-    - m_Data: 52546
+    - m_Data: 50544
+    - m_Data: 50546
+    - m_Data: 50548
+    - m_Data: 50550
+    - m_Data: 50552
+    - m_Data: 50554
+    - m_Data: 50556
+    - m_Data: 50558
+    - m_Data: 50560
+    - m_Data: 50562
+    - m_Data: 50564
+    - m_Data: 50566
+    - m_Data: 50568
+    - m_Data: 50570
+    - m_Data: 50572
+    - m_Data: 50574
+    - m_Data: 50576
+    - m_Data: 50578
+    - m_Data: 50580
+    - m_Data: 50582
+    - m_Data: 50584
+    - m_Data: 50586
+    - m_Data: 50588
+    - m_Data: 50590
+    - m_Data: 50592
+    - m_Data: 50594
+    - m_Data: 50596
+    - m_Data: 50598
+    - m_Data: 50600
+    - m_Data: 50602
+    - m_Data: 50604
+    - m_Data: 50606
+    - m_Data: 50608
+    - m_Data: 50610
+    - m_Data: 50612
+    - m_Data: 50614
+    - m_Data: 50616
+    - m_Data: 50618
+    - m_Data: 50620
+    - m_Data: 50622
+    - m_Data: 50624
+    - m_Data: 50626
+    - m_Data: 50628
+    - m_Data: 50630
+    - m_Data: 50632
+    - m_Data: 50634
+    - m_Data: 50636
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1381,56 +1378,60 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 65}
+    scrollPos: {x: 0, y: 645}
     m_SelectedIDs:
-    - m_Data: -1428
+    - m_Data: 50812
     m_LastClickedID:
-      m_Data: 0
+      m_Data: 50812
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 52448
-    - m_Data: 52450
-    - m_Data: 52452
-    - m_Data: 52454
-    - m_Data: 52456
-    - m_Data: 52458
-    - m_Data: 52460
-    - m_Data: 52462
-    - m_Data: 52464
-    - m_Data: 52466
-    - m_Data: 52468
-    - m_Data: 52470
-    - m_Data: 52472
-    - m_Data: 52474
-    - m_Data: 52476
-    - m_Data: 52478
-    - m_Data: 52480
-    - m_Data: 52482
-    - m_Data: 52484
-    - m_Data: 52486
-    - m_Data: 52488
-    - m_Data: 52490
-    - m_Data: 52492
-    - m_Data: 52496
-    - m_Data: 52498
-    - m_Data: 52500
-    - m_Data: 52502
-    - m_Data: 52504
-    - m_Data: 52506
-    - m_Data: 52508
-    - m_Data: 52510
-    - m_Data: 52512
-    - m_Data: 52518
-    - m_Data: 52520
-    - m_Data: 52522
-    - m_Data: 52524
-    - m_Data: 52526
-    - m_Data: 52532
-    - m_Data: 52538
-    - m_Data: 52544
-    - m_Data: 52546
-    - m_Data: 52722
-    - m_Data: 55316
+    - m_Data: 50544
+    - m_Data: 50546
+    - m_Data: 50548
+    - m_Data: 50550
+    - m_Data: 50552
+    - m_Data: 50554
+    - m_Data: 50556
+    - m_Data: 50558
+    - m_Data: 50560
+    - m_Data: 50562
+    - m_Data: 50564
+    - m_Data: 50566
+    - m_Data: 50568
+    - m_Data: 50570
+    - m_Data: 50572
+    - m_Data: 50574
+    - m_Data: 50576
+    - m_Data: 50578
+    - m_Data: 50580
+    - m_Data: 50582
+    - m_Data: 50584
+    - m_Data: 50586
+    - m_Data: 50588
+    - m_Data: 50590
+    - m_Data: 50592
+    - m_Data: 50594
+    - m_Data: 50596
+    - m_Data: 50598
+    - m_Data: 50600
+    - m_Data: 50602
+    - m_Data: 50604
+    - m_Data: 50606
+    - m_Data: 50608
+    - m_Data: 50610
+    - m_Data: 50612
+    - m_Data: 50614
+    - m_Data: 50616
+    - m_Data: 50618
+    - m_Data: 50620
+    - m_Data: 50622
+    - m_Data: 50624
+    - m_Data: 50628
+    - m_Data: 50632
+    - m_Data: 50634
+    - m_Data: 50636
+    - m_Data: 50764
+    - m_Data: 50860
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1458,8 +1459,8 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: -1428
-    m_LastClickedInstanceID: -1428
+    - m_Data: 50812
+    m_LastClickedInstanceID: 50812
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: []
     m_RenameOverlay:
@@ -1506,12 +1507,12 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1186
+    x: 1125
     y: 0
-    width: 255
+    width: 316
     height: 933
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 226}
+  m_MaxSize: {x: 4002, y: 4026}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -1539,9 +1540,9 @@ MonoBehaviour:
     m_TextWithWhitespace: "Hierarchy\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1186
+    x: 1125
     y: 79
-    width: 253
+    width: 314
     height: 907
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1560,12 +1561,20 @@ MonoBehaviour:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs:
-      - m_Data: -1428
+      - m_Data: 50812
       m_LastClickedID:
-        m_Data: -1428
+        m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -1350
-      - m_Data: 50248
+      - m_Data: -4644
+      - m_Data: -3040
+      - m_Data: -1316
+      - m_Data: 51374
+      - m_Data: 51460
+      - m_Data: 51492
+      - m_Data: 51536
+      - m_Data: 51548
+      - m_Data: 51566
+      - m_Data: 51582
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1613,9 +1622,9 @@ MonoBehaviour:
     m_TextWithWhitespace: "Test Runner\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1012
+    x: 1186
     y: 79
-    width: 388
+    width: 253
     height: 907
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1631,7 +1640,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
     m_DynamicPanelBehavior: 0
   m_Spl:
-    ID: 20644
+    ID: 3093
     splitterInitialOffset: 0
     currentActiveSplitter: -1
     realSizes:
@@ -1707,7 +1716,592 @@ MonoBehaviour:
       categories: []
       parentId: 
       parentUniqueId: 
+    - id: 1032
+      uniqueId: '[MackySoft.SerializeReferenceExtensions.Tests.Editor.dll][suite]'
+      name: MackySoft.SerializeReferenceExtensions.Tests.Editor.dll
+      fullName: C:/Unity/Projects/pokemon-battle-clone/Library/ScriptAssemblies/MackySoft.SerializeReferenceExtensions.Tests.Editor.dll
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1000
+      parentUniqueId: '[pokemon-battle-clone][suite]'
+    - id: 1033
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/[MackySoft][suite]'
+      name: MackySoft
+      fullName: MackySoft
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1032
+      parentUniqueId: '[MackySoft.SerializeReferenceExtensions.Tests.Editor.dll][suite]'
+    - id: 1034
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/[SerializeReferenceExtensions][suite]'
+      name: SerializeReferenceExtensions
+      fullName: MackySoft.SerializeReferenceExtensions
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1033
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/[MackySoft][suite]'
+    - id: 1035
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests][suite]'
+      name: Tests
+      fullName: MackySoft.SerializeReferenceExtensions.Tests
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1034
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/[SerializeReferenceExtensions][suite]'
+    - id: 1001
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests][suite]'
+      name: DefaultIntrinsicTypePolicyTests
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1035
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests][suite]'
+    - id: 1012
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/DefaultIntrinsicTypePolicyTests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.IsAllowed_MatchesExpected][suite]'
+      name: IsAllowed_MatchesExpected
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.IsAllowed_MatchesExpected
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1001
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests][suite]'
+    - id: 1002
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/DefaultIntrinsicTypePolicyTests/IsAllowed_MatchesExpected/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.Intrinsic_PublicSerializableClass_OK]'
+      name: Intrinsic_PublicSerializableClass_OK
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.Intrinsic_PublicSerializableClass_OK
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1012
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/DefaultIntrinsicTypePolicyTests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.IsAllowed_MatchesExpected][suite]'
+    - id: 1003
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/DefaultIntrinsicTypePolicyTests/IsAllowed_MatchesExpected/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.Intrinsic_ValueTypeStruct_OK]'
+      name: Intrinsic_ValueTypeStruct_OK
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.Intrinsic_ValueTypeStruct_OK
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1012
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/DefaultIntrinsicTypePolicyTests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.IsAllowed_MatchesExpected][suite]'
+    - id: 1004
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/DefaultIntrinsicTypePolicyTests/IsAllowed_MatchesExpected/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.Intrinsic_NestedPublic_OK]'
+      name: Intrinsic_NestedPublic_OK
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.Intrinsic_NestedPublic_OK
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1012
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/DefaultIntrinsicTypePolicyTests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.IsAllowed_MatchesExpected][suite]'
+    - id: 1005
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/DefaultIntrinsicTypePolicyTests/IsAllowed_MatchesExpected/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.Intrinsic_NestedPrivate_OK]'
+      name: Intrinsic_NestedPrivate_OK
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.Intrinsic_NestedPrivate_OK
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1012
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/DefaultIntrinsicTypePolicyTests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.IsAllowed_MatchesExpected][suite]'
+    - id: 1006
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/DefaultIntrinsicTypePolicyTests/IsAllowed_MatchesExpected/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.Intrinsic_Internal_NG]'
+      name: Intrinsic_Internal_NG
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.Intrinsic_Internal_NG
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1012
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/DefaultIntrinsicTypePolicyTests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.IsAllowed_MatchesExpected][suite]'
+    - id: 1007
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/DefaultIntrinsicTypePolicyTests/IsAllowed_MatchesExpected/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.Intrinsic_Abstract_NG]'
+      name: Intrinsic_Abstract_NG
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.Intrinsic_Abstract_NG
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1012
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/DefaultIntrinsicTypePolicyTests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.IsAllowed_MatchesExpected][suite]'
+    - id: 1008
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/DefaultIntrinsicTypePolicyTests/IsAllowed_MatchesExpected/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.Intrinsic_NoSerializableAttribute_NG]'
+      name: Intrinsic_NoSerializableAttribute_NG
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.Intrinsic_NoSerializableAttribute_NG
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1012
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/DefaultIntrinsicTypePolicyTests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.IsAllowed_MatchesExpected][suite]'
+    - id: 1009
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/DefaultIntrinsicTypePolicyTests/IsAllowed_MatchesExpected/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.Intrinsic_HideInTypeMenu_NG]'
+      name: Intrinsic_HideInTypeMenu_NG
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.Intrinsic_HideInTypeMenu_NG
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1012
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/DefaultIntrinsicTypePolicyTests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.IsAllowed_MatchesExpected][suite]'
+    - id: 1010
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/DefaultIntrinsicTypePolicyTests/IsAllowed_MatchesExpected/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.Intrinsic_UnityObjectDerived_NG]'
+      name: Intrinsic_UnityObjectDerived_NG
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.Intrinsic_UnityObjectDerived_NG
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1012
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/DefaultIntrinsicTypePolicyTests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.IsAllowed_MatchesExpected][suite]'
+    - id: 1011
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/DefaultIntrinsicTypePolicyTests/IsAllowed_MatchesExpected/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.Intrinsic_GenericClosed_NG]'
+      name: Intrinsic_GenericClosed_NG
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.Intrinsic_GenericClosed_NG
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1012
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/DefaultIntrinsicTypePolicyTests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.DefaultIntrinsicTypePolicyTests.IsAllowed_MatchesExpected][suite]'
+    - id: 1013
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_BaseTypeSelfTests][suite]'
+      name: TypeCandidateService_BaseTypeSelfTests
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_BaseTypeSelfTests
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1035
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests][suite]'
+    - id: 1014
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/TypeCandidateService_BaseTypeSelfTests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_BaseTypeSelfTests.ConcreteBaseType_IsIncluded]'
+      name: ConcreteBaseType_IsIncluded
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_BaseTypeSelfTests.ConcreteBaseType_IsIncluded
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1013
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_BaseTypeSelfTests][suite]'
     - id: 1015
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_GenericVarianceTests][suite]'
+      name: TypeCandidateService_GenericVarianceTests
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_GenericVarianceTests
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1035
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests][suite]'
+    - id: 1016
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/TypeCandidateService_GenericVarianceTests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_GenericVarianceTests.Contravariance_IsSupported]'
+      name: Contravariance_IsSupported
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_GenericVarianceTests.Contravariance_IsSupported
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1015
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_GenericVarianceTests][suite]'
+    - id: 1017
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/TypeCandidateService_GenericVarianceTests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_GenericVarianceTests.Covariance_IsSupported]'
+      name: Covariance_IsSupported
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_GenericVarianceTests.Covariance_IsSupported
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1015
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_GenericVarianceTests][suite]'
+    - id: 1018
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/TypeCandidateService_GenericVarianceTests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_GenericVarianceTests.Invariance_RemainsStrict]'
+      name: Invariance_RemainsStrict
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_GenericVarianceTests.Invariance_RemainsStrict
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1015
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_GenericVarianceTests][suite]'
+    - id: 1019
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests][suite]'
+      name: TypeCandidateService_NonGenericTests
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1035
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests][suite]'
+    - id: 1031
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/TypeCandidateService_NonGenericTests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.Candidates_HaveNoDuplicates]'
+      name: Candidates_HaveNoDuplicates
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.Candidates_HaveNoDuplicates
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1019
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests][suite]'
+    - id: 1030
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/TypeCandidateService_NonGenericTests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.CandidatesContainment_IsExpected][suite]'
+      name: CandidatesContainment_IsExpected
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.CandidatesContainment_IsExpected
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1019
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests][suite]'
+    - id: 1020
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/TypeCandidateService_NonGenericTests/CandidatesContainment_IsExpected/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.Candidates_ITestBase_PublicSerializable_OK]'
+      name: Candidates_ITestBase_PublicSerializable_OK
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.Candidates_ITestBase_PublicSerializable_OK
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1030
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/TypeCandidateService_NonGenericTests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.CandidatesContainment_IsExpected][suite]'
+    - id: 1021
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/TypeCandidateService_NonGenericTests/CandidatesContainment_IsExpected/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.Candidates_ITestBase_ValueTypeStruct_OK]'
+      name: Candidates_ITestBase_ValueTypeStruct_OK
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.Candidates_ITestBase_ValueTypeStruct_OK
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1030
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/TypeCandidateService_NonGenericTests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.CandidatesContainment_IsExpected][suite]'
+    - id: 1022
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/TypeCandidateService_NonGenericTests/CandidatesContainment_IsExpected/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.Candidates_ITestBase_NestedPublic_OK]'
+      name: Candidates_ITestBase_NestedPublic_OK
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.Candidates_ITestBase_NestedPublic_OK
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1030
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/TypeCandidateService_NonGenericTests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.CandidatesContainment_IsExpected][suite]'
+    - id: 1023
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/TypeCandidateService_NonGenericTests/CandidatesContainment_IsExpected/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.Candidates_ITestBase_NestedPrivate_OK]'
+      name: Candidates_ITestBase_NestedPrivate_OK
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.Candidates_ITestBase_NestedPrivate_OK
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1030
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/TypeCandidateService_NonGenericTests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.CandidatesContainment_IsExpected][suite]'
+    - id: 1024
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/TypeCandidateService_NonGenericTests/CandidatesContainment_IsExpected/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.Candidates_ITestBase_Internal_NG]'
+      name: Candidates_ITestBase_Internal_NG
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.Candidates_ITestBase_Internal_NG
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1030
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/TypeCandidateService_NonGenericTests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.CandidatesContainment_IsExpected][suite]'
+    - id: 1025
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/TypeCandidateService_NonGenericTests/CandidatesContainment_IsExpected/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.Candidates_ITestBase_Abstract_NG]'
+      name: Candidates_ITestBase_Abstract_NG
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.Candidates_ITestBase_Abstract_NG
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1030
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/TypeCandidateService_NonGenericTests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.CandidatesContainment_IsExpected][suite]'
+    - id: 1026
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/TypeCandidateService_NonGenericTests/CandidatesContainment_IsExpected/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.Candidates_ITestBase_NoSerializable_NG]'
+      name: Candidates_ITestBase_NoSerializable_NG
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.Candidates_ITestBase_NoSerializable_NG
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1030
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/TypeCandidateService_NonGenericTests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.CandidatesContainment_IsExpected][suite]'
+    - id: 1027
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/TypeCandidateService_NonGenericTests/CandidatesContainment_IsExpected/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.Candidates_ITestBase_HideInTypeMenu_NG]'
+      name: Candidates_ITestBase_HideInTypeMenu_NG
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.Candidates_ITestBase_HideInTypeMenu_NG
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1030
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/TypeCandidateService_NonGenericTests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.CandidatesContainment_IsExpected][suite]'
+    - id: 1028
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/TypeCandidateService_NonGenericTests/CandidatesContainment_IsExpected/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.Candidates_ITestBase_UnityObjectDerived_NG]'
+      name: Candidates_ITestBase_UnityObjectDerived_NG
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.Candidates_ITestBase_UnityObjectDerived_NG
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1030
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/TypeCandidateService_NonGenericTests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.CandidatesContainment_IsExpected][suite]'
+    - id: 1029
+      uniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/TypeCandidateService_NonGenericTests/CandidatesContainment_IsExpected/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.Candidates_ITestBase_GenericClosed_NG]'
+      name: Candidates_ITestBase_GenericClosed_NG
+      fullName: MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.Candidates_ITestBase_GenericClosed_NG
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1030
+      parentUniqueId: 'MackySoft.SerializeReferenceExtensions.Tests.Editor.dll/MackySoft/SerializeReferenceExtensions/Tests/TypeCandidateService_NonGenericTests/[MackySoft.SerializeReferenceExtensions.Tests.Editor][MackySoft.SerializeReferenceExtensions.Tests.TypeCandidateService_NonGenericTests.CandidatesContainment_IsExpected][suite]'
+    - id: 1050
       uniqueId: '[Tests.dll][suite]'
       name: Tests.dll
       fullName: C:/Unity/Projects/pokemon-battle-clone/Library/ScriptAssemblies/Tests.dll
@@ -1723,7 +2317,7 @@ MonoBehaviour:
       categories: []
       parentId: 1000
       parentUniqueId: '[pokemon-battle-clone][suite]'
-    - id: 1016
+    - id: 1051
       uniqueId: 'Tests.dll/[Pokemon_Battle_Clone][suite]'
       name: Pokemon_Battle_Clone
       fullName: Pokemon_Battle_Clone
@@ -1737,9 +2331,9 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1015
+      parentId: 1050
       parentUniqueId: '[Tests.dll][suite]'
-    - id: 1017
+    - id: 1052
       uniqueId: 'Tests.dll/Pokemon_Battle_Clone/[Tests][suite]'
       name: Tests
       fullName: Pokemon_Battle_Clone.Tests
@@ -1753,9 +2347,9 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1016
+      parentId: 1051
       parentUniqueId: 'Tests.dll/[Pokemon_Battle_Clone][suite]'
-    - id: 1001
+    - id: 1036
       uniqueId: 'Tests.dll/Pokemon_Battle_Clone/Tests/[Tests][Pokemon_Battle_Clone.Tests.DamageTests][suite]'
       name: DamageTests
       fullName: Pokemon_Battle_Clone.Tests.DamageTests
@@ -1769,7 +2363,7 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1017
+      parentId: 1052
       parentUniqueId: 'Tests.dll/Pokemon_Battle_Clone/[Tests][suite]'
     - id: 1002
       uniqueId: 'Tests.dll/Pokemon_Battle_Clone/Tests/DamageTests/[Tests][Pokemon_Battle_Clone.Tests.DamageTests.AttackDamage]'
@@ -1788,7 +2382,7 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1001
       parentUniqueId: 'Tests.dll/Pokemon_Battle_Clone/Tests/[Tests][Pokemon_Battle_Clone.Tests.DamageTests][suite]'
-    - id: 1003
+    - id: 1038
       uniqueId: 'Tests.dll/Pokemon_Battle_Clone/Tests/[Tests][Pokemon_Battle_Clone.Tests.ElementalTypeTests][suite]'
       name: ElementalTypeTests
       fullName: Pokemon_Battle_Clone.Tests.ElementalTypeTests
@@ -1802,7 +2396,7 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1017
+      parentId: 1052
       parentUniqueId: 'Tests.dll/Pokemon_Battle_Clone/[Tests][suite]'
     - id: 1007
       uniqueId: 'Tests.dll/Pokemon_Battle_Clone/Tests/ElementalTypeTests/[Tests][Pokemon_Battle_Clone.Tests.ElementalTypeTests.ImmuniseMoveEffectiveness]'
@@ -1906,7 +2500,7 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1001
       parentUniqueId: 'Tests.dll/Pokemon_Battle_Clone/Tests/[Tests][Pokemon_Battle_Clone.Tests.ElementalTypeTests][suite]'
-    - id: 1010
+    - id: 1045
       uniqueId: 'Tests.dll/Pokemon_Battle_Clone/Tests/[Tests][Pokemon_Battle_Clone.Tests.StatsTests][suite]'
       name: StatsTests
       fullName: Pokemon_Battle_Clone.Tests.StatsTests
@@ -1920,7 +2514,7 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1017
+      parentId: 1052
       parentUniqueId: 'Tests.dll/Pokemon_Battle_Clone/[Tests][suite]'
     - id: 1011
       uniqueId: 'Tests.dll/Pokemon_Battle_Clone/Tests/StatsTests/[Tests][Pokemon_Battle_Clone.Tests.StatsTests.CalculateLevel100Stats]'
@@ -2219,8 +2813,8 @@ MonoBehaviour:
     y: 0
     width: 479
     height: 933
-  m_MinSize: {x: 276, y: 76}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -2268,7 +2862,7 @@ MonoBehaviour:
   m_ObjectsLockedBeforeSerialization: []
   m_InstanceIDsLockedBeforeSerialization: 
   m_PreviewResizer:
-    m_CachedPref: -254
+    m_CachedPref: -236
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1

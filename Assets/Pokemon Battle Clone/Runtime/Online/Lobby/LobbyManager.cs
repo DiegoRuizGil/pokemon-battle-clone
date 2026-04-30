@@ -93,6 +93,11 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Lobby
             await ConnectToLobbyAsync();
         }
 
+        public async void Shutdown()
+        {
+            await ShutdownAsync();
+        }
+
         private async Task ConnectToLobbyAsync()
         {
             gameSession.SetSessionState(SessionState.Connecting);
