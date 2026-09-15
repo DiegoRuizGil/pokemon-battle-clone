@@ -1,0 +1,11 @@
+PokeTool {
+    flex-grow: 1;
+}
+
+PokemonListView {
+}
+
+PokemonListEntry {
+    justify-content: center;
+    padding-left: 5px;
+}
