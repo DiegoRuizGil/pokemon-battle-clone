@@ -1,11 +1,36 @@
 PokeTool {
     flex-grow: 1;
+    flex-direction: row;
+    padding-right: 3px;
+    padding-left: 3px;
+    padding-bottom: 3px;
 }
 
 PokemonListView {
+    border-right-width: 1px;
+    border-left-color: rgb(41, 41, 41);
+    border-right-color: rgb(41, 41, 41);
+    border-top-color: rgb(41, 41, 41);
+    border-bottom-color: rgb(41, 41, 41);
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 PokemonListEntry {
     justify-content: center;
     padding-left: 5px;
+}
+
+PokemonDataEditor {
+    background-color: rgba(169, 134, 214, 0.35);
+    flex-grow: 1;
+}
+
+.sprite-preview {
+    align-self: flex-end;
 }
