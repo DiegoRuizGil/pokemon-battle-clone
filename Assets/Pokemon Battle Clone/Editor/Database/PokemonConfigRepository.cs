@@ -19,8 +19,8 @@ namespace Pokemon_Battle_Clone.Editor.Database
 
         public void CreateAsset(PokemonConfig pokemonConfig)
         {
-            var name = pokemonConfig.pokemonName;
-            var assetPath = Path.Combine(_folderPath, name + ".asset");
+            var fileName = pokemonConfig.ID;
+            var assetPath = Path.Combine(_folderPath, $"{fileName}.asset");
             
             AssetDatabase.CreateAsset(pokemonConfig, assetPath);
             
@@ -33,7 +33,7 @@ namespace Pokemon_Battle_Clone.Editor.Database
             var assetPath = AssetDatabase.GetAssetPath(pokemonConfig);
             if (assetPath.IsNullOrEmpty())
             {
-                Debug.LogWarning($"The PokemonConfig Asset with name {pokemonConfig.pokemonName} was not found.");
+                Debug.LogWarning($"The PokemonConfig '{pokemonConfig.ID}.asset' was not found.");
                 return;
             }
 
@@ -64,5 +64,7 @@ namespace Pokemon_Battle_Clone.Editor.Database
                 .OrderBy(config => config.ID).ToList();
             return assets;
         }
+
+        public int GenerateValidId() => FindAll().Max(p => p.ID) + 1;
     }
 }

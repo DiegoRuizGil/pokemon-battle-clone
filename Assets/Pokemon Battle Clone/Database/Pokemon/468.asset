@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2965e16bdcdc4a20b856c67c00413299, type: 3}
-  m_Name: Accelgor
+  m_Name: 468
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.PokemonConfig
-  ID: 617
-  pokemonName: Accelgor
+  ID: 468
+  pokemonName: Togekiss
   level: 100
   baseStats:
-    <HP>k__BackingField: 80
-    <Attack>k__BackingField: 70
-    <Defense>k__BackingField: 40
-    <SpcAttack>k__BackingField: 100
-    <SpcDefense>k__BackingField: 60
-    <Speed>k__BackingField: 145
-  type1: 1
-  type2: 0
+    <HP>k__BackingField: 85
+    <Attack>k__BackingField: 50
+    <Defense>k__BackingField: 95
+    <SpcAttack>k__BackingField: 120
+    <SpcDefense>k__BackingField: 115
+    <Speed>k__BackingField: 80
+  type1: 5
+  type2: 8
   nature: 10
   ivs:
     <HP>k__BackingField: 31
@@ -39,6 +39,6 @@ MonoBehaviour:
     <SpcAttack>k__BackingField: 252
     <SpcDefense>k__BackingField: 4
     <Speed>k__BackingField: 252
-  backSprite: {fileID: 21300000, guid: c9537883c23972d49af48e3a0484ecc3, type: 3}
-  frontSprite: {fileID: 21300000, guid: 07805032526126c4799f26ee23dfeae3, type: 3}
-  iconSprite: {fileID: 21300000, guid: d6fa636c2edd5a043a8d98da853c5099, type: 3}
+  backSprite: {fileID: 21300000, guid: 48740f5458e3126488fb5efd13b1b2df, type: 3}
+  frontSprite: {fileID: 21300000, guid: 43c282b5142e44245a2d588e786ed36a, type: 3}
+  iconSprite: {fileID: 21300000, guid: a8e87c12405ce1f44a5c5c543a157bee, type: 3}

@@ -7,13 +7,15 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
     {
         public PokeTool()
         {
+            var splitView = new TwoPaneSplitView(0, 250, TwoPaneSplitViewOrientation.Horizontal);
             var browser = new PokemonBrowser();
             var dataEditor = new PokemonDataEditor();
 
             browser.OnPokemonSelected += dataEditor.BindPokemon;
             
-            this.Add(browser);
-            this.Add(dataEditor);
+            splitView.Add(browser);
+            splitView.Add(dataEditor);
+            this.Add(splitView);
         }
     }
 }

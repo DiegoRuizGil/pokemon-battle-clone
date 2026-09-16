@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2965e16bdcdc4a20b856c67c00413299, type: 3}
-  m_Name: Claydol
+  m_Name: 407
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.PokemonConfig
-  ID: 344
-  pokemonName: Claydol
+  ID: 407
+  pokemonName: Roserade
   level: 100
   baseStats:
     <HP>k__BackingField: 60
     <Attack>k__BackingField: 70
-    <Defense>k__BackingField: 105
-    <SpcAttack>k__BackingField: 70
-    <SpcDefense>k__BackingField: 120
-    <Speed>k__BackingField: 75
-  type1: 11
-  type2: 15
-  nature: 15
+    <Defense>k__BackingField: 65
+    <SpcAttack>k__BackingField: 125
+    <SpcDefense>k__BackingField: 105
+    <Speed>k__BackingField: 90
+  type1: 10
+  type2: 14
+  nature: 10
   ivs:
     <HP>k__BackingField: 31
     <Attack>k__BackingField: 31
@@ -33,12 +33,12 @@ MonoBehaviour:
     <SpcDefense>k__BackingField: 31
     <Speed>k__BackingField: 31
   evs:
-    <HP>k__BackingField: 252
+    <HP>k__BackingField: 0
     <Attack>k__BackingField: 0
     <Defense>k__BackingField: 0
     <SpcAttack>k__BackingField: 252
     <SpcDefense>k__BackingField: 4
-    <Speed>k__BackingField: 0
-  backSprite: {fileID: 21300000, guid: 54aee66ec765c044db0f2c35a5fea7be, type: 3}
-  frontSprite: {fileID: 21300000, guid: 7af75ab9eef1e3047af9ecd5930c1b53, type: 3}
-  iconSprite: {fileID: 21300000, guid: 2bf87496629a21a44b9a2ecd2041dcf1, type: 3}
+    <Speed>k__BackingField: 252
+  backSprite: {fileID: 21300000, guid: 354cb3e096d531e419550f771392c3de, type: 3}
+  frontSprite: {fileID: 21300000, guid: c85a3d1ead6d16f468c592addef1bba7, type: 3}
+  iconSprite: {fileID: 21300000, guid: 4593f3398c153d849ac78f4e70200406, type: 3}

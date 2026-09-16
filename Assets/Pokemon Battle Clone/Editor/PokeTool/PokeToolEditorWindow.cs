@@ -13,7 +13,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
         {
             var window = GetWindow<PokeToolEditorWindow>();
             window.titleContent = new GUIContent("PokeTool");
-            window.minSize = new Vector2(280, 50);
+            window.minSize = new Vector2(200, 50);
         }
 
         public void CreateGUI()

@@ -57,8 +57,6 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
             }
             else
             {
-                Debug.Log($"Binding: {pokemon.pokemonName}");
-                
                 style.display = DisplayStyle.Flex;
 
                 var serializedObject = new SerializedObject(pokemon);

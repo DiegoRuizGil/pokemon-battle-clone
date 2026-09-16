@@ -6,6 +6,30 @@ PokeTool {
     padding-bottom: 3px;
 }
 
+PokemonBrowser {
+    min-width: 150px;
+}
+
+.browser-toolbar {
+    flex-direction: row;
+    flex-grow: 0;
+    flex-shrink: 0;
+    align-content: flex-start;
+    justify-content: flex-start;
+    min-width: auto;
+}
+
+.browser-search-field {
+    flex-grow: 1;
+    flex-wrap: nowrap;
+    width: auto;
+}
+
+PokemonDataEditor {
+    background-color: rgba(169, 134, 214, 0.35);
+    flex-grow: 1;
+}
+
 PokemonListView {
     border-right-width: 1px;
     border-left-color: rgb(41, 41, 41);
@@ -24,11 +48,6 @@ PokemonListView {
 PokemonListEntry {
     justify-content: center;
     padding-left: 5px;
-}
-
-PokemonDataEditor {
-    background-color: rgba(169, 134, 214, 0.35);
-    flex-grow: 1;
 }
 
 .sprite-preview {

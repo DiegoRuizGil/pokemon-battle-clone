@@ -17,11 +17,11 @@ namespace Pokemon_Battle_Clone.Runtime.Database
     public class PokemonConfig : ScriptableObject
     {
         public int ID;
-        public string pokemonName;
+        public string pokemonName = "unknown";
         public int level = 100;
-        public StatSet baseStats;
-        public ElementalType type1;
-        public ElementalType type2;
+        public StatSet baseStats = new StatSet();
+        public ElementalType type1 = ElementalType.Normal;
+        public ElementalType type2 = ElementalType.None;
         public NatureEnum nature;
         public StatSet ivs = new StatSet(31, 31, 31, 31, 31, 31);
         public StatSet evs;

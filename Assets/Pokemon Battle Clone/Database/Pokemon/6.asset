@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2965e16bdcdc4a20b856c67c00413299, type: 3}
-  m_Name: Cradily
+  m_Name: 6
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.PokemonConfig
-  ID: 346
-  pokemonName: Cradily
+  ID: 6
+  pokemonName: Charizard
   level: 100
   baseStats:
-    <HP>k__BackingField: 86
-    <Attack>k__BackingField: 81
-    <Defense>k__BackingField: 97
-    <SpcAttack>k__BackingField: 81
-    <SpcDefense>k__BackingField: 107
-    <Speed>k__BackingField: 43
-  type1: 16
-  type2: 10
-  nature: 15
+    <HP>k__BackingField: 78
+    <Attack>k__BackingField: 84
+    <Defense>k__BackingField: 78
+    <SpcAttack>k__BackingField: 109
+    <SpcDefense>k__BackingField: 85
+    <Speed>k__BackingField: 100
+  type1: 7
+  type2: 8
+  nature: 10
   ivs:
     <HP>k__BackingField: 31
     <Attack>k__BackingField: 31
@@ -33,12 +33,12 @@ MonoBehaviour:
     <SpcDefense>k__BackingField: 31
     <Speed>k__BackingField: 31
   evs:
-    <HP>k__BackingField: 248
+    <HP>k__BackingField: 0
     <Attack>k__BackingField: 0
     <Defense>k__BackingField: 0
     <SpcAttack>k__BackingField: 252
-    <SpcDefense>k__BackingField: 8
-    <Speed>k__BackingField: 0
-  backSprite: {fileID: 21300000, guid: b67fb807248592848994820133acefa1, type: 3}
-  frontSprite: {fileID: 21300000, guid: 133f44c24d041634192e18f9d0148403, type: 3}
-  iconSprite: {fileID: 21300000, guid: b62810a1fc86d1947a57343e1c4c0e48, type: 3}
+    <SpcDefense>k__BackingField: 4
+    <Speed>k__BackingField: 252
+  backSprite: {fileID: 21300000, guid: 0767d1fccd9af6743a72b9f86cbe0257, type: 3}
+  frontSprite: {fileID: 21300000, guid: 702ae318308813145841b1e1c61c047d, type: 3}
+  iconSprite: {fileID: 21300000, guid: 749687dd28178664cb5cc0ff59bbe1d2, type: 3}

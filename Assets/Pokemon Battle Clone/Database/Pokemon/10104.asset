@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2965e16bdcdc4a20b856c67c00413299, type: 3}
-  m_Name: Dragonite
-  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.PokemonConfig
-  ID: 149
-  pokemonName: Dragonite
+  m_Name: 10104
+  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.TeamBuilder.PokemonConfig
+  ID: 10104
+  pokemonName: Ninetales-Alola
   level: 100
   baseStats:
-    <HP>k__BackingField: 91
-    <Attack>k__BackingField: 134
-    <Defense>k__BackingField: 95
-    <SpcAttack>k__BackingField: 100
+    <HP>k__BackingField: 73
+    <Attack>k__BackingField: 67
+    <Defense>k__BackingField: 75
+    <SpcAttack>k__BackingField: 81
     <SpcDefense>k__BackingField: 100
-    <Speed>k__BackingField: 80
-  type1: 3
-  type2: 8
+    <Speed>k__BackingField: 109
+  type1: 12
+  type2: 5
   nature: 10
   ivs:
     <HP>k__BackingField: 31
@@ -39,6 +39,6 @@ MonoBehaviour:
     <SpcAttack>k__BackingField: 252
     <SpcDefense>k__BackingField: 4
     <Speed>k__BackingField: 252
-  backSprite: {fileID: 21300000, guid: 6f979a1f4bc734841bb8c91804eb40b7, type: 3}
-  frontSprite: {fileID: 21300000, guid: 96c60c4b22bc018418926c34a767fad4, type: 3}
-  iconSprite: {fileID: 21300000, guid: 57a3860a636dc5d4a98b2c2dec59eeb7, type: 3}
+  backSprite: {fileID: 21300000, guid: 0d09ab40a2eb5e24f842f1b920eb74db, type: 3}
+  frontSprite: {fileID: 21300000, guid: 14c3ed5b23cc0db48814a7e49a2a6e7b, type: 3}
+  iconSprite: {fileID: 21300000, guid: d1d84c659dc10e04795b2e176e425eff, type: 3}

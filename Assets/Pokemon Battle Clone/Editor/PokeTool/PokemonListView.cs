@@ -22,6 +22,17 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
         public void SetEntries(List<PokemonConfig> entries)
         {
             this.itemsSource = entries;
+            this.RefreshItems();
+        }
+
+        public void AddEntry(PokemonConfig entry)
+        {
+            this.itemsSource.Add(entry);
+            this.RefreshItems();
+            
+            int index = this.itemsSource.Count - 1;
+            this.SetSelection(index);
+            this.ScrollToItem(index);
         }
     }
 }
