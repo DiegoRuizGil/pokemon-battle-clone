@@ -39,10 +39,7 @@ PokemonListView {
     border-top-width: 1px;
     border-bottom-width: 1px;
     border-left-width: 1px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
+    border-radius: 5px;
 }
 
 PokemonListEntry {
@@ -50,6 +47,26 @@ PokemonListEntry {
     padding-left: 5px;
 }
 
+.validated-field {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.validated-field IntegerField {
+    flex-grow: 1;
+}
+
 .sprite-preview {
     align-self: flex-end;
 }
+
+.field-modified > .unity-base-field__label {
+    -unity-font-style: bold;
+}
+
+.field-modified {
+    border-left-width: 2px;
+    border-left-color: rgb(255, 255, 255);
+}
+
+

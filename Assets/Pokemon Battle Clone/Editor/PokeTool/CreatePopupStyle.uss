@@ -1,0 +1,14 @@
+﻿.create-popup {
+    padding: 2px;
+}
+
+.create-popup>.header {
+    -unity-font-style: bold;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.create-popup>Button{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

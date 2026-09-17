@@ -66,5 +66,7 @@ namespace Pokemon_Battle_Clone.Editor.Database
         }
 
         public int GenerateValidId() => FindAll().Max(p => p.ID) + 1;
+
+        public bool IsValidId(int id) => FindAll().TrueForAll(p => p.ID != id);
     }
 }
