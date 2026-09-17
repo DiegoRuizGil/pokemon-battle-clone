@@ -42,18 +42,27 @@ PokemonListView {
     border-radius: 5px;
 }
 
-PokemonListEntry {
-    justify-content: center;
-    padding-left: 5px;
-}
-
-.validated-field {
+.list-entry {
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding-left: 10px;
+    justify-content: space-between;
+    align-content: flex-start;
 }
 
-.validated-field IntegerField {
+.list-entry > .entry-label {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    flex-shrink: 1;
     flex-grow: 1;
+    min-width: 0;
+}
+
+.delete-button {
+    align-self: flex-end;
+    flex-shrink: 0;
 }
 
 .sprite-preview {
@@ -68,5 +77,3 @@ PokemonListEntry {
     border-left-width: 2px;
     border-left-color: rgb(255, 255, 255);
 }
-
-

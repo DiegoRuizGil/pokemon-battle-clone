@@ -26,10 +26,15 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
             var toolbar = new BrowserToolbar(repository);
             _listView = new PokemonListView(repository.FindAll());
             
-            toolbar.OnPokemonCreated += p => _listView.AddEntry(p);
+            toolbar.OnPokemonCreated += pokemon =>
+            {
+                _listView.SetEntries(_repository.FindAll());
+                _listView.SetFocusAt(pokemon);
+            };
             toolbar.OnSearchListChanged += list => _listView.SetEntries(list);
             
             _listView.selectionChanged += OnSelectionChanged;
+            _listView.OnDeleteRequested += HandleDeleteRequest;
             
             this.Add(toolbar);
             this.Add(_listView);
@@ -42,6 +47,21 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
         private void OnSelectionChanged(IEnumerable<object> obj)
         {
             OnPokemonSelected?.Invoke(obj.FirstOrDefault() as PokemonConfig);
+        }
+
+        private void HandleDeleteRequest(PokemonConfig pokemon)
+        {
+            var actionConfirmed = EditorUtility.DisplayDialog(
+                "Delete Pokemon",
+                $"Are you sure you want to delete this pokemon ({pokemon.pokemonName})?",
+                "Delete", "Cancel"
+            );
+
+            if (actionConfirmed)
+            {
+                _repository.DeleteAsset(pokemon);
+                _listView.SetEntries(_repository.FindAll());
+            }
         }
 
         private void AdjustAssetsName()
