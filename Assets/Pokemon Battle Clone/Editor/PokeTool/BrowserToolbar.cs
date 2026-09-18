@@ -38,16 +38,13 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
 
         private void OnCreateClicked()
         {
-            var popup = new CreatePokemonPopup(_repository, _repository.GenerateValidId(), CreateAsset);
+            var popup = new CreatePokemonPopup(_repository, _repository.GenerateValidId());
+            popup.OnConfirm += CreateAsset;
             UnityEditor.PopupWindow.Show(_createButton.worldBound, popup);
         }
 
-        private void CreateAsset(int pokemonId, string pokemonName)
+        private void CreateAsset(PokemonConfig pokemonConfig)
         {
-            var pokemonConfig = ScriptableObject.CreateInstance<PokemonConfig>();
-            pokemonConfig.ID = pokemonId;
-            pokemonConfig.pokemonName = pokemonName;
-            
             _repository.CreateAsset(pokemonConfig);
             OnPokemonCreated?.Invoke(pokemonConfig);
         }

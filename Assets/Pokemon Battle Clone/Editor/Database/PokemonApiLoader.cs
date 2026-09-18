@@ -23,25 +23,18 @@ namespace Pokemon_Battle_Clone.Editor.Database
         
         public async Task LoadFromPokeApi(PokemonConfig target, string search)
         {
-            try
-            {
-                var pokemon = await _pokeClient.GetResourceAsync<PokeApiNet.Pokemon>(search);
+            var pokemon = await _pokeClient.GetResourceAsync<PokeApiNet.Pokemon>(search);
                 
-                ApplyData(target, pokemon);
-                await LoadSprites(target, pokemon);
+            ApplyData(target, pokemon);
+            await LoadSprites(target, pokemon);
                 
-                EditorUtility.SetDirty(target);
-            }
-            catch (Exception e)
-            {
-                Debug.LogError($"Error loading pokemon \"{search}\": {e.Message}");
-            }
+            EditorUtility.SetDirty(target);
         }
 
         private void ApplyData(PokemonConfig target, PokeApiNet.Pokemon pokemon)
         {
             target.ID = pokemon.Id;
-            target.pokemonName = pokemon.Name;
+            target.pokemonName = char.ToUpper(pokemon.Name[0]) + pokemon.Name.Substring(1);
             target.baseStats = new StatSet(
                 hp: pokemon.Stats[0].BaseStat,
                 attack: pokemon.Stats[1].BaseStat,
@@ -57,16 +50,9 @@ namespace Pokemon_Battle_Clone.Editor.Database
         
         private async Task LoadSprites(PokemonConfig target, PokeApiNet.Pokemon pokemon)
         {
-            try
-            {
-                target.backSprite = await _spritesLoader.LoadSprite(pokemon, SpriteType.Back);
-                target.frontSprite = await _spritesLoader.LoadSprite(pokemon, SpriteType.Front);
-                target.iconSprite = await _spritesLoader.LoadSprite(pokemon, SpriteType.Icon);
-            }
-            catch (Exception e)
-            {
-                Debug.LogError(e.Message);
-            }
+            target.backSprite = await _spritesLoader.LoadSprite(pokemon, SpriteType.Back);
+            target.frontSprite = await _spritesLoader.LoadSprite(pokemon, SpriteType.Front);
+            target.iconSprite = await _spritesLoader.LoadSprite(pokemon, SpriteType.Icon);
         }
     }
 }
