@@ -2,18 +2,17 @@
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
-using PokeApiNet;
 using UnityEditor;
 using UnityEngine;
 
-namespace Pokemon_Battle_Clone.Runtime.TeamBuilder
+namespace Pokemon_Battle_Clone.Editor.Database
 {
     public enum SpriteType
     {
         Back, Front, Icon
     }
     
-    public class SpritesLoader
+    public class SpritesManager
     {
         private readonly string _basePath;
         private readonly HttpClient _httpClient;
@@ -21,11 +20,28 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder
         private const string BackFolder = "Back";
         private const string FrontFolder = "Front";
         private const string IconFolder = "Icon";
+
+        public SpritesManager() : this("Assets/Pokemon Battle Clone/Sprites/Pokemon") { }
         
-        public SpritesLoader(string basePath)
+        public SpritesManager(string basePath)
         {
             _basePath = basePath;
             _httpClient = new HttpClient();
+        }
+
+        public void DeleteSprites(int pokemonId)
+        {
+            var paths = new List<string>
+            {
+                $"{_basePath}/{GetSubFolder(SpriteType.Back)}/{pokemonId}.png",
+                $"{_basePath}/{GetSubFolder(SpriteType.Front)}/{pokemonId}.png",
+                $"{_basePath}/{GetSubFolder(SpriteType.Icon)}/{pokemonId}.png"
+            };
+
+            foreach (var path in paths)
+                AssetDatabase.DeleteAsset(path);
+
+            AssetDatabase.Refresh();
         }
 
         public async Task<Sprite> LoadSprite(PokeApiNet.Pokemon pokemon, SpriteType spriteType)

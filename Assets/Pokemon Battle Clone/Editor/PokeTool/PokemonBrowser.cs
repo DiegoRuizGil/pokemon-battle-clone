@@ -53,10 +53,10 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
         {
             var actionConfirmed = EditorUtility.DisplayDialog(
                 "Delete Pokemon",
-                $"Are you sure you want to delete this pokemon ({pokemon.pokemonName})?",
+                $"Are you sure you want to delete this pokemon ({pokemon.pokemonName})? This action also deletes the pokemon's sprites.",
                 "Delete", "Cancel"
             );
-
+            
             if (actionConfirmed)
             {
                 _repository.DeleteAsset(pokemon);

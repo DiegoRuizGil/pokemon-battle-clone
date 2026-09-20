@@ -13,12 +13,12 @@ namespace Pokemon_Battle_Clone.Editor.Database
     public class PokemonApiLoader
     {
         private readonly PokeApiClient _pokeClient;
-        private readonly SpritesLoader _spritesLoader;
+        private readonly SpritesManager _spritesManager;
 
         public PokemonApiLoader()
         {
             _pokeClient = new PokeApiClient();
-            _spritesLoader = new SpritesLoader("Assets/Pokemon Battle Clone/Sprites/Pokemon");
+            _spritesManager = new SpritesManager("Assets/Pokemon Battle Clone/Sprites/Pokemon");
         }
         
         public async Task LoadFromPokeApi(PokemonConfig target, string search)
@@ -50,9 +50,9 @@ namespace Pokemon_Battle_Clone.Editor.Database
         
         private async Task LoadSprites(PokemonConfig target, PokeApiNet.Pokemon pokemon)
         {
-            target.backSprite = await _spritesLoader.LoadSprite(pokemon, SpriteType.Back);
-            target.frontSprite = await _spritesLoader.LoadSprite(pokemon, SpriteType.Front);
-            target.iconSprite = await _spritesLoader.LoadSprite(pokemon, SpriteType.Icon);
+            target.backSprite = await _spritesManager.LoadSprite(pokemon, SpriteType.Back);
+            target.frontSprite = await _spritesManager.LoadSprite(pokemon, SpriteType.Front);
+            target.iconSprite = await _spritesManager.LoadSprite(pokemon, SpriteType.Icon);
         }
     }
 }

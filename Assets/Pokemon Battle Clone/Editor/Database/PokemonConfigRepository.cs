@@ -37,8 +37,10 @@ namespace Pokemon_Battle_Clone.Editor.Database
                 return;
             }
 
+            var spritesManager = new SpritesManager();
+            spritesManager.DeleteSprites(pokemonConfig.ID);
+            
             AssetDatabase.DeleteAsset(assetPath);
-            AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
         }
 
