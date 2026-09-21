@@ -18,7 +18,7 @@ namespace Pokemon_Battle_Clone.Editor.CustomAssetsImporter
 
         private bool ShouldApplySettings()
         {
-            return assetPath.StartsWith(ProjectPaths.PokemonSprites, StringComparison.Ordinal);
+            return assetPath.StartsWith(ProjectPaths.PokemonSprites + "/", StringComparison.Ordinal);
         }
 
         private void ApplySpriteSettings(TextureImporter importer)

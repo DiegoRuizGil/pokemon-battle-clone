@@ -35,9 +35,6 @@ namespace Pokemon_Battle_Clone.Editor.Database
                 Debug.LogWarning($"The PokemonConfig '{pokemonConfig.ID}.asset' was not found.");
                 return;
             }
-
-            var spritesManager = new SpritesManager(ProjectPaths.PokemonSprites);
-            spritesManager.DeleteSprites(pokemonConfig.ID);
             
             AssetDatabase.DeleteAsset(assetPath);
             AssetDatabase.Refresh();

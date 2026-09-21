@@ -13,15 +13,17 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
     public partial class PokemonBrowser : VisualElement
     {
         private readonly PokemonConfigRepository _repository;
+        private readonly SpritesManager _spritesManager;
         private readonly PokemonListView _listView;
         
         public event Action<PokemonConfig> OnPokemonSelected;
         
         public PokemonBrowser() { }
         
-        public PokemonBrowser(PokemonConfigRepository repository)
+        public PokemonBrowser(PokemonConfigRepository repository, SpritesManager spritesManager)
         {
             _repository = repository;
+            _spritesManager = spritesManager;
             
             var toolbar = new BrowserToolbar(repository);
             _listView = new PokemonListView(repository.FindAll());
@@ -59,6 +61,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
             
             if (actionConfirmed)
             {
+                _spritesManager.DeleteSprites(pokemon.ID);
                 _repository.DeleteAsset(pokemon);
                 _listView.SetEntries(_repository.FindAll());
             }

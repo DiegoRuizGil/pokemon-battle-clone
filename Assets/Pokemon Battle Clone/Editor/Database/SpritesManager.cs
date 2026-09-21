@@ -65,9 +65,9 @@ namespace Pokemon_Battle_Clone.Editor.Database
                 return null;
 
             var relativePath = GetRelativePath(pokemon.Id.ToString(), spriteType);
-            var filePath = Application.dataPath + "/" + relativePath.Replace("Assets/", "");
+            var fullPath = Path.GetFullPath(relativePath);
 
-            await DownloadSprite(url, filePath);
+            await DownloadSprite(url, fullPath);
             
             AssetDatabase.ImportAsset(relativePath);
             
@@ -102,12 +102,11 @@ namespace Pokemon_Battle_Clone.Editor.Database
         
         private Sprite Load(string id, SpriteType type)
         {
-            string subFolder = GetSubFolder(type);
-            var path = $"{_basePath}/{subFolder}/{id}.png";
+            var path = GetRelativePath(id, type);
 
             var sprite = (Sprite)AssetDatabase.LoadAssetAtPath(path, typeof(Sprite));
             
-            if (sprite == null)
+            if (!sprite)
                 Debug.Log($"Sprite with id:{id} was not found, at route:{path}");
             
             return sprite;
