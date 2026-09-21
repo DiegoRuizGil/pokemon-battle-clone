@@ -1,14 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Pokemon_Battle_Clone.Runtime.Database
 {
     [CreateAssetMenu(menuName = "Pokemon Battle Clone/Database/Team Collection", fileName = "Team Collection")]
     public class TeamCollection : ScriptableObject
     {
-        [SerializeField] private List<TeamConfig> teamConfigs = new List<TeamConfig>();
+        [SerializeField] private List<TeamConfig> teamConfigs;
         
         public List<TeamConfig> TeamConfigs => teamConfigs;
         

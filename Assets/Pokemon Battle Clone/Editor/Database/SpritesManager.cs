@@ -20,8 +20,6 @@ namespace Pokemon_Battle_Clone.Editor.Database
         private const string BackFolder = "Back";
         private const string FrontFolder = "Front";
         private const string IconFolder = "Icon";
-
-        public SpritesManager() : this("Assets/Pokemon Battle Clone/Sprites/Pokemon") { }
         
         public SpritesManager(string basePath)
         {
@@ -33,9 +31,9 @@ namespace Pokemon_Battle_Clone.Editor.Database
         {
             var paths = new List<string>
             {
-                $"{_basePath}/{GetSubFolder(SpriteType.Back)}/{pokemonId}.png",
-                $"{_basePath}/{GetSubFolder(SpriteType.Front)}/{pokemonId}.png",
-                $"{_basePath}/{GetSubFolder(SpriteType.Icon)}/{pokemonId}.png"
+                GetRelativePath(pokemonId.ToString(), SpriteType.Back),
+                GetRelativePath(pokemonId.ToString(), SpriteType.Front),
+                GetRelativePath(pokemonId.ToString(), SpriteType.Icon)
             };
 
             foreach (var path in paths)
@@ -66,7 +64,7 @@ namespace Pokemon_Battle_Clone.Editor.Database
             if (string.IsNullOrEmpty(url))
                 return null;
 
-            var relativePath = $"{_basePath}/{GetSubFolder(spriteType)}/{pokemon.Id}.png";
+            var relativePath = GetRelativePath(pokemon.Id.ToString(), spriteType);
             var filePath = Application.dataPath + "/" + relativePath.Replace("Assets/", "");
 
             await DownloadSprite(url, filePath);
@@ -117,10 +115,15 @@ namespace Pokemon_Battle_Clone.Editor.Database
 
         private string BuildFilePath(string pokemonId, SpriteType spriteType)
         {
-            var relativePath = $"{_basePath}/{GetSubFolder(spriteType)}/{pokemonId}.png";
-            var filePath = Application.dataPath + "/" + relativePath.Replace("Assets/", "");
+            var relativePath = GetRelativePath(pokemonId, spriteType);
+            var filePath = Path.GetFullPath(relativePath);
 
             return filePath;
+        }
+
+        private string GetRelativePath(string pokemonId, SpriteType spriteType)
+        {
+            return $"{_basePath}/{GetSubFolder(spriteType)}/{pokemonId}.png";
         }
 
         private string GetSubFolder(SpriteType type)

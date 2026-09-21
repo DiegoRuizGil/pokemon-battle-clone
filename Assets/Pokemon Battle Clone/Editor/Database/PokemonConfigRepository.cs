@@ -4,7 +4,6 @@ using System.Linq;
 using Pokemon_Battle_Clone.Runtime.Database;
 using UnityEditor;
 using UnityEngine;
-using WebSocketSharp;
 
 namespace Pokemon_Battle_Clone.Editor.Database
 {
@@ -31,13 +30,13 @@ namespace Pokemon_Battle_Clone.Editor.Database
         public void DeleteAsset(PokemonConfig pokemonConfig)
         {
             var assetPath = AssetDatabase.GetAssetPath(pokemonConfig);
-            if (assetPath.IsNullOrEmpty())
+            if (string.IsNullOrEmpty(assetPath))
             {
                 Debug.LogWarning($"The PokemonConfig '{pokemonConfig.ID}.asset' was not found.");
                 return;
             }
 
-            var spritesManager = new SpritesManager();
+            var spritesManager = new SpritesManager(ProjectPaths.PokemonSprites);
             spritesManager.DeleteSprites(pokemonConfig.ID);
             
             AssetDatabase.DeleteAsset(assetPath);

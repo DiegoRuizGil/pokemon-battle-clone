@@ -1,12 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using PokeApiNet;
 using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.Database;
 using Pokemon_Battle_Clone.Runtime.Stats.Domain;
-using Pokemon_Battle_Clone.Runtime.TeamBuilder;
 using UnityEditor;
-using UnityEngine;
 
 namespace Pokemon_Battle_Clone.Editor.Database
 {
@@ -18,7 +15,7 @@ namespace Pokemon_Battle_Clone.Editor.Database
         public PokemonApiLoader()
         {
             _pokeClient = new PokeApiClient();
-            _spritesManager = new SpritesManager("Assets/Pokemon Battle Clone/Sprites/Pokemon");
+            _spritesManager = new SpritesManager(ProjectPaths.PokemonSprites);
         }
         
         public async Task LoadFromPokeApi(PokemonConfig target, string search)
