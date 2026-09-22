@@ -14,7 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
   m_GroupName: Default Local Group
   m_GUID: d03ec5b1ad04cfb4a9e46e7a9c4065b2
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: a21836c483b2e7c4e86215ac20a1e88d
+    m_Address: Assets/Pokemon Battle Clone/Sprites/Pokemon/Front
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df16f2d1b09254843a8b77a660445883
+    m_Address: Assets/Pokemon Battle Clone/Sprites/Pokemon/Back
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ef5723ed52c49ef40b19762991e136be
+    m_Address: Assets/Pokemon Battle Clone/Sprites/Pokemon/Icon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8cb9347fb813a034ea85e6a6d1946755, type: 2}
   m_SchemaSet:
