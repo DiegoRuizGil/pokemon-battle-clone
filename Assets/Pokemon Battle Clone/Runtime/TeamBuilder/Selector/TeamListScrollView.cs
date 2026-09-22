@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Pokemon_Battle_Clone.Runtime.Battles.Domain;
 using Pokemon_Battle_Clone.Runtime.Database;
 using Pokemon_Battle_Clone.Runtime.TeamBuilder.TeamDisplayer;
@@ -16,17 +17,24 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.Selector
         [SerializeField] private GameObject content;
         [SerializeField] private TeamInfoDisplayer teamInfoDisplayer;
         
+        private readonly IPokemonSpriteProvider _spriteProvider = new AddressablesSpriteProvider();
+        
         private void Awake()
         {
             foreach (var teamConfig in teamCollection.TeamConfigs)
             {
                 var selector = Instantiate(teamSelectorPrefab, content.transform);
-                selector.Init(teamConfig);
+                selector.Init(teamConfig, _spriteProvider);
                 selector.OnPlayerSelected += OnPlayerSelected;
                 selector.OnRivalSelected += OnRivalSelected;
                 selector.OnInfoSelected += OnInfoSelected;
             }
+            
+            teamsAllocator.Init(_spriteProvider);
+            teamInfoDisplayer.Init(_spriteProvider);
         }
+
+        private void OnDestroy() => _spriteProvider.Dispose();
 
         private void OnPlayerSelected(TeamConfig teamConfig) => OnTeamSelected(teamConfig, Side.Player);
         private void OnRivalSelected(TeamConfig teamConfig) => OnTeamSelected(teamConfig, Side.Rival);

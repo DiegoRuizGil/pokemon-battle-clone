@@ -8,5 +8,6 @@ namespace Pokemon_Battle_Clone.Runtime.Database
         Task<Sprite> GetBackSprite(uint id);
         Task<Sprite> GetFrontSprite(uint id);
         Task<Sprite> GetIconSprite(uint id);
+        void Dispose();
     }
 }

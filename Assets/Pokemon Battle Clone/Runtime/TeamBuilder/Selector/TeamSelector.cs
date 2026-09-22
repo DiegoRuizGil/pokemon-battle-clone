@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Pokemon_Battle_Clone.Runtime.Database;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +10,6 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.Selector
 {
     public class TeamSelector : MonoBehaviour
     {
-        [SerializeField] private PokemonAssetDatabase assetDatabase;
         [SerializeField] private List<Image> icons;
         
         [Header("Buttons")]
@@ -17,6 +18,7 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.Selector
         [SerializeField] private Button infoButton;
         
         private TeamConfig _teamConfig;
+        private IPokemonSpriteProvider _spriteProvider;
         
         public event Action<TeamConfig> OnPlayerSelected = delegate { };
         public event Action<TeamConfig> OnRivalSelected = delegate { };
@@ -27,14 +29,24 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.Selector
             BindActions();
         }
 
-        public void Init(TeamConfig teamConfig)
+        public void Init(TeamConfig teamConfig, IPokemonSpriteProvider spriteProvider)
         {
             _teamConfig = teamConfig;
+            _spriteProvider = spriteProvider;
+
+            DisplayIcons();
+        }
+
+        private async void DisplayIcons()
+        {
+            var sprites = await Task.WhenAll(
+                _teamConfig.pokemonList.Select(p => _spriteProvider.GetIconSprite((uint)p.pokemonConfig.ID))
+            );
             for (var i = 0; i < icons.Count; i++)
             {
                 if (_teamConfig.pokemonList.Count > i)
                 {
-                    icons[i].sprite = assetDatabase.GetIcon((uint)_teamConfig.pokemonList[i].pokemonConfig.ID);
+                    icons[i].sprite = sprites[i];
                     icons[i].gameObject.SetActive(true);
                 }
                 else

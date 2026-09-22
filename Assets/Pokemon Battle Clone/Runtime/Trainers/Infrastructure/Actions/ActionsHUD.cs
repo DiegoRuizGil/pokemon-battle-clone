@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.Database;
 using Pokemon_Battle_Clone.Runtime.Moves.Domain;
@@ -10,18 +11,17 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions
 {
     public class ActionsHUD : MonoBehaviour, IActionHUD
     {
-        [SerializeField] private PokemonAssetDatabase assetDatabase;
         [SerializeField] private ActionSelector selector;
         [SerializeField] private PokemonSelectorView pokemonSelector;
         [SerializeField] private MoveSetView moveSetView;
+        
+        private IPokemonSpriteProvider _spriteProvider;
 
-        private void Start()
+        public void Init(IPokemonSpriteProvider spriteProvider)
         {
-            Init();
-        }
-
-        public void Init()
-        {
+            _spriteProvider = spriteProvider;
+            
+            Hide();
             HideSelectors();
             
             moveSetView.Init();
@@ -53,9 +53,14 @@ namespace Pokemon_Battle_Clone.Runtime.Trainers.Infrastructure.Actions
             pokemonSelector.Hide();
         }
 
-        public void ShowPokemonSelector(bool forceSelection, Team team)
+        public async void ShowPokemonSelector(bool forceSelection, Team team)
         {
-            var icons = assetDatabase.GetIconsOf(team.PokemonList.Select(p => p.ID).ToList());
+            var ids = team.PokemonList.Select(p => p.ID).ToList();
+            var sprites = await Task.WhenAll(ids.Select(id => _spriteProvider.GetIconSprite(id)));
+            
+            var icons = ids
+                .Zip(sprites, (id, sprite) => (id, sprite))
+                .ToDictionary(x => x.id, x => x.sprite);
             
             selector.Hide();
             moveSetView.Hide();

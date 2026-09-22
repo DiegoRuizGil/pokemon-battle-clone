@@ -7,12 +7,15 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.TeamDisplayer
 {
     public class TeamInfoDisplayer : MonoBehaviour, ITeamInfoDisplayer
     {
-        [SerializeField] private PokemonAssetDatabase assetDatabase;
         [SerializeField] private PokemonCard pokemonCard;
 
         private List<Pokemon> _currentList;
         private int _currentIndex;
 
+        private IPokemonSpriteProvider _spriteProvider;
+        
+        public void Init(IPokemonSpriteProvider spriteProvider) => _spriteProvider = spriteProvider;
+        
         public void Close()
         {
             gameObject.SetActive(false);
@@ -30,13 +33,13 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.TeamDisplayer
             Display(_currentList, _currentIndex);
         }
 
-        public void Display(List<Pokemon> pokemonList, int currentPokemonToDisplay = 0)
+        public async void Display(List<Pokemon> pokemonList, int currentPokemonToDisplay = 0)
         {
             _currentList = pokemonList;
             _currentIndex = currentPokemonToDisplay;
             
             var pokemon = _currentList[_currentIndex];
-            var icon = assetDatabase.GetIcon(pokemon.ID);
+            var icon = await _spriteProvider.GetIconSprite(pokemon.ID);
             
             pokemonCard.Display(pokemon, icon);
             

@@ -13,18 +13,20 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Infrastructure
     public class TeamView : MonoBehaviour, ITeamView
     {
         [SerializeField] private Side side;
-        [SerializeField] private PokemonAssetDatabase assetDatabase;
         [SerializeField] private StatusView statusView;
         [SerializeField] private PokemonView pokemonView;
         
-        public void Init(List<uint> pokemonIDs)
+        private IPokemonSpriteProvider _spriteProvider;
+        
+        public void Init(List<uint> pokemonIDs, IPokemonSpriteProvider spriteProvider)
         {
             statusView.Team.Init(pokemonIDs);
+            _spriteProvider = spriteProvider;
         }
         
         public async Task SendPokemon(Pokemon pokemon)
         {
-            var sprite = GetSprite(pokemon.ID);
+            var sprite = await GetSprite(pokemon.ID);
             SetStaticData(sprite, pokemon.Name, pokemon.Stats.Level);
             UpdateHealth(pokemon.Health.Max, pokemon.Health.Current, animated: false);
             SetStatModifier(pokemon.Stats.Modifiers);
@@ -58,9 +60,9 @@ namespace Pokemon_Battle_Clone.Runtime.Core.Infrastructure
             statusView.Pokemon.SetInfo(name, level);
         }
 
-        private Sprite GetSprite(uint id)
+        private Task<Sprite> GetSprite(uint id)
         {
-            return side == Side.Player ? assetDatabase.GetBackSprite(id) : assetDatabase.GetFrontSprite(id);
+            return side == Side.Player ? _spriteProvider.GetBackSprite(id) : _spriteProvider.GetFrontSprite(id);
         }
     }
 }
