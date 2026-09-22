@@ -1,4 +1,4 @@
-﻿namespace Pokemon_Battle_Clone.Editor.Database
+﻿namespace Pokemon_Battle_Clone.Runtime.Database
 {
     public static class ProjectPaths
     {
