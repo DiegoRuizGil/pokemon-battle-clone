@@ -7,12 +7,13 @@ using Pokemon_Battle_Clone.Runtime.Database;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Object = UnityEngine.Object;
 
 namespace Pokemon_Battle_Clone.Editor.PokeTool
 {
     public class CreatePokemonPopup : PopupWindowContent
     {
+        // todo - load stylesheet
+        
         public event Action<PokemonConfig> OnConfirm;
         
         private readonly PokemonConfigRepository _repository;
@@ -41,7 +42,9 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
             _searchField = new TextField("Search");
             _idField = new IntegerField("ID") { value = suggestedId };
             _nameField = new TextField("Name") { value = "unknown" };
+            
             _confirmButton = new Button(OnConfirmClicked) { text = "Confirm"};
+            _confirmButton.AddToClassList("confirm-button");
             
             _errorBox = new HelpBox("", HelpBoxMessageType.Warning);
             _errorBox.style.display = DisplayStyle.None;
@@ -71,7 +74,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
 
         private async void OnConfirmClicked()
         {
-            HideBoxes();
+            HideErrors();
 
             var errors = ValidateFields();
             if (errors.Count > 0)
@@ -80,39 +83,64 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
                 return;
             }
 
+            SetBusy(true);
             try
             {
-                _loadingDataBox.style.display = DisplayStyle.Flex;
-                var pokemonConfig = await CreatePokemonConfig();
-
-                errors = ValidatePokemonData(pokemonConfig.ID, pokemonConfig.pokemonName, _loadFromApiField.value);
-                if (errors.Count > 0)
-                {
-                    ShowErrors(errors);
-                    Object.DestroyImmediate(pokemonConfig);
+                var config = _loadFromApiField.value ? await CreateFromApi() : CreateManually();
+                if (config == null)
                     return;
-                }
                 
-                OnConfirm?.Invoke(pokemonConfig);
-                editorWindow.Close();
+                OnConfirm?.Invoke(config);
+                CloseWindow();
             }
             catch (HttpRequestException e)
             {
                 var message = e.Message.Contains("404")
                     ? $"No Pokemon were found for the search term \"{_searchField.value}\" in the PokeApi."
                     : "Could not connect to the PokeApi. Check your internet connection.";
-                ShowErrors(new() { message });
+                ShowErrors(new List<string> { message });
             }
             catch (Exception e)
             {
-                ShowErrors(new() { $"Unexpected error: {e.Message}" });
+                ShowErrors(new List<string> { $"Unexpected error: {e.Message}" });
             }
             finally
             {
-                SetEnable(true);
-                _loadingDataBox.style.display = DisplayStyle.None;
+                SetBusy(false);
+            }
+        }
+
+        private async Task<PokemonConfig> CreateFromApi()
+        {
+            var dto = await _apiLoader.Fetch(_searchField.value);
+
+            var errors = ValidateAvailability(dto.Id, dto.Name);
+            if (errors.Count > 0)
+            {
+                ShowErrors(errors);
+                return null;
+            }
+
+            await _apiLoader.DownloadSprites(dto);
+            return _apiLoader.CreateConfig(dto);
+        }
+
+        private PokemonConfig CreateManually()
+        {
+            var id = _idField.value;
+            var name = _nameField.value.Trim();
+
+            var errors = ValidateAvailability(id, name);
+            if (errors.Count > 0)
+            {
+                ShowErrors(errors);
+                return null;
             }
             
+            var config = ScriptableObject.CreateInstance<PokemonConfig>();
+            config.ID = id;
+            config.pokemonName = name;
+            return config;
         }
 
         private List<string> ValidateFields()
@@ -121,39 +149,28 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
 
             if (_loadFromApiField.value)
             {
-                if (string.IsNullOrEmpty(_searchField.value))
+                if (string.IsNullOrWhiteSpace(_searchField.value))
                     errors.Add("Search field cannot be empty.");
             }
             else
             {
                 if (_idField.value < 0)
                     errors.Add("Pokemon ID cannot be less than 0.");
-                if (string.IsNullOrEmpty(_nameField.value))
+                if (string.IsNullOrWhiteSpace(_nameField.value))
                     errors.Add("Pokemon name cannot be empty.");
             }
-            
+
             return errors;
         }
 
-        private List<string> ValidatePokemonData(int id, string name, bool loadedFromApi)
+        private List<string> ValidateAvailability(int id, string name)
         {
             var errors = new List<string>();
 
-            var isIdValid = _repository.IsValidId(id);
-            var isNameValid = _repository.FindByName(name).Count == 0;
-            
-            if (loadedFromApi)
-            {
-                if (!isIdValid || !isNameValid)
-                    errors.Add($"The Pokemon {name} already exists in the db.");
-            }
-            else
-            {
-                if (!isIdValid)
-                    errors.Add("There's already a Pokemon with that id in the db.");
-                if (!isNameValid)
-                    errors.Add("There's already a Pokemon with that name in the db.");
-            }
+            if (!_repository.IsValidId(id))
+                errors.Add($"There's already a Pokemon with the ID {id} in the db.");
+            if (!_repository.IsValidName(name))
+                errors.Add($"There's already a Pokemon named {name} in the db.");
             
             return errors;
         }
@@ -163,20 +180,19 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
             _errorBox.text = string.Join("\n", errors);
             _errorBox.style.display = DisplayStyle.Flex;
         }
+        
+        private void HideErrors() => _errorBox.style.display = DisplayStyle.None;
 
-        private void HideBoxes()
+        private void SetBusy(bool busy)
         {
-            _errorBox.style.display = DisplayStyle.None;
-            _loadingDataBox.style.display = DisplayStyle.None;
-        }
+            _loadFromApiField.SetEnabled(!busy);
+            _searchField.SetEnabled(!busy);
+            _idField.SetEnabled(!busy);
+            _nameField.SetEnabled(!busy);
+            _confirmButton.SetEnabled(!busy);
 
-        private void SetEnable(bool value)
-        {
-            _idField.SetEnabled(value);
-            _nameField.SetEnabled(value);
-            _loadFromApiField.SetEnabled(value);
-            _searchField.SetEnabled(value);
-            _confirmButton.SetEnabled(value);
+            var showLoading = busy && _loadFromApiField.value;
+            _loadingDataBox.style.display = showLoading ? DisplayStyle.Flex : DisplayStyle.None;
         }
 
         private void UpdateFieldsVisibility(bool loadFromApi)
@@ -186,22 +202,10 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
             _searchField.style.display = loadFromApi ? DisplayStyle.Flex : DisplayStyle.None;
         }
 
-        private async Task<PokemonConfig> CreatePokemonConfig()
+        private void CloseWindow()
         {
-            var pokemonConfig = ScriptableObject.CreateInstance<PokemonConfig>();
-            if (_loadFromApiField.value)
-            {
-                SetEnable(false);
-                _loadingDataBox.style.display = DisplayStyle.Flex;
-                await _apiLoader.LoadFromPokeApi(pokemonConfig, _searchField.value);
-            }
-            else
-            {
-                pokemonConfig.ID = _idField.value;
-                pokemonConfig.pokemonName = _nameField.value;
-            }
-            
-            return pokemonConfig;
+            if (editorWindow != null)
+                editorWindow.Close();
         }
 
         private void StyleElements()

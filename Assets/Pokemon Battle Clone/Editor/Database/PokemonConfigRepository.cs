@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Pokemon_Battle_Clone.Runtime.Database;
@@ -66,5 +67,8 @@ namespace Pokemon_Battle_Clone.Editor.Database
         public int GenerateValidId() => FindAll().Max(p => p.ID) + 1;
 
         public bool IsValidId(int id) => FindAll().TrueForAll(p => p.ID != id);
+
+        public bool IsValidName(string name)
+            => FindAll().TrueForAll(p => !string.Equals(p.pokemonName, name, StringComparison.Ordinal));
     }
 }
