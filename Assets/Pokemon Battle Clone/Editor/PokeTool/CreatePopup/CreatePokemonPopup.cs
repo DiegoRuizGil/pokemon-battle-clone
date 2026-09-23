@@ -8,11 +8,11 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Pokemon_Battle_Clone.Editor.PokeTool
+namespace Pokemon_Battle_Clone.Editor.PokeTool.CreatePopup
 {
     public class CreatePokemonPopup : PopupWindowContent
     {
-        // todo - load stylesheet
+        private const string StyleSheetPath = "Assets/Pokemon Battle Clone/Editor/PokeTool/CreatePopup/CreatePopup.uss";
         
         public event Action<PokemonConfig> OnConfirm;
         
@@ -56,6 +56,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
         public override void OnOpen()
         {
             var root = editorWindow.rootVisualElement;
+            AttachStyleSheet(root);
             root.AddToClassList("create-popup");
             
             root.Add(_label);
@@ -68,8 +69,6 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
             root.Add(_loadingDataBox);
             
             UpdateFieldsVisibility(_loadFromApiField.value);
-            
-            StyleElements();
         }
 
         private async void OnConfirmClicked()
@@ -208,20 +207,16 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
                 editorWindow.Close();
         }
 
-        private void StyleElements()
+        private static void AttachStyleSheet(VisualElement root)
         {
-            var root = editorWindow.rootVisualElement;
-            root.style.paddingBottom = 2;
-            root.style.paddingTop = 2;
-            root.style.paddingRight = 2;
-            root.style.paddingLeft = 2;
+            var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>(StyleSheetPath);
+            if (styleSheet == null)
+            {
+                Debug.LogWarning($"Could not find the PokeTool stylesheet at '{StyleSheetPath}'.");
+                return;
+            }
             
-            _label.style.unityFontStyleAndWeight = FontStyle.Bold;
-            _label.style.fontSize = 16;
-            _label.style.marginBottom = 10;
-            
-            _confirmButton.style.marginTop = 10;
-            _confirmButton.style.marginBottom = 10;
+            root.styleSheets.Add(styleSheet);
         }
     }
 }
