@@ -2,16 +2,12 @@
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Pokemon_Battle_Clone.Runtime.Database;
 using UnityEditor;
 using UnityEngine;
 
 namespace Pokemon_Battle_Clone.Editor.Database
 {
-    public enum SpriteType
-    {
-        Back, Front, Icon
-    }
-    
     public class SpritesManager
     {
         private readonly string _basePath;

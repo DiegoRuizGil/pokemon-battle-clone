@@ -9,15 +9,11 @@ namespace Pokemon_Battle_Clone.Runtime.Database
 {
     public class AddressablesSpriteProvider : IPokemonSpriteProvider, IDisposable
     {
-        private const string BackFolder = "Back";
-        private const string FrontFolder = "Front";
-        private const string IconFolder = "Icon";
-
         private readonly Dictionary<string, AsyncOperationHandle<Sprite>> _cache = new();
         
-        public Task<Sprite> GetBackSprite(uint id) => GetSprite(id, BackFolder);
-        public Task<Sprite> GetFrontSprite(uint id) => GetSprite(id, FrontFolder);
-        public Task<Sprite> GetIconSprite(uint id) => GetSprite(id, IconFolder);
+        public Task<Sprite> GetBackSprite(uint id) => GetSprite(id, SpriteType.Back);
+        public Task<Sprite> GetFrontSprite(uint id) => GetSprite(id, SpriteType.Front);
+        public Task<Sprite> GetIconSprite(uint id) => GetSprite(id, SpriteType.Icon);
 
         public void Dispose()
         {
@@ -29,9 +25,9 @@ namespace Pokemon_Battle_Clone.Runtime.Database
             _cache.Clear();
         }
 
-        private async Task<Sprite> GetSprite(uint id, string subFolder)
+        private async Task<Sprite> GetSprite(uint id, SpriteType type)
         {
-            var address = $"{ProjectPaths.PokemonSprites}/{subFolder}/{id}.png";
+            var address = PokemonSpritePaths.GetPath((int)id, type);
 
             if (!_cache.TryGetValue(address, out var handle))
             {
