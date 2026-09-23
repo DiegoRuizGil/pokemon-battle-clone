@@ -51,6 +51,15 @@ namespace Pokemon_Battle_Clone.Editor.Database
             return await LoadFromAPI(pokemon, spriteType);
         }
 
+        public async Task DownloadAllSpritesOf(PokeApiNet.Pokemon pokemon)
+        {
+            await Task.WhenAll(
+                LoadFromAPI(pokemon, SpriteType.Back),
+                LoadFromAPI(pokemon, SpriteType.Front),
+                LoadFromAPI(pokemon, SpriteType.Icon)
+            );
+        }
+
         private async Task<Sprite> LoadFromAPI(PokeApiNet.Pokemon pokemon, SpriteType spriteType)
         {
             var url = spriteType switch
@@ -88,18 +97,6 @@ namespace Pokemon_Battle_Clone.Editor.Database
             await File.WriteAllBytesAsync(filePath, bytes);
         }
 
-        public Dictionary<uint, Sprite> LoadAllFront(IList<uint> ids) => LoadAllOfType(ids, SpriteType.Front);
-        public Dictionary<uint, Sprite> LoadAllBack(IList<uint> ids) => LoadAllOfType(ids, SpriteType.Back);
-        public Dictionary<uint, Sprite> LoadAllIcon(IList<uint> ids) => LoadAllOfType(ids, SpriteType.Icon);
-        
-        private Dictionary<uint, Sprite> LoadAllOfType(IList<uint> ids, SpriteType type)
-        {
-            var sprites = new Dictionary<uint, Sprite>();
-            foreach (var id in ids)
-                sprites.Add(id, Load(id.ToString(), type));
-            return sprites;
-        }
-        
         private Sprite Load(string id, SpriteType type)
         {
             var path = GetRelativePath(id, type);

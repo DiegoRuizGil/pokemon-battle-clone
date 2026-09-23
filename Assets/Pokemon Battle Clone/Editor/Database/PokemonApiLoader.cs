@@ -23,7 +23,7 @@ namespace Pokemon_Battle_Clone.Editor.Database
             var pokemon = await _pokeClient.GetResourceAsync<PokeApiNet.Pokemon>(search);
                 
             ApplyData(target, pokemon);
-            await LoadSprites(target, pokemon);
+            await _spritesManager.DownloadAllSpritesOf(pokemon);
                 
             EditorUtility.SetDirty(target);
         }
@@ -43,13 +43,6 @@ namespace Pokemon_Battle_Clone.Editor.Database
             target.type1 = ElementalTypeUtils.GetType(pokemon.Types[0].Type.Name);
             if (pokemon.Types.Count > 1)
                 target.type2 = ElementalTypeUtils.GetType(pokemon.Types[1].Type.Name);
-        }
-        
-        private async Task LoadSprites(PokemonConfig target, PokeApiNet.Pokemon pokemon)
-        {
-            target.backSprite = await _spritesManager.LoadSprite(pokemon, SpriteType.Back);
-            target.frontSprite = await _spritesManager.LoadSprite(pokemon, SpriteType.Front);
-            target.iconSprite = await _spritesManager.LoadSprite(pokemon, SpriteType.Icon);
         }
     }
 }

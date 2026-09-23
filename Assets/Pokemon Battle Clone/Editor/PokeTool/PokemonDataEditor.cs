@@ -1,44 +1,29 @@
-﻿using Pokemon_Battle_Clone.Editor.Database;
-using Pokemon_Battle_Clone.Runtime.Core.Domain;
+﻿using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.Database;
 using UnityEditor;
 using UnityEditor.UIElements;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Pokemon_Battle_Clone.Editor.PokeTool
 {
-    public partial class PokemonDataEditor : VisualElement
+    public class PokemonDataEditor : VisualElement
     {
         private readonly IntegerField _idField;
         private readonly TextField _nameField;
         private readonly EnumField _type1Field;
         private readonly EnumField _type2Field;
         private readonly PropertyField _baseStatsField;
-        private readonly SpriteField _frontSpriteField;
-        private readonly SpriteField _backSpriteField;
-        private readonly SpriteField _iconSpriteField;
 
-        private readonly PokemonConfigRepository _repository;
-        
-        public PokemonDataEditor(PokemonConfigRepository repository)
+        public PokemonDataEditor()
         {
-            _repository = repository;
-            
             _idField = new IntegerField("ID");
             _nameField = new TextField("Name");
             _type1Field = new EnumField("Type 1", ElementalType.None);
             _type2Field = new EnumField("Type 2", ElementalType.None);
             _baseStatsField = new PropertyField();
-            _frontSpriteField = new SpriteField("Front Sprite");
-            _backSpriteField = new SpriteField("Back Sprite");
-            _iconSpriteField = new SpriteField("Icon Sprite");
             
             var spritesContainer = new VisualElement();
             spritesContainer.AddToClassList("pokemon-sprites-container");
-            spritesContainer.Add(_frontSpriteField);
-            spritesContainer.Add(_backSpriteField);
-            spritesContainer.Add(_iconSpriteField);
             
             var scrollView = new ScrollView();
             scrollView.Add(_idField);
@@ -71,39 +56,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
                 _type1Field.BindProperty(serializedObject.FindProperty("type1"));
                 _type2Field.BindProperty(serializedObject.FindProperty("type2"));
                 _baseStatsField.BindProperty(serializedObject.FindProperty("baseStats"));
-                _frontSpriteField.BindProperty(serializedObject.FindProperty("frontSprite"));
-                _backSpriteField.BindProperty(serializedObject.FindProperty("backSprite"));
-                _iconSpriteField.BindProperty(serializedObject.FindProperty("iconSprite"));
             }
         }
-    }
-
-    [UxmlElement]
-    public partial class SpriteField : VisualElement
-    {
-        private readonly ObjectField _spriteField;
-        private readonly Image _preview;
-
-        public SpriteField() { }
-        
-        public SpriteField(string label)
-        {
-            _spriteField = new ObjectField(label) { objectType = typeof(Sprite) };
-            _preview = new Image();
-            _preview.AddToClassList("sprite-preview");
-
-            _spriteField.RegisterValueChangedCallback(UpdatePreview);
-            
-            this.Add(_spriteField);
-            this.Add(_preview);
-        }
-
-        private void UpdatePreview(ChangeEvent<Object> evt)
-        {
-            var sprite = evt.newValue as Sprite;
-            _preview.sprite = sprite;
-        }
-
-        public void BindProperty(SerializedProperty property) => _spriteField.BindProperty(property);
     }
 }
