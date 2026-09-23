@@ -9,11 +9,11 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
     {
         public PokeTool()
         {
-            var repository = new PokemonConfigRepository(ProjectPaths.PokemonConfigs);
-            var spritesManager = new SpritesManager(ProjectPaths.PokemonSprites);
+            var pokemonConfigRepository = new PokemonConfigRepository(ProjectPaths.PokemonConfigs);
+            var spritesRepository = new PokemonSpritesRepository();
             
             var splitView = new TwoPaneSplitView(0, 250, TwoPaneSplitViewOrientation.Horizontal);
-            var browser = new PokemonBrowser(repository, spritesManager);
+            var browser = new PokemonBrowser(pokemonConfigRepository, spritesRepository);
             var dataEditor = new PokemonDataEditor();
 
             browser.OnPokemonSelected += dataEditor.BindPokemon;

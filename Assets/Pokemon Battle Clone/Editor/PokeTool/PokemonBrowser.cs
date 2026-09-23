@@ -9,28 +9,25 @@ using UnityEngine.UIElements;
 
 namespace Pokemon_Battle_Clone.Editor.PokeTool
 {
-    [UxmlElement]
-    public partial class PokemonBrowser : VisualElement
+    public class PokemonBrowser : VisualElement
     {
-        private readonly PokemonConfigRepository _repository;
-        private readonly SpritesManager _spritesManager;
+        private readonly PokemonConfigRepository _pokemonConfigRepository;
+        private readonly PokemonSpritesRepository _spritesRepository;
         private readonly PokemonListView _listView;
         
         public event Action<PokemonConfig> OnPokemonSelected;
         
-        public PokemonBrowser() { }
-        
-        public PokemonBrowser(PokemonConfigRepository repository, SpritesManager spritesManager)
+        public PokemonBrowser(PokemonConfigRepository pokemonConfigRepository, PokemonSpritesRepository spritesRepository)
         {
-            _repository = repository;
-            _spritesManager = spritesManager;
+            _pokemonConfigRepository = pokemonConfigRepository;
+            _spritesRepository = spritesRepository;
             
-            var toolbar = new BrowserToolbar(repository);
-            _listView = new PokemonListView(repository.FindAll());
+            var toolbar = new BrowserToolbar(pokemonConfigRepository);
+            _listView = new PokemonListView(pokemonConfigRepository.FindAll());
             
             toolbar.OnPokemonCreated += pokemon =>
             {
-                _listView.SetEntries(_repository.FindAll());
+                _listView.SetEntries(_pokemonConfigRepository.FindAll());
                 _listView.SetFocusAt(pokemon);
             };
             toolbar.OnSearchListChanged += list => _listView.SetEntries(list);
@@ -61,15 +58,15 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
             
             if (actionConfirmed)
             {
-                _spritesManager.DeleteSprites(pokemon.ID);
-                _repository.DeleteAsset(pokemon);
-                _listView.SetEntries(_repository.FindAll());
+                _spritesRepository.Delete(pokemon.ID);
+                _pokemonConfigRepository.DeleteAsset(pokemon);
+                _listView.SetEntries(_pokemonConfigRepository.FindAll());
             }
         }
 
         private void AdjustAssetsName()
         {
-            var pokemonList = _repository.FindAll();
+            var pokemonList = _pokemonConfigRepository.FindAll();
             foreach (var pokemonConfig in pokemonList)
             {
                 var newName = pokemonConfig.ID.ToString();
