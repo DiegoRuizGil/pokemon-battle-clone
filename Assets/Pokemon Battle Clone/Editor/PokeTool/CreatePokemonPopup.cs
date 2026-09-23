@@ -16,6 +16,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
         public event Action<PokemonConfig> OnConfirm;
         
         private readonly PokemonConfigRepository _repository;
+        private readonly PokemonApiLoader _apiLoader;
         
         private readonly Label _label;
         private readonly Toggle _loadFromApiField;
@@ -26,9 +27,10 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
         private readonly HelpBox _errorBox;
         private readonly HelpBox _loadingDataBox;
         
-        public CreatePokemonPopup(PokemonConfigRepository repository, int suggestedId)
+        public CreatePokemonPopup(PokemonConfigRepository repository, PokemonApiLoader apiLoader, int suggestedId)
         {
             _repository = repository;
+            _apiLoader = apiLoader;
             
             _label = new Label("Create Pokemon");
             _label.AddToClassList("header");
@@ -189,10 +191,9 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
             var pokemonConfig = ScriptableObject.CreateInstance<PokemonConfig>();
             if (_loadFromApiField.value)
             {
-                var apiLoader = new PokemonApiLoader();
                 SetEnable(false);
                 _loadingDataBox.style.display = DisplayStyle.Flex;
-                await apiLoader.LoadFromPokeApi(pokemonConfig, _searchField.value);
+                await _apiLoader.LoadFromPokeApi(pokemonConfig, _searchField.value);
             }
             else
             {

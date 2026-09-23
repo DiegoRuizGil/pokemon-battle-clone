@@ -12,6 +12,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
     public class BrowserToolbar : VisualElement
     {
         private readonly PokemonConfigRepository _repository;
+        private readonly PokemonApiLoader _apiLoader;
         
         private readonly Button _createButton;
         private readonly ToolbarSearchField _searchField;
@@ -19,9 +20,10 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
         public event Action<PokemonConfig> OnPokemonCreated;
         public event Action<List<PokemonConfig>> OnSearchListChanged;
         
-        public BrowserToolbar(PokemonConfigRepository repository)
+        public BrowserToolbar(PokemonConfigRepository repository, PokemonApiLoader apiLoader)
         {
             _repository = repository;
+            _apiLoader = apiLoader;
 
             _createButton = new Button(OnCreateClicked);
             _createButton.iconImage = EditorGUIUtility.IconContent("Toolbar Plus").image as Texture2D;
@@ -38,7 +40,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
 
         private void OnCreateClicked()
         {
-            var popup = new CreatePokemonPopup(_repository, _repository.GenerateValidId());
+            var popup = new CreatePokemonPopup(_repository, _apiLoader, _repository.GenerateValidId());
             popup.OnConfirm += CreateAsset;
             UnityEditor.PopupWindow.Show(_createButton.worldBound, popup);
         }

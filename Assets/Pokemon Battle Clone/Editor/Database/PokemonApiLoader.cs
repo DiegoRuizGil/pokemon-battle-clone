@@ -1,29 +1,34 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 using PokeApiNet;
 using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.Database;
 using Pokemon_Battle_Clone.Runtime.Stats.Domain;
 using UnityEditor;
+using UnityEngine;
 
 namespace Pokemon_Battle_Clone.Editor.Database
 {
     public class PokemonApiLoader
     {
+        private static readonly HttpClient SpriteHttpClient = new();
+        
         private readonly PokeApiClient _pokeClient;
-        private readonly SpritesManager _spritesManager;
+        private readonly PokemonSpritesRepository _spritesRepository;
 
-        public PokemonApiLoader()
+        public PokemonApiLoader(PokemonSpritesRepository spritesRepository)
         {
             _pokeClient = new PokeApiClient();
-            _spritesManager = new SpritesManager(ProjectPaths.PokemonSprites);
+            _spritesRepository = spritesRepository;
         }
         
-        public async Task LoadFromPokeApi(PokemonConfig target, string search)
+        public async Task LoadFromPokeApi(PokemonConfig target, string search, bool overwriteSprites = false)
         {
             var pokemon = await _pokeClient.GetResourceAsync<PokeApiNet.Pokemon>(search);
                 
             ApplyData(target, pokemon);
-            await _spritesManager.DownloadAllSpritesOf(pokemon);
+            await DownloadSprites(pokemon, overwriteSprites);
                 
             EditorUtility.SetDirty(target);
         }
@@ -44,5 +49,40 @@ namespace Pokemon_Battle_Clone.Editor.Database
             if (pokemon.Types.Count > 1)
                 target.type2 = ElementalTypeUtils.GetType(pokemon.Types[1].Type.Name);
         }
+
+        private async Task DownloadSprites(PokeApiNet.Pokemon pokemon, bool overwrite)
+        {
+            var spritesType = (SpriteType[])Enum.GetValues(typeof(SpriteType));
+            foreach (var type in spritesType)
+            {
+                if (!overwrite && _spritesRepository.Exists(pokemon.Id, type))
+                    continue;
+
+                var url = GetSpriteUrl(pokemon, type);
+                if (string.IsNullOrEmpty(url))
+                {
+                    Debug.LogWarning($"PokeApi has no {type} sprite for {pokemon.Name} (id {pokemon.Id})");
+                    continue;
+                }
+
+                try
+                {
+                    var bytes = await SpriteHttpClient.GetByteArrayAsync(url);
+                    _spritesRepository.Save(pokemon.Id, type, bytes, overwrite);
+                }
+                catch (HttpRequestException e)
+                {
+                    Debug.LogWarning($"Could not download the {type} sprite of {pokemon.Name}: {e.Message}");
+                }
+            }
+        }
+
+        private static string GetSpriteUrl(PokeApiNet.Pokemon pokemon, SpriteType type) => type switch
+        {
+            SpriteType.Back => pokemon.Sprites.BackDefault,
+            SpriteType.Front => pokemon.Sprites.FrontDefault,
+            SpriteType.Icon => pokemon.Sprites.Versions.GenerationVIII.Icons.FrontDefault,
+            _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+        };
     }
 }

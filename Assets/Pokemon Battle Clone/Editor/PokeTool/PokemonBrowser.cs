@@ -17,12 +17,16 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
         
         public event Action<PokemonConfig> OnPokemonSelected;
         
-        public PokemonBrowser(PokemonConfigRepository pokemonConfigRepository, PokemonSpritesRepository spritesRepository)
+        public PokemonBrowser(
+            PokemonConfigRepository pokemonConfigRepository,
+            PokemonSpritesRepository spritesRepository,
+            PokemonApiLoader apiLoader
+        )
         {
             _pokemonConfigRepository = pokemonConfigRepository;
             _spritesRepository = spritesRepository;
-            
-            var toolbar = new BrowserToolbar(pokemonConfigRepository);
+
+            var toolbar = new BrowserToolbar(pokemonConfigRepository, apiLoader);
             _listView = new PokemonListView(pokemonConfigRepository.FindAll());
             
             toolbar.OnPokemonCreated += pokemon =>
