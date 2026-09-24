@@ -1,9 +1,17 @@
 PokeTool {
     flex-grow: 1;
     flex-direction: row;
+}
+
+PokeTool > .unity-tab-view {
+    flex-grow: 1;
+}
+
+.poketool-tab {
     padding-right: 3px;
-    padding-left: 3px;
     padding-bottom: 3px;
+    padding-left: 3px;
+    padding-top: 3px;
 }
 
 PokemonBrowser {
@@ -96,8 +104,6 @@ PokemonListView {
     border-bottom-left-radius: 3px;
     align-items: center;
 }
-
-
 
 .sprite-preview-label {
     display: flex;
