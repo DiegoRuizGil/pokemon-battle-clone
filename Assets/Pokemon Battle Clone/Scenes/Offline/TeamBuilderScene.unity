@@ -324,7 +324,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab2a4075c17d46429e9a6a37b4440a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.TeamBuilder.Selector.TrainerTeamSelection
-  assetDatabase: {fileID: 11400000, guid: 4b6d36130e7347441aa6f68599d6c291, type: 2}
   teamInfoDisplayer: {fileID: 585297479}
   pokemonButtons:
   - {fileID: 930595041}

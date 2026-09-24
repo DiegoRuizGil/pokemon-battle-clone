@@ -15,7 +15,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
             
             var splitView = new TwoPaneSplitView(0, 250, TwoPaneSplitViewOrientation.Horizontal);
             var browser = new PokemonBrowser(pokemonConfigRepository, spritesRepository, apiLoader);
-            var dataEditor = new PokemonDataEditor();
+            var dataEditor = new PokemonDataEditor(spritesRepository);
 
             browser.OnPokemonSelected += dataEditor.BindPokemon;
             
