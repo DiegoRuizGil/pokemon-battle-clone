@@ -16,9 +16,14 @@ namespace Pokemon_Battle_Clone.Runtime.Database
 
     public static class PokemonSpritePaths
     {
-        public static string GetPath(int pokemonId, SpriteType type)
-            => $"{ProjectPaths.PokemonSprites}/{GetFolder(type)}/{pokemonId}.png";
+        private const string DefaultName = "default";
+        
+        public static string GetPath(int pokemonId, SpriteType type) => BuildPath(type, pokemonId.ToString());
+        public static string GetDefaultPath(SpriteType type) => BuildPath(type, DefaultName);
 
+        private static string BuildPath(SpriteType type, string fileName)
+            => $"{ProjectPaths.PokemonSprites}/{GetFolder(type)}/{fileName}.png";
+        
         private static string GetFolder(SpriteType type) => type switch
         {
             SpriteType.Back => "Back",
