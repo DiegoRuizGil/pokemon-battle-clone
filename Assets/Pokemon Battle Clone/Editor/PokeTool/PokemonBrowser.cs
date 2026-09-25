@@ -13,7 +13,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
     {
         private readonly ConfigRepository<PokemonConfig> _pokemonConfigRepository;
         private readonly PokemonSpritesRepository _spritesRepository;
-        private readonly PokemonListView _listView;
+        private readonly ConfigListView<PokemonConfig> _listView;
         
         public event Action<PokemonConfig> OnPokemonSelected;
         
@@ -27,7 +27,9 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
             _spritesRepository = spritesRepository;
 
             var toolbar = new BrowserToolbar(pokemonConfigRepository, apiLoader);
-            _listView = new PokemonListView(pokemonConfigRepository.FindAll());
+            _listView = new ConfigListView<PokemonConfig>(
+                pokemonConfigRepository.FindAll(),
+                getLabel: p => $"{p.ID:D3} - {p.pokemonName}");
             
             toolbar.OnPokemonCreated += pokemon =>
             {

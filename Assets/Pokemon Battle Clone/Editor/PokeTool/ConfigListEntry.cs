@@ -1,21 +1,18 @@
 ﻿using System;
-using Pokemon_Battle_Clone.Runtime.Database;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Pokemon_Battle_Clone.Editor.PokeTool
 {
-    [UxmlElement]
-    public partial class PokemonListEntry : VisualElement
+    public class ConfigListEntry<T> : VisualElement where T : ScriptableObject
     {
-        public event Action<PokemonConfig> OnDeleteRequested; 
-        
-        private readonly Label _label;
+        public event Action<T> OnDeleteRequested;
 
-        private PokemonConfig _boundPokemon;
-        
-        public PokemonListEntry()
+        private readonly Label _label;
+        private T _bound;
+
+        public ConfigListEntry()
         {
             _label = new Label();
             var deleteButton = new Button(OnDeleteClicked);
@@ -28,13 +25,13 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
             this.Add(_label);
             this.Add(deleteButton);
         }
-
-        public void Bind(PokemonConfig pokemonConfig)
+        
+        public void Bind(T config, string label)
         {
-            _boundPokemon = pokemonConfig;
-            _label.text = $"{pokemonConfig.ID:D3} - {pokemonConfig.pokemonName}";
+            _bound = config;
+            _label.text = label;
         }
 
-        private void OnDeleteClicked() => OnDeleteRequested?.Invoke(_boundPokemon);
+        private void OnDeleteClicked() => OnDeleteRequested?.Invoke(_bound);
     }
 }
