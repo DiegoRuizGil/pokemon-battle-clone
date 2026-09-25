@@ -12,7 +12,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
 {
     public class BrowserToolbar : VisualElement
     {
-        private readonly PokemonConfigRepository _repository;
+        private readonly ConfigRepository<PokemonConfig> _repository;
         private readonly PokemonApiLoader _apiLoader;
         
         private readonly Button _createButton;
@@ -21,7 +21,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
         public event Action<PokemonConfig> OnPokemonCreated;
         public event Action<List<PokemonConfig>> OnSearchListChanged;
         
-        public BrowserToolbar(PokemonConfigRepository repository, PokemonApiLoader apiLoader)
+        public BrowserToolbar(ConfigRepository<PokemonConfig> repository, PokemonApiLoader apiLoader)
         {
             _repository = repository;
             _apiLoader = apiLoader;

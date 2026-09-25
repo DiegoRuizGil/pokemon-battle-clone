@@ -16,7 +16,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.CreatePopup
         
         public event Action<PokemonConfig> OnConfirm;
         
-        private readonly PokemonConfigRepository _repository;
+        private readonly ConfigRepository<PokemonConfig> _repository;
         private readonly PokemonApiLoader _apiLoader;
         
         private readonly Label _label;
@@ -28,7 +28,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.CreatePopup
         private readonly HelpBox _errorBox;
         private readonly HelpBox _loadingDataBox;
         
-        public CreatePokemonPopup(PokemonConfigRepository repository, PokemonApiLoader apiLoader, int suggestedId)
+        public CreatePokemonPopup(ConfigRepository<PokemonConfig> repository, PokemonApiLoader apiLoader, int suggestedId)
         {
             _repository = repository;
             _apiLoader = apiLoader;

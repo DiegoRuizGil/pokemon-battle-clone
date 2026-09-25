@@ -9,7 +9,8 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
     {
         public PokeTool()
         {
-            var pokemonConfigRepository = new PokemonConfigRepository(ProjectPaths.PokemonConfigs);
+            // var pokemonConfigRepository = new PokemonConfigRepository(ProjectPaths.PokemonConfigs);
+            var pokemonConfigRepository = ConfigRepositories.Pokemon();
             var spritesRepository = new PokemonSpritesRepository();
             var apiLoader = new PokemonApiLoader(spritesRepository);
             

@@ -11,14 +11,14 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
 {
     public class PokemonBrowser : VisualElement
     {
-        private readonly PokemonConfigRepository _pokemonConfigRepository;
+        private readonly ConfigRepository<PokemonConfig> _pokemonConfigRepository;
         private readonly PokemonSpritesRepository _spritesRepository;
         private readonly PokemonListView _listView;
         
         public event Action<PokemonConfig> OnPokemonSelected;
         
         public PokemonBrowser(
-            PokemonConfigRepository pokemonConfigRepository,
+            ConfigRepository<PokemonConfig> pokemonConfigRepository,
             PokemonSpritesRepository spritesRepository,
             PokemonApiLoader apiLoader
         )
