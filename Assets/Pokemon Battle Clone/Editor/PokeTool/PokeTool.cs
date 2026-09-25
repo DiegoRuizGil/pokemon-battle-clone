@@ -9,20 +9,35 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
     {
         public PokeTool()
         {
-            // var pokemonConfigRepository = new PokemonConfigRepository(ProjectPaths.PokemonConfigs);
-            var pokemonConfigRepository = ConfigRepositories.Pokemon();
+            var pokemonRepository = ConfigRepositories.Pokemon();
             var spritesRepository = new PokemonSpritesRepository();
             var apiLoader = new PokemonApiLoader(spritesRepository);
             
-            var splitView = new TwoPaneSplitView(0, 250, TwoPaneSplitViewOrientation.Horizontal);
-            var browser = new PokemonBrowser(pokemonConfigRepository, spritesRepository, apiLoader);
+            var listView = new ConfigListView<PokemonConfig>(
+                pokemonRepository.FindAll(), p => $"{p.ID:D3} - {p.pokemonName}");
+            var browser = new ConfigBrowser<PokemonConfig>(
+                pokemonRepository,
+                listView,
+                deleteDialogTitle: "Delete Pokemon",
+                getDeleteMessage: p => $"Are you sure you want to delete this pokemon ({p.pokemonName}). This action also deletes the pokemon's sprites.",
+                onBeforeDelete: p => spritesRepository.Delete(p.ID)
+            );
             var dataEditor = new PokemonDataEditor(spritesRepository);
+            var toolbar = new BrowserToolbar(pokemonRepository, apiLoader);
             
-            browser.OnPokemonSelected += dataEditor.BindPokemon;
+            toolbar.OnPokemonCreated += browser.RefreshAndFocus;
+            toolbar.OnSearchListChanged += browser.SetEntries;
+            browser.OnItemSelected += dataEditor.BindPokemon;
             
-            splitView.Add(browser);
+            var splitLeft = new VisualElement();
+            splitLeft.Add(toolbar);
+            splitLeft.Add(browser);
+            
+            var splitView = new TwoPaneSplitView(0, 250, TwoPaneSplitViewOrientation.Horizontal);
+            splitView.Add(splitLeft);
             splitView.Add(dataEditor);
 
+            
             var tabView = new TabView();
             
             var pokemonTab = new Tab("Pokemon");

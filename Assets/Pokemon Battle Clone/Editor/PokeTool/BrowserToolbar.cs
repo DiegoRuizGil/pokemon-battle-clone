@@ -41,7 +41,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
 
         private void OnCreateClicked()
         {
-            var popup = new CreatePokemonPopup(_repository, _apiLoader, _repository.GenerateValidId());
+            var popup = new CreatePokemonPopup(_repository, _apiLoader, _repository.GenerateValidId(ProjectPaths.CustomContentIdStart));
             popup.OnConfirm += CreateAsset;
             UnityEditor.PopupWindow.Show(_createButton.worldBound, popup);
         }
