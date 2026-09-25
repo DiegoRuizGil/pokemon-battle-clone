@@ -14,6 +14,7 @@ namespace Pokemon_Battle_Clone.Runtime.Database
     [CreateAssetMenu(menuName = "Pokemon Battle Clone/Database/Move", fileName = "Move Config")]
     public class MoveConfig : ScriptableObject
     {
+        public int id;
         public string moveName;
         public ElementalType type;
         public MoveCategory category;
@@ -37,7 +38,8 @@ namespace Pokemon_Battle_Clone.Runtime.Database
 
         public Move Build()
         {
-            return A.Move.WithName(moveName)
+            return A.Move.WithId(id)
+                .WithName(moveName)
                 .WithAccuracy((uint)accuracy)
                 .WithPower((uint)power)
                 .WithPP((uint)pp)
@@ -63,6 +65,7 @@ namespace Pokemon_Battle_Clone.Runtime.Database
 
         private void ApplyData(PokeApiNet.Move move)
         {
+            id = move.Id;
             type = ElementalTypeUtils.GetType(move.Type.Name);
             category = GetCategory(move.DamageClass.Name);
             pp = move.Pp ?? 0;

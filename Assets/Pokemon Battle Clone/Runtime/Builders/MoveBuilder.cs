@@ -7,6 +7,7 @@ namespace Pokemon_Battle_Clone.Runtime.Builders
 {
     public class MoveBuilder : IBuilder<Move>
     {
+        private int _id;
         private string _name = "???";
         private ElementalType _type = ElementalType.None;
         private MoveCategory _category = MoveCategory.Status;
@@ -17,6 +18,12 @@ namespace Pokemon_Battle_Clone.Runtime.Builders
         private IMoveEffect _mainEffect = new EmptyMoveEffect();
         private readonly List<ConditionalEffect> _effects = new List<ConditionalEffect>();
 
+        public MoveBuilder WithId(int id)
+        {
+            _id = id;
+            return this;
+        }
+        
         public MoveBuilder WithName(string name)
         {
             _name = name;
@@ -79,7 +86,7 @@ namespace Pokemon_Battle_Clone.Runtime.Builders
         
         public Move Build()
         {
-            var move = new Move(_name, _type, _category, _pp, _accuracy, _power, _priority, _mainEffect);
+            var move = new Move(_id, _name, _type, _category, _pp, _accuracy, _power, _priority, _mainEffect);
             move.AddEffects(_effects);
             return move;
         }

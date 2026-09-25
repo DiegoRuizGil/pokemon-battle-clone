@@ -12,6 +12,7 @@ namespace Pokemon_Battle_Clone.Runtime.Database
         public const string Root = "Assets/Pokemon Battle Clone";
         public const string PokemonConfigs = Root + "/Database/Pokemon";
         public const string PokemonSprites = Root + "/Sprites/Pokemon";
+        public const string MoveConfigs = Root + "/Database/Moves";
     }
 
     public static class PokemonSpritePaths
