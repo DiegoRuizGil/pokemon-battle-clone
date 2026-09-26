@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Pokemon_Battle_Clone.Editor.Database.PokeApi
 {
-    public class PokemonApiLoader
+    public class PokemonApiLoader : IConfigApiLoader<PokemonConfig, PokemonApiDto>
     {
         private static readonly HttpClient SpriteHttpClient = new();
         
@@ -38,6 +38,10 @@ namespace Pokemon_Battle_Clone.Editor.Database.PokeApi
             config.type2 = dto.Type2;
             return config;
         }
+
+        public int GetId(PokemonApiDto dto) => dto.Id;
+        public string GetName(PokemonApiDto dto) => dto.Name;
+        public Task AfterFetch(PokemonApiDto dto) => DownloadSprites(dto);
 
         public async Task DownloadSprites(PokemonApiDto dto, bool overwrite = false)
         {

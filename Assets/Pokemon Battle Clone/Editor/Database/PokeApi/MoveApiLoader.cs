@@ -7,7 +7,7 @@ using MoveCategory = Pokemon_Battle_Clone.Runtime.Moves.Domain.MoveCategory;
 
 namespace Pokemon_Battle_Clone.Editor.Database.PokeApi
 {
-    public class MoveApiLoader
+    public class MoveApiLoader : IConfigApiLoader<MoveConfig, MoveApiDto>
     {
         private readonly PokeApiClient _pokeClient = new();
 
@@ -30,6 +30,9 @@ namespace Pokemon_Battle_Clone.Editor.Database.PokeApi
             config.priority = dto.Priority;
             return config;
         }
+
+        public int GetId(MoveApiDto dto) => dto.Id;
+        public string GetName(MoveApiDto dto) => dto.Name;
 
         private MoveApiDto ToApiDto(PokeApiNet.Move move)
         {
