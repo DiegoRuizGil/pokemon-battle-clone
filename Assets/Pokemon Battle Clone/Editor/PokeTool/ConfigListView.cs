@@ -30,6 +30,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
             };
             
             this.showAlternatingRowBackgrounds = AlternatingRowBackground.ContentOnly;
+            this.AddToClassList("config-list-view");
         }
         
         public void SetEntries(List<T> entries)

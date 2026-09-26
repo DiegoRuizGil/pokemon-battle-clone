@@ -46,7 +46,9 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
             scrollView.Add(_priorityField);
             scrollView.Add(_mainEffectField);
             scrollView.Add(_additionalEffectsField);
+            
             this.Add(scrollView);
+            this.AddToClassList("data-editor");
             
             Bind(null);
         }

@@ -36,6 +36,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
             _listView.OnDeleteRequested += HandleDeleteRequest;
             
             this.Add(_listView);
+            this.AddToClassList("config-browser");
         }
 
         public void SetEntries(List<T> entries) => _listView.SetEntries(entries);

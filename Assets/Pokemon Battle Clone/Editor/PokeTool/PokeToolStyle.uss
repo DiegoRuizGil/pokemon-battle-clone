@@ -14,8 +14,11 @@ PokeTool > .unity-tab-view {
     padding-top: 3px;
 }
 
-PokemonBrowser {
+.browser-container {
     min-width: 150px;
+}
+
+.config-browser {
 }
 
 .browser-toolbar {
@@ -33,7 +36,7 @@ PokemonBrowser {
     width: auto;
 }
 
-PokemonDataEditor {
+.data-editor {
     flex-grow: 1;
     padding-top: 10px;
     padding-right: 10px;
@@ -41,7 +44,7 @@ PokemonDataEditor {
     padding-left: 10px;
 }
 
-PokemonListView {
+.config-list-view {
     border-right-width: 1px;
     border-left-color: rgb(41, 41, 41);
     border-right-color: rgb(41, 41, 41);

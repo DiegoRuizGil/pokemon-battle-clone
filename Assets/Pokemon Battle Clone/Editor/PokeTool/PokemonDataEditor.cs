@@ -40,6 +40,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
             scrollView.Add(_spritesPreview);
             
             this.Add(scrollView);
+            this.AddToClassList("data-editor");
             
             Bind(null);
         }

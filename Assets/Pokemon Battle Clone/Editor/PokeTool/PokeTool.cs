@@ -53,12 +53,13 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
             toolbar.OnSearchListChanged += browser.SetEntries;
             browser.OnItemSelected += dataEditor.Bind;
             
-            var splitLeft = new VisualElement();
-            splitLeft.Add(toolbar);
-            splitLeft.Add(browser);
+            var browserContainer = new VisualElement();
+            browserContainer.AddToClassList("browser-container");
+            browserContainer.Add(toolbar);
+            browserContainer.Add(browser);
             
             var splitView = new TwoPaneSplitView(0, 250, TwoPaneSplitViewOrientation.Horizontal);
-            splitView.Add(splitLeft);
+            splitView.Add(browserContainer);
             splitView.Add(dataEditor);
 
             return splitView;
@@ -82,12 +83,13 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
             // toolbar.OnSearchListChanged += browser.SetEntries;
             browser.OnItemSelected += dataEditor.Bind;
             
-            var splitLeft = new VisualElement();
+            var browserContainer = new VisualElement();
+            browserContainer.AddToClassList("browser-container");
             // splitLeft.Add(toolbar);
-            splitLeft.Add(browser);
+            browserContainer.Add(browser);
             
             var splitView = new TwoPaneSplitView(0, 250, TwoPaneSplitViewOrientation.Horizontal);
-            splitView.Add(splitLeft);
+            splitView.Add(browserContainer);
             splitView.Add(dataEditor);
 
             return splitView;

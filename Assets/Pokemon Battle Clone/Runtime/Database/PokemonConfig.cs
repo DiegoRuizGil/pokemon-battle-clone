@@ -25,11 +25,6 @@ namespace Pokemon_Battle_Clone.Runtime.Database
         public NatureEnum nature;
         public StatSet ivs = new StatSet(31, 31, 31, 31, 31, 31);
         public StatSet evs;
-
-        // [Space(10)]
-        // public Sprite backSprite;
-        // public Sprite frontSprite;
-        // public Sprite iconSprite;
         
         public Pokemon Build()
         {
