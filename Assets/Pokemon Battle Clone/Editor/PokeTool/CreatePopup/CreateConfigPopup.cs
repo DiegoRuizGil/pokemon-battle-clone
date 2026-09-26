@@ -4,14 +4,13 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Pokemon_Battle_Clone.Editor.Database;
 using Pokemon_Battle_Clone.Editor.Database.PokeApi;
-using Pokemon_Battle_Clone.Runtime.Database;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Pokemon_Battle_Clone.Editor.PokeTool.CreatePopup
 {
-    public class CreateConfigPopup<T, Dto> : PopupWindowContent where T : ScriptableObject
+    public class CreateConfigPopup<T, Dto> : PopupWindowContent, IConfigCreatePopup<T> where T : ScriptableObject
     {
         private const string StyleSheetPath = "Assets/Pokemon Battle Clone/Editor/PokeTool/CreatePopup/CreatePopup.uss";
         

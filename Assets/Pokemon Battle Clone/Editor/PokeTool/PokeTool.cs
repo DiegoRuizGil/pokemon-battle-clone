@@ -1,6 +1,10 @@
 using Pokemon_Battle_Clone.Editor.Database;
 using Pokemon_Battle_Clone.Editor.Database.PokeApi;
+using Pokemon_Battle_Clone.Editor.PokeTool.CreatePopup;
+using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.Database;
+using Pokemon_Battle_Clone.Runtime.Moves.Domain;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Pokemon_Battle_Clone.Editor.PokeTool
@@ -10,14 +14,9 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
     {
         public PokeTool()
         {
-            var pokemonRepository = ConfigRepositories.Pokemon();
-            var movesRepository = ConfigRepositories.Move();
-            var spritesRepository = new PokemonSpritesRepository();
-            var apiLoader = new PokemonApiLoader(spritesRepository);
-            
             var pokemonTab = new Tab("Pokemon");
             pokemonTab.AddToClassList("poketool-tab");
-            var pokemonTabContent = BuildPokemonTab(pokemonRepository, spritesRepository, apiLoader);
+            var pokemonTabContent = BuildPokemonTab();
             pokemonTab.Add(pokemonTabContent);
             
             var teamsTab = new Tab("Teams");
@@ -26,7 +25,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
             
             var movesTab = new Tab("Moves");
             movesTab.AddToClassList("poketool-tab");
-            var movesTabContent = BuildMovesTab(movesRepository);
+            var movesTabContent = BuildMovesTab();
             movesTab.Add(movesTabContent);
             
             var tabView = new TabView();
@@ -36,8 +35,12 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
             this.Add(tabView);
         }
 
-        private VisualElement BuildPokemonTab(ConfigRepository<PokemonConfig> pokemonRepository, PokemonSpritesRepository spritesRepository, PokemonApiLoader apiLoader)
+        private VisualElement BuildPokemonTab()
         {
+            var pokemonRepository = ConfigRepositories.Pokemon();
+            var spritesRepository = new PokemonSpritesRepository();
+            var pokemonApiLoader = new PokemonApiLoader(spritesRepository);
+            
             var listView = new ConfigListView<PokemonConfig>(
                 pokemonRepository.FindAll(), p => $"{p.ID:D3} - {p.pokemonName}");
             var browser = new ConfigBrowser<PokemonConfig>(
@@ -48,9 +51,25 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
                 onBeforeDelete: p => spritesRepository.Delete(p.ID)
             );
             var dataEditor = new PokemonDataEditor(spritesRepository);
-            var toolbar = new BrowserToolbar(pokemonRepository, apiLoader);
+            var toolbar = new BrowserToolbar<PokemonConfig>(
+                pokemonRepository,
+                createPopup: () =>
+                    new CreateConfigPopup<PokemonConfig, PokemonApiDto>(
+                        title: "Create Pokemon",
+                        pokemonRepository,
+                        pokemonApiLoader,
+                        createManually: (id, pokemonName) =>
+                        {
+                            var config = ScriptableObject.CreateInstance<PokemonConfig>();
+                            config.ID = id;
+                            config.pokemonName = pokemonName;
+                            return config;
+                        },
+                        suggestedId: pokemonRepository.GenerateValidId(ProjectPaths.CustomContentIdStart)
+                    )
+            );
             
-            toolbar.OnPokemonCreated += browser.RefreshAndFocus;
+            toolbar.OnItemCreated += browser.RefreshAndFocus;
             toolbar.OnSearchListChanged += browser.SetEntries;
             browser.OnItemSelected += dataEditor.Bind;
             
@@ -66,8 +85,11 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
             return splitView;
         }
         
-        private VisualElement BuildMovesTab(ConfigRepository<MoveConfig> movesRepository)
+        private VisualElement BuildMovesTab()
         {
+            var movesRepository = ConfigRepositories.Move();
+            var moveApiLoader = new MoveApiLoader();
+            
             var listView = new ConfigListView<MoveConfig>(
                 movesRepository.FindAll(), m => $"{m.id:D3} - {m.moveName}");
             var browser = new ConfigBrowser<MoveConfig>(
@@ -78,15 +100,33 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
                 onBeforeDelete: _ => { }
             );
             var dataEditor = new MoveDataEditor();
-            // var toolbar = new BrowserToolbar(movesRepository, apiLoader);
+            var toolbar = new BrowserToolbar<MoveConfig>(
+                movesRepository,
+                createPopup: () =>
+                    new CreateConfigPopup<MoveConfig, MoveApiDto>(
+                        title: "Create Move",
+                        movesRepository,
+                        moveApiLoader,
+                        createManually: (id, moveName) =>
+                        {
+                            var config = ScriptableObject.CreateInstance<MoveConfig>();
+                            config.id = id;
+                            config.moveName = moveName;
+                            config.type = ElementalType.Normal;
+                            config.category = MoveCategory.Physical;
+                            return config;
+                        },
+                        suggestedId: movesRepository.GenerateValidId(ProjectPaths.CustomContentIdStart)
+                    )
+            );
             
-            // toolbar.OnPokemonCreated += browser.RefreshAndFocus;
-            // toolbar.OnSearchListChanged += browser.SetEntries;
+            toolbar.OnItemCreated += browser.RefreshAndFocus;
+            toolbar.OnSearchListChanged += browser.SetEntries;
             browser.OnItemSelected += dataEditor.Bind;
             
             var browserContainer = new VisualElement();
             browserContainer.AddToClassList("browser-container");
-            // splitLeft.Add(toolbar);
+            browserContainer.Add(toolbar);
             browserContainer.Add(browser);
             
             var splitView = new TwoPaneSplitView(0, 250, TwoPaneSplitViewOrientation.Horizontal);

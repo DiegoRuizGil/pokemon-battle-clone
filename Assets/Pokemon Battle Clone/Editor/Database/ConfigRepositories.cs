@@ -13,6 +13,7 @@ namespace Pokemon_Battle_Clone.Editor.Database
         public static ConfigRepository<MoveConfig> Move()
             => new(ProjectPaths.MoveConfigs,
                 getId: m => m.id,
-                getName: m => m.moveName);
+                getName: m => m.moveName,
+                getFileName: p => p.moveName.ToLowerInvariant().Replace(" ", "-"));
     }
 }
