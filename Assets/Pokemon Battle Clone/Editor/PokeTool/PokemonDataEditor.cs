@@ -23,7 +23,9 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
             _spritesRepository = spritesRepository;
             
             _idField = new IntegerField("ID");
+            _idField.SetEnabled(false);
             _nameField = new TextField("Name");
+            _nameField.SetEnabled(false);
             _type1Field = new EnumField("Type 1", ElementalType.None);
             _type2Field = new EnumField("Type 2", ElementalType.None);
             _baseStatsField = new PropertyField();
@@ -39,10 +41,10 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
             
             this.Add(scrollView);
             
-            BindPokemon(null);
+            Bind(null);
         }
 
-        public void BindPokemon(PokemonConfig pokemon)
+        public void Bind(PokemonConfig pokemon)
         {
             if (pokemon == null)
             {
