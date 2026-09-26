@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Pokemon_Battle_Clone.Editor.Database;
+using Pokemon_Battle_Clone.Editor.Database.PokeApi;
 using Pokemon_Battle_Clone.Runtime.Database;
 using UnityEditor;
 using UnityEngine;

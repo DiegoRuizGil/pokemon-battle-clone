@@ -7,7 +7,7 @@ using Pokemon_Battle_Clone.Runtime.Database;
 using Pokemon_Battle_Clone.Runtime.Stats.Domain;
 using UnityEngine;
 
-namespace Pokemon_Battle_Clone.Editor.Database
+namespace Pokemon_Battle_Clone.Editor.Database.PokeApi
 {
     public class PokemonApiLoader
     {
@@ -25,7 +25,7 @@ namespace Pokemon_Battle_Clone.Editor.Database
         public async Task<PokemonApiDto> Fetch(string search)
         {
             var pokemon = await _pokeClient.GetResourceAsync<PokeApiNet.Pokemon>(search.Trim().ToLowerInvariant());
-            return ToApiData(pokemon);
+            return ToApiDto(pokemon);
         }
 
         public PokemonConfig CreateConfig(PokemonApiDto dto)
@@ -67,7 +67,7 @@ namespace Pokemon_Battle_Clone.Editor.Database
             }
         }
 
-        private PokemonApiDto ToApiData(PokeApiNet.Pokemon pokemon)
+        private PokemonApiDto ToApiDto(PokeApiNet.Pokemon pokemon)
         {
             var spriteUrls = new Dictionary<SpriteType, string>
             {

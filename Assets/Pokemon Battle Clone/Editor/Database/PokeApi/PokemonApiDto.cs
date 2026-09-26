@@ -3,7 +3,7 @@ using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.Database;
 using Pokemon_Battle_Clone.Runtime.Stats.Domain;
 
-namespace Pokemon_Battle_Clone.Editor.Database
+namespace Pokemon_Battle_Clone.Editor.Database.PokeApi
 {
     public class PokemonApiDto
     {

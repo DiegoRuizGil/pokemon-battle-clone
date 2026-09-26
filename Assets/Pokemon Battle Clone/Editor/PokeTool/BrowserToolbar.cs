@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Pokemon_Battle_Clone.Editor.Database;
+using Pokemon_Battle_Clone.Editor.Database.PokeApi;
 using Pokemon_Battle_Clone.Editor.PokeTool.CreatePopup;
 using Pokemon_Battle_Clone.Runtime.Database;
 using UnityEditor;
