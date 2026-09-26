@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using PokeApiNet;
+﻿using System.Collections.Generic;
 using Pokemon_Battle_Clone.Runtime.Builders;
 using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.Moves.Domain.Effects;
@@ -24,17 +21,6 @@ namespace Pokemon_Battle_Clone.Runtime.Database
         public int priority;
         [SerializeReference, SubclassSelector] public IMoveEffect mainEffect;
         public List<ConditionalEffect> additionalEffects;
-        
-        private static PokeApiClient _pokeClient;
-        private static PokeApiClient PokeClient
-        {
-            get
-            {
-                if (_pokeClient == null)
-                    _pokeClient = new PokeApiClient();
-                return _pokeClient;
-            }
-        }
 
         public Move Build()
         {
@@ -48,41 +34,6 @@ namespace Pokemon_Battle_Clone.Runtime.Database
                 .WithType(type)
                 .WithMainEffect(mainEffect)
                 .WithAdditionalEffects(additionalEffects);
-        }
-
-        public async Task LoadFromAPI()
-        {
-            try
-            {
-                var move = await PokeClient.GetResourceAsync<PokeApiNet.Move>(moveName);
-                ApplyData(move);
-            }
-            catch (Exception e)
-            {
-                Debug.LogError($"Error loading move \"{moveName}\": {e.Message}");
-            }
-        }
-
-        private void ApplyData(PokeApiNet.Move move)
-        {
-            id = move.Id;
-            type = ElementalTypeUtils.GetType(move.Type.Name);
-            category = GetCategory(move.DamageClass.Name);
-            pp = move.Pp ?? 0;
-            accuracy = move.Accuracy ?? 100;
-            power = move.Power ?? 0;
-            priority = move.Priority;
-        }
-
-        private MoveCategory GetCategory(string categoryName)
-        {
-            return categoryName switch
-            {
-                "physical" => MoveCategory.Physical,
-                "special" => MoveCategory.Special,
-                "status" => MoveCategory.Status,
-                _ => MoveCategory.Physical
-            };
         }
     }
 }
