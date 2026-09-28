@@ -42,7 +42,7 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.Selector
             {
                 if (_teamConfig.pokemonList.Count > i)
                 {
-                    var pokemon = _teamConfig.pokemonList[i].BuildPokemon();
+                    var pokemon = _teamConfig.pokemonList[i].Build();
                     var icon = await _spriteProvider.GetIconSprite(pokemon.ID);
                     pokemonButtons[i].SetData(pokemon, icon);
                     pokemonButtons[i].gameObject.SetActive(true);
