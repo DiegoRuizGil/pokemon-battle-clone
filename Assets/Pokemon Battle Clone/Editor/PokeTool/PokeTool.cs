@@ -30,8 +30,8 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
             movesTab.Add(movesTabContent);
             
             var tabView = new TabView();
-            tabView.Add(pokemonTab);
             tabView.Add(teamsTab);
+            tabView.Add(pokemonTab);
             tabView.Add(movesTab);
             this.Add(tabView);
         }
@@ -49,7 +49,13 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
                 onBeforeDelete: _ => { }
             );
             var dataEditor = new VisualElement();
-            var toolbar = new VisualElement();
+            var toolbar = new BrowserToolbar<TeamConfig>(
+                repository,
+                createPopup: () => new CreateTeamPopup(repository));
+            
+            toolbar.OnItemCreated += browser.RefreshAndFocus;
+            toolbar.OnSearchListChanged += browser.SetEntries;
+            // browser.OnItemSelected += dataEditor.Bind;
             
             var browserContainer = new VisualElement();
             browserContainer.AddToClassList("browser-container");

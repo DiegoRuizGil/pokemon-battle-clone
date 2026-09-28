@@ -208,7 +208,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.CreatePopup
             var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>(StyleSheetPath);
             if (styleSheet == null)
             {
-                Debug.LogWarning($"Could not find the PokeTool stylesheet at '{StyleSheetPath}'.");
+                Debug.LogWarning($"Could not find the popup stylesheet at '{StyleSheetPath}'.");
                 return;
             }
             
