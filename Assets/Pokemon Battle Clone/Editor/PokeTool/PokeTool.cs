@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using Pokemon_Battle_Clone.Editor.Database;
 using Pokemon_Battle_Clone.Editor.Database.PokeApi;
 using Pokemon_Battle_Clone.Editor.PokeTool.CreatePopup;
+using Pokemon_Battle_Clone.Editor.PokeTool.Teams;
 using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.Database;
 using Pokemon_Battle_Clone.Runtime.Moves.Domain;
@@ -39,6 +41,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
         private VisualElement BuildTeamsTab()
         {
             var repository = ConfigRepositories.Team();
+            var spritesRepository = new PokemonSpritesRepository();
 
             var listView = new ConfigListView<TeamConfig>(repository.FindAll(), t => t.name);
             var browser = new ConfigBrowser<TeamConfig>(
@@ -48,7 +51,21 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
                 getDeleteMessage: t => $"Are you sure you want to delete this team ({t.name})?",
                 onBeforeDelete: _ => { }
             );
-            var dataEditor = new VisualElement();
+            var dataEditor = new TeamMemberSelector();
+            var sprites = new List<Sprite>
+            {
+                spritesRepository.Load(3, SpriteType.Icon),
+                spritesRepository.Load(6, SpriteType.Icon),
+                spritesRepository.Load(617, SpriteType.Icon),
+                spritesRepository.Load(730, SpriteType.Icon),
+            };
+            dataEditor.SetMembers(sprites, 0);
+            dataEditor.OnSlotSelected += index => Debug.Log($"Selected: {index}");
+            
+            
+            
+            
+            
             var toolbar = new BrowserToolbar<TeamConfig>(
                 repository,
                 createPopup: () => new CreateTeamPopup(repository));

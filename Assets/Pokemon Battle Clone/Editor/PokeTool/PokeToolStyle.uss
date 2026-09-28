@@ -119,6 +119,26 @@ PokeTool > .unity-tab-view {
     border-top-left-radius: 3px;
 }
 
+.member-selector {
+    flex-direction: row;
+}
+
+.member-button {
+    width: 68px;
+    height: 68px;
+    margin-right: 4px;
+    padding: 2px;
+}
+
+.member-button > .unit-image {
+    flex-grow: 1;
+}
+
+.member-button.selected {
+    border-color: rgb(80, 150, 255);
+    border-width: 2px;
+}
+
 .field-modified > .unity-base-field__label {
     -unity-font-style: bold;
 }
