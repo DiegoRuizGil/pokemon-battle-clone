@@ -38,7 +38,29 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
 
         private VisualElement BuildTeamsTab()
         {
-            return new VisualElement();
+            var repository = ConfigRepositories.Team();
+
+            var listView = new ConfigListView<TeamConfig>(repository.FindAll(), t => t.name);
+            var browser = new ConfigBrowser<TeamConfig>(
+                repository,
+                listView,
+                deleteDialogTitle: "Delete Team",
+                getDeleteMessage: t => $"Are you sure you want to delete this team ({t.name})?",
+                onBeforeDelete: _ => { }
+            );
+            var dataEditor = new VisualElement();
+            var toolbar = new VisualElement();
+            
+            var browserContainer = new VisualElement();
+            browserContainer.AddToClassList("browser-container");
+            browserContainer.Add(toolbar);
+            browserContainer.Add(browser);
+            
+            var splitView = new TwoPaneSplitView(0, 250, TwoPaneSplitViewOrientation.Horizontal);
+            splitView.Add(browserContainer);
+            splitView.Add(dataEditor);
+
+            return splitView;
         }
 
         private VisualElement BuildPokemonTab()

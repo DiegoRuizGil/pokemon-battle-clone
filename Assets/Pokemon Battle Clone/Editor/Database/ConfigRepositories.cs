@@ -15,5 +15,8 @@ namespace Pokemon_Battle_Clone.Editor.Database
                 getName: m => m.moveName,
                 getFileName: p => p.moveName.ToLowerInvariant().Replace(" ", "-"),
                 orderBy: m => m.id);
+
+        public static ConfigRepository<TeamConfig> Team()
+            => new(ProjectPaths.TeamConfigs, getName: t => t.name);
     }
 }
