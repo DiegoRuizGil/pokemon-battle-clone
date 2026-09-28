@@ -14,8 +14,8 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
         private readonly Label _nameLabel;
         private readonly Label _countLabel;
         private readonly TeamMemberSelector _selector;
-        private readonly Label _memberPlaceHolder;
-
+        private readonly TeamMemberEditor _memberEditor;
+        
         private SerializedObject _serializedObject;
         private int _selectedIndex;
         
@@ -36,12 +36,13 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
             _selector = new TeamMemberSelector();
             _selector.OnSlotSelected += Select;
 
-            _memberPlaceHolder = new Label();
+            _memberEditor = new TeamMemberEditor(spritesRepository);
+            _memberEditor.OnRemoveRequested += RemoveSelectedMember;
             
             this.AddToClassList("data-editor");
             this.Add(header);
             this.Add(_selector);
-            this.Add(_memberPlaceHolder);
+            this.Add(_memberEditor);
 
             Bind(null);
         }
@@ -96,8 +97,21 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
 
         private void UpdateMemberArea()
         {
-            var adding = _selectedIndex >= MembersProperty.arraySize;
-            _memberPlaceHolder.text = adding ? "Adding new member" : $"Member {_selectedIndex}";
+            if (_selectedIndex >= MembersProperty.arraySize)
+                _memberEditor.ShowNewMember();
+            else
+                _memberEditor.Bind(_serializedObject, _selectedIndex);
+        }
+        
+        private void RemoveSelectedMember()
+        {
+            var members = MembersProperty;
+            members.DeleteArrayElementAtIndex(_selectedIndex);
+            _serializedObject.ApplyModifiedProperties();
+
+            // si borras el último, pasas al anterior; si el equipo queda vacío, 0 == estado "+"
+            _selectedIndex = Mathf.Max(0, Mathf.Min(_selectedIndex, members.arraySize - 1));
+            Refresh();
         }
     }
 }

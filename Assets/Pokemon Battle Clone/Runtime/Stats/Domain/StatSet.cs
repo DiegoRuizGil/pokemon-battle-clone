@@ -15,6 +15,8 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
         [field: SerializeField] public int Speed { get; private set; }
 
         public int Sum => HP + Attack + Defense + SpcAttack + SpcDefense + Speed;
+
+        public int[] Values => new[] { HP, Attack, Defense, SpcAttack, SpcDefense, Speed };
         
         private int _maxStatValue;
         private int _minStatValue;
