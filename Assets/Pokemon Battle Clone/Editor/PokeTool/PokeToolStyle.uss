@@ -139,6 +139,17 @@ PokeTool > .unity-tab-view {
     border-width: 2px;
 }
 
+.team-header {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.team-name {
+    -unity-font-style: bold;
+    font-size: 18px;
+}
+
 .field-modified > .unity-base-field__label {
     -unity-font-style: bold;
 }

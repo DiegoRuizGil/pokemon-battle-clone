@@ -51,28 +51,14 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
                 getDeleteMessage: t => $"Are you sure you want to delete this team ({t.name})?",
                 onBeforeDelete: _ => { }
             );
-            var dataEditor = new TeamMemberSelector();
-            var sprites = new List<Sprite>
-            {
-                spritesRepository.Load(3, SpriteType.Icon),
-                spritesRepository.Load(6, SpriteType.Icon),
-                spritesRepository.Load(617, SpriteType.Icon),
-                spritesRepository.Load(730, SpriteType.Icon),
-            };
-            dataEditor.SetMembers(sprites, 0);
-            dataEditor.OnSlotSelected += index => Debug.Log($"Selected: {index}");
-            
-            
-            
-            
-            
+            var dataEditor = new TeamDataEditor(spritesRepository);
             var toolbar = new BrowserToolbar<TeamConfig>(
                 repository,
                 createPopup: () => new CreateTeamPopup(repository));
             
             toolbar.OnItemCreated += browser.RefreshAndFocus;
             toolbar.OnSearchListChanged += browser.SetEntries;
-            // browser.OnItemSelected += dataEditor.Bind;
+            browser.OnItemSelected += dataEditor.Bind;
             
             var browserContainer = new VisualElement();
             browserContainer.AddToClassList("browser-container");
