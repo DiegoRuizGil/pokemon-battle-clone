@@ -19,6 +19,14 @@ namespace Pokemon_Battle_Clone.Editor.Database
         public Sprite Load(int pokemonId, SpriteType type)
             => AssetDatabase.LoadAssetAtPath<Sprite>(PokemonSpritePaths.GetPath(pokemonId, type));
 
+        public Sprite LoadOrDefault(int pokemonId, SpriteType type)
+        {
+            var sprite = Load(pokemonId, type);
+            return sprite != null
+                ? sprite
+                : AssetDatabase.LoadAssetAtPath<Sprite>(PokemonSpritePaths.GetDefaultPath(type));
+        }
+
         public SpriteSaveResult Save(int pokemonId, SpriteType type, byte[] bytes, bool overwrite = false)
         {
             var relativePath = PokemonSpritePaths.GetPath(pokemonId, type);
