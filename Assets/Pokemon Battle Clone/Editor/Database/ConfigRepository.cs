@@ -13,18 +13,21 @@ namespace Pokemon_Battle_Clone.Editor.Database
         private readonly Func<T, int> _getId;
         private readonly Func<T, string> _getName;
         private readonly Func<T, string> _getFileName;
+        private readonly Func<T, IComparable> _orderBy;
 
         public ConfigRepository(
             string folderPath,
             Func<T, int> getId,
             Func<T, string> getName,
-            Func<T, string> getFileName = null
+            Func<T, string> getFileName = null,
+            Func<T, IComparable> orderBy = null
         )
         {
             _folderPath = folderPath;
             _getId = getId;
             _getName = getName;
             _getFileName = getFileName ?? getName;
+            _orderBy = orderBy ?? getName;
         }
 
         public void CreateAsset(T config)
@@ -52,7 +55,7 @@ namespace Pokemon_Battle_Clone.Editor.Database
             var guids = AssetDatabase.FindAssets($"t:{typeof(T).Name}", new[] { _folderPath });
             return guids.Select(AssetDatabase.GUIDToAssetPath)
                 .Select(AssetDatabase.LoadAssetAtPath<T>)
-                .OrderBy(_getId).ToList();
+                .OrderBy(_orderBy).ToList();
         }
 
         public List<T> FindByName(string text)

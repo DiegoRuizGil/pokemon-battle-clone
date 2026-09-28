@@ -14,14 +14,15 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
     {
         public PokeTool()
         {
+            var teamsTab = new Tab("Teams");
+            teamsTab.AddToClassList("poketool-tab");
+            var teamsTabContent = BuildTeamsTab();
+            teamsTab.Add(teamsTabContent);
+            
             var pokemonTab = new Tab("Pokemon");
             pokemonTab.AddToClassList("poketool-tab");
             var pokemonTabContent = BuildPokemonTab();
             pokemonTab.Add(pokemonTabContent);
-            
-            var teamsTab = new Tab("Teams");
-            teamsTab.AddToClassList("poketool-tab");
-            teamsTab.Add(new Label("Content for teams tab"));
             
             var movesTab = new Tab("Moves");
             movesTab.AddToClassList("poketool-tab");
@@ -33,6 +34,11 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
             tabView.Add(teamsTab);
             tabView.Add(movesTab);
             this.Add(tabView);
+        }
+
+        private VisualElement BuildTeamsTab()
+        {
+            return new VisualElement();
         }
 
         private VisualElement BuildPokemonTab()

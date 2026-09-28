@@ -13,6 +13,7 @@ namespace Pokemon_Battle_Clone.Runtime.Database
         public const string PokemonConfigs = Root + "/Database/Pokemon";
         public const string PokemonSprites = Root + "/Sprites/Pokemon";
         public const string MoveConfigs = Root + "/Database/Moves";
+        public const string TeamConfigs = Root + "/Database/Teams";
 
         public const int CustomContentIdStart = 11_000;
     }
