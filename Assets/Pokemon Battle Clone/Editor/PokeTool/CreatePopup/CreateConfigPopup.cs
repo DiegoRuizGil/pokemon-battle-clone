@@ -17,6 +17,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.CreatePopup
         public event Action<T> OnConfirm;
 
         private readonly ConfigRepository<T> _repository;
+        private readonly ConfigIdPolicy<T> _idPolicy;
         private readonly IConfigApiLoader<T, Dto> _apiLoader;
         private readonly Func<int, string, T> _createManually;
 
@@ -32,12 +33,14 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.CreatePopup
         public CreateConfigPopup(
             string title,
             ConfigRepository<T> repository,
+            ConfigIdPolicy<T> idPolicy,
             IConfigApiLoader<T, Dto> apiLoader,
             Func<int, string, T> createManually,
             int suggestedId
         )
         {
             _repository = repository;
+            _idPolicy = idPolicy;
             _apiLoader = apiLoader;
             _createManually = createManually;
             
@@ -159,7 +162,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.CreatePopup
         {
             var errors = new List<string>();
 
-            if (!_repository.IsValidId(id))
+            if (!_idPolicy.IsValidId(id))
                 errors.Add($"There's already a Pokemon with the ID {id} in the db.");
             if (!_repository.IsValidName(name))
                 errors.Add($"There's already a Pokemon named {name} in the db.");

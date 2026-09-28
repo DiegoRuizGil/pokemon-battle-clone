@@ -44,6 +44,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
         private VisualElement BuildPokemonTab()
         {
             var pokemonRepository = ConfigRepositories.Pokemon();
+            var pokemonIds = ConfigIdPolicies.Pokemon(pokemonRepository);
             var spritesRepository = new PokemonSpritesRepository();
             var pokemonApiLoader = new PokemonApiLoader(spritesRepository);
             
@@ -62,8 +63,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
                 createPopup: () =>
                     new CreateConfigPopup<PokemonConfig, PokemonApiDto>(
                         title: "Create Pokemon",
-                        pokemonRepository,
-                        pokemonApiLoader,
+                        pokemonRepository, pokemonIds, pokemonApiLoader,
                         createManually: (id, pokemonName) =>
                         {
                             var config = ScriptableObject.CreateInstance<PokemonConfig>();
@@ -71,7 +71,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
                             config.pokemonName = pokemonName;
                             return config;
                         },
-                        suggestedId: pokemonRepository.GenerateValidId(ProjectPaths.CustomContentIdStart)
+                        suggestedId: pokemonIds.GenerateValidId()
                     )
             );
             
@@ -94,6 +94,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
         private VisualElement BuildMovesTab()
         {
             var movesRepository = ConfigRepositories.Move();
+            var movesIds = ConfigIdPolicies.Move(movesRepository);
             var moveApiLoader = new MoveApiLoader();
             
             var listView = new ConfigListView<MoveConfig>(
@@ -111,8 +112,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
                 createPopup: () =>
                     new CreateConfigPopup<MoveConfig, MoveApiDto>(
                         title: "Create Move",
-                        movesRepository,
-                        moveApiLoader,
+                        movesRepository, movesIds, moveApiLoader,
                         createManually: (id, moveName) =>
                         {
                             var config = ScriptableObject.CreateInstance<MoveConfig>();
@@ -122,7 +122,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
                             config.category = MoveCategory.Physical;
                             return config;
                         },
-                        suggestedId: movesRepository.GenerateValidId(ProjectPaths.CustomContentIdStart)
+                        suggestedId: movesIds.GenerateValidId()
                     )
             );
             
