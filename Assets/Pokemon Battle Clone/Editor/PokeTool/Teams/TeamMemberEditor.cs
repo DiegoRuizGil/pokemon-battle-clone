@@ -32,6 +32,8 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
         private readonly Button _removeButton;
         
         private readonly VisualElement[] _memberOnly; // elements to hide when selecting a new pokemon
+        
+        public TextField NameField => _nameField;
 
         public TeamMemberEditor(PokemonSpritesRepository spritesRepository)
         {
@@ -40,9 +42,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
             
             _sprite.AddToClassList("member-sprite");
             _typesRow.AddToClassList("types-row");
-
-            _nameField.isReadOnly = true;
-
+            
             // _levelField.label = "Lv";
             _levelField.AddToClassList("level-field");
             _levelField.RegisterCallback<FocusOutEvent>(

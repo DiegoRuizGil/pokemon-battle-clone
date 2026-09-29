@@ -109,7 +109,6 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
             members.DeleteArrayElementAtIndex(_selectedIndex);
             _serializedObject.ApplyModifiedProperties();
 
-            // si borras el último, pasas al anterior; si el equipo queda vacío, 0 == estado "+"
             _selectedIndex = Mathf.Max(0, Mathf.Min(_selectedIndex, members.arraySize - 1));
             Refresh();
         }
