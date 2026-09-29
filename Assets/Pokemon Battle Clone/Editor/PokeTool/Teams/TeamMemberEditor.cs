@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Pokemon_Battle_Clone.Editor.Database;
+using Pokemon_Battle_Clone.Editor.PokeTool.Icons;
 using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.Database;
 using UnityEditor;
@@ -126,15 +127,16 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
             _typesRow.Clear();
             if (config == null) return;
 
-            AddTypeLabel(config.type1);
-            if (config.type2 != ElementalType.None) AddTypeLabel(config.type2);
+            AddTypeIcon(config.type1);
+            if (config.type2 != ElementalType.None) AddTypeIcon(config.type2);
         }
         
-        private void AddTypeLabel(ElementalType type)
+        private void AddTypeIcon(ElementalType type)
         {
-            var label = new Label(type.ToString());
-            label.AddToClassList("type-label");
-            _typesRow.Add(label);
+            var iconId = PokeToolIcons.TypeToIconId(type);
+            var icon = PokeToolIcons.GetImage(iconId, 32);
+            icon.AddToClassList("type-icon");
+            _typesRow.Add(icon);
         }
         
         private void ShowMoves(TeamMember member)

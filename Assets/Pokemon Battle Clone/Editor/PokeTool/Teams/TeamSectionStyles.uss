@@ -106,11 +106,8 @@
     margin-bottom: 4px;
 }
 
-.type-label {
+.type-icon {
     margin-right: 4px;
-    padding: 1px 6px;
-    border-radius: 3px;
-    background-color: rgb(70, 70, 70);
 }
 
 .name-row {
