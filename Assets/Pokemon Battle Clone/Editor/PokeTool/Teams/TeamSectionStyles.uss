@@ -138,3 +138,12 @@
     width: 40px;
     -unity-text-align: middle-right;
 }
+
+.config-picker {
+    height: 220px;
+    margin-top: 4px;
+}
+
+.config-picker > .unity-list-view {
+    flex-grow: 1;
+}
