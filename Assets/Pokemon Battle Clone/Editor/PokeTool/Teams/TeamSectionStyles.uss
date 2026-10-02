@@ -43,6 +43,10 @@
 }
 
 .member-editor {
+    
+}
+
+.member-row {
     background-color: rgba(88, 88, 88, 0.98);
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
@@ -61,10 +65,6 @@
     padding-bottom: 5px;
     padding-left: 5px;
     justify-content: center;
-    flex-direction: row;
-}
-
-.member-row {
     flex-direction: row;
 }
 

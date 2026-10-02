@@ -21,16 +21,16 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
 
         public void SetMembers(List<Sprite> icons, int selectedIndex)
         {
-            Clear();
+            this.Clear();
             _buttons.Clear();
             
             for (var i = 0; i < icons.Count; i++)
                 AddSlot(i, CreateMemberButton(icons[i]));
-
+            
             if (icons.Count < MaxMembers)
                 AddSlot(icons.Count,
-                    new Button { iconImage = EditorGUIUtility.IconContent("Toolbar Plus").image as Texture2D });
-
+                    new Button { iconImage = EditorGUIUtility.IconContent("Toolbar Plus").image as Texture2D});
+            
             SetSelected(selectedIndex);
         }
 

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Pokemon_Battle_Clone.Editor.Database;
 using Pokemon_Battle_Clone.Editor.Database.PokeApi;
 using Pokemon_Battle_Clone.Editor.PokeTool.CreatePopup;
@@ -42,6 +41,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
         {
             var repository = ConfigRepositories.Team();
             var spritesRepository = new PokemonSpritesRepository();
+            var pokemonRepository = ConfigRepositories.Pokemon();
 
             var listView = new ConfigListView<TeamConfig>(repository.FindAll(), t => t.name);
             var browser = new ConfigBrowser<TeamConfig>(
@@ -51,7 +51,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
                 getDeleteMessage: t => $"Are you sure you want to delete this team ({t.name})?",
                 onBeforeDelete: _ => { }
             );
-            var dataEditor = new TeamDataEditor(spritesRepository);
+            var dataEditor = new TeamDataEditor(spritesRepository, pokemonRepository);
             var toolbar = new BrowserToolbar<TeamConfig>(
                 repository,
                 createPopup: () => new CreateTeamPopup(repository));

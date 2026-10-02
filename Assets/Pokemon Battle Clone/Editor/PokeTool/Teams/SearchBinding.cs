@@ -51,7 +51,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
         private void HandlePicked(T item)
         {
             _picked = true;
-            _host.Close();
+            _picker.Filter("");
             _onPicked(item);
         }
         

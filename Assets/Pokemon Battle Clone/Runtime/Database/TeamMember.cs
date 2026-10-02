@@ -16,7 +16,7 @@ namespace Pokemon_Battle_Clone.Runtime.Database
     {
         public PokemonConfig pokemonConfig;
         public int level = 100;
-        public NatureEnum nature;
+        public NatureEnum nature = NatureEnum.Bashful;
         public StatSet ivs = new(31, 31, 31, 31, 31, 31);
         public StatSet evs = new();
         public List<MoveConfig> moves = new();

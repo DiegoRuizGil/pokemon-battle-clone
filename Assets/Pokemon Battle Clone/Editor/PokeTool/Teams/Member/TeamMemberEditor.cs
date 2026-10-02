@@ -9,7 +9,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
+namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
 {
     public class TeamMemberEditor : VisualElement
     {
@@ -17,31 +17,39 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
         private static readonly string[] StatNames = { "HP", "Atk", "Def", "SpA", "SpD", "Spe" };
 
         public event Action OnRemoveRequested;
+        public event Action<PokemonConfig> OnPokemonPicked; 
         
         private readonly PokemonSpritesRepository _spritesRepository;
 
         private readonly Image _sprite = new();
         private readonly VisualElement _typesRow = new();
-        private readonly TextField _nameField = new();
+        private readonly MemberPokemonField _pokemonField;
         private readonly IntegerField _levelField = new();
         private readonly VisualElement _movesColumn = new();
         private readonly List<TextField> _moveFields = new();
         private readonly VisualElement _statsColumn = new();
         private readonly List<Label[]> _statRows = new(); // for each stat: [base, ev, iv]
         private readonly Label _natureLabel = new();
+        
+        private readonly PanelHost _detailPanel = new();
+        
         private readonly Button _removeButton;
         
         private readonly VisualElement[] _memberOnly; // elements to hide when selecting a new pokemon
         
-        public TextField NameField => _nameField;
-
-        public TeamMemberEditor(PokemonSpritesRepository spritesRepository)
+        public TeamMemberEditor(PokemonSpritesRepository spritesRepository, Func<List<PokemonConfig>> getPokemons)
         {
             _spritesRepository = spritesRepository;
             this.AddToClassList("member-editor");
             
             _sprite.AddToClassList("member-sprite");
             _typesRow.AddToClassList("types-row");
+
+            _pokemonField = new MemberPokemonField(
+                _detailPanel,
+                getPokemons,
+                getIcon: p => spritesRepository.LoadOrDefault(p.ID, SpriteType.Icon));
+            _pokemonField.OnPicked += pokemon => OnPokemonPicked?.Invoke(pokemon);
             
             // _levelField.label = "Lv";
             _levelField.AddToClassList("level-field");
@@ -50,7 +58,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
 
             var nameRow = new VisualElement();
             nameRow.AddToClassList("name-row");
-            nameRow.Add(_nameField);
+            nameRow.Add(_pokemonField);
             nameRow.Add(_levelField);
             
             var infoColumn = new VisualElement();
@@ -82,10 +90,13 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
             row.Add(_statsColumn);
 
             this.Add(row);
+            this.Add(_detailPanel);
             // this.Add(_removeButton);
 
             _memberOnly = new[] { _typesRow, _levelField, _movesColumn, _statsColumn, _removeButton };
         }
+
+        public void FocusPokemonField() => _pokemonField.FocusField();
         
         public void Bind(SerializedObject serializedObject, int index)
         {
@@ -98,7 +109,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
             _sprite.sprite = config != null
                 ? _spritesRepository.LoadOrDefault(config.ID, SpriteType.Front)
                 : _spritesRepository.LoadDefault(SpriteType.Front);
-            _nameField.SetValueWithoutNotify(config != null ? config.pokemonName : "");
+            _pokemonField.SetName(config != null ? config.pokemonName : "");
 
             _levelField.BindProperty(serializedObject.FindProperty("pokemonList")
                 .GetArrayElementAtIndex(index).FindPropertyRelative("level"));
@@ -113,7 +124,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
             _levelField.Unbind();
             SetMemberElementsVisible(false);
             _sprite.sprite = _spritesRepository.LoadDefault(SpriteType.Front);
-            _nameField.SetValueWithoutNotify("");
+            _pokemonField.SetName("");
         }
         
         private void SetMemberElementsVisible(bool isVisible)

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Pokemon_Battle_Clone.Editor.Database;
+using Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member;
 using Pokemon_Battle_Clone.Runtime.Database;
 using UnityEditor;
 using UnityEngine;
@@ -21,7 +22,9 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
         
         private SerializedProperty MembersProperty => _serializedObject.FindProperty("pokemonList");
 
-        public TeamDataEditor(PokemonSpritesRepository spritesRepository)
+        public TeamDataEditor(
+            PokemonSpritesRepository spritesRepository,
+            ConfigRepository<PokemonConfig> pokemonRepository)
         {
             _spritesRepository = spritesRepository;
 
@@ -36,8 +39,9 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
             _selector = new TeamMemberSelector();
             _selector.OnSlotSelected += Select;
 
-            _memberEditor = new TeamMemberEditor(spritesRepository);
-            _memberEditor.OnRemoveRequested += RemoveSelectedMember;
+            _memberEditor = new TeamMemberEditor(spritesRepository, pokemonRepository.FindAll);
+            // _memberEditor.OnRemoveRequested += RemoveSelectedMember;
+            _memberEditor.OnPokemonPicked += AssignPokemon;
             
             this.AddToClassList("data-editor");
             this.Add(header);
@@ -60,7 +64,18 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
             _serializedObject = new SerializedObject(team);
             _nameLabel.text = team.name;
             _selectedIndex = 0;
+            _memberEditor.FocusPokemonField();
             Refresh();
+        }
+
+        private void Select(int index)
+        {
+            Debug.Log("Selected Team Index: " + index);
+            
+            _selectedIndex = index;
+            _selector.SetSelected(index);
+            UpdateMemberArea();
+            _memberEditor.FocusPokemonField();
         }
 
         private void Refresh()
@@ -85,14 +100,8 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
                     ? _spritesRepository.LoadOrDefault(config.ID, SpriteType.Icon)
                     : _spritesRepository.LoadDefault(SpriteType.Icon));
             }
-            return icons;
-        }
 
-        private void Select(int index)
-        {
-            _selectedIndex = index;
-            _selector.SetSelected(index);
-            UpdateMemberArea();
+            return icons;
         }
 
         private void UpdateMemberArea()
@@ -102,14 +111,18 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
             else
                 _memberEditor.Bind(_serializedObject, _selectedIndex);
         }
-        
-        private void RemoveSelectedMember()
-        {
-            var members = MembersProperty;
-            members.DeleteArrayElementAtIndex(_selectedIndex);
-            _serializedObject.ApplyModifiedProperties();
 
-            _selectedIndex = Mathf.Max(0, Mathf.Min(_selectedIndex, members.arraySize - 1));
+        private void AssignPokemon(PokemonConfig pokemon)
+        {
+            if (_selectedIndex >= MembersProperty.arraySize)
+            {
+                UpdateMemberArea();
+                return;
+            }
+
+            var teamMember = new TeamMember { pokemonConfig = pokemon };
+            MembersProperty.GetArrayElementAtIndex(_selectedIndex).boxedValue = teamMember;
+            _serializedObject.ApplyModifiedProperties();
             Refresh();
         }
     }
