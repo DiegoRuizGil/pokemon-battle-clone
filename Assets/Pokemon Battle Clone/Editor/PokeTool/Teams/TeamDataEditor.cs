@@ -49,6 +49,9 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
             this.Add(_memberEditor);
 
             Bind(null);
+            
+            RegisterCallback<AttachToPanelEvent>(_ => Undo.undoRedoPerformed += OnUndoRedo);
+            RegisterCallback<DetachFromPanelEvent>(_ => Undo.undoRedoPerformed -= OnUndoRedo);
         }
 
         public void Bind(TeamConfig team)
@@ -70,8 +73,6 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
 
         private void Select(int index)
         {
-            Debug.Log("Selected Team Index: " + index);
-            
             _selectedIndex = index;
             _selector.SetSelected(index);
             UpdateMemberArea();
@@ -123,6 +124,16 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
             var teamMember = new TeamMember { pokemonConfig = pokemon };
             MembersProperty.GetArrayElementAtIndex(_selectedIndex).boxedValue = teamMember;
             _serializedObject.ApplyModifiedProperties();
+            Refresh();
+        }
+
+        private void OnUndoRedo()
+        {
+            if (_serializedObject == null || _serializedObject.targetObject == null)
+                return;
+            
+            _serializedObject.Update();
+            _selectedIndex = Mathf.Min(_selectedIndex, MembersProperty.arraySize);
             Refresh();
         }
     }

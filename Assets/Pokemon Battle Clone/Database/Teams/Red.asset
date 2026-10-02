@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Red
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Database.TeamConfig
   pokemonList:
-  - pokemonConfig: {fileID: 11400000, guid: c06d353f805101e4c9fa2d7b1027943e, type: 2}
+  - pokemonConfig: {fileID: 11400000, guid: 169366bb315d6d449a27d59bc9e30a20, type: 2}
     level: 100
-    nature: 0
+    nature: 18
     ivs:
       <HP>k__BackingField: 31
       <Attack>k__BackingField: 31
@@ -30,8 +30,7 @@ MonoBehaviour:
       <SpcAttack>k__BackingField: 0
       <SpcDefense>k__BackingField: 0
       <Speed>k__BackingField: 0
-    moves:
-    - {fileID: 11400000, guid: c210636bccaae424b894bd90340d2d8e, type: 2}
+    moves: []
   - pokemonConfig: {fileID: 11400000, guid: 865100630351d124eaca064571d75732, type: 2}
     level: 100
     nature: 0
