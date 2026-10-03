@@ -119,14 +119,20 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
 
         private void AssignPokemon(PokemonConfig pokemon)
         {
+            // adding new pokemon
             if (_selectedIndex >= MembersProperty.arraySize)
             {
-                UpdateMemberArea();
-                return;
-            }
+                if (MembersProperty.arraySize >= TeamMemberSelector.MaxMembers) return;
 
-            var team = (TeamConfig)_serializedObject.targetObject;
-            if (team.pokemonList[_selectedIndex].pokemonConfig == pokemon) return;
+                _selectedIndex = MembersProperty.arraySize;
+                MembersProperty.InsertArrayElementAtIndex(_selectedIndex);
+            }
+            // changing current pokemon, check if is the same
+            else
+            {
+                var team = (TeamConfig)_serializedObject.targetObject;
+                if (team.pokemonList[_selectedIndex].pokemonConfig == pokemon) return;
+            }
 
             var teamMember = new TeamMember { pokemonConfig = pokemon };
             MembersProperty.GetArrayElementAtIndex(_selectedIndex).boxedValue = teamMember;
