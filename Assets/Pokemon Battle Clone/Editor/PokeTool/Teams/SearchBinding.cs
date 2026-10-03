@@ -53,6 +53,10 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
             _picked = true;
             _picker.Filter("");
             _onPicked(item);
+
+            if (!_active) return;
+            _previousText = _field.value;
+            _picked = false;
         }
         
         private void Deactivate()

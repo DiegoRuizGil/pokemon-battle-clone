@@ -13,11 +13,11 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
 {
     public class TeamMemberEditor : VisualElement
     {
-        private const int MoveSlots = 4;
         private static readonly string[] StatNames = { "HP", "Atk", "Def", "SpA", "SpD", "Spe" };
 
         public event Action OnRemoveRequested;
-        public event Action<PokemonConfig> OnPokemonPicked; 
+        public event Action<PokemonConfig> OnPokemonPicked;
+        public event Action<int, MoveConfig> OnMovePicked; 
         
         private readonly PokemonSpritesRepository _spritesRepository;
 
@@ -25,8 +25,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
         private readonly VisualElement _typesRow = new();
         private readonly MemberPokemonField _pokemonField;
         private readonly IntegerField _levelField = new();
-        private readonly VisualElement _movesColumn = new();
-        private readonly List<TextField> _moveFields = new();
+        private readonly MemberMovesField _movesField;
         private readonly VisualElement _statsColumn = new();
         private readonly List<Label[]> _statRows = new(); // for each stat: [base, ev, iv]
         private readonly Label _natureLabel = new();
@@ -37,7 +36,10 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
         
         private readonly VisualElement[] _memberOnly; // elements to hide when selecting a new pokemon
         
-        public TeamMemberEditor(PokemonSpritesRepository spritesRepository, Func<List<PokemonConfig>> getPokemons)
+        public TeamMemberEditor(
+            PokemonSpritesRepository spritesRepository,
+            Func<List<PokemonConfig>> getPokemons,
+            Func<List<MoveConfig>> getMoves)
         {
             _spritesRepository = spritesRepository;
             this.AddToClassList("member-editor");
@@ -67,13 +69,9 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
             infoColumn.Add(_typesRow);
             infoColumn.Add(nameRow);
 
-            _movesColumn.AddToClassList("moves-column");
-            for (int i = 0; i < MoveSlots; i++)
-            {
-                var field = new TextField { isReadOnly = true };
-                _moveFields.Add(field);
-                _movesColumn.Add(field);
-            }
+            _movesField = new MemberMovesField(_detailPanel, getMoves);
+            _movesField.AddToClassList("moves-column");
+            _movesField.OnPicked += (slot, move) => OnMovePicked?.Invoke(slot, move);
 
             _statsColumn.AddToClassList("stats-column");
             BuildStatsColumn();
@@ -86,16 +84,17 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
             var row = new VisualElement();
             row.AddToClassList("member-row");
             row.Add(infoColumn);
-            row.Add(_movesColumn);
+            row.Add(_movesField);
             row.Add(_statsColumn);
 
             this.Add(row);
             this.Add(_detailPanel);
             // this.Add(_removeButton);
 
-            _memberOnly = new[] { _typesRow, _levelField, _movesColumn, _statsColumn, _removeButton };
+            _memberOnly = new[] { _typesRow, _levelField, _movesField, _statsColumn, _removeButton };
         }
 
+        public void CloseDetail() => _detailPanel.Close();
         public void FocusPokemonField() => _pokemonField.FocusField();
         
         public void Bind(SerializedObject serializedObject, int index)
@@ -115,7 +114,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
                 .GetArrayElementAtIndex(index).FindPropertyRelative("level"));
 
             ShowTypes(config);
-            ShowMoves(member);
+            _movesField.SetMoves(member.moves);
             ShowStats(config, member);
         }
         
@@ -148,15 +147,6 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
             var icon = PokeToolIcons.GetImage(iconId, 32);
             icon.AddToClassList("type-icon");
             _typesRow.Add(icon);
-        }
-        
-        private void ShowMoves(TeamMember member)
-        {
-            for (var i = 0; i < _moveFields.Count; i++)
-            {
-                var move = i < member.moves.Count ? member.moves[i] : null;
-                _moveFields[i].SetValueWithoutNotify(move != null ? move.moveName : "");
-            }
         }
         
         private void ShowStats(PokemonConfig config, TeamMember member)

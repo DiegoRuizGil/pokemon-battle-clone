@@ -14,6 +14,8 @@ namespace Pokemon_Battle_Clone.Runtime.Database
     [System.Serializable]
     public class TeamMember
     {
+        public const int MaxMoves = 4;
+        
         public PokemonConfig pokemonConfig;
         public int level = 100;
         public NatureEnum nature = NatureEnum.Bashful;
@@ -27,7 +29,7 @@ namespace Pokemon_Battle_Clone.Runtime.Database
                 .WithNature(GetNature(nature))
                 .WithIVs(ivs)
                 .WithEVs(evs)
-                .WithMoves(moves.Select(m => m.Build()).ToArray());
+                .WithMoves(moves.Where(m => m != null).Select(m => m.Build()).ToArray());
         
         private Nature GetNature(NatureEnum natureEnum)
         {

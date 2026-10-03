@@ -24,7 +24,8 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
 
         public TeamDataEditor(
             PokemonSpritesRepository spritesRepository,
-            ConfigRepository<PokemonConfig> pokemonRepository)
+            ConfigRepository<PokemonConfig> pokemonRepository,
+            ConfigRepository<MoveConfig> movesRepository)
         {
             _spritesRepository = spritesRepository;
 
@@ -39,9 +40,10 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
             _selector = new TeamMemberSelector();
             _selector.OnSlotSelected += Select;
 
-            _memberEditor = new TeamMemberEditor(spritesRepository, pokemonRepository.FindAll);
+            _memberEditor = new TeamMemberEditor(spritesRepository, pokemonRepository.FindAll, movesRepository.FindAll);
             // _memberEditor.OnRemoveRequested += RemoveSelectedMember;
             _memberEditor.OnPokemonPicked += AssignPokemon;
+            _memberEditor.OnMovePicked += AssignMove;
             
             this.AddToClassList("data-editor");
             this.Add(header);
@@ -67,12 +69,14 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
             _serializedObject = new SerializedObject(team);
             _nameLabel.text = team.name;
             _selectedIndex = 0;
-            _memberEditor.FocusPokemonField();
+            _memberEditor.CloseDetail();
             Refresh();
+            _memberEditor.FocusPokemonField();
         }
 
         private void Select(int index)
         {
+            _memberEditor.CloseDetail();
             _selectedIndex = index;
             _selector.SetSelected(index);
             UpdateMemberArea();
@@ -127,6 +131,24 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
             Refresh();
         }
 
+        private void AssignMove(int slot, MoveConfig move)
+        {
+            if (_selectedIndex >= MembersProperty.arraySize) return;
+
+            var moves = MembersProperty.GetArrayElementAtIndex(_selectedIndex)
+                .FindPropertyRelative("moves");
+
+            for (int i = moves.arraySize; i < TeamMember.MaxMoves; i++)
+            {
+                moves.InsertArrayElementAtIndex(i);
+                moves.GetArrayElementAtIndex(i).objectReferenceValue = null;
+            }
+            
+            moves.GetArrayElementAtIndex(slot).objectReferenceValue = move;
+            _serializedObject.ApplyModifiedProperties();
+            Refresh();
+        }
+
         private void OnUndoRedo()
         {
             if (_serializedObject == null || _serializedObject.targetObject == null)
@@ -134,6 +156,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
             
             _serializedObject.Update();
             _selectedIndex = Mathf.Min(_selectedIndex, MembersProperty.arraySize);
+            _memberEditor.CloseDetail();
             Refresh();
         }
     }

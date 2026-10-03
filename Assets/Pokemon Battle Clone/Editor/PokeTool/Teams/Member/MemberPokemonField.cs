@@ -31,13 +31,11 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
                 _nameField, picker, host, getItems, p => OnPicked?.Invoke(p));
             
             this.Add(_nameField);
-            
-            this.Focus();
         }
 
         public void SetName(string pokemonName) => _nameField.SetValueWithoutNotify(pokemonName);
 
-        public void FocusField() => _nameField.Focus();
+        public void FocusField() => _nameField.schedule.Execute(() => _nameField.Focus());
         
         private VisualElement MakePickerRow()
         {
@@ -55,11 +53,6 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
         {
             row.Q<Image>().sprite = _getIcon(config);
             row.Q<Label>().text = config.pokemonName;
-        }
-
-        private void HandleOnPicked(PokemonConfig config)
-        {
-            OnPicked?.Invoke(config);
         }
     }
 }
