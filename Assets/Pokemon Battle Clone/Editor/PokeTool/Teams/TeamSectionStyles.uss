@@ -144,3 +144,8 @@
 .config-picker > .unity-list-view {
     flex-grow: 1;
 }
+
+.config-picker-current {
+    border-bottom-width: 1px;
+    border-bottom-color: var(--unity-colors-default-border);
+}

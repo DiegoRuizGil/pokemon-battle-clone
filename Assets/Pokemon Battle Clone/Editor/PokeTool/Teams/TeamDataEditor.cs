@@ -125,6 +125,9 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
                 return;
             }
 
+            var team = (TeamConfig)_serializedObject.targetObject;
+            if (team.pokemonList[_selectedIndex].pokemonConfig == pokemon) return;
+
             var teamMember = new TeamMember { pokemonConfig = pokemon };
             MembersProperty.GetArrayElementAtIndex(_selectedIndex).boxedValue = teamMember;
             _serializedObject.ApplyModifiedProperties();

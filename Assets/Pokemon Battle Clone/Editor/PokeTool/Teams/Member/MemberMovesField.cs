@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Pokemon_Battle_Clone.Runtime.Database;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
@@ -12,6 +11,8 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
 
         private readonly List<TextField> _fields = new();
         private readonly List<SearchBinding<MoveConfig>> _searches = new();
+
+        private List<MoveConfig> _moves = new();
 
         public MemberMovesField(PanelHost host, Func<List<MoveConfig>> getItems)
         {
@@ -27,19 +28,24 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
                 var field = new TextField();
                 _fields.Add(field);
                 _searches.Add(new SearchBinding<MoveConfig>(
-                    field, picker, host, getItems, move => HandlePicked(slot, move)));
+                    field, picker, host, getItems,
+                    getCurrent: () => GetCurrent(slot),
+                    onPicked: move => HandlePicked(slot, move)));
                 this.Add(field);
             }
         }
 
         public void SetMoves(List<MoveConfig> moves)
         {
+            _moves = new List<MoveConfig>(moves);
             for (var i = 0; i < _fields.Count; i++)
             {
                 var move = i < moves.Count ? moves[i] : null;
                 _fields[i].SetValueWithoutNotify(move != null ? move.moveName : "");
             }
         }
+        
+        private MoveConfig GetCurrent(int slot) => slot < _moves.Count ? _moves[slot] : null;
 
         private void HandlePicked(int slot, MoveConfig move)
         {

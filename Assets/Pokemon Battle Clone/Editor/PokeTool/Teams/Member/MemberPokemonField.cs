@@ -13,6 +13,8 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
         private readonly TextField _nameField = new();
         private readonly Func<PokemonConfig, Sprite> _getIcon;
         private readonly SearchBinding<PokemonConfig> _search;
+
+        private PokemonConfig _current;
         
         public MemberPokemonField(
             PanelHost host,
@@ -28,13 +30,19 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
                 rowHeight: 40);
             
             _search = new SearchBinding<PokemonConfig>(
-                _nameField, picker, host, getItems, p => OnPicked?.Invoke(p));
+                _nameField, picker, host, getItems,
+                getCurrent: () => _current, 
+                onPicked: p => OnPicked?.Invoke(p));
             
             this.Add(_nameField);
         }
 
-        public void SetName(string pokemonName) => _nameField.SetValueWithoutNotify(pokemonName);
-
+        public void SetPokemon(PokemonConfig config)
+        {
+            _current = config;
+            _nameField.SetValueWithoutNotify(config != null ? config.pokemonName : "");
+        }
+        
         public void FocusField() => _nameField.schedule.Execute(() => _nameField.Focus());
         
         private VisualElement MakePickerRow()

@@ -108,7 +108,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
             _sprite.sprite = config != null
                 ? _spritesRepository.LoadOrDefault(config.ID, SpriteType.Front)
                 : _spritesRepository.LoadDefault(SpriteType.Front);
-            _pokemonField.SetName(config != null ? config.pokemonName : "");
+            _pokemonField.SetPokemon(config);
 
             _levelField.BindProperty(serializedObject.FindProperty("pokemonList")
                 .GetArrayElementAtIndex(index).FindPropertyRelative("level"));
@@ -123,7 +123,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
             _levelField.Unbind();
             SetMemberElementsVisible(false);
             _sprite.sprite = _spritesRepository.LoadDefault(SpriteType.Front);
-            _pokemonField.SetName("");
+            _pokemonField.SetPokemon(null);
         }
         
         private void SetMemberElementsVisible(bool isVisible)

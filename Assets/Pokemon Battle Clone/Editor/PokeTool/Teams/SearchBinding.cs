@@ -11,6 +11,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
         private readonly ConfigPicker<T> _picker;
         private readonly PanelHost _host;
         private readonly Func<List<T>> _getItems;
+        private readonly Func<T> _getCurrent;
         private readonly Action<T> _onPicked;
         
         private bool _active;
@@ -18,12 +19,13 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
         private string _previousText;
         
         public SearchBinding(TextField field, ConfigPicker<T> picker, PanelHost host,
-            Func<List<T>> getItems, Action<T> onPicked)
+            Func<List<T>> getItems, Func<T> getCurrent, Action<T> onPicked)
         {
             _field = field;
             _picker = picker;
             _host = host;
             _getItems = getItems;
+            _getCurrent = getCurrent;
             _onPicked = onPicked;
 
             _field.RegisterCallback<FocusInEvent>(_ => Activate());
@@ -39,6 +41,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
             _previousText = _field.value;
 
             _picker.OnPicked += HandlePicked;
+            _picker.SetCurrent(_getCurrent());
             _picker.SetItems(_getItems());
             _host.Open(_picker, Deactivate);
         }
@@ -55,6 +58,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
             _onPicked(item);
 
             if (!_active) return;
+            _picker.SetCurrent(_getCurrent());
             _previousText = _field.value;
             _picked = false;
         }
