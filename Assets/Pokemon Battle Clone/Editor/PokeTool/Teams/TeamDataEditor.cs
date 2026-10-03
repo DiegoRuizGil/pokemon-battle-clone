@@ -41,7 +41,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
             _selector.OnSlotSelected += Select;
 
             _memberEditor = new TeamMemberEditor(spritesRepository, pokemonRepository.FindAll, movesRepository.FindAll);
-            // _memberEditor.OnRemoveRequested += RemoveSelectedMember;
+            _memberEditor.OnRemoveRequested += RemoveSelectedMember;
             _memberEditor.OnPokemonPicked += AssignPokemon;
             _memberEditor.OnMovePicked += AssignMove;
             
@@ -115,6 +115,19 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
                 _memberEditor.ShowNewMember();
             else
                 _memberEditor.Bind(_serializedObject, _selectedIndex);
+        }
+        
+        private void RemoveSelectedMember()
+        {
+            if (_selectedIndex >= MembersProperty.arraySize) return;
+
+            MembersProperty.DeleteArrayElementAtIndex(_selectedIndex);
+            _serializedObject.ApplyModifiedProperties();
+
+            _selectedIndex = Mathf.Max(0, _selectedIndex - 1);
+            _memberEditor.CloseDetail();
+            Refresh();
+            _memberEditor.FocusPokemonField();
         }
 
         private void AssignPokemon(PokemonConfig pokemon)

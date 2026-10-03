@@ -88,8 +88,8 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
             row.Add(_statsColumn);
 
             this.Add(row);
+            this.Add(_removeButton);
             this.Add(_detailPanel);
-            // this.Add(_removeButton);
 
             _memberOnly = new[] { _typesRow, _levelField, _movesField, _statsColumn, _removeButton };
         }
