@@ -136,6 +136,19 @@
     -unity-text-align: middle-right;
 }
 
+.stat-bar {
+    flex-grow: 1;
+    height: 8px;
+    align-self: center;
+    background-color: rgb(30, 30, 30);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.stat-bar-fill {
+    height: 100%;
+}
+
 .config-picker {
     height: 220px;
     margin-top: 4px;
