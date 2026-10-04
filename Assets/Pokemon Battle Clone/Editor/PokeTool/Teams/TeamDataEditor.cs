@@ -140,7 +140,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams
                 _selectedIndex = MembersProperty.arraySize;
                 MembersProperty.InsertArrayElementAtIndex(_selectedIndex);
             }
-            // changing current pokemon, check if is the same
+            // changing current pokemon, check if it's the same
             else
             {
                 var team = (TeamConfig)_serializedObject.targetObject;

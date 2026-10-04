@@ -5,12 +5,6 @@ using Pokemon_Battle_Clone.Runtime.Stats.Domain;
 
 namespace Pokemon_Battle_Clone.Runtime.Database
 {
-    public enum NatureEnum
-    {
-        Hardy, Lonely, Brave, Adamant, Naughty, Bold, Docile, Relaxed, Impish, Lax, Timid, Hasty, Serious, Jolly, Naive,
-        Modest, Mild, Quiet, Bashful, Rash, Calm, Gentle, Sassy, Careful, Quirky
-    }
-    
     [System.Serializable]
     public class TeamMember
     {
@@ -26,42 +20,9 @@ namespace Pokemon_Battle_Clone.Runtime.Database
         public Pokemon Build() =>
             pokemonConfig.ToBuilder()
                 .WithLevel(level)
-                .WithNature(GetNature(nature))
+                .WithNature(Nature.FromEnum(nature))
                 .WithIVs(ivs)
                 .WithEVs(evs)
                 .WithMoves(moves.Where(m => m != null).Select(m => m.Build()).ToArray());
-        
-        private Nature GetNature(NatureEnum natureEnum)
-        {
-            return natureEnum switch
-            {
-                NatureEnum.Adamant => Nature.Adamant(),
-                NatureEnum.Bashful => Nature.Bashful(),
-                NatureEnum.Bold => Nature.Bold(),
-                NatureEnum.Brave => Nature.Brave(),
-                NatureEnum.Calm => Nature.Calm(),
-                NatureEnum.Careful => Nature.Careful(),
-                NatureEnum.Docile => Nature.Docile(),
-                NatureEnum.Gentle => Nature.Gentle(),
-                NatureEnum.Hardy => Nature.Hardy(),
-                NatureEnum.Hasty => Nature.Hasty(),
-                NatureEnum.Impish => Nature.Impish(),
-                NatureEnum.Jolly => Nature.Jolly(),
-                NatureEnum.Lax => Nature.Lax(),
-                NatureEnum.Lonely => Nature.Lonely(),
-                NatureEnum.Mild => Nature.Mild(),
-                NatureEnum.Modest => Nature.Modest(),
-                NatureEnum.Naive => Nature.Naive(),
-                NatureEnum.Naughty => Nature.Naughty(),
-                NatureEnum.Quiet => Nature.Quiet(),
-                NatureEnum.Quirky => Nature.Quirky(),
-                NatureEnum.Rash => Nature.Rash(),
-                NatureEnum.Relaxed => Nature.Relaxed(),
-                NatureEnum.Sassy => Nature.Sassy(),
-                NatureEnum.Serious => Nature.Serious(),
-                NatureEnum.Timid => Nature.Timid(),
-                _ => Nature.Bashful()
-            };
-        }
     }
 }
