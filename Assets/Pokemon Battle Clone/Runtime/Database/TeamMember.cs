@@ -24,5 +24,11 @@ namespace Pokemon_Battle_Clone.Runtime.Database
                 .WithIVs(ivs)
                 .WithEVs(evs)
                 .WithMoves(moves.Where(m => m != null).Select(m => m.Build()).ToArray());
+
+        public StatsData BuildStatsData()
+        {
+            var baseStats = pokemonConfig != null ? pokemonConfig.baseStats : new StatSet();
+            return new StatsData(level, baseStats, Nature.FromEnum(nature), evs, ivs);
+        }
     }
 }
