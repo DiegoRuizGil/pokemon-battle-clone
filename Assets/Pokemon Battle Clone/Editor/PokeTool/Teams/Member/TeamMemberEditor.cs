@@ -26,9 +26,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
         private readonly MemberPokemonField _pokemonField;
         private readonly IntegerField _levelField = new();
         private readonly MemberMovesField _movesField;
-        private readonly VisualElement _statsColumn = new();
-        private readonly List<Label[]> _statRows = new(); // for each stat: [base, ev, iv]
-        private readonly Label _natureLabel = new();
+        private readonly MemberStatsField _statsField = new();
         
         private readonly PanelHost _detailPanel = new();
         
@@ -72,9 +70,8 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
             _movesField = new MemberMovesField(_detailPanel, getMoves);
             _movesField.AddToClassList("moves-column");
             _movesField.OnPicked += (slot, move) => OnMovePicked?.Invoke(slot, move);
-
-            _statsColumn.AddToClassList("stats-column");
-            BuildStatsColumn();
+            
+            _statsField.AddToClassList("stats-column");
 
             _removeButton = new Button(() => OnRemoveRequested?.Invoke())
             {
@@ -85,13 +82,13 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
             row.AddToClassList("member-row");
             row.Add(infoColumn);
             row.Add(_movesField);
-            row.Add(_statsColumn);
+            row.Add(_statsField);
 
             this.Add(row);
             this.Add(_removeButton);
             this.Add(_detailPanel);
 
-            _memberOnly = new[] { _typesRow, _levelField, _movesField, _statsColumn, _removeButton };
+            _memberOnly = new[] { _typesRow, _levelField, _movesField, _statsField, _removeButton };
         }
 
         public void CloseDetail() => _detailPanel.Close();
@@ -113,9 +110,9 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
             _levelField.BindProperty(serializedObject.FindProperty("pokemonList")
                 .GetArrayElementAtIndex(index).FindPropertyRelative("level"));
 
-            ShowTypes(config);
+            SetTypes(config);
             _movesField.SetMoves(member.moves);
-            ShowStats(config, member);
+            _statsField.SetStats(member.BuildStatsData());
         }
         
         public void ShowNewMember()
@@ -132,7 +129,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
                 element.style.display = isVisible ? DisplayStyle.Flex : DisplayStyle.None;
         }
         
-        private void ShowTypes(PokemonConfig config)
+        private void SetTypes(PokemonConfig config)
         {
             _typesRow.Clear();
             if (config == null) return;
@@ -147,49 +144,6 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
             var icon = PokeToolIcons.GetImage(iconId, 32);
             icon.AddToClassList("type-icon");
             _typesRow.Add(icon);
-        }
-        
-        private void ShowStats(PokemonConfig config, TeamMember member)
-        {
-            var baseValues = config != null ? config.baseStats.Values : new int[StatNames.Length];
-            var evs = member.evs.Values;
-            var ivs = member.ivs.Values;
-
-            for (var i = 0; i < _statRows.Count; i++)
-            {
-                _statRows[i][0].text = baseValues[i].ToString();
-                _statRows[i][1].text = evs[i].ToString();
-                _statRows[i][2].text = ivs[i].ToString();
-            }
-            _natureLabel.text = $"Nature: {member.nature}";
-        }
-        
-        private void BuildStatsColumn()
-        {
-            AddStatRow("", "Base", "EV", "IV"); // header
-            foreach (var statName in StatNames)
-                _statRows.Add(AddStatRow(statName, "", "", ""));
-            _statsColumn.Add(_natureLabel);
-        }
-        
-        private Label[] AddStatRow(string statName, string baseText, string evText, string ivText)
-        {
-            var row = new VisualElement();
-            row.AddToClassList("stat-row");
-
-            var nameLabel = new Label(statName);
-            nameLabel.AddToClassList("stat-name");
-            row.Add(nameLabel);
-
-            var values = new[] { new Label(baseText), new Label(evText), new Label(ivText) };
-            foreach (var value in values)
-            {
-                value.AddToClassList("stat-value");
-                row.Add(value);
-            }
-
-            _statsColumn.Add(row);
-            return values;
         }
     }
 }

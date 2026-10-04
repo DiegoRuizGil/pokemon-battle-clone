@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Red
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Database.TeamConfig
   pokemonList:
-  - pokemonConfig: {fileID: 11400000, guid: 34705a3e81a44f74094bc172cd137817, type: 2}
+  - pokemonConfig: {fileID: 11400000, guid: 865100630351d124eaca064571d75732, type: 2}
     level: 100
     nature: 18
     ivs:
@@ -30,12 +30,44 @@ MonoBehaviour:
       <SpcAttack>k__BackingField: 0
       <SpcDefense>k__BackingField: 0
       <Speed>k__BackingField: 0
-    moves:
-    - {fileID: 11400000, guid: cf8efb61c3762484ca94928f23217025, type: 2}
-    - {fileID: 11400000, guid: 7dcef30a8a598384288c58b2d7e8bd6c, type: 2}
-    - {fileID: 11400000, guid: c210636bccaae424b894bd90340d2d8e, type: 2}
-    - {fileID: 11400000, guid: 3e0ad3f806b64574fa9c373e743f24ba, type: 2}
+    moves: []
   - pokemonConfig: {fileID: 11400000, guid: c06d353f805101e4c9fa2d7b1027943e, type: 2}
+    level: 100
+    nature: 18
+    ivs:
+      <HP>k__BackingField: 31
+      <Attack>k__BackingField: 31
+      <Defense>k__BackingField: 31
+      <SpcAttack>k__BackingField: 31
+      <SpcDefense>k__BackingField: 31
+      <Speed>k__BackingField: 31
+    evs:
+      <HP>k__BackingField: 0
+      <Attack>k__BackingField: 0
+      <Defense>k__BackingField: 0
+      <SpcAttack>k__BackingField: 0
+      <SpcDefense>k__BackingField: 0
+      <Speed>k__BackingField: 0
+    moves: []
+  - pokemonConfig: {fileID: 11400000, guid: e1a681cea86897c4eba6b7fee9851130, type: 2}
+    level: 100
+    nature: 18
+    ivs:
+      <HP>k__BackingField: 31
+      <Attack>k__BackingField: 31
+      <Defense>k__BackingField: 31
+      <SpcAttack>k__BackingField: 31
+      <SpcDefense>k__BackingField: 31
+      <Speed>k__BackingField: 31
+    evs:
+      <HP>k__BackingField: 0
+      <Attack>k__BackingField: 0
+      <Defense>k__BackingField: 0
+      <SpcAttack>k__BackingField: 0
+      <SpcDefense>k__BackingField: 0
+      <Speed>k__BackingField: 0
+    moves: []
+  - pokemonConfig: {fileID: 11400000, guid: 99730e9eb34224d44a341b312d3647e7, type: 2}
     level: 100
     nature: 18
     ivs:

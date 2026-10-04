@@ -16,6 +16,7 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
 
         public int Sum => HP + Attack + Defense + SpcAttack + SpcDefense + Speed;
 
+        public static readonly string[] StatNames = { "HP", "Atk", "Def", "SpA", "SpD", "Spe" };
         public int[] Values => new[] { HP, Attack, Defense, SpcAttack, SpcDefense, Speed };
         
         private int _maxStatValue;
