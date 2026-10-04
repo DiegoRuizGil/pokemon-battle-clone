@@ -7,38 +7,12 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
 {
     public class StatsData
     {
-        private int _level;
-        public int Level
-        {
-            get => _level;
-            set => _level = Math.Clamp(value, 1, 100);
-        }
-        private StatSet _evs;
-        public StatSet EVs
-        {
-            get => _evs;
-            set
-            {
-                Assert.IsTrue(value.Sum <= 510);
-                _evs = value;
-                Stats = CalculateStats(Level, BaseStats, EVs, IVs, Nature);
-            }
-        }
-
-        private StatSet _ivs;
-        public StatSet IVs
-        {
-            get => _ivs;
-            set
-            {
-                _ivs = value;
-                Stats = CalculateStats(Level, BaseStats, EVs, IVs, Nature);
-            }
-        }
+        public int Level { get; }
         public StatSet BaseStats { get; }
-        public StatSet Stats { get; private set; }
-        
+        public StatSet EVs { get; }
+        public StatSet IVs { get; }
         public Nature Nature { get; }
+        public StatSet Stats { get; }
         public StatsModifier Modifiers { get; }
 
         public int HP => Stats.HP;
@@ -48,16 +22,17 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
         public int SpcDefense => Mathf.FloorToInt(Stats.SpcDefense * Modifiers.SpcDefenseBoost);
         public int Speed => Mathf.FloorToInt(Stats.Speed * Modifiers.SpeedBoost);
 
-        public StatsData(int level, StatSet baseStats, Nature nature)
+
+        public StatsData(int level, StatSet baseStats, Nature nature, StatSet evs, StatSet ivs)
         {
-            Level = level;
+            Assert.IsTrue(evs.Sum <= 510);
+
+            Level = Math.Clamp(level, 1, 100);
             BaseStats = baseStats;
             Nature = nature;
+            EVs = evs;
+            IVs = ivs;
             Modifiers = new StatsModifier();
-            
-            _evs = StatSet.BlankEVsSet();
-            _ivs = StatSet.BlankIVsSet();
-
             Stats = CalculateStats(Level, BaseStats, EVs, IVs, Nature);
         }
 
