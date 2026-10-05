@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Pokemon_Battle_Clone.Runtime.Stats.Domain;
+using TMPro;
 using UnityEngine;
 
 namespace Pokemon_Battle_Clone.Runtime.Stats.Infrastructure
@@ -7,10 +8,13 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Infrastructure
     {
         [SerializeField] private TextMeshProUGUI text;
 
-        public void SetInfo(string statName, float value)
+        public void SetInfo(Stat stat, StatsModifier modifiers)
         {
-            text.text = $"{statName} x{value:0.###}";
-            gameObject.SetActive(value != 1f);
+            var multiplier = modifiers.GetMultiplier(stat);
+            var stage = modifiers.GetStage(stat);
+            
+            text.text = $"{stat.ShortName()} x{multiplier:0.###}";
+            gameObject.SetActive(stage != 0);
         }
     }
 }
