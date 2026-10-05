@@ -16,11 +16,11 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
         public StatsModifier Modifiers { get; }
 
         public int HP => Stats.HP;
-        public int Attack => Mathf.FloorToInt(Stats.Attack * Modifiers.AttackBoost);
-        public int Defense => Mathf.FloorToInt(Stats.Defense * Modifiers.DefenseBoost);
-        public int SpAttack => Mathf.FloorToInt(Stats.SpAttack * Modifiers.SpcAttackBoost);
-        public int SpDefense => Mathf.FloorToInt(Stats.SpDefense * Modifiers.SpcDefenseBoost);
-        public int Speed => Mathf.FloorToInt(Stats.Speed * Modifiers.SpeedBoost);
+        public int Attack => Boosted(Stat.Attack);
+        public int Defense => Boosted(Stat.Defense);
+        public int SpAttack => Boosted(Stat.SpAttack);
+        public int SpDefense => Boosted(Stat.SpDefense);
+        public int Speed => Boosted(Stat.Speed);
 
 
         public StatsData(int level, StatSet baseStats, Nature nature, StatSet evs, StatSet ivs)
@@ -56,6 +56,8 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
             };
         }
 
+        private int Boosted(Stat stat) => Mathf.FloorToInt(Stats[stat] * Modifiers.GetMultiplier(stat));
+        
         private static StatSet CalculateStats(int level, StatSet baseStats, StatSet evs, StatSet ivs, Nature nature)
         {
             return new StatSet(

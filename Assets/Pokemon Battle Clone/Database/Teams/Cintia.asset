@@ -20,17 +20,21 @@ MonoBehaviour:
       <HP>k__BackingField: 31
       <Attack>k__BackingField: 31
       <Defense>k__BackingField: 31
-      <SpcAttack>k__BackingField: 31
-      <SpcDefense>k__BackingField: 31
+      <SpAttack>k__BackingField: 31
+      <SpDefense>k__BackingField: 31
       <Speed>k__BackingField: 31
     evs:
       <HP>k__BackingField: 0
       <Attack>k__BackingField: 0
       <Defense>k__BackingField: 0
-      <SpcAttack>k__BackingField: 0
-      <SpcDefense>k__BackingField: 0
+      <SpAttack>k__BackingField: 0
+      <SpDefense>k__BackingField: 0
       <Speed>k__BackingField: 0
-    moves: []
+    moves:
+    - {fileID: 11400000, guid: 78f864445b9293940bfbb627a1dd71af, type: 2}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   - pokemonConfig: {fileID: 11400000, guid: 7d7cd5312d8cb2b48b71fcc3082a3772, type: 2}
     level: 100
     nature: 0
@@ -38,15 +42,15 @@ MonoBehaviour:
       <HP>k__BackingField: 31
       <Attack>k__BackingField: 31
       <Defense>k__BackingField: 31
-      <SpcAttack>k__BackingField: 31
-      <SpcDefense>k__BackingField: 31
+      <SpAttack>k__BackingField: 31
+      <SpDefense>k__BackingField: 31
       <Speed>k__BackingField: 31
     evs:
       <HP>k__BackingField: 0
       <Attack>k__BackingField: 0
       <Defense>k__BackingField: 0
-      <SpcAttack>k__BackingField: 0
-      <SpcDefense>k__BackingField: 0
+      <SpAttack>k__BackingField: 0
+      <SpDefense>k__BackingField: 0
       <Speed>k__BackingField: 0
     moves:
     - {fileID: 11400000, guid: 0c0f14badd5ae88418a40332f1540e6a, type: 2}
@@ -57,15 +61,15 @@ MonoBehaviour:
       <HP>k__BackingField: 31
       <Attack>k__BackingField: 31
       <Defense>k__BackingField: 31
-      <SpcAttack>k__BackingField: 31
-      <SpcDefense>k__BackingField: 31
+      <SpAttack>k__BackingField: 31
+      <SpDefense>k__BackingField: 31
       <Speed>k__BackingField: 31
     evs:
       <HP>k__BackingField: 0
       <Attack>k__BackingField: 0
       <Defense>k__BackingField: 0
-      <SpcAttack>k__BackingField: 0
-      <SpcDefense>k__BackingField: 0
+      <SpAttack>k__BackingField: 0
+      <SpDefense>k__BackingField: 0
       <Speed>k__BackingField: 0
     moves: []
   - pokemonConfig: {fileID: 11400000, guid: b42a593657684a74198a62198ddddc47, type: 2}
@@ -75,15 +79,15 @@ MonoBehaviour:
       <HP>k__BackingField: 31
       <Attack>k__BackingField: 31
       <Defense>k__BackingField: 31
-      <SpcAttack>k__BackingField: 31
-      <SpcDefense>k__BackingField: 31
+      <SpAttack>k__BackingField: 31
+      <SpDefense>k__BackingField: 31
       <Speed>k__BackingField: 31
     evs:
       <HP>k__BackingField: 0
       <Attack>k__BackingField: 0
       <Defense>k__BackingField: 0
-      <SpcAttack>k__BackingField: 0
-      <SpcDefense>k__BackingField: 0
+      <SpAttack>k__BackingField: 0
+      <SpDefense>k__BackingField: 0
       <Speed>k__BackingField: 0
     moves: []
   - pokemonConfig: {fileID: 11400000, guid: bb41f01411231a4458ace557736f3b26, type: 2}
@@ -93,15 +97,15 @@ MonoBehaviour:
       <HP>k__BackingField: 31
       <Attack>k__BackingField: 31
       <Defense>k__BackingField: 31
-      <SpcAttack>k__BackingField: 31
-      <SpcDefense>k__BackingField: 31
+      <SpAttack>k__BackingField: 31
+      <SpDefense>k__BackingField: 31
       <Speed>k__BackingField: 31
     evs:
       <HP>k__BackingField: 0
       <Attack>k__BackingField: 0
       <Defense>k__BackingField: 0
-      <SpcAttack>k__BackingField: 0
-      <SpcDefense>k__BackingField: 0
+      <SpAttack>k__BackingField: 0
+      <SpDefense>k__BackingField: 0
       <Speed>k__BackingField: 0
     moves: []
   - pokemonConfig: {fileID: 11400000, guid: ea8b2cc2398362d49bf40bea2dd2c262, type: 2}
@@ -111,14 +115,14 @@ MonoBehaviour:
       <HP>k__BackingField: 31
       <Attack>k__BackingField: 31
       <Defense>k__BackingField: 31
-      <SpcAttack>k__BackingField: 31
-      <SpcDefense>k__BackingField: 31
+      <SpAttack>k__BackingField: 31
+      <SpDefense>k__BackingField: 31
       <Speed>k__BackingField: 31
     evs:
       <HP>k__BackingField: 0
       <Attack>k__BackingField: 0
       <Defense>k__BackingField: 0
-      <SpcAttack>k__BackingField: 0
-      <SpcDefense>k__BackingField: 0
+      <SpAttack>k__BackingField: 0
+      <SpDefense>k__BackingField: 0
       <Speed>k__BackingField: 0
     moves: []

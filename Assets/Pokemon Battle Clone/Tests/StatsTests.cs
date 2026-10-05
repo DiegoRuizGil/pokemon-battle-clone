@@ -40,8 +40,8 @@ namespace Pokemon_Battle_Clone.Tests
         {
             var statsModifier = new StatsModifier();
             
-            Assert.That(statsModifier.AttackBoost, Is.EqualTo(1f));
-            Assert.That(statsModifier.AttackLevel, Is.EqualTo(0));
+            Assert.That(statsModifier.GetMultiplier(Stat.Attack), Is.EqualTo(1f));
+            Assert.That(statsModifier.GetStage(Stat.Attack), Is.EqualTo(0));
         }
     }
 }

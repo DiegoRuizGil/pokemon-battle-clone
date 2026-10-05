@@ -8,19 +8,7 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
         public const int MaxStage = 6;
 
         private readonly int[] _stages = new int[StatInfo.All.Length];
-        
-        public int AttackLevel => GetStage(Stat.Attack);
-        public int DefenseLevel => GetStage(Stat.Defense);
-        public int SpcAttackLevel => GetStage(Stat.SpAttack);
-        public int SpcDefenseLevel => GetStage(Stat.SpDefense);
-        public int SpeedLevel => GetStage(Stat.Speed);
 
-        public float AttackBoost => GetMultiplier(Stat.Attack);
-        public float DefenseBoost => GetMultiplier(Stat.Defense);
-        public float SpcAttackBoost => GetMultiplier(Stat.SpAttack);
-        public float SpcDefenseBoost => GetMultiplier(Stat.SpDefense);
-        public float SpeedBoost => GetMultiplier(Stat.Speed);
-        
         public int GetStage(Stat stat) => _stages[(int)stat];
 
         public float GetMultiplier(Stat stat)
