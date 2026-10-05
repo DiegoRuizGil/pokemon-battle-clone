@@ -46,6 +46,10 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
             Speed = speed;
         }
 
+        public static StatSet From(Func<Stat, int> valueOf) => new(
+            valueOf(Stat.HP), valueOf(Stat.Attack), valueOf(Stat.Defense),
+            valueOf(Stat.SpAttack), valueOf(Stat.SpDefense), valueOf(Stat.Speed));
+
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(this, obj))

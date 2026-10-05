@@ -7,6 +7,12 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
 {
     public class StatsData
     {
+        public const int MinLevel = 1;
+        public const int MaxLevel = 100;
+        public const int MaxIV = 31;
+        public const int MaxEVPerStat = 252;
+        public const int MaxTotalEVs = 510;
+        
         public int Level { get; }
         public StatSet BaseStats { get; }
         public StatSet EVs { get; }
@@ -25,9 +31,9 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
 
         public StatsData(int level, StatSet baseStats, Nature nature, StatSet evs, StatSet ivs)
         {
-            Assert.IsTrue(evs.Sum <= 510);
+            Assert.IsTrue(evs.Sum <= MaxTotalEVs);
 
-            Level = Math.Clamp(level, 1, 100);
+            Level = Math.Clamp(level, MinLevel, MaxLevel);
             BaseStats = baseStats;
             Nature = nature;
             EVs = evs;
@@ -60,23 +66,15 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
         
         private static StatSet CalculateStats(int level, StatSet baseStats, StatSet evs, StatSet ivs, Nature nature)
         {
-            return new StatSet(
-                CalculateHPStat(level, baseStats.HP, evs.HP, ivs.HP),
-                CalculateStat(level, baseStats.Attack, evs.Attack, ivs.Attack, nature.Attack),
-                CalculateStat(level, baseStats.Defense, evs.Defense, ivs.Defense, nature.Defense),
-                CalculateStat(level, baseStats.SpAttack, evs.SpAttack, ivs.SpAttack, nature.SpcAttack),
-                CalculateStat(level, baseStats.SpDefense, evs.SpDefense, ivs.SpDefense, nature.SpcDefense),
-                CalculateStat(level, baseStats.Speed, evs.Speed, ivs.Speed, nature.Speed));
+            return StatSet.From(stat => stat == Stat.HP 
+                ? CalculateHPStat(level, baseStats.HP, evs.HP, ivs.HP)
+                : CalculateStat(level, baseStats[stat], evs[stat], ivs[stat], nature[stat]));
         }
 
-        private static int CalculateHPStat(int level, int baseHP, int hpEV, int hpIV)
-        {
-            return Mathf.FloorToInt((2f * baseHP + hpIV + Mathf.FloorToInt(hpEV / 4f)) * level / 100) + level + 10;
-        }
+        private static int CalculateHPStat(int level, int baseHP, int ev, int iv) =>
+            (2 * baseHP + iv + ev / 4) * level / 100 + level + 10;
 
-        private static int CalculateStat(int level, int baseStat, int ev, int iv, float natureModifier)
-        {
-            return Mathf.FloorToInt(((2 * baseStat + iv + ev / 4) * level / 100 + 5) * natureModifier);
-        }
+        private static int CalculateStat(int level, int baseStat, int ev, int iv, float natureModifier) =>
+            Mathf.FloorToInt(((2 * baseStat + iv + ev / 4) * level / 100 + 5) * natureModifier);
     }
 }
