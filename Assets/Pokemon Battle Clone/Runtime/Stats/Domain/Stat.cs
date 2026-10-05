@@ -14,6 +14,11 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
             Stat.HP, Stat.Attack, Stat.Defense, Stat.SpAttack, Stat.SpDefense, Stat.Speed
         };
 
+        public static readonly Stat[] Battle =
+        {
+            Stat.Attack, Stat.Defense, Stat.SpAttack, Stat.SpDefense, Stat.Speed
+        };
+
         public static string ShortName(this Stat stat) => stat switch
         {
             Stat.HP => "HP",

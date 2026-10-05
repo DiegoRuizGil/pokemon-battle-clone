@@ -10,13 +10,13 @@ namespace Pokemon_Battle_Clone.Runtime.Builders
         private uint _id;
         private string _name = "???";
         private int _level = 1;
-        private StatSet _baseStats = new StatSet(50, 50, 50, 50, 50, 50);
+        private StatSet _baseStats = new(50, 50, 50, 50, 50, 50);
         private Nature _nature = Nature.Bashful();
-        private StatSet _evs = StatSet.BlankEVsSet();
-        private StatSet _ivs = StatSet.BlankIVsSet();
+        private StatSet _evs = new();
+        private StatSet _ivs = new();
         private ElementalType _type1 = ElementalType.None;
         private ElementalType _type2 = ElementalType.None;
-        private List<Move> _moves = new List<Move>();
+        private List<Move> _moves = new();
 
         public PokemonBuilder WithID(uint id)
         {
