@@ -18,8 +18,8 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
         public int HP => Stats.HP;
         public int Attack => Mathf.FloorToInt(Stats.Attack * Modifiers.AttackBoost);
         public int Defense => Mathf.FloorToInt(Stats.Defense * Modifiers.DefenseBoost);
-        public int SpcAttack => Mathf.FloorToInt(Stats.SpcAttack * Modifiers.SpcAttackBoost);
-        public int SpcDefense => Mathf.FloorToInt(Stats.SpcDefense * Modifiers.SpcDefenseBoost);
+        public int SpAttack => Mathf.FloorToInt(Stats.SpAttack * Modifiers.SpcAttackBoost);
+        public int SpDefense => Mathf.FloorToInt(Stats.SpDefense * Modifiers.SpcDefenseBoost);
         public int Speed => Mathf.FloorToInt(Stats.Speed * Modifiers.SpeedBoost);
 
 
@@ -41,7 +41,7 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
             return category switch
             {
                 MoveCategory.Physical => Attack,
-                MoveCategory.Special => SpcAttack,
+                MoveCategory.Special => SpAttack,
                 _ => 0
             };
         }
@@ -51,7 +51,7 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
             return category switch
             {
                 MoveCategory.Physical => Defense,
-                MoveCategory.Special => SpcDefense,
+                MoveCategory.Special => SpDefense,
                 _ => 0
             };
         }
@@ -62,8 +62,8 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
                 CalculateHPStat(level, baseStats.HP, evs.HP, ivs.HP),
                 CalculateStat(level, baseStats.Attack, evs.Attack, ivs.Attack, nature.Attack),
                 CalculateStat(level, baseStats.Defense, evs.Defense, ivs.Defense, nature.Defense),
-                CalculateStat(level, baseStats.SpcAttack, evs.SpcAttack, ivs.SpcAttack, nature.SpcAttack),
-                CalculateStat(level, baseStats.SpcDefense, evs.SpcDefense, ivs.SpcDefense, nature.SpcDefense),
+                CalculateStat(level, baseStats.SpAttack, evs.SpAttack, ivs.SpAttack, nature.SpcAttack),
+                CalculateStat(level, baseStats.SpDefense, evs.SpDefense, ivs.SpDefense, nature.SpcDefense),
                 CalculateStat(level, baseStats.Speed, evs.Speed, ivs.Speed, nature.Speed));
         }
 

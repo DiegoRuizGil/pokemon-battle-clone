@@ -10,15 +10,23 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
         [field: SerializeField] public int HP { get; private set; }
         [field: SerializeField] public int Attack { get; private set; }
         [field: SerializeField] public int Defense { get; private set; }
-        [field: SerializeField] public int SpcAttack { get; private set; }
-        [field: SerializeField] public int SpcDefense { get; private set; }
+        [field: SerializeField] public int SpAttack { get; private set; }
+        [field: SerializeField] public int SpDefense { get; private set; }
         [field: SerializeField] public int Speed { get; private set; }
 
-        public int Sum => HP + Attack + Defense + SpcAttack + SpcDefense + Speed;
+        public int Sum => HP + Attack + Defense + SpAttack + SpDefense + Speed;
 
-        public static readonly string[] StatNames = { "HP", "Atk", "Def", "SpA", "SpD", "Spe" };
-        public int[] Values => new[] { HP, Attack, Defense, SpcAttack, SpcDefense, Speed };
-        
+        public int this[Stat stat] => stat switch
+        {
+            Stat.HP => HP,
+            Stat.Attack => Attack,
+            Stat.Defense => Defense,
+            Stat.SpAttack => SpAttack,
+            Stat.SpDefense => SpDefense,
+            Stat.Speed => Speed,
+            _ => throw new ArgumentOutOfRangeException(nameof(stat))
+        };
+
         private int _maxStatValue;
         private int _minStatValue;
 
@@ -26,22 +34,22 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
         {
             HP = 0;
             Attack = 0;
-            SpcAttack = 0;
+            SpAttack = 0;
             Defense = 0;
-            SpcDefense = 0;
+            SpDefense = 0;
             Speed = 0;
             
             _maxStatValue = int.MaxValue;
             _minStatValue = int.MinValue;
         }
 
-        public StatSet(int hp, int attack, int defense, int spcAttack, int spcDefense, int speed)
+        public StatSet(int hp, int attack, int defense, int spAttack, int spDefense, int speed)
         {
             HP = hp;
             Attack = attack;
             Defense = defense;
-            SpcAttack = spcAttack;
-            SpcDefense = spcDefense;
+            SpAttack = spAttack;
+            SpDefense = spDefense;
             Speed = speed;
             
             _maxStatValue = int.MaxValue;
@@ -85,8 +93,8 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
             HP = 0;
             Attack = 0;
             Defense = 0;
-            SpcAttack = 0;
-            SpcDefense = 0;
+            SpAttack = 0;
+            SpDefense = 0;
             Speed = 0;
         }
 
@@ -95,8 +103,8 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
             HP += statSet.HP;
             Attack += statSet.Attack;
             Defense += statSet.Defense;
-            SpcAttack += statSet.SpcAttack;
-            SpcDefense += statSet.SpcDefense;
+            SpAttack += statSet.SpAttack;
+            SpDefense += statSet.SpDefense;
             Speed += statSet.Speed;
             
             ClampStats();
@@ -107,8 +115,8 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
             HP = Math.Clamp(HP, _minStatValue, _maxStatValue);
             Attack = Math.Clamp(Attack, _minStatValue, _maxStatValue);
             Defense = Math.Clamp(Defense, _minStatValue, _maxStatValue);
-            SpcAttack = Math.Clamp(SpcAttack, _minStatValue, _maxStatValue);
-            SpcDefense = Math.Clamp(SpcDefense, _minStatValue, _maxStatValue);
+            SpAttack = Math.Clamp(SpAttack, _minStatValue, _maxStatValue);
+            SpDefense = Math.Clamp(SpDefense, _minStatValue, _maxStatValue);
             Speed = Math.Clamp(Speed, _minStatValue, _maxStatValue);
         }
 
@@ -121,17 +129,17 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
                 return false;
             
             return HP == other.HP && Attack == other.Attack && Defense == other.Defense &&
-                SpcAttack == other.SpcAttack && SpcDefense == other.SpcDefense && Speed == other.Speed;
+                SpAttack == other.SpAttack && SpDefense == other.SpDefense && Speed == other.Speed;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(HP, Attack, Defense, SpcAttack, SpcDefense, Speed);
+            return HashCode.Combine(HP, Attack, Defense, SpAttack, SpDefense, Speed);
         }
 
         public override string ToString()
         {
-            return $"({HP}, {Attack}, {Defense}, {SpcAttack}, {SpcDefense}, {Speed})";
+            return $"({HP}, {Attack}, {Defense}, {SpAttack}, {SpDefense}, {Speed})";
         }
     }
 }

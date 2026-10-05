@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Red
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Database.TeamConfig
   pokemonList:
-  - pokemonConfig: {fileID: 11400000, guid: 865100630351d124eaca064571d75732, type: 2}
+  - pokemonConfig: {fileID: 11400000, guid: ce9d151eb61d38a47bebad6957365100, type: 2}
     level: 100
     nature: 18
     ivs:

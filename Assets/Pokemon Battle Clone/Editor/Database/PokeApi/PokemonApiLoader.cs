@@ -84,8 +84,8 @@ namespace Pokemon_Battle_Clone.Editor.Database.PokeApi
                 hp: pokemon.Stats[0].BaseStat,
                 attack: pokemon.Stats[1].BaseStat,
                 defense: pokemon.Stats[2].BaseStat,
-                spcAttack: pokemon.Stats[3].BaseStat,
-                spcDefense: pokemon.Stats[4].BaseStat,
+                spAttack: pokemon.Stats[3].BaseStat,
+                spDefense: pokemon.Stats[4].BaseStat,
                 speed: pokemon.Stats[5].BaseStat
             );
 

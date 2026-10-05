@@ -6,14 +6,14 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
     {
         public int AttackLevel => _modifiers.Attack;
         public int DefenseLevel => _modifiers.Defense;
-        public int SpcAttackLevel => _modifiers.SpcAttack;
-        public int SpcDefenseLevel => _modifiers.SpcDefense;
+        public int SpcAttackLevel => _modifiers.SpAttack;
+        public int SpcDefenseLevel => _modifiers.SpDefense;
         public int SpeedLevel => _modifiers.Speed;
 
         public float AttackBoost => GetBoost(_modifiers.Attack);
         public float DefenseBoost => GetBoost(_modifiers.Defense);
-        public float SpcAttackBoost => GetBoost(_modifiers.SpcAttack);
-        public float SpcDefenseBoost => GetBoost(_modifiers.SpcDefense);
+        public float SpcAttackBoost => GetBoost(_modifiers.SpAttack);
+        public float SpcDefenseBoost => GetBoost(_modifiers.SpDefense);
         public float SpeedBoost => GetBoost(_modifiers.Speed);
         
         private readonly StatSet _modifiers;
