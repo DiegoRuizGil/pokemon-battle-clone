@@ -13,12 +13,18 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
 {
     public class TeamMemberEditor : VisualElement
     {
+        public event Action<int> OnMoveRequested; 
         public event Action OnRemoveRequested;
         public event Action<PokemonConfig> OnPokemonPicked;
         public event Action<int, MoveConfig> OnMovePicked; 
         
         private readonly PokemonSpritesRepository _spritesRepository;
 
+        private readonly VisualElement _toolbar = new();
+        private readonly Button _moveLeftButton;
+        private readonly Button _moveRightButton;
+        private readonly Button _removeButton;
+        
         private readonly Image _sprite = new();
         private readonly VisualElement _typesRow = new();
         private readonly MemberPokemonField _pokemonField;
@@ -27,7 +33,6 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
         
         private readonly PanelHost _detailPanel = new();
         
-        private readonly Button _removeButton;
         
         private readonly VisualElement[] _memberOnly; // elements to hide when selecting a new pokemon
 
@@ -52,7 +57,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
             _pokemonField.OnPicked += pokemon => OnPokemonPicked?.Invoke(pokemon);
             
             var infoColumn = new VisualElement();
-            infoColumn.AddToClassList("info-column");
+            infoColumn.AddToClassList("info-section");
             infoColumn.Add(_sprite);
             infoColumn.Add(_typesRow);
             infoColumn.Add(_pokemonField);
@@ -60,13 +65,24 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
             _movesField = new MemberMovesField(_detailPanel, getMoves);
             _movesField.AddToClassList("moves-column");
             _movesField.OnPicked += (slot, move) => OnMovePicked?.Invoke(slot, move);
-            
 
+            _moveLeftButton = new Button(() => OnMoveRequested?.Invoke(-1)) { text = "◀" };
+            _moveRightButton = new Button(() => OnMoveRequested?.Invoke(1)) { text = "▶" };
+            var arrows = new VisualElement();
+            arrows.AddToClassList("member-arrows");
+            arrows.Add(_moveLeftButton);
+            arrows.Add(_moveRightButton);
+            
             _removeButton = new Button(() => OnRemoveRequested?.Invoke())
             {
+                text = "Delete",
                 iconImage = EditorGUIUtility.IconContent("d_TreeEditor.Trash").image as Texture2D
             };
 
+            _toolbar.AddToClassList("member-toolbar");
+            _toolbar.Add(arrows);
+            _toolbar.Add(_removeButton);
+            
             _statsField = new MemberStatsField(_detailPanel);
             _statsField.AddToClassList("stats-column");
             _statsField.OnChanged += OnStatsChanged;
@@ -77,12 +93,11 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
             row.Add(_movesField);
             row.Add(_statsField);
 
-            this.Add(_removeButton);
+            this.Add(_toolbar);
             this.Add(row);
             this.Add(_detailPanel);
-
             
-            _memberOnly = new[] { _typesRow, _movesField, _statsField, _removeButton };
+            _memberOnly = new[] { _typesRow, _movesField, _statsField, _toolbar };
         }
 
         public void CloseDetail() => _detailPanel.Close();
@@ -96,6 +111,8 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
             var team = (TeamConfig)serializedObject.targetObject;
             var member = team.pokemonList[index];
             var config = member.pokemonConfig;
+            _moveLeftButton.SetEnabled(index > 0);
+            _moveRightButton.SetEnabled(index < team.pokemonList.Count - 1);
 
             SetMemberElementsVisible(true);
 
