@@ -30,6 +30,8 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
         private readonly Button _removeButton;
         
         private readonly VisualElement[] _memberOnly; // elements to hide when selecting a new pokemon
+
+        private readonly MemberStatsEditor _statsEditor = new();
         
         public TeamMemberEditor(
             PokemonSpritesRepository spritesRepository,
@@ -73,9 +75,10 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
 
             this.Add(row);
             this.Add(_removeButton);
-            this.Add(_detailPanel);
+            this.Add(_statsEditor);
+            // this.Add(_detailPanel);
 
-            _memberOnly = new[] { _typesRow, _movesField, _statsField, _removeButton };
+            _memberOnly = new[] { _typesRow, _movesField, _statsField, _removeButton, _statsEditor };
         }
 
         public void CloseDetail() => _detailPanel.Close();
@@ -97,6 +100,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
             SetTypes(config);
             _movesField.SetMoves(member.moves);
             _statsField.SetStats(member.BuildStatsData());
+            _statsEditor.Bind(member);
         }
         
         public void ShowNewMember()
