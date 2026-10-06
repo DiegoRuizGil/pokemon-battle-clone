@@ -11,7 +11,7 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
         public const int MaxLevel = 100;
         public const int MaxIV = 31;
         public const int MaxEVPerStat = 252;
-        public const int MaxTotalEVs = 510;
+        public const int MaxTotalEVs = 508;
         
         public int Level { get; }
         public StatSet BaseStats { get; }

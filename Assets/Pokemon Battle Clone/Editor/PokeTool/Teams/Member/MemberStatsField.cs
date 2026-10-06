@@ -5,9 +5,6 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
 {
     public class MemberStatsField : VisualElement
     {
-        private const int MaxStat = 500;
-        private const int MaxHP = 650;
-
         private readonly Label _levelValueLabel = new();
         private readonly StatBar[] _bars = new StatBar[StatInfo.All.Length];
 
@@ -47,7 +44,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
                 var ev = stats.EVs[stat];
                 var iv = stats.IVs[stat];
                 
-                var max = stat == Stat.HP ? MaxHP : MaxStat;
+                var max = StatBarScale.MaxFor(stat);
                 var bar = _bars[(int)stat];
                 
                 bar.SetValue(final, max);

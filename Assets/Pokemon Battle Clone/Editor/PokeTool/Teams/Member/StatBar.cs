@@ -1,8 +1,17 @@
-﻿using UnityEngine;
+﻿using Pokemon_Battle_Clone.Runtime.Stats.Domain;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
 {
+    public static class StatBarScale
+    {
+        private const int MaxStat = 500;
+        private const int MaxHP = 650;
+        
+        public static int MaxFor(Stat stat) => stat == Stat.HP ? MaxHP : MaxStat;
+    }
+    
     public class StatBar : VisualElement
     {
         private readonly VisualElement _fill = new();
