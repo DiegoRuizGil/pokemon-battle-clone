@@ -2,6 +2,7 @@
 using System.Linq;
 using Pokemon_Battle_Clone.Runtime.Database;
 using Pokemon_Battle_Clone.Runtime.Stats.Domain;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -19,6 +20,10 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
             public IntegerField Iv;
             public Label Final;
         }
+
+        public event Action OnChanged;
+
+        private const int EvStep = 4;
         
         private static readonly NatureEnum[] Natures = (NatureEnum[])Enum.GetValues(typeof(NatureEnum));
         
@@ -26,6 +31,12 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
         private readonly IntegerField _levelField = new("Level");
         private readonly DropdownField _natureField;
         private readonly Label _remainingEvsLabel = new();
+
+        private SerializedProperty _member;
+        private SerializedProperty _levelProp;
+        private SerializedProperty _natureProp;
+        private readonly SerializedProperty[] _evProps = new SerializedProperty[StatInfo.All.Length];
+        private readonly SerializedProperty[] _ivProps = new SerializedProperty[StatInfo.All.Length];
 
         public MemberStatsEditor()
         {
@@ -93,34 +104,131 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
             footer.Add(Cell("stats-col-iv"));
             footer.Add(Cell("stats-col-final"));
             Add(footer);
-            
-            // SetEnabled(false);
+
+            _levelField.isDelayed = true;
+            foreach (var row in _rows)
+            {
+                row.Ev.isDelayed = true;
+                row.Iv.isDelayed = true;
+            }
+
+            RegisterCallbacks();
         }
         
-        public void Bind(TeamMember member)
+        public void Bind(SerializedProperty member)
         {
-            _levelField.SetValueWithoutNotify(member.level);
-            _natureField.SetValueWithoutNotify(NatureText(member.nature));
-            MarkNature(member.nature);
-            ShowStats(member.BuildStatsData());
+            _member = member;
+            _levelProp = member.FindPropertyRelative(nameof(TeamMember.level));
+            _natureProp = member.FindPropertyRelative(nameof(TeamMember.nature));
+            
+            var evs = member.FindPropertyRelative(nameof(TeamMember.evs));
+            var ivs = member.FindPropertyRelative(nameof(TeamMember.ivs));
+            foreach (var stat in StatInfo.All)
+            {
+                // [field: SerializeField] --> "<Name>k__BackingField"
+                var fieldName = $"<{stat}>k__BackingField";
+                _evProps[(int)stat] = evs.FindPropertyRelative(fieldName);
+                _ivProps[(int)stat] = ivs.FindPropertyRelative(fieldName);
+            }
+            
+            var natureEnum = Natures[_natureProp.enumValueIndex];
+            _levelField.SetValueWithoutNotify(_levelProp.intValue);
+            _natureField.SetValueWithoutNotify(NatureText(natureEnum));
+            MarkNature(natureEnum);
         }
 
-        private void ShowStats(StatsData stats)
+        public void ShowStats(StatsData stats)
         {
             foreach (var stat in StatInfo.All)
             {
                 var row = _rows[(int)stat];
                 var final = stats.Stats[stat];
+                var ev = stats.EVs[stat];
 
                 row.Base.text = stats.BaseStats[stat].ToString();
                 row.Bar.SetValue(final, StatBarScale.MaxFor(stat));
-                row.Ev.SetValueWithoutNotify(stats.EVs[stat]);
-                row.EvSlider.SetValueWithoutNotify(stats.EVs[stat]);
+                row.Ev.SetValueWithoutNotify(ev);
+                row.EvSlider.SetValueWithoutNotify(ev / EvStep * EvStep);
                 row.Iv.SetValueWithoutNotify(stats.IVs[stat]);
                 row.Final.text = final.ToString();
             }
 
             _remainingEvsLabel.text = $"Left: {StatsData.MaxTotalEVs - stats.EVs.Sum}";
+        }
+        
+        private void RegisterCallbacks()
+        {
+            _levelField.RegisterValueChangedCallback(evt => OnLevelChanged(evt.newValue));
+            _natureField.RegisterValueChangedCallback(evt => 
+                OnNatureChanged(_natureField.choices.IndexOf(evt.newValue)));
+
+            foreach (var stat in StatInfo.All)
+            {
+                var s = stat;
+                var row = _rows[(int)stat];
+                row.Ev.RegisterValueChangedCallback(evt => OnEvChanged(s, evt.newValue, snapToStep: false));
+                row.EvSlider.RegisterValueChangedCallback(evt => OnEvChanged(s, evt.newValue, snapToStep: true));
+                row.Iv.RegisterValueChangedCallback(evt => OnIvChanged(s, evt.newValue));
+            }
+        }
+        
+        private void OnLevelChanged(int requested)
+        {
+            if (_member == null) return;
+
+            var level = Mathf.Clamp(requested, StatsData.MinLevel, StatsData.MaxLevel);
+            _levelField.SetValueWithoutNotify(level);
+            Commit(WriteInt(_levelProp, level));
+        }
+        
+        private void OnNatureChanged(int index)
+        {
+            if (_member == null || index < 0) return;
+
+            MarkNature(Natures[index]);
+            if (_natureProp.enumValueIndex == index) return;
+
+            _natureProp.enumValueIndex = index;
+            Commit(true);
+        }
+        
+        private void OnIvChanged(Stat stat, int requested)
+        {
+            if (_member == null) return;
+
+            var iv = Mathf.Clamp(requested, 0, StatsData.MaxIV);
+            _rows[(int)stat].Iv.SetValueWithoutNotify(iv);
+            Commit(WriteInt(_ivProps[(int)stat], iv));
+        }
+        
+        private void OnEvChanged(Stat stat, int requested, bool snapToStep)
+        {
+            if (_member == null) return;
+
+            var index = (int)stat;
+            var others = _evProps.Sum(p => p.intValue) - _evProps[index].intValue;
+            var budget = Mathf.Max(0, StatsData.MaxTotalEVs - others);
+
+            var ev = Mathf.Clamp(requested, 0, Mathf.Min(StatsData.MaxEVPerStat, budget));
+            if (snapToStep) ev = ev / EvStep * EvStep;
+
+            _rows[index].Ev.SetValueWithoutNotify(ev);
+            _rows[index].EvSlider.SetValueWithoutNotify(ev / EvStep * EvStep);
+            Commit(WriteInt(_evProps[index], ev));
+        }
+        
+        private static bool WriteInt(SerializedProperty property, int value)
+        {
+            if (property.intValue == value) return false;
+            property.intValue = value;
+            return true;
+        }
+
+        private void Commit(bool changed)
+        {
+            if (!changed) return;
+            _member.serializedObject.ApplyModifiedProperties();
+            OnChanged?.Invoke();
         }
         
         private void MarkNature(NatureEnum natureEnum)

@@ -1,14 +1,19 @@
-﻿using Pokemon_Battle_Clone.Runtime.Stats.Domain;
+﻿using System;
+using Pokemon_Battle_Clone.Runtime.Stats.Domain;
+using UnityEditor;
 using UnityEngine.UIElements;
 
 namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
 {
     public class MemberStatsField : VisualElement
     {
+        public event Action OnChanged;
+        
         private readonly Label _levelValueLabel = new();
         private readonly StatBar[] _bars = new StatBar[StatInfo.All.Length];
+        private readonly MemberStatsEditor _editor = new();
 
-        public MemberStatsField()
+        public MemberStatsField(PanelHost host)
         {
             var levelLabel = new Label("Lv");
             levelLabel.AddToClassList("stat-name");
@@ -32,7 +37,12 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
                 statRow.Add(bar);
                 this.Add(statRow);
             }
+            
+            RegisterCallback<ClickEvent>(_ => host.Open(_editor));
+            _editor.OnChanged += () => OnChanged?.Invoke();
         }
+
+        public void SetMember(SerializedProperty member) => _editor.Bind(member);
 
         public void SetStats(StatsData stats)
         {
@@ -50,6 +60,8 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
                 bar.SetValue(final, max);
                 bar.tooltip = $"{baseStat}/{ev}/{iv}/{final}";
             }
+            
+            _editor.ShowStats(stats);
         }
     }
 }

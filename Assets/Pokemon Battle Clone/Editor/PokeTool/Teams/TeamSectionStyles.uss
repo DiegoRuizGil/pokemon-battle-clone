@@ -123,6 +123,15 @@
     border-bottom-left-radius: 3px;
     align-content: flex-start;
     justify-content: center;
+    cursor: link;
+}
+
+.stats-column * {
+    cursor: link;
+}
+
+.stats-column:hover {
+    border-color: rgba(128, 128, 128, 0.6);
 }
 
 .stat-row {
