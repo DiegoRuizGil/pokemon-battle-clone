@@ -6,12 +6,21 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
     public class MemberStatsField : VisualElement
     {
         private const int MaxStat = 500;
-        private const int MaxHP = 605;
+        private const int MaxHP = 650;
 
+        private readonly Label _levelValueLabel = new();
         private readonly StatBar[] _bars = new StatBar[StatInfo.All.Length];
 
         public MemberStatsField()
         {
+            var levelLabel = new Label("Lv");
+            levelLabel.AddToClassList("stat-name");
+            var levelRow = new VisualElement();
+            levelRow.AddToClassList("stat-row");
+            levelRow.Add(levelLabel);
+            levelRow.Add(_levelValueLabel);
+            this.Add(levelRow);
+            
             foreach (var stat in StatInfo.All)
             {
                 var nameLabel = new Label(stat.ShortName());
@@ -20,16 +29,17 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
                 var bar = new StatBar();
                 _bars[(int)stat] = bar;
 
-                var row = new VisualElement();
-                row.AddToClassList("stat-row");
-                row.Add(nameLabel);
-                row.Add(bar);
-                this.Add(row);
+                var statRow = new VisualElement();
+                statRow.AddToClassList("stat-row");
+                statRow.Add(nameLabel);
+                statRow.Add(bar);
+                this.Add(statRow);
             }
         }
 
         public void SetStats(StatsData stats)
         {
+            _levelValueLabel.text = stats.Level.ToString();
             foreach (var stat in StatInfo.All)
             {
                 var final = stats.Stats[stat];

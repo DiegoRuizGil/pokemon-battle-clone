@@ -133,6 +133,7 @@
     width: 32px;
     flex-shrink: 0;
     margin-right: 6px;
+    -unity-font-style: bold;
     -unity-text-align: middle-right;
 }
 

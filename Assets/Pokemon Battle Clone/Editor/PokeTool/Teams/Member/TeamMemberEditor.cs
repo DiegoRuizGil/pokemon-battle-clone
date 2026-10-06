@@ -13,8 +13,6 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
 {
     public class TeamMemberEditor : VisualElement
     {
-        private static readonly string[] StatNames = { "HP", "Atk", "Def", "SpA", "SpD", "Spe" };
-
         public event Action OnRemoveRequested;
         public event Action<PokemonConfig> OnPokemonPicked;
         public event Action<int, MoveConfig> OnMovePicked; 
@@ -24,7 +22,6 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
         private readonly Image _sprite = new();
         private readonly VisualElement _typesRow = new();
         private readonly MemberPokemonField _pokemonField;
-        private readonly IntegerField _levelField = new();
         private readonly MemberMovesField _movesField;
         private readonly MemberStatsField _statsField = new();
         
@@ -51,21 +48,11 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
                 getIcon: p => spritesRepository.LoadOrDefault(p.ID, SpriteType.Icon));
             _pokemonField.OnPicked += pokemon => OnPokemonPicked?.Invoke(pokemon);
             
-            // _levelField.label = "Lv";
-            _levelField.AddToClassList("level-field");
-            _levelField.RegisterCallback<FocusOutEvent>(
-                _ => _levelField.value = Mathf.Clamp(_levelField.value, 1, 100));
-
-            var nameRow = new VisualElement();
-            nameRow.AddToClassList("name-row");
-            nameRow.Add(_pokemonField);
-            nameRow.Add(_levelField);
-            
             var infoColumn = new VisualElement();
             infoColumn.AddToClassList("info-column");
             infoColumn.Add(_sprite);
             infoColumn.Add(_typesRow);
-            infoColumn.Add(nameRow);
+            infoColumn.Add(_pokemonField);
 
             _movesField = new MemberMovesField(_detailPanel, getMoves);
             _movesField.AddToClassList("moves-column");
@@ -88,7 +75,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
             this.Add(_removeButton);
             this.Add(_detailPanel);
 
-            _memberOnly = new[] { _typesRow, _levelField, _movesField, _statsField, _removeButton };
+            _memberOnly = new[] { _typesRow, _movesField, _statsField, _removeButton };
         }
 
         public void CloseDetail() => _detailPanel.Close();
@@ -106,10 +93,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
                 ? _spritesRepository.LoadOrDefault(config.ID, SpriteType.Front)
                 : _spritesRepository.LoadDefault(SpriteType.Front);
             _pokemonField.SetPokemon(config);
-
-            _levelField.BindProperty(serializedObject.FindProperty("pokemonList")
-                .GetArrayElementAtIndex(index).FindPropertyRelative("level"));
-
+            
             SetTypes(config);
             _movesField.SetMoves(member.moves);
             _statsField.SetStats(member.BuildStatsData());
@@ -117,7 +101,6 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
         
         public void ShowNewMember()
         {
-            _levelField.Unbind();
             SetMemberElementsVisible(false);
             _sprite.sprite = _spritesRepository.LoadDefault(SpriteType.Front);
             _pokemonField.SetPokemon(null);
