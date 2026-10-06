@@ -11,34 +11,15 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2965e16bdcdc4a20b856c67c00413299, type: 3}
   m_Name: 628
-  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.PokemonConfig
+  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Database.PokemonConfig
   ID: 628
   pokemonName: Braviary
-  level: 100
   baseStats:
     <HP>k__BackingField: 100
     <Attack>k__BackingField: 123
     <Defense>k__BackingField: 75
-    <SpcAttack>k__BackingField: 57
-    <SpcDefense>k__BackingField: 75
+    <SpAttack>k__BackingField: 57
+    <SpDefense>k__BackingField: 75
     <Speed>k__BackingField: 80
   type1: 13
   type2: 8
-  nature: 13
-  ivs:
-    <HP>k__BackingField: 31
-    <Attack>k__BackingField: 31
-    <Defense>k__BackingField: 31
-    <SpcAttack>k__BackingField: 31
-    <SpcDefense>k__BackingField: 31
-    <Speed>k__BackingField: 31
-  evs:
-    <HP>k__BackingField: 0
-    <Attack>k__BackingField: 252
-    <Defense>k__BackingField: 0
-    <SpcAttack>k__BackingField: 0
-    <SpcDefense>k__BackingField: 4
-    <Speed>k__BackingField: 252
-  backSprite: {fileID: 21300000, guid: 28d28844aefa920429e44448af042a0d, type: 3}
-  frontSprite: {fileID: 21300000, guid: abbec552bc380f743ab7f2f18a8d92d5, type: 3}
-  iconSprite: {fileID: 21300000, guid: 5ef451ec14a29274797869798085e8fb, type: 3}

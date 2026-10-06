@@ -11,34 +11,15 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2965e16bdcdc4a20b856c67c00413299, type: 3}
   m_Name: 589
-  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Core.Infrastructure.PokemonConfig
+  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Database.PokemonConfig
   ID: 589
   pokemonName: Escavalier
-  level: 100
   baseStats:
     <HP>k__BackingField: 70
     <Attack>k__BackingField: 135
     <Defense>k__BackingField: 105
-    <SpcAttack>k__BackingField: 60
-    <SpcDefense>k__BackingField: 105
+    <SpAttack>k__BackingField: 60
+    <SpDefense>k__BackingField: 105
     <Speed>k__BackingField: 20
   type1: 1
   type2: 17
-  nature: 3
-  ivs:
-    <HP>k__BackingField: 31
-    <Attack>k__BackingField: 31
-    <Defense>k__BackingField: 31
-    <SpcAttack>k__BackingField: 31
-    <SpcDefense>k__BackingField: 31
-    <Speed>k__BackingField: 31
-  evs:
-    <HP>k__BackingField: 248
-    <Attack>k__BackingField: 252
-    <Defense>k__BackingField: 0
-    <SpcAttack>k__BackingField: 0
-    <SpcDefense>k__BackingField: 8
-    <Speed>k__BackingField: 0
-  backSprite: {fileID: 21300000, guid: 531c3625f95f6d843bd091958a924fc1, type: 3}
-  frontSprite: {fileID: 21300000, guid: 7b5ebcec3257efd49a2f5b01b9f11c3d, type: 3}
-  iconSprite: {fileID: 21300000, guid: cd08fa15b2676504ca88788c902c64fb, type: 3}

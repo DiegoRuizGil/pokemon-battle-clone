@@ -77,7 +77,7 @@ namespace Pokemon_Battle_Clone.Editor.Database.PokeApi
             {
                 [SpriteType.Back] = pokemon.Sprites.BackDefault,
                 [SpriteType.Front] = pokemon.Sprites.FrontDefault,
-                [SpriteType.Icon] = pokemon.Sprites.Versions.GenerationVIII.Icons.FrontDefault
+                [SpriteType.Icon] = pokemon.Sprites.Versions.GenerationVII.Icons.FrontDefault
             };
 
             var baseStats = new StatSet(

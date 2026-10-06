@@ -11,34 +11,15 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2965e16bdcdc4a20b856c67c00413299, type: 3}
   m_Name: 462
-  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.TeamBuilder.PokemonConfig
+  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Database.PokemonConfig
   ID: 462
   pokemonName: Magnezone
-  level: 100
   baseStats:
     <HP>k__BackingField: 70
     <Attack>k__BackingField: 70
     <Defense>k__BackingField: 115
-    <SpcAttack>k__BackingField: 130
-    <SpcDefense>k__BackingField: 90
+    <SpAttack>k__BackingField: 130
+    <SpDefense>k__BackingField: 90
     <Speed>k__BackingField: 60
   type1: 4
   type2: 17
-  nature: 15
-  ivs:
-    <HP>k__BackingField: 31
-    <Attack>k__BackingField: 31
-    <Defense>k__BackingField: 31
-    <SpcAttack>k__BackingField: 31
-    <SpcDefense>k__BackingField: 31
-    <Speed>k__BackingField: 31
-  evs:
-    <HP>k__BackingField: 248
-    <Attack>k__BackingField: 0
-    <Defense>k__BackingField: 0
-    <SpcAttack>k__BackingField: 252
-    <SpcDefense>k__BackingField: 8
-    <Speed>k__BackingField: 0
-  backSprite: {fileID: 21300000, guid: 9e48a18d334397a4db22355c47525e60, type: 3}
-  frontSprite: {fileID: 21300000, guid: d8e49534b26e937498fa4a24ebcec23b, type: 3}
-  iconSprite: {fileID: 21300000, guid: bc891aec4f3247046983a258ee70420b, type: 3}

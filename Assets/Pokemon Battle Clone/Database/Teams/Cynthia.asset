@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44905e43b0584f9eb5395759fa1ca0dd, type: 3}
-  m_Name: Cintia
-  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.TeamBuilder.TeamConfig
+  m_Name: Cynthia
+  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Database.TeamConfig
   pokemonList:
   - pokemonConfig: {fileID: 11400000, guid: ca6a607953e701f42b738a9a6f298bd0, type: 2}
     level: 100
-    nature: 0
+    nature: 15
     ivs:
       <HP>k__BackingField: 31
       <Attack>k__BackingField: 31
@@ -24,20 +24,20 @@ MonoBehaviour:
       <SpDefense>k__BackingField: 31
       <Speed>k__BackingField: 31
     evs:
-      <HP>k__BackingField: 0
+      <HP>k__BackingField: 248
       <Attack>k__BackingField: 0
       <Defense>k__BackingField: 0
-      <SpAttack>k__BackingField: 0
-      <SpDefense>k__BackingField: 0
+      <SpAttack>k__BackingField: 252
+      <SpDefense>k__BackingField: 8
       <Speed>k__BackingField: 0
     moves:
-    - {fileID: 11400000, guid: 78f864445b9293940bfbb627a1dd71af, type: 2}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 11400000, guid: 5c9455e73d8e698499547d1d0724a93d, type: 2}
+    - {fileID: 11400000, guid: c747db9eb97c7fd4394607704704a058, type: 2}
+    - {fileID: 11400000, guid: a76ab4b282c97e748852c31cb03c2cf8, type: 2}
+    - {fileID: 11400000, guid: 4bdd08532aae8b14797897d586cf9fb0, type: 2}
   - pokemonConfig: {fileID: 11400000, guid: 7d7cd5312d8cb2b48b71fcc3082a3772, type: 2}
     level: 100
-    nature: 0
+    nature: 10
     ivs:
       <HP>k__BackingField: 31
       <Attack>k__BackingField: 31
@@ -49,14 +49,17 @@ MonoBehaviour:
       <HP>k__BackingField: 0
       <Attack>k__BackingField: 0
       <Defense>k__BackingField: 0
-      <SpAttack>k__BackingField: 0
-      <SpDefense>k__BackingField: 0
-      <Speed>k__BackingField: 0
+      <SpAttack>k__BackingField: 252
+      <SpDefense>k__BackingField: 4
+      <Speed>k__BackingField: 252
     moves:
-    - {fileID: 11400000, guid: 0c0f14badd5ae88418a40332f1540e6a, type: 2}
+    - {fileID: 11400000, guid: e11e88899026e184491369a61126e0a9, type: 2}
+    - {fileID: 11400000, guid: 753f6d8e286bf4c44b1a7f6212e84ce5, type: 2}
+    - {fileID: 11400000, guid: 3e0ad3f806b64574fa9c373e743f24ba, type: 2}
+    - {fileID: 11400000, guid: 05daa5a2ca3f7164fa90314115119d58, type: 2}
   - pokemonConfig: {fileID: 11400000, guid: 90e8a0ebd51929e4e9b83f55775ee3ae, type: 2}
     level: 100
-    nature: 0
+    nature: 10
     ivs:
       <HP>k__BackingField: 31
       <Attack>k__BackingField: 31
@@ -68,13 +71,17 @@ MonoBehaviour:
       <HP>k__BackingField: 0
       <Attack>k__BackingField: 0
       <Defense>k__BackingField: 0
-      <SpAttack>k__BackingField: 0
-      <SpDefense>k__BackingField: 0
-      <Speed>k__BackingField: 0
-    moves: []
+      <SpAttack>k__BackingField: 252
+      <SpDefense>k__BackingField: 4
+      <Speed>k__BackingField: 252
+    moves:
+    - {fileID: 11400000, guid: 0c0f14badd5ae88418a40332f1540e6a, type: 2}
+    - {fileID: 11400000, guid: b6ec2fb1df65aef449aa28d4e390d38c, type: 2}
+    - {fileID: 11400000, guid: 3694a31bfdc2bd9478deb8602e92dde6, type: 2}
+    - {fileID: 11400000, guid: 5e0b55a676c18e74b8a3493202c7da06, type: 2}
   - pokemonConfig: {fileID: 11400000, guid: b42a593657684a74198a62198ddddc47, type: 2}
     level: 100
-    nature: 0
+    nature: 11
     ivs:
       <HP>k__BackingField: 31
       <Attack>k__BackingField: 31
@@ -84,15 +91,19 @@ MonoBehaviour:
       <Speed>k__BackingField: 31
     evs:
       <HP>k__BackingField: 0
-      <Attack>k__BackingField: 0
+      <Attack>k__BackingField: 4
       <Defense>k__BackingField: 0
-      <SpAttack>k__BackingField: 0
+      <SpAttack>k__BackingField: 252
       <SpDefense>k__BackingField: 0
-      <Speed>k__BackingField: 0
-    moves: []
+      <Speed>k__BackingField: 252
+    moves:
+    - {fileID: 11400000, guid: 0c0f14badd5ae88418a40332f1540e6a, type: 2}
+    - {fileID: 11400000, guid: fc18e4fa25780934a91cd26720545b0f, type: 2}
+    - {fileID: 11400000, guid: c747db9eb97c7fd4394607704704a058, type: 2}
+    - {fileID: 11400000, guid: f7bdeb37d3118a84ab41fe82d46c5ea6, type: 2}
   - pokemonConfig: {fileID: 11400000, guid: bb41f01411231a4458ace557736f3b26, type: 2}
     level: 100
-    nature: 0
+    nature: 15
     ivs:
       <HP>k__BackingField: 31
       <Attack>k__BackingField: 31
@@ -101,16 +112,20 @@ MonoBehaviour:
       <SpDefense>k__BackingField: 31
       <Speed>k__BackingField: 31
     evs:
-      <HP>k__BackingField: 0
+      <HP>k__BackingField: 252
       <Attack>k__BackingField: 0
       <Defense>k__BackingField: 0
-      <SpAttack>k__BackingField: 0
-      <SpDefense>k__BackingField: 0
+      <SpAttack>k__BackingField: 252
+      <SpDefense>k__BackingField: 4
       <Speed>k__BackingField: 0
-    moves: []
+    moves:
+    - {fileID: 11400000, guid: ce0c916cd46e9174cbe2528cd2574ece, type: 2}
+    - {fileID: 11400000, guid: 88b09b67949a62341890fb13c04ac807, type: 2}
+    - {fileID: 11400000, guid: 638abb71e22576742a545c5a38750c65, type: 2}
+    - {fileID: 11400000, guid: c688a21c54afddd4aa6bb5678475ed9d, type: 2}
   - pokemonConfig: {fileID: 11400000, guid: ea8b2cc2398362d49bf40bea2dd2c262, type: 2}
     level: 100
-    nature: 0
+    nature: 14
     ivs:
       <HP>k__BackingField: 31
       <Attack>k__BackingField: 31
@@ -120,9 +135,13 @@ MonoBehaviour:
       <Speed>k__BackingField: 31
     evs:
       <HP>k__BackingField: 0
-      <Attack>k__BackingField: 0
+      <Attack>k__BackingField: 252
       <Defense>k__BackingField: 0
-      <SpAttack>k__BackingField: 0
+      <SpAttack>k__BackingField: 4
       <SpDefense>k__BackingField: 0
-      <Speed>k__BackingField: 0
-    moves: []
+      <Speed>k__BackingField: 252
+    moves:
+    - {fileID: 11400000, guid: 5579d65aa462d564eb2ce3120bcec853, type: 2}
+    - {fileID: 11400000, guid: 922daaa661e8134428b0aee388711233, type: 2}
+    - {fileID: 11400000, guid: c210636bccaae424b894bd90340d2d8e, type: 2}
+    - {fileID: 11400000, guid: 0fb1335e1bca091448850489a6e7fd44, type: 2}
