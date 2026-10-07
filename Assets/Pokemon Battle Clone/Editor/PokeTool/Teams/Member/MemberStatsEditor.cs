@@ -142,14 +142,17 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
             foreach (var stat in StatInfo.All)
             {
                 var row = _rows[(int)stat];
+                var baseStat = stats.BaseStats[stat];
                 var final = stats.Stats[stat];
                 var ev = stats.EVs[stat];
+                var iv = stats.IVs[stat];
 
-                row.Base.text = stats.BaseStats[stat].ToString();
+                row.Base.text = baseStat.ToString();
                 row.Bar.SetValue(final, StatBarScale.MaxFor(stat));
+                row.Bar.tooltip = $"{baseStat}/{ev}/{iv}/{final}";
                 row.Ev.SetValueWithoutNotify(ev);
                 row.EvSlider.SetValueWithoutNotify(ev / EvStep * EvStep);
-                row.Iv.SetValueWithoutNotify(stats.IVs[stat]);
+                row.Iv.SetValueWithoutNotify(iv);
                 row.Final.text = final.ToString();
             }
 
