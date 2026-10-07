@@ -30,32 +30,31 @@ namespace Pokemon_Battle_Clone.Runtime.Battles.Control.EventHandlers
 
         private async Task DisplayMessages(string pokemonName, StatsModifier modifier)
         {
-            if (modifier.AttackLevel != 0)
-                await _dialogDisplayer.DisplayAsync(GetMessage(pokemonName, "attack", modifier.AttackLevel));
-            if (modifier.DefenseLevel != 0)
-                await _dialogDisplayer.DisplayAsync(GetMessage(pokemonName, "defense", modifier.DefenseLevel));
-            if (modifier.SpcAttackLevel != 0)
-                await _dialogDisplayer.DisplayAsync(GetMessage(pokemonName, "sp. atk", modifier.SpcAttackLevel));
-            if (modifier.SpcDefenseLevel != 0)
-                await _dialogDisplayer.DisplayAsync(GetMessage(pokemonName, "sp. defense", modifier.SpcDefenseLevel));
-            if (modifier.SpeedLevel != 0)
-                await _dialogDisplayer.DisplayAsync(GetMessage(pokemonName, "speed", modifier.SpeedLevel));
+            foreach (var stat in StatInfo.Battle)
+            {
+                var stage = modifier.GetStage(stat);
+                if (stage != 0)
+                {
+                    var message = GetMessage(pokemonName, stat.FullName(), stage);
+                    await _dialogDisplayer.DisplayAsync(message);
+                }
+            }
         }
 
-        private string GetMessage(string pokemonName, string statistic, int level)
+        private string GetMessage(string pokemonName, string statistic, int stage)
         {
             var prefix = $"{pokemonName}'s {statistic}";
-            if (level == 1)
+            if (stage == 1)
                 return $"{prefix} rose!";
-            if (level == 2)
+            if (stage == 2)
                 return $"{prefix} rose sharply!";
-            if (level >= 3)
+            if (stage >= 3)
                 return $"{prefix} rose drastically!";
-            if (level == -1)
+            if (stage == -1)
                 return $"{prefix} fell!";
-            if (level == -2)
+            if (stage == -2)
                 return $"{prefix} harshly fell!";
-            if (level <= -3)
+            if (stage <= -3)
                 return $"{prefix} severely fell";
             
             return string.Empty;

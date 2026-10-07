@@ -14,6 +14,7 @@ namespace Pokemon_Battle_Clone.Runtime.Moves.Domain
     
     public class Move
     {
+        public int Id { get; }
         public string Name { get; }
         public ElementalType Type { get; }
         public MoveCategory Category { get; }
@@ -25,8 +26,9 @@ namespace Pokemon_Battle_Clone.Runtime.Moves.Domain
         private readonly IMoveEffect _mainEffect;
         private readonly List<ConditionalEffect> _additionalEffects = new List<ConditionalEffect>();
 
-        public Move(string name, ElementalType type, MoveCategory category, uint pp, uint accuracy, uint power, int priority, IMoveEffect mainEffect)
+        public Move(int id, string name, ElementalType type, MoveCategory category, uint pp, uint accuracy, uint power, int priority, IMoveEffect mainEffect)
         {
+            Id = id;
             Name = name;
             Type = type;
             Category = category;

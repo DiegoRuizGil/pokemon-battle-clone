@@ -7,57 +7,38 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
 {
     public class StatsData
     {
-        private int _level;
-        public int Level
-        {
-            get => _level;
-            set => _level = Math.Clamp(value, 1, 100);
-        }
-        private StatSet _evs;
-        public StatSet EVs
-        {
-            get => _evs;
-            set
-            {
-                Assert.IsTrue(value.Sum <= 510);
-                _evs = value;
-                Stats = CalculateStats(Level, BaseStats, EVs, IVs, Nature);
-            }
-        }
-
-        private StatSet _ivs;
-        public StatSet IVs
-        {
-            get => _ivs;
-            set
-            {
-                _ivs = value;
-                Stats = CalculateStats(Level, BaseStats, EVs, IVs, Nature);
-            }
-        }
-        public StatSet BaseStats { get; }
-        public StatSet Stats { get; private set; }
+        public const int MinLevel = 1;
+        public const int MaxLevel = 100;
+        public const int MaxIV = 31;
+        public const int MaxEVPerStat = 252;
+        public const int MaxTotalEVs = 508;
         
+        public int Level { get; }
+        public StatSet BaseStats { get; }
+        public StatSet EVs { get; }
+        public StatSet IVs { get; }
         public Nature Nature { get; }
+        public StatSet Stats { get; }
         public StatsModifier Modifiers { get; }
 
         public int HP => Stats.HP;
-        public int Attack => Mathf.FloorToInt(Stats.Attack * Modifiers.AttackBoost);
-        public int Defense => Mathf.FloorToInt(Stats.Defense * Modifiers.DefenseBoost);
-        public int SpcAttack => Mathf.FloorToInt(Stats.SpcAttack * Modifiers.SpcAttackBoost);
-        public int SpcDefense => Mathf.FloorToInt(Stats.SpcDefense * Modifiers.SpcDefenseBoost);
-        public int Speed => Mathf.FloorToInt(Stats.Speed * Modifiers.SpeedBoost);
+        public int Attack => Boosted(Stat.Attack);
+        public int Defense => Boosted(Stat.Defense);
+        public int SpAttack => Boosted(Stat.SpAttack);
+        public int SpDefense => Boosted(Stat.SpDefense);
+        public int Speed => Boosted(Stat.Speed);
 
-        public StatsData(int level, StatSet baseStats, Nature nature)
+
+        public StatsData(int level, StatSet baseStats, Nature nature, StatSet evs, StatSet ivs)
         {
-            Level = level;
+            Assert.IsTrue(evs.Sum <= MaxTotalEVs);
+
+            Level = Math.Clamp(level, MinLevel, MaxLevel);
             BaseStats = baseStats;
             Nature = nature;
+            EVs = evs;
+            IVs = ivs;
             Modifiers = new StatsModifier();
-            
-            _evs = StatSet.BlankEVsSet();
-            _ivs = StatSet.BlankIVsSet();
-
             Stats = CalculateStats(Level, BaseStats, EVs, IVs, Nature);
         }
 
@@ -66,7 +47,7 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
             return category switch
             {
                 MoveCategory.Physical => Attack,
-                MoveCategory.Special => SpcAttack,
+                MoveCategory.Special => SpAttack,
                 _ => 0
             };
         }
@@ -76,30 +57,24 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
             return category switch
             {
                 MoveCategory.Physical => Defense,
-                MoveCategory.Special => SpcDefense,
+                MoveCategory.Special => SpDefense,
                 _ => 0
             };
         }
 
+        private int Boosted(Stat stat) => Mathf.FloorToInt(Stats[stat] * Modifiers.GetMultiplier(stat));
+        
         private static StatSet CalculateStats(int level, StatSet baseStats, StatSet evs, StatSet ivs, Nature nature)
         {
-            return new StatSet(
-                CalculateHPStat(level, baseStats.HP, evs.HP, ivs.HP),
-                CalculateStat(level, baseStats.Attack, evs.Attack, ivs.Attack, nature.Attack),
-                CalculateStat(level, baseStats.Defense, evs.Defense, ivs.Defense, nature.Defense),
-                CalculateStat(level, baseStats.SpcAttack, evs.SpcAttack, ivs.SpcAttack, nature.SpcAttack),
-                CalculateStat(level, baseStats.SpcDefense, evs.SpcDefense, ivs.SpcDefense, nature.SpcDefense),
-                CalculateStat(level, baseStats.Speed, evs.Speed, ivs.Speed, nature.Speed));
+            return StatSet.From(stat => stat == Stat.HP 
+                ? CalculateHPStat(level, baseStats.HP, evs.HP, ivs.HP)
+                : CalculateStat(level, baseStats[stat], evs[stat], ivs[stat], nature[stat]));
         }
 
-        private static int CalculateHPStat(int level, int baseHP, int hpEV, int hpIV)
-        {
-            return Mathf.FloorToInt((2f * baseHP + hpIV + Mathf.FloorToInt(hpEV / 4f)) * level / 100) + level + 10;
-        }
+        private static int CalculateHPStat(int level, int baseHP, int ev, int iv) =>
+            (2 * baseHP + iv + ev / 4) * level / 100 + level + 10;
 
-        private static int CalculateStat(int level, int baseStat, int ev, int iv, float natureModifier)
-        {
-            return Mathf.FloorToInt(((2 * baseStat + iv + ev / 4) * level / 100 + 5) * natureModifier);
-        }
+        private static int CalculateStat(int level, int baseStat, int ev, int iv, float natureModifier) =>
+            Mathf.FloorToInt(((2 * baseStat + iv + ev / 4) * level / 100 + 5) * natureModifier);
     }
 }

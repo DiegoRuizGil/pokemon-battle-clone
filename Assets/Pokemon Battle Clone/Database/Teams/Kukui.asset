@@ -11,40 +11,136 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44905e43b0584f9eb5395759fa1ca0dd, type: 3}
   m_Name: Kukui
-  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.TeamBuilder.TeamConfig
+  m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.Database.TeamConfig
   pokemonList:
   - pokemonConfig: {fileID: 11400000, guid: 90689f31fa1b46f45a9a9fceab1d11bd, type: 2}
-    movesConfig:
+    level: 100
+    nature: 13
+    ivs:
+      <HP>k__BackingField: 31
+      <Attack>k__BackingField: 31
+      <Defense>k__BackingField: 31
+      <SpAttack>k__BackingField: 31
+      <SpDefense>k__BackingField: 31
+      <Speed>k__BackingField: 31
+    evs:
+      <HP>k__BackingField: 0
+      <Attack>k__BackingField: 252
+      <Defense>k__BackingField: 0
+      <SpAttack>k__BackingField: 0
+      <SpDefense>k__BackingField: 4
+      <Speed>k__BackingField: 252
+    moves:
     - {fileID: 11400000, guid: f7bdeb37d3118a84ab41fe82d46c5ea6, type: 2}
     - {fileID: 11400000, guid: 1f11f37705891d74baf3d5a000a37373, type: 2}
     - {fileID: 11400000, guid: e9460d676741a3b4f93936bd02af56a2, type: 2}
     - {fileID: 11400000, guid: 4cf0b36dad71845449e450626423f177, type: 2}
   - pokemonConfig: {fileID: 11400000, guid: 3c3c01b34b888f34aab1cbc2833e32fd, type: 2}
-    movesConfig:
+    level: 100
+    nature: 10
+    ivs:
+      <HP>k__BackingField: 31
+      <Attack>k__BackingField: 31
+      <Defense>k__BackingField: 31
+      <SpAttack>k__BackingField: 31
+      <SpDefense>k__BackingField: 31
+      <Speed>k__BackingField: 31
+    evs:
+      <HP>k__BackingField: 0
+      <Attack>k__BackingField: 0
+      <Defense>k__BackingField: 0
+      <SpAttack>k__BackingField: 252
+      <SpDefense>k__BackingField: 4
+      <Speed>k__BackingField: 252
+    moves:
     - {fileID: 11400000, guid: 6c0d7185c4d51844cad2c9a2c9a73a99, type: 2}
     - {fileID: 11400000, guid: 88b09b67949a62341890fb13c04ac807, type: 2}
     - {fileID: 11400000, guid: fb9793abb679e4347b00243aa5495e55, type: 2}
     - {fileID: 11400000, guid: c574672d5ccc00043910d30b81342466, type: 2}
   - pokemonConfig: {fileID: 11400000, guid: 6ed0120805208f94e8c2e1867c6ee44a, type: 2}
-    movesConfig:
+    level: 100
+    nature: 13
+    ivs:
+      <HP>k__BackingField: 31
+      <Attack>k__BackingField: 31
+      <Defense>k__BackingField: 31
+      <SpAttack>k__BackingField: 31
+      <SpDefense>k__BackingField: 31
+      <Speed>k__BackingField: 31
+    evs:
+      <HP>k__BackingField: 0
+      <Attack>k__BackingField: 252
+      <Defense>k__BackingField: 0
+      <SpAttack>k__BackingField: 0
+      <SpDefense>k__BackingField: 4
+      <Speed>k__BackingField: 252
+    moves:
     - {fileID: 11400000, guid: 88ae09df7cb4b4d498ed209aeb345dc3, type: 2}
     - {fileID: 11400000, guid: 2dfe4abff1d1b384b80fdb8d8d5c284c, type: 2}
     - {fileID: 11400000, guid: 7dcef30a8a598384288c58b2d7e8bd6c, type: 2}
     - {fileID: 11400000, guid: 4cf0b36dad71845449e450626423f177, type: 2}
   - pokemonConfig: {fileID: 11400000, guid: a292cfcbbf0bc40499c99cd50627189e, type: 2}
-    movesConfig:
+    level: 100
+    nature: 15
+    ivs:
+      <HP>k__BackingField: 31
+      <Attack>k__BackingField: 31
+      <Defense>k__BackingField: 31
+      <SpAttack>k__BackingField: 31
+      <SpDefense>k__BackingField: 31
+      <Speed>k__BackingField: 31
+    evs:
+      <HP>k__BackingField: 248
+      <Attack>k__BackingField: 0
+      <Defense>k__BackingField: 0
+      <SpAttack>k__BackingField: 252
+      <SpDefense>k__BackingField: 8
+      <Speed>k__BackingField: 0
+    moves:
     - {fileID: 11400000, guid: 5add7770029348d4fa8b878867d5cb72, type: 2}
     - {fileID: 11400000, guid: 9ed0193ec7e7634479d47063a5d56bef, type: 2}
     - {fileID: 11400000, guid: cac1c4bcb894a6047a29272c0537abfc, type: 2}
     - {fileID: 11400000, guid: 288bbc265d57b9141aa43b5c17ca7c1e, type: 2}
   - pokemonConfig: {fileID: 11400000, guid: 99730e9eb34224d44a341b312d3647e7, type: 2}
-    movesConfig:
+    level: 100
+    nature: 3
+    ivs:
+      <HP>k__BackingField: 31
+      <Attack>k__BackingField: 31
+      <Defense>k__BackingField: 31
+      <SpAttack>k__BackingField: 31
+      <SpDefense>k__BackingField: 31
+      <Speed>k__BackingField: 31
+    evs:
+      <HP>k__BackingField: 252
+      <Attack>k__BackingField: 252
+      <Defense>k__BackingField: 0
+      <SpAttack>k__BackingField: 0
+      <SpDefense>k__BackingField: 4
+      <Speed>k__BackingField: 0
+    moves:
     - {fileID: 11400000, guid: cf8efb61c3762484ca94928f23217025, type: 2}
     - {fileID: 11400000, guid: e9460d676741a3b4f93936bd02af56a2, type: 2}
     - {fileID: 11400000, guid: 296454d3c17a21844b3dd4bfe2609d19, type: 2}
     - {fileID: 11400000, guid: ab1f3f018d631dd4a8f05eb4a082c820, type: 2}
   - pokemonConfig: {fileID: 11400000, guid: 169366bb315d6d449a27d59bc9e30a20, type: 2}
-    movesConfig:
+    level: 100
+    nature: 17
+    ivs:
+      <HP>k__BackingField: 31
+      <Attack>k__BackingField: 31
+      <Defense>k__BackingField: 31
+      <SpAttack>k__BackingField: 31
+      <SpDefense>k__BackingField: 31
+      <Speed>k__BackingField: 31
+    evs:
+      <HP>k__BackingField: 252
+      <Attack>k__BackingField: 4
+      <Defense>k__BackingField: 0
+      <SpAttack>k__BackingField: 252
+      <SpDefense>k__BackingField: 0
+      <Speed>k__BackingField: 0
+    moves:
     - {fileID: 11400000, guid: 558196953255d184882479b45a6587e0, type: 2}
     - {fileID: 11400000, guid: 7d5ea73814fac594484da604ece1559d, type: 2}
     - {fileID: 11400000, guid: 4e6d148c908f3764ebc4d44106f81358, type: 2}

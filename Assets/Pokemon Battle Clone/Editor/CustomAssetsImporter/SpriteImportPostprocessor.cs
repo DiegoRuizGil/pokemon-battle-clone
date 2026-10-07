@@ -1,12 +1,13 @@
-﻿using UnityEditor;
+﻿using System;
+using Pokemon_Battle_Clone.Editor.Database;
+using Pokemon_Battle_Clone.Runtime.Database;
+using UnityEditor;
 using UnityEngine;
 
 namespace Pokemon_Battle_Clone.Editor.CustomAssetsImporter
 {
     public class SpriteImportPostprocessor : AssetPostprocessor
     {
-        private const string BasePath = "Assets/Pokemon Battle Clone/Sprites/Pokemon/";
-
         private void OnPreprocessTexture()
         {
             var importer = assetImporter as TextureImporter;
@@ -18,7 +19,7 @@ namespace Pokemon_Battle_Clone.Editor.CustomAssetsImporter
 
         private bool ShouldApplySettings()
         {
-            return assetPath.StartsWith(BasePath);
+            return assetPath.StartsWith(ProjectPaths.PokemonSprites + "/", StringComparison.Ordinal);
         }
 
         private void ApplySpriteSettings(TextureImporter importer)

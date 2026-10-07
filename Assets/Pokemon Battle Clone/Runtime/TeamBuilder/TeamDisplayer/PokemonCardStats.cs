@@ -30,8 +30,8 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.TeamDisplayer
         {
             atkStat.Display(stats.Attack);
             defStat.Display(stats.Defense);
-            spAtkStat.Display(stats.SpcAttack);
-            spDefStat.Display(stats.SpcDefense);
+            spAtkStat.Display(stats.SpAttack);
+            spDefStat.Display(stats.SpDefense);
             speedStat.Display(stats.Speed);
         }
     }

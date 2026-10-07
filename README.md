@@ -37,6 +37,7 @@ You can play the game directly in your browser on [`itch.io`](https://diegorg64.
   - [Execution Pipeline](#execution-pipeline)
 - [Deterministic Battles (RNG)](#deterministic-battles-rng)
 - [Data Integration (PokeAPI)](#data-integration-pokeapi)
+- [PokeTool (Editor Tool)](#poketool-editor-tool)
 - [Online Multiplayer](#online-multiplayer)
 
 
@@ -165,7 +166,7 @@ This ensures that the core battle logic remains deterministic and independent fr
 
 Pokemon and move data are loaded using PokeAPI through a .NET integration. This allows new content to be added quickly without manual data entry, reducing errors and improving iteration speed.
 
-A custom Unity editor tool is used to fetch and populate pokemon data directly into ScriptableObjects, including:
+A custom Unity editor tool, [PokeTool](#poketool-editor-tool), is used to fetch and populate pokemon data directly into ScriptableObjects, including:
 - Base stats
 - Types
 - Sprites (automatically downloaded and imported into the project)
@@ -173,6 +174,30 @@ A custom Unity editor tool is used to fetch and populate pokemon data directly i
 This approach turns external data into in-engine assets, bridging the gap between online resources and the game's data model. It also streamlines the workflow when adding new pokemon, as most of the data can be generated automatically from a single source.
 
 ![Pokemon Load Data](Assets/Docs~/pokemon_load_data.gif)
+
+
+## PokeTool (Editor Tool)
+
+PokeTool is a custom Unity editor window, built with UI Toolkit, that lets you create and edit the game's data without going through the inspector. It is opened from the `PokeTool` menu and works directly on the project's ScriptableObjects: pokemon, moves and teams.
+
+![PokeTool](Assets/Docs~/poketool.png)
+
+The window has three tabs. Each one shows a searchable list on the left and an editor for the selected item on the right.
+
+### Pokemon
+- Import a Pokémon from PokeAPI by name or ID. Base stats, types and sprites (front, back and icon) are downloaded and set up automatically.
+- Or create one manually. Custom content uses a reserved range of IDs, so it never collides with PokeAPI data.
+- Edit base stats and types, and preview its sprites.
+
+### Moves
+- Import a move from PokeAPI or create one manually.
+- Edit its type, category, power, accuracy, PP and priority, plus its effects: a main effect and optional additional effects with a probability (see [Modular Effects](#modular-effects)).
+
+### Teams
+- Create teams of up to six members and edit them in place.
+- Pick each member's Pokémon and its four moves from searchable lists. Every entry shows its sprite, types and base stats (or the move's type, category, power, accuracy and PP).
+- Configure level, nature, IVs and EVs, with the usual limits validated while you type. The final stats are shown as bars, and the nature's boost and drop are highlighted.
+- Reorder or remove members. All changes support undo/redo.
 
 
 ## Online Multiplayer

@@ -1,143 +1,191 @@
-﻿namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
-{
-    public struct Nature
-    {
-        public float HP { get; set; }
-        public float Attack { get; private set; }
-        public float Defense { get; private set; }
-        public float SpcAttack { get; private set; }
-        public float SpcDefense { get; private set; }
-        public float Speed { get; private set; }
+﻿using System;
 
-        private Nature(float hp, float attack, float spcAttack, float defense, float spcDefense, float speed)
+namespace Pokemon_Battle_Clone.Runtime.Stats.Domain
+{
+    public enum NatureEnum
+    {
+        Hardy, Lonely, Brave, Adamant, Naughty, Bold, Docile, Relaxed, Impish, Lax, Timid, Hasty, Serious, Jolly, Naive,
+        Modest, Mild, Quiet, Bashful, Rash, Calm, Gentle, Sassy, Careful, Quirky
+    }
+    
+    public readonly struct Nature
+    {
+        public float Attack { get; }
+        public float Defense { get; }
+        public float SpAttack { get; }
+        public float SpDefense { get; }
+        public float Speed { get; }
+
+        private Nature(float attack, float spAttack, float defense, float spDefense, float speed)
         {
-            HP = hp;
             Attack = attack;
-            SpcAttack = spcAttack;
+            SpAttack = spAttack;
             Defense = defense;
-            SpcDefense = spcDefense;
+            SpDefense = spDefense;
             Speed = speed;
         }
+
+        public float this[Stat stat] => stat switch
+        {
+            Stat.HP => 1f,
+            Stat.Attack => Attack,
+            Stat.Defense => Defense,
+            Stat.SpAttack => SpAttack,
+            Stat.SpDefense => SpDefense,
+            Stat.Speed => Speed,
+            _ => throw new ArgumentOutOfRangeException(nameof(stat))
+        };
         
+        public static Nature FromEnum(NatureEnum natureEnum) =>
+            natureEnum switch
+            {
+                NatureEnum.Adamant => Adamant(),
+                NatureEnum.Bashful => Bashful(),
+                NatureEnum.Bold => Bold(),
+                NatureEnum.Brave => Brave(),
+                NatureEnum.Calm => Calm(),
+                NatureEnum.Careful => Careful(),
+                NatureEnum.Docile => Docile(),
+                NatureEnum.Gentle => Gentle(),
+                NatureEnum.Hardy => Hardy(),
+                NatureEnum.Hasty => Hasty(),
+                NatureEnum.Impish => Impish(),
+                NatureEnum.Jolly => Jolly(),
+                NatureEnum.Lax => Lax(),
+                NatureEnum.Lonely => Lonely(),
+                NatureEnum.Mild => Mild(),
+                NatureEnum.Modest => Modest(),
+                NatureEnum.Naive => Naive(),
+                NatureEnum.Naughty => Naughty(),
+                NatureEnum.Quiet => Quiet(),
+                NatureEnum.Quirky => Quirky(),
+                NatureEnum.Rash => Rash(),
+                NatureEnum.Relaxed => Relaxed(),
+                NatureEnum.Sassy => Sassy(),
+                NatureEnum.Serious => Serious(),
+                NatureEnum.Timid => Timid(),
+                _ => Bashful()
+            };
+
         /// <summary>
         /// Neutral
         /// </summary>
-        public static Nature Hardy() => new Nature(hp: 1f, attack: 1f, spcAttack: 1f, defense: 1f, spcDefense: 1f, speed: 1f);
+        public static Nature Hardy() => new Nature(attack: 1f, spAttack: 1f, defense: 1f, spDefense: 1f, speed: 1f);
         /// <summary>
         /// Increased stat: Attack<br/>
         /// Decreased stat: Defense
         /// </summary>
-        public static Nature Lonely() => new Nature(hp: 1f, attack: 1.1f, spcAttack: 1f, defense: 0.9f, spcDefense: 1f, speed: 1f);
+        public static Nature Lonely() => new Nature(attack: 1.1f, spAttack: 1f, defense: 0.9f, spDefense: 1f, speed: 1f);
         /// <summary>
         /// Increased stat: Attack<br/>
         /// Decreased stat: Speed
         /// </summary>
-        public static Nature Brave() => new Nature(hp: 1f, attack: 1.1f, spcAttack: 1f, defense: 1f, spcDefense: 1f, speed: 0.9f);
+        public static Nature Brave() => new Nature(attack: 1.1f, spAttack: 1f, defense: 1f, spDefense: 1f, speed: 0.9f);
         /// <summary>
         /// Increased stat: Attack<br/>
         /// Decreased stat: Sp. Attack
         /// </summary>
-        public static Nature Adamant() => new Nature(hp: 1f, attack: 1.1f, spcAttack: 0.9f, defense: 1f, spcDefense: 1f, speed: 1f);
+        public static Nature Adamant() => new Nature(attack: 1.1f, spAttack: 0.9f, defense: 1f, spDefense: 1f, speed: 1f);
         /// <summary>
         /// Increased stat: Attack<br/>
         /// Decreased stat: Sp. Defense
         /// </summary>
-        public static Nature Naughty() => new Nature(hp: 1f, attack: 1.1f, spcAttack: 1f, defense: 1f, spcDefense: 0.9f, speed: 1f);
+        public static Nature Naughty() => new Nature(attack: 1.1f, spAttack: 1f, defense: 1f, spDefense: 0.9f, speed: 1f);
         /// <summary>
         /// Increased stat: Defense<br/>
         /// Decreased stat: Attack
         /// </summary>
-        public static Nature Bold() => new Nature(hp: 1f, attack: 0.9f, spcAttack: 1f, defense: 1.1f, spcDefense: 1f, speed: 1f);
+        public static Nature Bold() => new Nature(attack: 0.9f, spAttack: 1f, defense: 1.1f, spDefense: 1f, speed: 1f);
         /// <summary>
         /// Neutral
         /// </summary>
-        public static Nature Docile() => new Nature(hp: 1f, attack: 1f, spcAttack: 1f, defense: 1f, spcDefense: 1f, speed: 1f);
+        public static Nature Docile() => new Nature(attack: 1f, spAttack: 1f, defense: 1f, spDefense: 1f, speed: 1f);
         /// <summary>
         /// Increased stat: Defense<br/>
         /// Decreased stat: Speed
         /// </summary>
-        public static Nature Relaxed() => new Nature(hp: 1f, attack: 1f, spcAttack: 1f, defense: 1.1f, spcDefense: 1f, speed: 0.9f);
+        public static Nature Relaxed() => new Nature(attack: 1f, spAttack: 1f, defense: 1.1f, spDefense: 1f, speed: 0.9f);
         /// <summary>
         /// Increased stat: Defense<br/>
         /// Decreased stat: Sp. Attack
         /// </summary>
-        public static Nature Impish() => new Nature(hp: 1f, attack: 1f, spcAttack: 0.9f, defense: 1.1f, spcDefense: 1f, speed: 1f);
+        public static Nature Impish() => new Nature(attack: 1f, spAttack: 0.9f, defense: 1.1f, spDefense: 1f, speed: 1f);
         /// <summary>
         /// Increased stat: Defense<br/>
         /// Decreased stat: Sp. Defense
         /// </summary>
-        public static Nature Lax() => new Nature(hp: 1f, attack: 1f, spcAttack: 1f, defense: 1.1f, spcDefense: 0.9f, speed: 1f);
+        public static Nature Lax() => new Nature(attack: 1f, spAttack: 1f, defense: 1.1f, spDefense: 0.9f, speed: 1f);
         /// <summary>
         /// Increased stat: Speed<br/>
         /// Decreased stat: Attack
         /// </summary>
-        public static Nature Timid() => new Nature(hp: 1f, attack: 0.9f, spcAttack: 1f, defense: 1f, spcDefense: 1f, speed: 1.1f);
+        public static Nature Timid() => new Nature(attack: 0.9f, spAttack: 1f, defense: 1f, spDefense: 1f, speed: 1.1f);
         /// <summary>
         /// Increased stat: Speed<br/>
         /// Decreased stat: Defense
         /// </summary>
-        public static Nature Hasty() => new Nature(hp: 1f, attack: 1f, spcAttack: 1f, defense: 0.9f, spcDefense: 1f, speed: 1.1f);
+        public static Nature Hasty() => new Nature(attack: 1f, spAttack: 1f, defense: 0.9f, spDefense: 1f, speed: 1.1f);
         /// <summary>
         /// Neutral
         /// </summary>
-        public static Nature Serious() => new Nature(hp: 1f, attack: 1f, spcAttack: 1f, defense: 1f, spcDefense: 1f, speed: 1f);
+        public static Nature Serious() => new Nature(attack: 1f, spAttack: 1f, defense: 1f, spDefense: 1f, speed: 1f);
         /// <summary>
         /// Increased stat: Speed<br/>
         /// Decreased stat: Sp. Attack
         /// </summary>
-        public static Nature Jolly() => new Nature(hp: 1f, attack: 1f, spcAttack: 0.9f, defense: 1f, spcDefense: 1f, speed: 1.1f);
+        public static Nature Jolly() => new Nature(attack: 1f, spAttack: 0.9f, defense: 1f, spDefense: 1f, speed: 1.1f);
         /// <summary>
         /// Increased stat: Speed<br/>
         /// Decreased stat: Sp. Defense
         /// </summary>
-        public static Nature Naive() => new Nature(hp: 1f, attack: 1f, spcAttack: 1f, defense: 0.9f, spcDefense: 1f, speed: 1.1f);
+        public static Nature Naive() => new Nature(attack: 1f, spAttack: 1f, defense: 0.9f, spDefense: 1f, speed: 1.1f);
         /// <summary>
         /// Increased stat: Sp. Attack<br/>
         /// Decreased stat: Attack
         /// </summary>
-        public static Nature Modest() => new Nature(hp: 1f, attack: 0.9f, spcAttack: 1.1f, defense: 1f, spcDefense: 1f, speed: 1f);
+        public static Nature Modest() => new Nature(attack: 0.9f, spAttack: 1.1f, defense: 1f, spDefense: 1f, speed: 1f);
         /// <summary>
         /// Increased stat: Sp. Attack<br/>
         /// Decreased stat: Defense
         /// </summary>
-        public static Nature Mild() => new Nature(hp: 1f, attack: 1f, spcAttack: 1.1f, defense: 0.9f, spcDefense: 1f, speed: 1f);
+        public static Nature Mild() => new Nature(attack: 1f, spAttack: 1.1f, defense: 0.9f, spDefense: 1f, speed: 1f);
         /// <summary>
         /// Increased stat: Sp. Attack<br/>
         /// Decreased stat: Speed
         /// </summary>
-        public static Nature Quiet() => new Nature(hp: 1f, attack: 1f, spcAttack: 1.1f, defense: 1f, spcDefense: 1f, speed: 0.9f);
+        public static Nature Quiet() => new Nature(attack: 1f, spAttack: 1.1f, defense: 1f, spDefense: 1f, speed: 0.9f);
         /// <summary>
         /// Neutral
         /// </summary>
-        public static Nature Bashful() => new Nature(hp: 1f, attack: 1f, spcAttack: 1f, defense: 1f, spcDefense: 1f, speed: 1f);
+        public static Nature Bashful() => new Nature(attack: 1f, spAttack: 1f, defense: 1f, spDefense: 1f, speed: 1f);
         /// <summary>
         /// Increased stat: Sp. Attack<br/>
         /// Decreased stat: Sp. Defense
         /// </summary>
-        public static Nature Rash() => new Nature(hp: 1f, attack: 1f, spcAttack: 1.1f, defense: 1f, spcDefense: 0.9f, speed: 1f);
+        public static Nature Rash() => new Nature(attack: 1f, spAttack: 1.1f, defense: 1f, spDefense: 0.9f, speed: 1f);
         /// <summary>
         /// Increased stat: Sp. Defense<br/>
         /// Decreased stat: Attack
         /// </summary>
-        public static Nature Calm() => new Nature(hp: 1f, attack: 0.9f, spcAttack: 1f, defense: 1f, spcDefense: 1.1f, speed: 1f);
+        public static Nature Calm() => new Nature(attack: 0.9f, spAttack: 1f, defense: 1f, spDefense: 1.1f, speed: 1f);
         /// <summary>
         /// Increased stat: Sp. Defense<br/>
         /// Decreased stat: Defense
         /// </summary>
-        public static Nature Gentle() => new Nature(hp: 1f, attack: 1f, spcAttack: 1f, defense: 0.9f, spcDefense: 1.1f, speed: 1f);
+        public static Nature Gentle() => new Nature(attack: 1f, spAttack: 1f, defense: 0.9f, spDefense: 1.1f, speed: 1f);
         /// <summary>
         /// Increased stat: Sp. Defense<br/>
         /// Decreased stat: Speed
         /// </summary>
-        public static Nature Sassy() => new Nature(hp: 1f, attack: 1f, spcAttack: 1f, defense: 1f, spcDefense: 1.1f, speed: 0.9f);
+        public static Nature Sassy() => new Nature(attack: 1f, spAttack: 1f, defense: 1f, spDefense: 1.1f, speed: 0.9f);
         /// <summary>
         /// Increased stat: Sp. Defense<br/>
         /// Decreased stat: Sp. Attack
         /// </summary>
-        public static Nature Careful() => new Nature(hp: 1f, attack: 1f, spcAttack: 0.9f, defense: 1f, spcDefense: 1.1f, speed: 1f);
+        public static Nature Careful() => new Nature(attack: 1f, spAttack: 0.9f, defense: 1f, spDefense: 1.1f, speed: 1f);
         /// <summary>
         /// Neutral
         /// </summary>
-        public static Nature Quirky() => new Nature(hp: 1f, attack: 1f, spcAttack: 1f, defense: 1f, spcDefense: 1f, speed: 1f);
+        public static Nature Quirky() => new Nature(attack: 1f, spAttack: 1f, defense: 1f, spDefense: 1f, speed: 1f);
     }
 }

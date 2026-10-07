@@ -1,0 +1,120 @@
+PokeTool {
+    flex-grow: 1;
+    flex-direction: row;
+}
+
+PokeTool > .unity-tab-view {
+    flex-grow: 1;
+}
+
+.poketool-tab {
+    padding-right: 3px;
+    padding-bottom: 3px;
+    padding-left: 3px;
+    padding-top: 3px;
+}
+
+.browser-container {
+    min-width: 150px;
+}
+
+.config-browser {
+}
+
+.browser-toolbar {
+    flex-direction: row;
+    flex-grow: 0;
+    flex-shrink: 0;
+    align-content: flex-start;
+    justify-content: flex-start;
+    min-width: auto;
+}
+
+.browser-search-field {
+    flex-grow: 1;
+    flex-wrap: nowrap;
+    width: auto;
+}
+
+.data-editor {
+    flex-grow: 1;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.config-list-view {
+    border-right-width: 1px;
+    border-left-color: rgb(41, 41, 41);
+    border-right-color: rgb(41, 41, 41);
+    border-top-color: rgb(41, 41, 41);
+    border-bottom-color: rgb(41, 41, 41);
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-radius: 5px;
+}
+
+.list-entry {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding-left: 10px;
+    justify-content: space-between;
+    align-content: flex-start;
+}
+
+.list-entry > .entry-label {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    flex-shrink: 1;
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.delete-button {
+    align-self: flex-end;
+    flex-shrink: 0;
+}
+
+.sprites-preview {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.sprite-preview-container {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(42, 42, 42);
+    justify-content: center;
+    margin-right: 10px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-left-color: rgb(81, 81, 81);
+    border-right-color: rgb(81, 81, 81);
+    border-top-color: rgb(81, 81, 81);
+    border-bottom-color: rgb(81, 81, 81);
+    margin-bottom: 10px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    align-items: center;
+}
+
+.sprite-preview-label {
+    display: flex;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(81, 81, 81);
+    -unity-text-align: middle-center;
+    font-size: 10px;
+    border-top-left-radius: 3px;
+}

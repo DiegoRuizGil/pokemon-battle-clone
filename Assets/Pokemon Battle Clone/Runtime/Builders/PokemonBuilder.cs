@@ -10,13 +10,13 @@ namespace Pokemon_Battle_Clone.Runtime.Builders
         private uint _id;
         private string _name = "???";
         private int _level = 1;
-        private StatSet _baseStats = new StatSet(50, 50, 50, 50, 50, 50);
+        private StatSet _baseStats = new(50, 50, 50, 50, 50, 50);
         private Nature _nature = Nature.Bashful();
-        private StatSet _EVs = StatSet.BlankEVsSet();
-        private StatSet _IVs = StatSet.BlankIVsSet();
+        private StatSet _evs = new();
+        private StatSet _ivs = new();
         private ElementalType _type1 = ElementalType.None;
         private ElementalType _type2 = ElementalType.None;
-        private List<Move> _moves = new List<Move>();
+        private List<Move> _moves = new();
 
         public PokemonBuilder WithID(uint id)
         {
@@ -50,13 +50,13 @@ namespace Pokemon_Battle_Clone.Runtime.Builders
 
         public PokemonBuilder WithEVs(StatSet evs)
         {
-            _EVs = evs;
+            _evs = evs;
             return this;
         }
 
         public PokemonBuilder WithIVs(StatSet ivs)
         {
-            _IVs = ivs;
+            _ivs = ivs;
             return this;
         }
 
@@ -75,11 +75,7 @@ namespace Pokemon_Battle_Clone.Runtime.Builders
         
         public Pokemon Build()
         {
-            var stats = new StatsData(_level, _baseStats, _nature)
-            {
-                EVs = _EVs,
-                IVs = _IVs
-            };
+            var stats = new StatsData(_level, _baseStats, _nature, _evs, _ivs);
 
             var pokemon = new Pokemon(_id, _name, stats, _type1, _type2);
             pokemon.MoveSet.AddMoves(_moves);

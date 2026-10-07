@@ -5,6 +5,7 @@ using Pokemon_Battle_Clone.Runtime.Battles.Infrastructure;
 using Pokemon_Battle_Clone.Runtime.Battles.Infrastructure.Dialogs;
 using Pokemon_Battle_Clone.Runtime.Core.Domain;
 using Pokemon_Battle_Clone.Runtime.Core.Infrastructure;
+using Pokemon_Battle_Clone.Runtime.Database;
 using Pokemon_Battle_Clone.Runtime.RNG;
 using Pokemon_Battle_Clone.Runtime.TeamBuilder.TeamDisplayer;
 using Pokemon_Battle_Clone.Runtime.Trainers.Control;
@@ -27,6 +28,8 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Battle
         public ActionsHUD actionsHUD;
         public TeamInfoDisplayer teamInfoDisplayer;
         public DialogDisplayer dialogDisplayer;
+        
+        private readonly IPokemonSpriteProvider _spriteProvider = new AddressablesSpriteProvider();
 
         private void Awake()
         {
@@ -41,16 +44,19 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Battle
             var actionsResolver = new ActionsResolver(this, dialogDisplayer);
             var turn = new Turn(actionsResolver, battle, player, rival);
             
-            actionsHUD.Hide();
+            actionsHUD.Init(_spriteProvider);
+            teamInfoDisplayer.Init(_spriteProvider);
             battleController.Init(turn, player, rival);
             
             battleNetworkBridge.Init(battle, player, rival);
         }
 
+        private void OnDestroy() => _spriteProvider.Dispose();
+
         private PlayerTrainer SetupPlayer(Team team)
         {
             var trainer = new PlayerTrainer(team, Side.Player, actionsHUD, teamInfoDisplayer);
-            playerTeamView.Init(team.PokemonList.Select(p => p.ID).ToList());
+            playerTeamView.Init(team.PokemonList.Select(p => p.ID).ToList(), _spriteProvider);
 
             return trainer;
         }
@@ -58,7 +64,7 @@ namespace Pokemon_Battle_Clone.Runtime.Online.Battle
         private NetworkTrainer SetupRival(Team team)
         {
             var trainer = new NetworkTrainer(team, Side.Rival);
-            rivalTeamView.Init(team.PokemonList.Select(p => p.ID).ToList());
+            rivalTeamView.Init(team.PokemonList.Select(p => p.ID).ToList(), _spriteProvider);
 
             return trainer;
         }

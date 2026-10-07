@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d92e7c6879140d7aed38b4473324b48, type: 3}
-  m_Name: Double-Edge
+  m_Name: double-edge
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.TeamBuilder.MoveConfig
+  id: 38
   moveName: Double-Edge
   type: 13
   category: 0

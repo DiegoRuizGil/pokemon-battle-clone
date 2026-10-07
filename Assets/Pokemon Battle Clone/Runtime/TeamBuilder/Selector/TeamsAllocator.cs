@@ -20,6 +20,12 @@ namespace Pokemon_Battle_Clone.Runtime.TeamBuilder.Selector
             SetStartButtonInteraction();
         }
 
+        public void Init(IPokemonSpriteProvider spriteProvider)
+        {
+            playerSelection.Init(spriteProvider);
+            rivalSelection.Init(spriteProvider);
+        }
+
         public void SetTeam(TeamConfig teamConfig, Side side)
         {
             if (side == Side.Player)

@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Default Local Group
+  m_GUID: d03ec5b1ad04cfb4a9e46e7a9c4065b2
+  m_SerializeEntries:
+  - m_GUID: a21836c483b2e7c4e86215ac20a1e88d
+    m_Address: Assets/Pokemon Battle Clone/Sprites/Pokemon/Front
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df16f2d1b09254843a8b77a660445883
+    m_Address: Assets/Pokemon Battle Clone/Sprites/Pokemon/Back
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ef5723ed52c49ef40b19762991e136be
+    m_Address: Assets/Pokemon Battle Clone/Sprites/Pokemon/Icon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 8cb9347fb813a034ea85e6a6d1946755, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ff7e429a3cad57647b359e5a96d47467, type: 2}
+    - {fileID: 11400000, guid: 630db0908d95b6849a0661bb3e993b11, type: 2}

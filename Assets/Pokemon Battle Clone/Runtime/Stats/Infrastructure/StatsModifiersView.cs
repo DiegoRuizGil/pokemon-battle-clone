@@ -8,57 +8,22 @@ namespace Pokemon_Battle_Clone.Runtime.Stats.Infrastructure
     {
         [SerializeField] private StatModifierTag statModifierTagPrefab;
         
-        private readonly Dictionary<string, StatModifierTag> _statModifierTags = new();
-
-        private struct ModifierDTO
-        {
-            public string Name;
-            public float Value;
-        }
-
-        private void Start()
-        {
-            InitTags();
-        }
+        private readonly Dictionary<Stat, StatModifierTag> _tags = new();
 
         public void Set(StatsModifier modifiers)
         {
-            foreach (var modifier in GetModifiers(modifiers))
-            {
-                if (_statModifierTags.TryGetValue(modifier.Name, out StatModifierTag modifierTag))
-                    modifierTag.SetInfo(modifier.Name, modifier.Value);
-            }
+            EnsureTags();
+
+            foreach (var (stat, modifierTag) in _tags)
+                modifierTag.SetInfo(stat, modifiers);
         }
 
-        private void InitTags()
+        private void EnsureTags()
         {
-            var statsModifier = new StatsModifier();
-            foreach (var modifier in GetModifiers(statsModifier))
-            {
-                var modifierTag = CreateTag(modifier);
-                modifierTag.SetInfo(modifier.Name, modifier.Value);
-            }
-        }
+            if (_tags.Count > 0) return;
 
-        private StatModifierTag CreateTag(ModifierDTO dto)
-        {
-            var modifierTag = Instantiate(statModifierTagPrefab, transform);
-            _statModifierTags.Add(dto.Name, modifierTag);
-            return modifierTag;
-        }
-
-        private List<ModifierDTO> GetModifiers(StatsModifier modifier)
-        {
-            var modifiers = new List<ModifierDTO>
-            {
-                new() { Name = "Atk.", Value = modifier.AttackBoost },
-                new() { Name = "Def.", Value = modifier.DefenseBoost },
-                new() { Name = "S.Atk", Value = modifier.SpcAttackBoost },
-                new() { Name = "S.Def", Value = modifier.SpcDefenseBoost },
-                new() { Name = "Speed", Value = modifier.SpeedBoost }
-            };
-            
-            return modifiers;
+            foreach (var stat in StatInfo.Battle)
+                _tags.Add(stat, Instantiate(statModifierTagPrefab, transform));
         }
     }
 }

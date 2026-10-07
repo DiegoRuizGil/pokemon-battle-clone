@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d92e7c6879140d7aed38b4473324b48, type: 3}
-  m_Name: Extrasensory
+  m_Name: extrasensory
   m_EditorClassIdentifier: PokemonBattleClone.Runtime::Pokemon_Battle_Clone.Runtime.TeamBuilder.MoveConfig
+  id: 326
   moveName: Extrasensory
   type: 15
   category: 1
