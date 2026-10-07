@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Pokemon_Battle_Clone.Runtime.Database;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
@@ -22,6 +23,16 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
                 bindRow: (row, move) => ((MovePickerRow)row).Bind(move),
                 rowHeight: 40);
 
+            var header = new Label("Moves")
+            {
+                style =
+                {
+                    unityFontStyleAndWeight = FontStyle.Bold,
+                    fontSize = 14,
+                }
+            };
+            this.Add(header);
+            
             for (int i = 0; i < TeamMember.MaxMoves; i++)
             {
                 var slot = i;

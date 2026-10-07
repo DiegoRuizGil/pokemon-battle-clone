@@ -48,18 +48,22 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
             this.AddToClassList("member-editor");
             
             _sprite.AddToClassList("member-sprite");
-            _typesRow.AddToClassList("types-row");
-
+            _typesRow.AddToClassList("pokemon-types");
+            var topRow = new VisualElement();
+            topRow.AddToClassList("info-top-row");
+            topRow.Add(_sprite);
+            topRow.Add(_typesRow);
+            
             _pokemonField = new MemberPokemonField(
                 _detailPanel,
                 getPokemons,
                 getIcon: p => spritesRepository.LoadOrDefault(p.ID, SpriteType.Icon));
             _pokemonField.OnPicked += pokemon => OnPokemonPicked?.Invoke(pokemon);
+            _pokemonField.AddToClassList("pokemon-field");
             
             var infoColumn = new VisualElement();
             infoColumn.AddToClassList("info-section");
-            infoColumn.Add(_sprite);
-            infoColumn.Add(_typesRow);
+            infoColumn.Add(topRow);
             infoColumn.Add(_pokemonField);
 
             _movesField = new MemberMovesField(_detailPanel, getMoves);
