@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using Pokemon_Battle_Clone.Editor.PokeTool.Icons;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -12,7 +13,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool
         public static void ShowWindow()
         {
             var window = GetWindow<PokeToolEditorWindow>();
-            window.titleContent = new GUIContent("PokeTool");
+            window.titleContent = new GUIContent("PokeTool", PokeToolIcons.GetTexture("pokeball"));
             window.minSize = new Vector2(200, 50);
         }
 

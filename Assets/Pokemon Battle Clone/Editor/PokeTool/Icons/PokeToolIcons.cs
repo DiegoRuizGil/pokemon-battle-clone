@@ -61,7 +61,7 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Icons
             _ => throw new ArgumentException("Invalid category", nameof(category))
         };
 
-        private static Texture2D GetTexture(string id)
+        public static Texture2D GetTexture(string id)
         {
             if (Cache.TryGetValue(id, out var texture))
             {
