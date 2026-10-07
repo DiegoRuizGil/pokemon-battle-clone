@@ -11,7 +11,6 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
         public event Action<PokemonConfig> OnPicked;
 
         private readonly TextField _nameField = new();
-        private readonly Func<PokemonConfig, Sprite> _getIcon;
         private readonly SearchBinding<PokemonConfig> _search;
 
         private PokemonConfig _current;
@@ -21,12 +20,10 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
             Func<List<PokemonConfig>> getItems,
             Func<PokemonConfig, Sprite> getIcon)
         {
-            _getIcon = getIcon;
-
             var picker = new ConfigPicker<PokemonConfig>(
                 getName: p => p.pokemonName,
-                makeRow: MakePickerRow,
-                bindRow: BindPickerRow,
+                makeRow: () => new PokemonPickerRow(),
+                bindRow: (row, config) => ((PokemonPickerRow)row).Bind(config, getIcon(config)),
                 rowHeight: 40);
             
             _search = new SearchBinding<PokemonConfig>(
@@ -44,23 +41,5 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
         }
         
         public void FocusField() => _nameField.schedule.Execute(() => _nameField.Focus());
-        
-        private VisualElement MakePickerRow()
-        {
-            var row = new VisualElement();
-            row.AddToClassList("picker-row");
-
-            var icon = new Image();
-            icon.AddToClassList("picker-icon");
-            row.Add(icon);
-            row.Add(new Label());
-            return row;
-        }
-
-        private void BindPickerRow(VisualElement row, PokemonConfig config)
-        {
-            row.Q<Image>().sprite = _getIcon(config);
-            row.Q<Label>().text = config.pokemonName;
-        }
     }
 }

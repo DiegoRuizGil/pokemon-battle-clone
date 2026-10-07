@@ -162,6 +162,46 @@
     border-bottom-color: var(--unity-colors-default-border);
 }
 
+.picker-row {
+    flex-direction: row;
+    align-items: center;
+    padding: 0 6px;
+}
+
+.picker-section-name {
+    flex-direction: row;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.picker-icon {
+    margin-right: 6px;
+}
+
+.picker-types {
+    flex-direction: row;
+    flex-shrink: 0;
+    margin: 0 12px;
+}
+
+.picker-stats {
+    flex-direction: row;
+    flex-shrink: 0;
+}
+
+.picker-stats .labeled-value {
+    width: 34px;
+}
+
+.labeled-value {
+    align-items: center;
+}
+
+.labeled-value-label {
+    font-size: 10px;
+    opacity: 0.6;
+}
+
 .member-stats-editor {
     padding: 6px;
 }
