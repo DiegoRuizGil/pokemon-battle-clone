@@ -193,6 +193,29 @@
     width: 34px;
 }
 
+.picker-move-name {
+    flex-grow: 1;
+}
+
+.picker-move-icons {
+    flex-direction: row;
+    flex-shrink: 0;
+    margin: 0 12px;
+}
+
+.picker-move-icons > * {
+    margin-right: 4px;
+}
+
+.picker-numbers {
+    flex-direction: row;
+    flex-shrink: 0;
+}
+
+.picker-numbers .labeled-value {
+    width: 52px;
+}
+
 .labeled-value {
     align-items: center;
 }

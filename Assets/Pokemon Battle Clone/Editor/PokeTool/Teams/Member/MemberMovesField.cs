@@ -18,9 +18,9 @@ namespace Pokemon_Battle_Clone.Editor.PokeTool.Teams.Member
         {
             var picker = new ConfigPicker<MoveConfig>(
                 getName: m => m.moveName,
-                makeRow: () => new Label(),
-                bindRow: (row, move) => ((Label)row).text = move.moveName,
-                rowHeight: 28);
+                makeRow: () => new MovePickerRow(),
+                bindRow: (row, move) => ((MovePickerRow)row).Bind(move),
+                rowHeight: 40);
 
             for (int i = 0; i < TeamMember.MaxMoves; i++)
             {
